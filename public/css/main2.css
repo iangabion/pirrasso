@@ -1,0 +1,27 @@
+.category_table tbody{
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.category_table thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.clients_image{
+    height: 162px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+}
+.client-card .card-title {
+    font-size: 20px !important;
+    font-weight: 600 ;
+}
+
+.card.sticky-action .card-reveal {
+    z-index: 1;
+    padding-bottom: 0 !important;
+}
