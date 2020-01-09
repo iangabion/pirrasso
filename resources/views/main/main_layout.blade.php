@@ -27,7 +27,11 @@
             {{-- top nav --}}
             <nav class="teal lighten-2 z-depth-2 nav_layout d-flex ">
                 <p class="project_title font-weight-bold">Buy And Sell </p>
-                {{-- <input type="text"> --}}
+                {{-- <input type="text" class="browser-default my-2 p-2 search_input" style="width:70%; margin-left:5%;" placeholder="search sellers or items">
+                 --}}
+                <div class="input-field"  style="width:70%; margin-left:5%;">
+                    <input type="text" id="autocomplete-input" class="autocomplete browser-default my-2 p-2 search_input" placeholder="search sellers or items" >
+                </div>
                 <span class="profile_holder dropdown-trigger2 " href='#' data-target='dropdown'>
                     <i class="material-icons">account_circle</i>
                 </span>

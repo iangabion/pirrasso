@@ -17,11 +17,17 @@ tbody tr {
     width: 100%;
 }
 .client-card .card-title {
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: 600 ;
 }
 
 .card.sticky-action .card-reveal {
     z-index: 1;
     padding-bottom: 0 !important;
+}
+
+.search_input {
+    width: 100% !important;
+    height: initial !important;
+    padding: 13px !important;
 }

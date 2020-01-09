@@ -57,7 +57,7 @@
                                             </a>
                                         </td>
                                         <!-- Dropdown Structure -->
-                                        <ul id='dropdown1' class='dropdown-content'>
+                                        <ul id='dropdown1' class='dropdown-content list_action'>
                                             <li>
                                                 <a href="" class="blue-text category_edit" data_id={{$cat->id}}>
                                                     <i class="mdi mdi-pencil left"></i>Edit
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="card-action">
-		          	<span class="light-blue darken-3 p-2 white-text">{{$category->count()}} saved categories</span>
+		          	<span class="teal darken-3 p-2 white-text"><i class="mdi mdi-content-save"></i> {{$category->count()}} saved categories</span>
 		        </div>
 	      	</div>
         </div>

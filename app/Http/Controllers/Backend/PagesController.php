@@ -24,10 +24,17 @@ class PagesController extends Controller
     	return view('pages/category/show', compact('category'));
     }
     
+    // seller part
+    // list
     public function seller()
     {
-        // $user = Auth::user();
-        $clients = Client::all();
+        $clients = Client::paginate(12);
     	return view('pages/sellers/show' , compact('clients'));
+    }
+    // view
+    public function view_seller($id)
+    {
+        $client = Client::find($id) ;
+    	return view('pages/sellers/view' , compact('client'));
     }
 }

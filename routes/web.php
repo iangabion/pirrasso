@@ -20,7 +20,10 @@ Route::group(['namespace' => 'Backend'], function()
     Route::get('dashboard', 'PagesController@home');
     Route::get('category', 'PagesController@category');
     Route::get('seller', 'PagesController@seller');
+    Route::get('view_seller/{id}', 'PagesController@view_seller');
 
     // ajax route
     Route::post('add_category', 'CategoryController@store');
+    Route::get('search_items', 'SearchController@index');
+
 });

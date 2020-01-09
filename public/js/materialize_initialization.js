@@ -37,7 +37,14 @@ $(document).ready(function(){
             "Microsoft": 'http://event-app.ohm-conception.com/Settings/background.png',
             "Google": 'http://event-app.ohm-conception.com/Settings/background.png',
             "test": 'http://event-app.ohm-conception.com/Settings/background.png',
+            "test2": 'http://event-app.ohm-conception.com/Settings/background.png',
         },
+        onAutocomplete: function(val) {
+            // Callback function when value is autcompleted.
+            alert(val)
+            
+          },
+        limit: 5 ,
     });
 
     // data table
