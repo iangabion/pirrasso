@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('dashboard');
+    return view('welcome');
 });
 Route::group(['namespace' => 'Backend'], function()
 {
