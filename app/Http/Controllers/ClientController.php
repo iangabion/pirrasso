@@ -41,8 +41,7 @@ class ClientController extends Controller
      */
     public function store(StoreClientPost $request)
     {
-
-    
+       
             $client = new Client();
             $client->first_name =  $request->input('first_name');
             $client->last_name =  $request->input('last_name');
@@ -65,6 +64,7 @@ class ClientController extends Controller
             $client->save();
             $accessToken = $client->createToken('authtoken')->accessToken ;
             return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+
     }
 
     public function login(Request $request) {
@@ -88,10 +88,10 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
-        $client = Client::findorfail($id);
+        $client = Client::findorfail(Auth::user()->id);
         return new ClientResource($client);
     }
 

@@ -22,7 +22,7 @@ Route::middleware('auth:api')->group(function () {
 	// clients part
 	Route::get('clients' ,'ClientController@index');
 	Route::post('update_profile' ,'ClientController@update_profile');
-	Route::get('view_client/{id}' ,'ClientController@show');
+	Route::get('view_profile' ,'ClientController@show');
 
 	// items part
 	Route::post('add_items' ,'ItemsController@store');
