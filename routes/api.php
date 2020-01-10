@@ -33,6 +33,8 @@ Route::middleware('auth:api')->group(function () {
 Route::get('items' ,'ItemsController@index');
 // get all categories
 Route::get('categories' ,'CategoryController@index');
+// get all categories
+Route::get('statuses' ,'CategoryController@statuses');
 
 
 // login and register

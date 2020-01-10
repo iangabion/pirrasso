@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Status;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\StatusResource;
 
 class CategoryController extends Controller
 {
@@ -18,6 +20,13 @@ class CategoryController extends Controller
         //
         $categories = Category::orderBy('name')->get();
         return  CategoryResource::collection($categories) ;
+    }
+
+
+    public function statuses(){
+        $status = Status::orderBy('name')->get();
+        return  StatusResource::collection($status) ;
+
     }
 
     /**
