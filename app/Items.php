@@ -21,8 +21,17 @@ class Items extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
     public function photos(){
         return $this->hasMany(Photos::class);
+    }
+
+
+    //mutator
+    public function getCreatedatAttribute($value) {
+        return date('d F Y H:i', strtotime($value)) ; 
     }
 
 

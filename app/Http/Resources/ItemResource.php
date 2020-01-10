@@ -22,12 +22,13 @@ class ItemResource extends JsonResource
             'id'=> $this->id,
             'title'=> $this->title,
             'price'=> $this->price,
-            'status'=> $this->status,
             'description'=> $this->description,
             'location'=> $this->location,
+            'status'=> $this->status->name,
             'category' => $this->category->name ,
+            'published at' => $this->created_at ,
 
-            'owner' => $this->client,
+            'owner' => new ClientResource($this->client),
             'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
 
         ];

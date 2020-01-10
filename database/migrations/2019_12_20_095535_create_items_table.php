@@ -17,16 +17,19 @@ class CreateItemsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('price');
-            $table->string('status');
             $table->string('description');
             $table->string('location');
+            $table->integer('stock');
             $table->tinyInteger('is_sold')->default('0');
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')
                 ->on('clients')->onDelete('cascade');
             $table->foreign('category_id')
             ->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('status_id')
+            ->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }
