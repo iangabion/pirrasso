@@ -27,6 +27,9 @@ class Items extends Model
     public function photos(){
         return $this->hasMany(Photos::class);
     }
+    public function sessions(){
+        return $this->hasMany(Session::class);
+    }
 
 
     //mutator

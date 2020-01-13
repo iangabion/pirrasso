@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Status;
 use Illuminate\Http\Request;
-use App\Http\Resources\CategoryResource;
-use App\Http\Resources\StatusResource;
 
-class CategoryController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +14,6 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::orderBy('name')->get();
-        return CategoryResource::collection($categories) ;
-    }
-
-    public function statuses(){
-        $status = Status::orderBy('name')->get();
-        return StatusResource::collection($status) ;
-
     }
 
     /**
@@ -52,10 +40,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
     }
@@ -63,10 +51,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
     }
@@ -75,10 +63,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -86,10 +74,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         //
     }

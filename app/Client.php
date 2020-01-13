@@ -21,8 +21,14 @@ class Client extends Authenticatable
 
 
     // relations
-     public function items(){
+    public function items(){
         return $this->hasMany(Items::class);
+    }
+    public function session(){
+        return $this->hasMany(Session::class);
+    }
+    public function messages(){
+        return $this->hasMany(Message::class);
     }
 
     // mutator

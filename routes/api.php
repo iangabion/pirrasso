@@ -26,14 +26,23 @@ Route::middleware('auth:api')->group(function () {
 
 	// items part
 	Route::post('add_items' ,'ItemsController@store');
+	Route::post('edit_items' ,'ItemsController@store');
 	Route::get('view_item/{id}' ,'ItemsController@show');
+	
+	
+	//send message
+	Route::post('send_message' ,'SessionController@store');
+	
+	// retrieve messages
+	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
+	Route::get('user_messages' ,'SessionController@get_user_messages');
 });
 
 // get all items
 Route::get('items' ,'ItemsController@index');
 // get all categories
 Route::get('categories' ,'CategoryController@index');
-// get all categories
+// get all status
 Route::get('statuses' ,'CategoryController@statuses');
 
 
