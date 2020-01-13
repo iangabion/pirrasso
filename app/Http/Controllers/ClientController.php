@@ -115,9 +115,41 @@ class ClientController extends Controller
      */
     public function update_profile(Request $request)
     {
-        //
-        $client = Client::findorfail(Auth::user()->id);
-        return $client;
+        $id = Auth::user()->id ;
+        $updateData = $request->validate([
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'email' => 'nullable|email|unique:clients,email,'.$id,
+            'mobile' => 'nullable',
+            'username' => 'nullable|unique:clients,username,'.$id,
+            'password' => 'nullable',
+            'profile_pic' => 'nullable'
+        ]);
+
+        if($updateData) {
+        $client = Client::findorfail($id);
+        $client->first_name =  $request->input('first_name');
+        $client->last_name =  $request->input('last_name');
+        $client->email =  $request->input('email');
+        $client->mobile =  $request->input('mobile');
+        $client->username =  $request->input('username');
+        $client->password = Hash::make($request->input('password'));
+
+
+        if($request->profile_pic){
+            $image = $request->profile_pic;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = date("YmdHis"). '.' . 'jpeg';
+            file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
+
+            $client->image = $imageName ;
+        }
+        $client->save();
+        $accessToken = $client->createToken('authtoken')->accessToken ;
+        return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+        }
     }
 
     /**
