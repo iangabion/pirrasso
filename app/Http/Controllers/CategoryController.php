@@ -7,6 +7,7 @@ use App\Status;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\StatusResource;
+use App\Http\Resources\ItemResource ;
 
 class CategoryController extends Controller
 {
@@ -26,6 +27,11 @@ class CategoryController extends Controller
         $status = Status::orderBy('name')->get();
         return StatusResource::collection($status) ;
 
+    }
+
+    public function category_items($id){
+        $category = Category::findorfail($id);
+        return  ItemResource::collection($category->items) ;
     }
 
     /**

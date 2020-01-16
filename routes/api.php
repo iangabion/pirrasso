@@ -42,6 +42,8 @@ Route::middleware('auth:api')->group(function () {
 Route::get('items' ,'ItemsController@index');
 // get all categories
 Route::get('categories' ,'CategoryController@index');
+// get all categories items
+Route::get('category_items/{id}' ,'CategoryController@category_items');
 // get all status
 Route::get('statuses' ,'CategoryController@statuses');
 
