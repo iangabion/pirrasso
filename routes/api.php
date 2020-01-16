@@ -36,6 +36,13 @@ Route::middleware('auth:api')->group(function () {
 	// retrieve messages
 	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
 	Route::get('user_messages' ,'SessionController@get_user_messages');
+
+	// add to favorites
+	Route::get('add_favorite/{id}' ,'ClientController@favorites');
+	// remove favorites
+	Route::get('remove_favorite/{id}' ,'ClientController@remove_favorites');
+	//get all favorites
+	Route::get('favorites' ,'ClientController@get_favorites');
 });
 
 // get all items

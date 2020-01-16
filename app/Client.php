@@ -31,6 +31,12 @@ class Client extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    public function items_fav(){
+        return $this->belongsToMany(Items::class , 'favorites' , 'user_id' , 'item_id' );
+    }
+
+
+
     // mutator
     public function getImageAttribute($value){
         return $value ? asset('images/user_profile/'. $value) : asset('images/profile.jpg') ;

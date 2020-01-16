@@ -6,6 +6,7 @@ use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ClientResource;
+use App\Http\Resources\ItemResource;
 use App\Http\Requests\StoreClientPost ;
 use Auth ;
 
@@ -161,6 +162,26 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    public function favorites($id)
+    {
+        $client = Client::findorfail(Auth::user()->id);
+        $client->items_fav()->attach($id);
+        return 'succesfully added to favorites' ;
+    }
+
+    public function remove_favorites($id)
+    {
+        $client = Client::findorfail(Auth::user()->id);
+        $client->items_fav()->detach($id);
+        return 'succesfully removed to favorites' ;
+    }
+
+    public function get_favorites()
+    {
+        $favorites = Client::findorfail(Auth::user()->id);
+        return ItemResource::collection($favorites->items_fav);        
     }
 
     

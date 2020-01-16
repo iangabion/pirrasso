@@ -18,15 +18,23 @@ class Items extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+
+    public function clients_fav(){
+        return $this->belongsToMany(Client::class , 'favorites' , 'item_id' , 'user_id' );
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
     public function status(){
         return $this->belongsTo(Status::class);
     }
+
     public function photos(){
         return $this->hasMany(Photos::class);
     }
+
     public function sessions(){
         return $this->hasMany(Session::class);
     }
