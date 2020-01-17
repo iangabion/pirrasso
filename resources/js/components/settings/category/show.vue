@@ -52,6 +52,7 @@
                         :items="categories"
                         height="430"
                         hide-default-footer
+                        disable-pagination
                         class="elevation-1"
                     >
                         <template v-slot:item.action="{ item }">

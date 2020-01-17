@@ -2461,6 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   $_veeValidate: {
     validator: 'new'
@@ -32827,7 +32828,7 @@ var render = function() {
                                                     ]
                                                   ),
                                                   _vm._v(
-                                                    "\n                                                save seller\n                                            "
+                                                    "\n                                                save category\n                                            "
                                                   )
                                                 ],
                                                 1
@@ -32890,7 +32891,8 @@ var render = function() {
                       "fixed-header": "",
                       items: _vm.categories,
                       height: "430",
-                      "hide-default-footer": ""
+                      "hide-default-footer": "",
+                      "disable-pagination": ""
                     },
                     scopedSlots: _vm._u([
                       {
