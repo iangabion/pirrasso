@@ -22882,7 +22882,7 @@ var render = function() {
                   attrs: {
                     color: "primary mt-10",
                     rounded: "",
-                    to: "/admin/dashboard"
+                    to: "dashboard"
                   }
                 },
                 [_vm._v("get me out of here!")]

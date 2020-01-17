@@ -5,7 +5,7 @@
             <v-icon size="140">mdi-send-lock</v-icon>
             <div class="display-4 text-uppercase font-weight-bold" color="blue-grey lighten-4">404 NOT FOUND</div>
             <div class="title">Opps! We can't find the page your are looking for.</div>
-            <v-btn color="primary mt-10" rounded to="/admin/dashboard">get me out of here!</v-btn>
+            <v-btn color="primary mt-10" rounded to="dashboard">get me out of here!</v-btn>
           </v-col>
         </v-row>
     </v-container>
