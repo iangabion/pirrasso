@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category ;
+use App\Items ;
 
-class CategoryController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-    }
-    public function custom_rules($id){
-        return [
-            'name' => 'required|max:255|min:3|unique:categories,name,'.$id,
-        ];
+        $items = Items::all();
+        return $items;
+
     }
 
     /**
@@ -42,14 +40,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $valid = $this->custom_rules($request->id) ;
-        $request->validate($valid);
-
-        $category = Category::findOrNew($request->id);
-        $category->name = $request->name;
-        $category->save();
-        return $category;
-        
     }
 
     /**

@@ -1,1 +1,30 @@
 //
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css');
+@import '~vuetify/dist/vuetify.css';
+
+
+table > thead.v-data-table-header > tr > th,
+thead .v-data-table__checkbox > .v-icon {
+	background-color: #1565c0 !important;
+	color: #fff !important;
+	text-transform: capitalize !important;
+}
+.v-content__wrap {
+    background: #e5e5e5 !important;
+}
+.theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border {
+     background-color: #e5e5e5 !important; 
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}

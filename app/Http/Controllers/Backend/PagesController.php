@@ -4,37 +4,83 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Client;
-
 
 class PagesController extends Controller
 {
-    //
-    public function home()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        // $user = Auth::user();
-    	return view('pages/dashboard/show');
+        //
+        return view('welcome');
     }
 
-    public function category()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        // $user = Auth::user();
-        $category = Category::orderBy('created_at' , 'desc')->get();
-    	return view('pages/category/show', compact('category'));
+        //
     }
-    
-    // seller part
-    // list
-    public function seller()
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $clients = Client::paginate(12);
-    	return view('pages/sellers/show' , compact('clients'));
+        //
     }
-    // view
-    public function view_seller($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $client = Client::find($id) ;
-    	return view('pages/sellers/view' , compact('client'));
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
