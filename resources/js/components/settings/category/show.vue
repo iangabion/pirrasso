@@ -129,8 +129,7 @@
                                         console.log(response.data)
                                         dis.get_categories()
                                         dis.clear()
-                                        id = ''
-                                        alert('updated')
+                                        dis.category.id= ''
                                     })
                                 } else {
                                 axios.post('/category/', this.category )

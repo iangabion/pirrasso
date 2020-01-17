@@ -2507,8 +2507,7 @@ __webpack_require__.r(__webpack_exports__);
                   console.log(response.data);
                   dis.get_categories();
                   dis.clear();
-                  id = '';
-                  alert('updated');
+                  dis.category.id = '';
                 });
               } else {
                 axios.post('/category/', _this.category).then(function (response) {
