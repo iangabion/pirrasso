@@ -1,13 +1,12 @@
-// import display_category from '../category/display'
+import show_category from '../settings/category/show'
 import show_dashboard from '../dashboard/show'
 export default [
-  	// {
-    //   	// path : '/categories',
-    // 	// // beforeEnter: yourGuard,
-	// 	// // component: display_category,
-	// 	// name: 'categories',
-		
-  	// },
+  	{
+		path : '/categories',
+	  component: show_category,
+	  name: 'category',
+	  
+	},
   	{
       	path : '/dashboard',
     	// beforeEnter: yourGuard,
