@@ -31,7 +31,7 @@
                                             <v-flex xs12 class="text-right">
                                                 <v-btn color="success" tile @click="submit"  >
                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                    save seller
+                                                    save category
                                                 </v-btn>
                                                 <v-btn color="primary" tile @click="clear"  >
                                                     <v-icon left>mdi-lock-reset</v-icon>
