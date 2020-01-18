@@ -2504,10 +2504,11 @@ __webpack_require__.r(__webpack_exports__);
 
               if (id != '') {
                 axios.put('/category/' + id, _this.category).then(function (response) {
-                  console.log(response);
+                  console.log(response.data);
                   dis.get_categories();
                   dis.clear();
                   dis.category.id = '';
+                  alert('updated');
                 });
               } else {
                 axios.post('/category/', _this.category).then(function (response) {

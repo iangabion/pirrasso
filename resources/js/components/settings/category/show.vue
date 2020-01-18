@@ -126,10 +126,12 @@
                                 if(id != '' ) {
                                     axios.put('/category/'+id, this.category )
                                     .then(function (response) {
-                                        console.log(response)
+                                        console.log(response.data)
                                         dis.get_categories()
                                         dis.clear()
                                         dis.category.id= ''
+                                         alert('updated')
+
                                     })
                                 } else {
                                 axios.post('/category/', this.category )
