@@ -122,7 +122,6 @@
                                         console.log(response.data ,'updated')
                                         dis.get_status()
                                         dis.clear()
-                                        dis.statuses.id= ''
                                          alert('updated')
 
                                     })
@@ -141,12 +140,17 @@
                 });
             },
             destroy(id){
-                axios.delete('/status/'+id, {})
-			    .then(response => {
-                    console.log(response.data)
-                    this.get_status()
-                    alert('delete')
-			    });
+                this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
+                    if(result) {
+                        axios.delete('/status/'+id, {})
+                        .then(response => {
+                            console.log(response.data)
+                            this.get_status()
+                            this.clear()
+                            alert('delete')
+                        });
+                    }
+                });
             },
             get_status_edit(id) {
                 axios.get('/status/'+id+'/edit', {})
@@ -159,6 +163,7 @@
             clear () {
                 this.$validator.reset()
                 this.$refs.form.reset()
+                this.statuses.id = ''
             },
             get_status() {
                 axios.get('/status', {})

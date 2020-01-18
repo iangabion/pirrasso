@@ -2526,11 +2526,18 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy(id) {
       var _this2 = this;
 
-      axios["delete"]('/category/' + id, {}).then(function (response) {
-        var self = _this2;
-        console.log(response.data);
-        self.get_categories();
-        alert('delete');
+      this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
+        if (result) {
+          axios["delete"]('/category/' + id, {}).then(function (response) {
+            console.log(response.data);
+
+            _this2.get_categories();
+
+            _this2.clear();
+
+            alert('delete');
+          });
+        }
       });
     },
     get_category_edit: function get_category_edit(id) {
@@ -2706,7 +2713,6 @@ __webpack_require__.r(__webpack_exports__);
                   console.log(response.data, 'updated');
                   dis.get_status();
                   dis.clear();
-                  dis.statuses.id = '';
                   alert('updated');
                 });
               } else {
@@ -2725,12 +2731,18 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy(id) {
       var _this2 = this;
 
-      axios["delete"]('/status/' + id, {}).then(function (response) {
-        console.log(response.data);
+      this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
+        if (result) {
+          axios["delete"]('/status/' + id, {}).then(function (response) {
+            console.log(response.data);
 
-        _this2.get_status();
+            _this2.get_status();
 
-        alert('delete');
+            _this2.clear();
+
+            alert('delete');
+          });
+        }
       });
     },
     get_status_edit: function get_status_edit(id) {
@@ -2745,6 +2757,7 @@ __webpack_require__.r(__webpack_exports__);
     clear: function clear() {
       this.$validator.reset();
       this.$refs.form.reset();
+      this.statuses.id = '';
     },
     get_status: function get_status() {
       var _this4 = this;

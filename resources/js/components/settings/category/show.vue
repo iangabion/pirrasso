@@ -148,13 +148,18 @@
                 });
             },
             destroy(id){
-                axios.delete('/category/'+id, {})
-			    .then(response => {
-                    let self = this;
-                    console.log(response.data)
-                    self.get_categories()
-                    alert('delete')
-			    });
+                this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
+                    if(result) {
+                        axios.delete('/category/'+id, {})
+			            .then(response => {
+                            console.log(response.data)
+                            this.get_categories()
+                            this.clear()
+                            alert('delete')
+			            });
+                    }
+                })
+                
             },
             get_category_edit(id) {
                 axios.get('/category/'+id+'/edit', {})
