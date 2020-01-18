@@ -134,7 +134,7 @@
 
                                     })
                                 } else {
-                                axios.post('/category/', this.category )
+                                axios.post('/category', this.category )
                                 .then(function (response) {
                                     dis.get_categories()
                                     console.log(response.data , ' saved')

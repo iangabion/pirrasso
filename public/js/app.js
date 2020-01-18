@@ -2511,7 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
                   alert('updated');
                 });
               } else {
-                axios.post('/category/', _this.category).then(function (response) {
+                axios.post('/category', _this.category).then(function (response) {
                   dis.get_categories();
                   console.log(response.data, ' saved');
                   dis.clear();
