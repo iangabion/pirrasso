@@ -16,13 +16,13 @@ export default [
 		name: 'dashboard',
 		
 	  },
-  	{
-      	path : '/items',
-    	// beforeEnter: yourGuard,
-		component: show_item,
-		name: 'item',
+  	// {
+    //   	path : '/items',
+    // 	// beforeEnter: yourGuard,
+	// 	component: show_item,
+	// 	name: 'item',
 		
-	  },
+	//   },
 	  
 	  {
 		path : '/statuses',

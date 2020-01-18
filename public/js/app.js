@@ -32621,7 +32621,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("test")])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91591,12 +91591,13 @@ __webpack_require__.r(__webpack_exports__);
   // beforeEnter: yourGuard,
   component: _dashboard_show__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: 'dashboard'
-}, {
-  path: '/items',
-  // beforeEnter: yourGuard,
-  component: _item_show__WEBPACK_IMPORTED_MODULE_3__["default"],
-  name: 'item'
-}, {
+}, // {
+//   	path : '/items',
+// 	// beforeEnter: yourGuard,
+// 	component: show_item,
+// 	name: 'item',
+//   },
+{
   path: '/statuses',
   // beforeEnter: yourGuard,
   component: _settings_status_show__WEBPACK_IMPORTED_MODULE_1__["default"],
