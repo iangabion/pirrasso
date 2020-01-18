@@ -36,8 +36,8 @@ Route::get('/', function () {
 });
 Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
-        Route::get('/clients' , 'ClientController@index');
-        Route::get('/items' , 'ItemController@index');
+        Route::resource('client' , 'ClientController');
+        Route::resource('item' , 'ItemController');
         Route::resource('category', 'CategoryController');
         Route::resource('status', 'StatusController');
 

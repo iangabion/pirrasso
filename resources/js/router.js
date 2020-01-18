@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import dashboardroutes from './components/routes/dashboardroutes'
+import sidebarroutes from './components/routes/sidebarroutes'
 import errorroutes from './components/routes/error'
 // import itemroutes from './components/routes/itemroutes'
 // import sellerroutes from './components/routes/sellerroutes'
@@ -15,7 +15,7 @@ export default new VueRouter({
         // ...categoryroutes,
         // ...itemroutes,
         // ...sellerroutes
-        ...dashboardroutes,
+        ...sidebarroutes,
         ...errorroutes // always at last
     ],
     mode: 'history'

@@ -67,14 +67,14 @@ export default {
     }),
     methods: {
         get_clients(){
-            axios.get('/clients', {})
+            axios.get('/client', {})
             .then(response => {
                 this.clients = response.data;
                 console.log(this.clients)
             });
         },
         get_items(){
-            axios.get('/items', {})
+            axios.get('/item', {})
             .then(response => {
                 this.items = response.data;
                 console.log(this.items)
