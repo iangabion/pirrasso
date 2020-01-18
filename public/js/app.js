@@ -2512,6 +2512,7 @@ __webpack_require__.r(__webpack_exports__);
               } else {
                 axios.post('/category/', _this.category).then(function (response) {
                   dis.get_categories();
+                  console.log(response.data + ' saved');
                   dis.clear();
                   alert('saved');
                 });
