@@ -126,7 +126,7 @@
                                 if(id != '' ) {
                                     axios.put('/category/'+id, this.category )
                                     .then(function (response) {
-                                        console.log(response.data)
+                                        console.log(response)
                                         dis.get_categories()
                                         dis.clear()
                                         dis.category.id= ''
@@ -135,7 +135,7 @@
                                 axios.post('/category/', this.category )
                                 .then(function (response) {
                                     dis.get_categories()
-                                    console.log(response.data + ' saved')
+                                    console.log(response.data , ' saved')
                                     dis.clear()
                                      alert('saved')
                                 })

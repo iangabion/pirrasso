@@ -16,15 +16,6 @@ class CategorySeeder extends Seeder
         //
 
     	Category::create([
-    		'name' => 'property1',
-    	]);
-    	Category::create([
-    		'name' => 'property2',
-    	]);
-    	Category::create([
-    		'name' => 'property3',
-    	]);
-    	Category::create([
     		'name' => 'cars for sale',
     	]);
     	Category::create([
@@ -50,6 +41,9 @@ class CategorySeeder extends Seeder
     	]);
 		Category::create([
     		'name' => "Home Services",
+    	]);
+		Category::create([
+    		'name' => "Property",
     	]);
     }
 }

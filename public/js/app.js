@@ -2504,7 +2504,7 @@ __webpack_require__.r(__webpack_exports__);
 
               if (id != '') {
                 axios.put('/category/' + id, _this.category).then(function (response) {
-                  console.log(response.data);
+                  console.log(response);
                   dis.get_categories();
                   dis.clear();
                   dis.category.id = '';
@@ -2512,7 +2512,7 @@ __webpack_require__.r(__webpack_exports__);
               } else {
                 axios.post('/category/', _this.category).then(function (response) {
                   dis.get_categories();
-                  console.log(response.data + ' saved');
+                  console.log(response.data, ' saved');
                   dis.clear();
                   alert('saved');
                 });
