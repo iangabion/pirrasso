@@ -39,6 +39,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/clients' , 'ClientController@index');
         Route::get('/items' , 'ItemController@index');
         Route::resource('category', 'CategoryController');
+        Route::resource('status', 'StatusController');
 
         Route::get('/logout' , 'ClientController@out');
         // always at last

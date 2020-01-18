@@ -80,7 +80,7 @@
           model: false,
           children: [
             { icon: 'mdi-tab', text: 'Items Categories' , url:'/categories' },
-            { icon: 'mdi-new-box', text: 'Items Status' , url:'/status' },
+            { icon: 'mdi-new-box', text: 'Items Status' , url:'/statuses' },
             { icon: 'mdi-image', text: 'Apps Images' },
           ],
         },
