@@ -16,7 +16,7 @@ class PhotoResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-           asset('images/items/'. $this->filename) ,
+           'image' => asset('images/items/'. $this->filename) ,
        ];
 
    }

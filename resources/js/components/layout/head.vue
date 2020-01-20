@@ -27,19 +27,6 @@
       <v-btn icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        large
-      >
-        <v-avatar
-          size="32px"
-          item
-        >
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          /></v-avatar>
-      </v-btn>
     </v-app-bar>
 </template>
 <script>

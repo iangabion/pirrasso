@@ -38,8 +38,10 @@ Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
         Route::resource('client' , 'ClientController');
         Route::resource('item' , 'ItemController');
-        Route::resource('category', 'CategoryController');
         Route::resource('status', 'StatusController');
+
+        Route::get('category_items/{id}' , 'CategoryController@get_items');
+        Route::resource('category', 'CategoryController');
 
         Route::get('/logout' , 'ClientController@out');
         // always at last

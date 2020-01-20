@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category ;
+use App\Http\Resources\ItemResource;
 
 class CategoryController extends Controller
 {
@@ -25,6 +26,12 @@ class CategoryController extends Controller
             ];
         });
         return $category;
+    }
+
+    public function get_items($id)
+    {
+        $category = Category::findorfail($id)->items()->paginate(10) ;
+        return  ItemResource::collection($category) ;
     }
 
     /**

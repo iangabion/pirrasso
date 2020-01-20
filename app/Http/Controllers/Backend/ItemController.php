@@ -85,5 +85,8 @@ class ItemController extends Controller
     public function destroy($id)
     {
         //
+        $item = Items::findorfail($id);
+        $item->delete();
+        return 'deleted' ;
     }
 }
