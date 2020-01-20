@@ -28,8 +28,8 @@
                     ></v-skeleton-loader>
                 </v-flex>
                 <v-flex xs12 v-else >
-                    <v-layout row wrap>
-                        <v-flex  xs12 sm2  v-for="(items,index) in categories_item" :key="items.id">
+                    <v-layout row wrap v-if="categories_item.length">
+                        <v-flex  xs12 sm2  v-for="(items,index) in categories_item" :key="items.id" >
                             <v-card>
                                 <v-list-item>
                                 <v-list-item-avatar color="grey">
@@ -67,6 +67,18 @@
                             </v-card>
                         </v-flex>
                     </v-layout>
+                    <v-layout row wrap v-else>
+                        <v-flex >
+                           <v-alert
+                            border="right"
+                            colored-border
+                            type="error"
+                            elevation="2"
+                            >
+                            no items for this category
+                            </v-alert>
+                        </v-flex>
+                    </v-layout>
 
                 </v-flex>
             </v-layout>
@@ -77,9 +89,9 @@
 <script>
 export default {
     data: () => ({
-           categories:[],
-           categories_item:[],
-           data_loaded : true ,
+        categories:[],
+        categories_item:[],
+        data_loaded : true ,
     }),
     methods: {
         get_categories() {
@@ -103,7 +115,6 @@ export default {
                 if(result) {
                     axios.delete('/item/'+id, {})
                     .then(response => {
-
                         this.categories_item.splice(index,1)
                         console.log(response.data)
                         alert('delete')
