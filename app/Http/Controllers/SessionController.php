@@ -55,19 +55,19 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         //
-        $messageData = $request->validate([
-            'seller_id' => 'required',
-            'item_id' => 'required',
-            'message' => 'required',
-            'session_id' => 'nullable'
-        ]);
-        if($messageData){
+        
             if($request->session_id) {
                 $session_available = Session::findorfail($request->session_id);
                 $this->manage_message($request->session_id , $request->message);
                 return new SessionResource($session_available ) ;
             }
             else {
+                $messageData = $request->validate([
+                    'seller_id' => 'required',
+                    'item_id' => 'required',
+                    'message' => 'required',
+                    'session_id' => 'nullable'
+                ]);
                 $session = new Session() ;
                 $session->seller_id = $request->input('seller_id') ;
                 $session->item_id = $request->input('item_id') ;
@@ -79,7 +79,6 @@ class SessionController extends Controller
                 }
                 return  new SessionResource($session) ;
             }
-        }
     }
 
     public function manage_message($sessions_id , $messages){

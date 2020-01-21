@@ -21,6 +21,7 @@ class MessageResource extends JsonResource
             'session_id'=> $this->session_id,
             'message_id'=> $this->id,
             'message' => $this->message,
+            'sender-id' => $client->id,
             'sender' => $client->fullname ,
             'posted_at' => $this->created_at ,
         ];

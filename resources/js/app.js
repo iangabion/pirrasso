@@ -79,6 +79,8 @@ axios.interceptors.response.use( ( response ) => {
 });
 Vue.use(VeeValidate);
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
+Vue.component('app-alert', require('./components/alerts/snackbar.vue').default);
+
 
 
 
