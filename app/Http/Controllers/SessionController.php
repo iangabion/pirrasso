@@ -40,6 +40,10 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function get_indi_messages($id) {
+        $session = Session::findorfail($id);
+        return  new SessionResource($session) ;
+    }
     public function get_item_messages($id)
     {
         $session = Session::where('item_id', $id)->get();
