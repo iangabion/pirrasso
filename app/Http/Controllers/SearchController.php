@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
 use App\Items;
 
 
@@ -17,10 +18,8 @@ class SearchController extends Controller
      */
     public function index($item = "")
     {
-        $data = [];
-        $data['items'] = Items::titlesearch($item)->get();
-        $data['users'] = Client::namesearch($item)->get();
-        return $data;
+        $item = Items::where('title', 'like', "%" . $item . "%")->get();
+        return ItemResource::collection($item);
     }
 
     
