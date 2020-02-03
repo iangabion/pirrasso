@@ -59,7 +59,7 @@ class ItemsController extends Controller
         $sold->item_id =  $request->input('item_id');
         $sold->buyer_id =  $request->input('buyer_id');
         $sold->save();
-        return response('sold',200);
+        return $sold;
     }
 
     public function unsold($id) 
