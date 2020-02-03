@@ -8,7 +8,7 @@
             <v-layout row wrap>
                 <v-flex xs12 sm6 >
                     <v-form ref="form">
-                        <v-container  grid-list-md>
+                         <v-container  grid-list-md>
                             <v-layout row wrap>
                                 <v-flex xs12 >
                                     <v-card class="pa-5" >

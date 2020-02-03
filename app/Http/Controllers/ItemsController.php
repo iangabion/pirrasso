@@ -6,7 +6,9 @@ use App\Items;
 use App\Photos;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
+use App\Http\Resources\SoldResource;
 use Auth ;
+use App\Sold;
 
 
 class ItemsController extends Controller
@@ -31,6 +33,41 @@ class ItemsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function getsold_items()
+    {
+        $sold = Sold::where('seller_id', Auth::user()->id)->get();
+        return SoldResource::collection($sold);
+    }
+    public function getbought_items()
+    {
+        $sold = Sold::where('buyer_id', Auth::user()->id)->get();
+        return SoldResource::collection($sold);
+    }
+
+    public function sold(Request $request)
+    {
+        $validatedData = $request->validate([
+            'buyer_id' => 'required',
+            'seller_id' => 'required',
+            'item_id' => 'required',
+        ]);
+        
+        $sold = new Sold();
+        $sold->seller_id =  $request->input('seller_id');
+        $sold->item_id =  $request->input('item_id');
+        $sold->buyer_id =  $request->input('buyer_id');
+        $sold->save();
+        return response('sold',200);
+    }
+
+    public function unsold($id) 
+    {
+        $sold = Sold::findorfail($id);
+        $sold->delete();
+        return response('unsold',200);
+
     }
 
     /**
@@ -62,7 +99,7 @@ class ItemsController extends Controller
             $item->stock =  $request->input('stock');
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
-            $item->client_id =  Auth::user()->id;
+            $item->client_id = Auth::user()->id;
 
             $item->save();
             if($item) {

@@ -38,6 +38,9 @@ class Items extends Model
     public function sessions(){
         return $this->hasMany(Session::class);
     }
+    public function solds(){
+        return $this->hasMany(Sold::class);
+    }
 
 
     //mutator

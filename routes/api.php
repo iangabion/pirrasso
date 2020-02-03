@@ -43,7 +43,13 @@ Route::middleware('auth:api')->group(function () {
 	// remove favorites
 	Route::get('remove_favorite/{id}' ,'ClientController@remove_favorites');
 	//get all favorites
-	Route::get('favorites' ,'ClientController@get_favorites');
+	Route::get('favorites' ,'ClientController@get_favorites');\
+
+	// is sold
+	Route::post('is_sold' ,'ItemsController@sold');
+	Route::get('unsold/{id}' ,'ItemsController@unsold');
+	Route::get('sold_item' ,'ItemsController@getsold_items');
+	Route::get('bought_item' ,'ItemsController@getbought_items');
 });
 
 // get all items
@@ -54,6 +60,9 @@ Route::get('categories' ,'CategoryController@index');
 Route::get('category_items/{id}' ,'CategoryController@category_items');
 // get all status
 Route::get('statuses' ,'CategoryController@statuses');
+
+
+
 
 
 // login and register

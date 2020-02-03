@@ -32,6 +32,8 @@ class SessionResource extends JsonResource
             'users' => [$buyer , $seller],
             'photo' =>isset($this->item->photos) ? PhotoResource::collection($this->item->photos)[0] : '' , 
             'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
+            'buyer_id' => $buyer->id ,
+            'seller_id' => $seller->id ,
         ];
     }
 }
