@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ItemResource ;
+use App\Http\Resources\ClientResource ;
 
 use App\Client ;
 
@@ -22,8 +23,8 @@ class SoldResource extends JsonResource
 
         return [
             'items' => $this->item ? new ItemResource($this->item) : 'wara'  ,
-            'buyer' => $buyer ,
-            'seller' => $seller,
+            'buyer' => new  ClientResource($buyer) ,
+            'seller' => new  ClientResource($seller),
         ];
     }
 }
