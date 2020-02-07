@@ -22,7 +22,7 @@ class SoldResource extends JsonResource
         $seller = Client::findorfail($this->seller_id);
 
         return [
-            '' =>$this->item ? new ItemResource($this->item) : 'wara'  ,
+            'items' => $this->item ? new ItemResource($this->item) : 'wara'  ,
             'buyer' => new  ClientResource($buyer) ,
             'seller' => new  ClientResource($seller),
         ];
