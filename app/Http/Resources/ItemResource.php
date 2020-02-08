@@ -28,6 +28,7 @@ class ItemResource extends JsonResource
             'location'=> $this->location,
             'status'=> $this->status->name,
             'category' => $this->category->name ,
+            'show_number' => $this->show_number,
             'published at' => $this->created_at ,
 
             'owner' => new ClientResource($this->client),
