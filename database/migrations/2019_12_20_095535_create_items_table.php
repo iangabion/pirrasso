@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('description');
             $table->string('location');
             $table->integer('stock');
+            $table->boolean('show_number')->nullable();
             $table->tinyInteger('is_sold')->default('0');
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('category_id');

@@ -87,7 +87,8 @@ class ItemsController extends Controller
             'stock' => 'required',
             'status_id' => 'required',
             'category_id' => 'nullable',
-            'images' => 'required'
+            'images' => 'required',
+            'show_number' => 'nullable',
         ]);
 
         if($validatedData) {
@@ -97,6 +98,7 @@ class ItemsController extends Controller
             $item->description =  $request->input('description');
             $item->location =  $request->input('location');
             $item->stock =  $request->input('stock');
+            $item->show_number =  $request->input('show_number');
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->client_id = Auth::user()->id;

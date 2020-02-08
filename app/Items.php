@@ -47,8 +47,11 @@ class Items extends Model
     public function getCreatedatAttribute($value) {
         return date('d F Y H:i', strtotime($value)) ; 
     }
-    public function getTitleatAttribute($value) {
+    public function getTitleAttribute($value) {
         return ucwords($value) ; 
+    }
+    public function getShownumberAttribute($value) {
+        return $value == 1 ? 'true' :'false' ; 
     }
 
 
