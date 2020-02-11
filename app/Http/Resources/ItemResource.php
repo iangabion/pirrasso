@@ -19,22 +19,20 @@ class ItemResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'items' => [
-                'id'=> $this->id,
-                'title'=> $this->title,
-                'price'=> $this->price,
-                'price'=> $this->price,
-                'stock'=> $this->stock,
-                'description'=> $this->description,
-                'location'=> $this->location,
-                'status'=> $this->status->name,
-                'category' => $this->category->name ,
-                'show_number' => $this->show_number,
-                'published at' => $this->created_at ,
+            'id'=> $this->id,
+            'title'=> $this->title,
+            'price'=> $this->price,
+            'price'=> $this->price,
+            'stock'=> $this->stock,
+            'description'=> $this->description,
+            'location'=> $this->location,
+            'status'=> $this->status->name,
+            'category' => $this->category->name ,
+            'show_number' => $this->show_number,
+            'published at' => $this->created_at ,
 
-                'owner' => new ClientResource($this->client),
-                'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
-            ]
+            'owner' => new ClientResource($this->client),
+            'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
         ];
     }
 }
