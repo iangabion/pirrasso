@@ -109,7 +109,7 @@ class ItemsController extends Controller
 
             $item->save();
             if($item ) {
-                if( $request->input('images') != ''){
+                if($request->input('images')){
                         $this->process_images($request->images ,$item);
                 }
             }
@@ -166,10 +166,10 @@ class ItemsController extends Controller
 
     public function process_images($images , $item){
 
-        if(!empty($images)){
+        if($images ){
             $i=0;
             foreach($images as $img) {
-
+                if($img !=null){
                 $photo = new Photos();
                 $i +=1;
 
@@ -183,6 +183,7 @@ class ItemsController extends Controller
                 $photo->filename = $imageName ;
                 $photo->items_id = $item->id ;
                 $photo->save();
+            }
             }
         }
     }
