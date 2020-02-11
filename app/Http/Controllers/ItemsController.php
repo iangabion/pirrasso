@@ -166,7 +166,7 @@ class ItemsController extends Controller
 
     public function process_images($images , $item){
 
-        if($images.length != 0){
+        if(!empty($images)){
             $i=0;
             foreach($images as $img) {
 
