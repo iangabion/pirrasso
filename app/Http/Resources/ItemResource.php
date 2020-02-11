@@ -26,6 +26,8 @@ class ItemResource extends JsonResource
             'stock'=> $this->stock,
             'description'=> $this->description,
             'location'=> $this->location,
+            'latitude'=> $this->latitude,
+            'longitude'=> $this->longitude,
             'status'=> $this->status->name,
             'category' => $this->category->name ,
             'show_number' => $this->show_number,

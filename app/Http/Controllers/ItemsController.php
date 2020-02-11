@@ -84,6 +84,8 @@ class ItemsController extends Controller
             'price' => 'required',
             'description' => 'required',
             'location' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'required',
             'stock' => 'required',
             'status_id' => 'required',
             'category_id' => 'nullable',
@@ -97,6 +99,8 @@ class ItemsController extends Controller
             $item->price =  $request->input('price');
             $item->description =  $request->input('description');
             $item->location =  $request->input('location');
+            $item->latitude =  $request->input('latitude');
+            $item->longitude =  $request->input('longitude');
             $item->stock =  $request->input('stock');
             $item->show_number =  $request->input('show_number');
             $item->status_id =  $request->input('status_id');

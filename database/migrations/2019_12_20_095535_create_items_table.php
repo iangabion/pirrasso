@@ -19,6 +19,8 @@ class CreateItemsTable extends Migration
             $table->string('price');
             $table->string('description');
             $table->string('location');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->integer('stock');
             $table->boolean('show_number')->nullable();
             $table->tinyInteger('is_sold')->default('0');
