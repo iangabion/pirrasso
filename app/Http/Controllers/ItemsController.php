@@ -108,7 +108,7 @@ class ItemsController extends Controller
             $item->client_id = Auth::user()->id;
 
             $item->save();
-            if($item && $request->images) {
+            if($item && !empty($request->images)) {
                 $this->process_images($request->images ,$item);
             }
             return new ItemResource($item);
