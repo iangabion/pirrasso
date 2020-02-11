@@ -85,7 +85,7 @@ class ItemsController extends Controller
             'description' => 'required',
             'location' => 'required',
             'latitude' => 'nullable',
-            'longitude' => 'required',
+            'longitude' => 'nullable',
             'stock' => 'required',
             'status_id' => 'required',
             'category_id' => 'nullable',
