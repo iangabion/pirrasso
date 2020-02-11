@@ -89,7 +89,7 @@ class ItemsController extends Controller
             'stock' => 'required',
             'status_id' => 'required',
             'category_id' => 'nullable',
-            'images' => 'required',
+            'images' => 'nullable',
             'show_number' => 'nullable',
         ]);
 
@@ -108,7 +108,7 @@ class ItemsController extends Controller
             $item->client_id = Auth::user()->id;
 
             $item->save();
-            if($item) {
+            if($item && $request->images) {
                 $this->process_images($request->images ,$item);
             }
             return new ItemResource($item);
