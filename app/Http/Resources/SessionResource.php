@@ -30,7 +30,7 @@ class SessionResource extends JsonResource
             'item_name' => $this->item->title,
             'item_price' => $this->item->price,
             'users' => [$buyer , $seller],
-            'photo' =>isset($this->item->photos) ? PhotoResource::collection($this->item->photos)[0] : '' , 
+            'photo' =>$this->item->photos != null ? PhotoResource::collection($this->item->photos)[0] : '' , 
             'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
             'buyer_id' => $buyer->id ,
             'seller_id' => $seller->id ,
