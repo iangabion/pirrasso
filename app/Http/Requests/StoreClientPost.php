@@ -28,9 +28,9 @@ class StoreClientPost extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:clients,email',
-            'mobile' => 'required',
+            'mobile' => 'required|min:8',
             'username' => 'required|unique:clients,username',
-            'password' => 'required',
+            'password' => 'required|min:4',
         ];
     }
 }
