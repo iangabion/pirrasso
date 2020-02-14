@@ -2750,6 +2750,9 @@ __webpack_require__.r(__webpack_exports__);
         text: 'items count',
         value: 'count'
       }, {
+        text: 'Subcat count',
+        value: 'subcat'
+      }, {
         text: 'actions',
         value: 'action'
       }]

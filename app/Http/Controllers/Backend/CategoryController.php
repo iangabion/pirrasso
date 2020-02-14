@@ -23,6 +23,7 @@ class CategoryController extends Controller
                 'id' => $cat->id ,
                 'name'=>$cat->name ,
                 'count'=>$cat->items->count(), 
+                'subcat'=>$cat->subcategories->count()
             ];
         });
         return $category;

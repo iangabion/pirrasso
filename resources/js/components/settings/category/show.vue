@@ -195,6 +195,7 @@
           },
           ,
           { text: 'items count', value: 'count' },
+          { text: 'Subcat count', value: 'subcat' },
           { text: 'actions', value: 'action' },
         ],
         }),
