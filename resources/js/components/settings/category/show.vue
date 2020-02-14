@@ -123,7 +123,7 @@
                                                         </v-layout>
                                                         <v-layout row wrap mb-3 justify-end>
                                                             <v-flex xs12 class="text-right">
-                                                                <v-btn color="success" small tile @click="subcategory_submit"  >
+                                                                <v-btn color="success" small tile @click="subcategory_save"  >
                                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
                                                                     save 
                                                                 </v-btn>
@@ -204,11 +204,11 @@
                  axios.delete('/subcategories/'+item.id, {})
                     .then(response => {
                         console.log(response.data)
-                        self.categories_subcategories.subcategories.splice(index,1);
+                        self.categories_subcategories.subcategories.splice(index,1)
                         
                     });
             },
-            subcategory_submit(){
+            subcategory_save(){
                 let self = this ;
                  axios.post('/subcategories', this.subcat )
                     .then(function (response) {
@@ -216,6 +216,7 @@
                         alert('save')
                         self.categories_subcategories.subcategories.unshift(response.data)
                         self.subcat.name = '';
+                        self.clear()
                     })
             },
             submit(){

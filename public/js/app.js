@@ -2763,13 +2763,14 @@ __webpack_require__.r(__webpack_exports__);
         self.categories_subcategories.subcategories.splice(index, 1);
       });
     },
-    subcategory_submit: function subcategory_submit() {
+    subcategory_save: function subcategory_save() {
       var self = this;
       axios.post('/subcategories', this.subcat).then(function (response) {
         console.log(response.data, 'subcat');
         alert('save');
         self.categories_subcategories.subcategories.unshift(response.data);
         self.subcat.name = '';
+        self.clear();
       });
     },
     submit: function submit() {
@@ -34170,7 +34171,7 @@ var render = function() {
                                                                   },
                                                                   on: {
                                                                     click:
-                                                                      _vm.subcategory_submit
+                                                                      _vm.subcategory_save
                                                                   }
                                                                 },
                                                                 [
