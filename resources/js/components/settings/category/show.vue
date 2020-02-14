@@ -63,6 +63,14 @@
                                     </v-btn>
                                 </template>
                                 <v-list class="pa-0">
+                                    <v-list-item @click="show_category(item.id)" >
+                                        <v-list-item-icon class="mr-0">
+                                            <v-icon size="20" color="primary">mdi-eye</v-icon>
+                                        </v-list-item-icon>
+                                        <v-list-item-title>
+                                            View
+                                        </v-list-item-title>
+                                    </v-list-item>
                                     <v-list-item @click="get_category_edit(item.id)" >
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="primary">mdi-pencil</v-icon>
@@ -84,6 +92,76 @@
                         </template>
                     </v-data-table>
                 </v-flex>
+                 <v-dialog
+                    v-model="subcat_dialog"
+                    max-width="1000"
+                    >
+                    <v-card>
+                        <v-card-title class="headline">{{categories_subcategories.name}} list of sub categories</v-card-title>
+                        <v-card-text>
+                            <v-layout row wrap>
+                                <v-flex xs12 sm6>
+                                    <v-form ref="form">
+                                        <v-container  grid-list-md>
+                                            <v-layout row wrap>
+                                                <v-flex xs12 >
+                                                    <v-card class="pa-5" >
+                                                        <v-layout row wrap mb-3 class="text-capitalize">
+                                                            <v-flex xs12>
+                                                                <p class="subheading pa-0 font-weight-bold">add subcategory</p>
+                                                            </v-flex>
+                                                            <v-flex xs12>
+                                                                <v-text-field 
+                                                                    type="text"
+                                                                    v-model="subcat.name"
+                                                                    v-validate="'required'" 
+                                                                    :error-messages="errors.collect('Category Name')" 
+                                                                    data-vv-name="Category Name" 
+                                                                    label=" Name" required>
+                                                                </v-text-field>
+                                                            </v-flex>
+                                                        </v-layout>
+                                                        <v-layout row wrap mb-3 justify-end>
+                                                            <v-flex xs12 class="text-right">
+                                                                <v-btn color="success" small tile @click="subcategory_submit"  >
+                                                                    <v-icon left>mdi-content-save-edit-outline</v-icon>
+                                                                    save 
+                                                                </v-btn>
+                                                            </v-flex>
+                                                        </v-layout>
+                                                    </v-card>
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-container>
+                                    </v-form>
+                                </v-flex>
+                                <v-flex xs12 sm6>
+                                    <v-simple-table class="elevation-1">
+                                        <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                            <th class="text-left">Name</th>
+                                            <th class="text-left">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index">
+                                            <td>{{item.name}}</td>
+                                            <td><v-icon color="info" small>mdi-pencil</v-icon> <v-icon color="error" small>mdi-delete</v-icon></td>
+                                            </tr>
+                                        </tbody>
+                                        </template>
+                                    </v-simple-table>
+                                </v-flex>
+                            </v-layout>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" text  @click="subcat_dialog = false" > OKAY </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                    </v-dialog>
             </v-layout>
         </v-container>
     </div>
@@ -95,8 +173,14 @@
         },
         data: () => ({
             default_footer:true,
+            subcat_dialog:false,
             no_items:true,
+            subcat: {
+                'name' : '',
+                'category_id' :''
+            },
             categories: [],
+            categories_subcategories:[],
             max_height: '100px',
             category : {
                 name: '',
@@ -115,6 +199,12 @@
         ],
         }),
         methods: {
+            subcategory_submit(){
+                 axios.post('/subcategories', this.subcat )
+                    .then(function (response) {
+                        console.log(response.data , 'subcat')
+                    })
+            },
             submit(){
                 let self = this;
                 this.$validator.validateAll().then(result => {
@@ -161,10 +251,17 @@
                 })
                 
             },
+            show_category(id) {
+                axios.get('/category/'+id+'/edit', {})
+			    .then(response => {
+                    this.categories_subcategories = response.data ;
+                });
+                this.subcat_dialog = true ;
+                this.subcat.category_id = id ;
+            },
             get_category_edit(id) {
                 axios.get('/category/'+id+'/edit', {})
 			    .then(response => {
-                    console.log(response.data)
                     this.category.name = response.data.name ;
                     this.category.id = response.data.id ;
 			    });

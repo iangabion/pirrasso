@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category ;
-use App\Http\Resources\ItemResource;
-
-class CategoryController extends Controller
+use App\SubCategory;
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = Category::orderBy('created_at' , 'desc')->get();
-        $category = collect($category)->map(function ($cat) {
-            return [
-                'id' => $cat->id ,
-                'name'=>$cat->name ,
-                'count'=>$cat->items->count(), 
-            ];
-        });
-        return $category;
-    }
-
-    public function get_items($id)
-    {
-        $category = Category::findorfail($id)->items()->paginate(10) ;
-        return  ItemResource::collection($category) ;
     }
 
     /**
@@ -52,15 +35,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories,name',
-        ]);
-        
-            $category = new Category() ;
-            $category->name = $request->name ;
-            $category->save();
-            return $category;
+        $sub = new SubCategory();
+        $sub->name = $request->name ;
+        $sub->category_id = $request->category_id ;
+        $sub->save();
+        return $sub;
     }
 
     /**
@@ -83,8 +62,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $category = Category::with('subcategories')->findorfail($id);
-        return $category ;
     }
 
     /**
@@ -97,10 +74,6 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $category = Category::findorfail($id);
-        $category->name = $request->name ;
-        $category->save();
-        return $category ;
     }
 
     /**
@@ -111,8 +84,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findorfail($id);
-        $category->delete();
-        return $category ;
+        //
     }
 }

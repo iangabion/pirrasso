@@ -26,6 +26,9 @@ class Items extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function subcategory(){
+        return $this->belongsTo(Category::class);
+    }
 
     public function status(){
         return $this->belongsTo(Status::class);

@@ -42,6 +42,7 @@ Route::middleware('auth:web')->group(function () {
 
         Route::get('category_items/{id}' , 'CategoryController@get_items');
         Route::resource('category', 'CategoryController');
+        Route::resource('subcategories', 'SubCategoryController');
 
         Route::get('/logout' , 'ClientController@out');
         // always at last

@@ -1959,7 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2644,6 +2643,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   $_veeValidate: {
     validator: 'new'
@@ -2651,8 +2728,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       default_footer: true,
+      subcat_dialog: false,
       no_items: true,
+      subcat: {
+        'name': '',
+        'category_id': ''
+      },
       categories: [],
+      categories_subcategories: [],
       max_height: '100px',
       category: {
         name: '',
@@ -2673,6 +2756,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    subcategory_submit: function subcategory_submit() {
+      axios.post('/subcategories', this.subcat).then(function (response) {
+        console.log(response.data, 'subcat');
+      });
+    },
     submit: function submit() {
       var _this = this;
 
@@ -2722,13 +2810,21 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    get_category_edit: function get_category_edit(id) {
+    show_category: function show_category(id) {
       var _this3 = this;
 
       axios.get('/category/' + id + '/edit', {}).then(function (response) {
-        console.log(response.data);
-        _this3.category.name = response.data.name;
-        _this3.category.id = response.data.id;
+        _this3.categories_subcategories = response.data;
+      });
+      this.subcat_dialog = true;
+      this.subcat.category_id = id;
+    },
+    get_category_edit: function get_category_edit(id) {
+      var _this4 = this;
+
+      axios.get('/category/' + id + '/edit', {}).then(function (response) {
+        _this4.category.name = response.data.name;
+        _this4.category.id = response.data.id;
       });
     },
     clear: function clear() {
@@ -2736,12 +2832,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.form.reset();
     },
     get_categories: function get_categories() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/category', {}).then(function (response) {
-        _this4.categories = response.data;
-        console.log(_this4.categories);
-        _this4.data_loaded = true;
+        _this5.categories = response.data;
+        console.log(_this5.categories);
+        _this5.data_loaded = true;
       });
     }
   },
@@ -32423,8 +32519,6 @@ var render = function() {
       _vm._v(" "),
       _c("app-confirm", { ref: "app_confirm" }),
       _vm._v(" "),
-      _c("app-alert", { ref: "app_alert" }),
-      _vm._v(" "),
       _c(
         "v-content",
         [
@@ -33762,6 +33856,43 @@ var render = function() {
                                       {
                                         on: {
                                           click: function($event) {
+                                            return _vm.show_category(item.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "v-list-item-icon",
+                                          { staticClass: "mr-0" },
+                                          [
+                                            _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  size: "20",
+                                                  color: "primary"
+                                                }
+                                              },
+                                              [_vm._v("mdi-eye")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-list-item-title", [
+                                          _vm._v(
+                                            "\n                                        View\n                                    "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item",
+                                      {
+                                        on: {
+                                          click: function($event) {
                                             return _vm.get_category_edit(
                                               item.id
                                             )
@@ -33843,6 +33974,362 @@ var render = function() {
                       }
                     ])
                   })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-dialog",
+                {
+                  attrs: { "max-width": "1000" },
+                  model: {
+                    value: _vm.subcat_dialog,
+                    callback: function($$v) {
+                      _vm.subcat_dialog = $$v
+                    },
+                    expression: "subcat_dialog"
+                  }
+                },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-card-title", { staticClass: "headline" }, [
+                        _vm._v(
+                          _vm._s(_vm.categories_subcategories.name) +
+                            " list of sub categories"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-layout",
+                            { attrs: { row: "", wrap: "" } },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "" } },
+                                [
+                                  _c(
+                                    "v-form",
+                                    { ref: "form" },
+                                    [
+                                      _c(
+                                        "v-container",
+                                        { attrs: { "grid-list-md": "" } },
+                                        [
+                                          _c(
+                                            "v-layout",
+                                            { attrs: { row: "", wrap: "" } },
+                                            [
+                                              _c(
+                                                "v-flex",
+                                                { attrs: { xs12: "" } },
+                                                [
+                                                  _c(
+                                                    "v-card",
+                                                    { staticClass: "pa-5" },
+                                                    [
+                                                      _c(
+                                                        "v-layout",
+                                                        {
+                                                          staticClass:
+                                                            "text-capitalize",
+                                                          attrs: {
+                                                            row: "",
+                                                            wrap: "",
+                                                            "mb-3": ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs12: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "p",
+                                                                {
+                                                                  staticClass:
+                                                                    "subheading pa-0 font-weight-bold"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "add subcategory"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs12: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-text-field",
+                                                                {
+                                                                  directives: [
+                                                                    {
+                                                                      name:
+                                                                        "validate",
+                                                                      rawName:
+                                                                        "v-validate",
+                                                                      value:
+                                                                        "required",
+                                                                      expression:
+                                                                        "'required'"
+                                                                    }
+                                                                  ],
+                                                                  attrs: {
+                                                                    type:
+                                                                      "text",
+                                                                    "error-messages": _vm.errors.collect(
+                                                                      "Category Name"
+                                                                    ),
+                                                                    "data-vv-name":
+                                                                      "Category Name",
+                                                                    label:
+                                                                      " Name",
+                                                                    required: ""
+                                                                  },
+                                                                  model: {
+                                                                    value:
+                                                                      _vm.subcat
+                                                                        .name,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.$set(
+                                                                        _vm.subcat,
+                                                                        "name",
+                                                                        $$v
+                                                                      )
+                                                                    },
+                                                                    expression:
+                                                                      "subcat.name"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-layout",
+                                                        {
+                                                          attrs: {
+                                                            row: "",
+                                                            wrap: "",
+                                                            "mb-3": "",
+                                                            "justify-end": ""
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              staticClass:
+                                                                "text-right",
+                                                              attrs: {
+                                                                xs12: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-btn",
+                                                                {
+                                                                  attrs: {
+                                                                    color:
+                                                                      "success",
+                                                                    small: "",
+                                                                    tile: ""
+                                                                  },
+                                                                  on: {
+                                                                    click:
+                                                                      _vm.subcategory_submit
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "v-icon",
+                                                                    {
+                                                                      attrs: {
+                                                                        left: ""
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "mdi-content-save-edit-outline"
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(
+                                                                    "\n                                                                save \n                                                            "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { xs12: "", sm6: "" } },
+                                [
+                                  _c("v-simple-table", {
+                                    staticClass: "elevation-1",
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function() {
+                                          return [
+                                            _c("thead", [
+                                              _c("tr", [
+                                                _c(
+                                                  "th",
+                                                  { staticClass: "text-left" },
+                                                  [_vm._v("Name")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "th",
+                                                  { staticClass: "text-left" },
+                                                  [_vm._v("Action")]
+                                                )
+                                              ])
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "tbody",
+                                              _vm._l(
+                                                _vm.categories_subcategories
+                                                  .subcategories,
+                                                function(item, index) {
+                                                  return _c(
+                                                    "tr",
+                                                    { key: index },
+                                                    [
+                                                      _c("td", [
+                                                        _vm._v(
+                                                          _vm._s(item.name)
+                                                        )
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        [
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color: "info",
+                                                                small: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-pencil"
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-icon",
+                                                            {
+                                                              attrs: {
+                                                                color: "error",
+                                                                small: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "mdi-delete"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "green darken-1", text: "" },
+                              on: {
+                                click: function($event) {
+                                  _vm.subcat_dialog = false
+                                }
+                              }
+                            },
+                            [_vm._v(" OKAY ")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               )

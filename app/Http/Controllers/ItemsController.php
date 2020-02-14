@@ -89,6 +89,7 @@ class ItemsController extends Controller
             'stock' => 'required',
             'status_id' => 'required',
             'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
             'images' => 'nullable',
             'show_number' => 'nullable',
         ]);
@@ -105,6 +106,7 @@ class ItemsController extends Controller
             $item->show_number =  $request->input('show_number');
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
+            $item->subcategory_id =  $request->input('subcategory_id');
             $item->client_id = Auth::user()->id;
 
             $item->save();
