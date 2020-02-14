@@ -200,10 +200,12 @@
         }),
         methods: {
             subcategory_submit(){
+                let self = this ;
                  axios.post('/subcategories', this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
                         alert('save')
+                        self.categories_subcategories.subcategories.unshift(response.data)
                     })
             },
             submit(){

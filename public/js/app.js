@@ -2757,9 +2757,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     subcategory_submit: function subcategory_submit() {
+      var self = this;
       axios.post('/subcategories', this.subcat).then(function (response) {
         console.log(response.data, 'subcat');
         alert('save');
+        self.categories_subcategories.subcategories.unshift(response.data);
       });
     },
     submit: function submit() {
