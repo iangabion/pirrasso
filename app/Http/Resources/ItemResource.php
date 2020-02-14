@@ -30,10 +30,9 @@ class ItemResource extends JsonResource
             'longitude'=> $this->longitude,
             'status'=> $this->status->name,
             'category' => $this->category->name ,
-            'subcategory' => $this->subcategory->name ? $this->subcategory->name : '',
+            'subcategory' => $this->subcategory->name != null ? $this->subcategory->name : '' ,
             'show_number' => $this->show_number,
             'published at' => $this->created_at ,
-
             'owner' => new ClientResource($this->client),
             'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
         ];
