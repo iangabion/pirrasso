@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\SubCategory;
+use App\Subcategory;
 class SubCategoryController extends Controller
 {
     /**
@@ -35,7 +35,7 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $sub = new SubCategory();
+        $sub = new Subcategory();
         $sub->name = $request->name ;
         $sub->category_id = $request->category_id ;
         $sub->save();
