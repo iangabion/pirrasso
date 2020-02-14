@@ -147,7 +147,7 @@
                                         <tbody>
                                             <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index">
                                             <td>{{item.name}}</td>
-                                            <td><v-icon color="info" small>mdi-pencil</v-icon> <v-icon color="error" small>mdi-delete</v-icon></td>
+                                            <td><v-icon color="info" small>mdi-pencil</v-icon> <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon></td>
                                             </tr>
                                         </tbody>
                                         </template>
@@ -199,6 +199,15 @@
         ],
         }),
         methods: {
+            delete_sub(item,index){
+                let self = this ;
+                 axios.delete('/subcategories/'+item.id, {})
+                    .then(response => {
+                        console.log(response.data)
+                        self.categories_subcategories.subcategories.splice(index,1);
+                        
+                    });
+            },
             subcategory_submit(){
                 let self = this ;
                  axios.post('/subcategories', this.subcat )
@@ -206,6 +215,7 @@
                         console.log(response.data , 'subcat')
                         alert('save')
                         self.categories_subcategories.subcategories.unshift(response.data)
+                        self.subcat.name = '';
                     })
             },
             submit(){

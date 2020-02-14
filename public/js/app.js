@@ -2756,12 +2756,20 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    delete_sub: function delete_sub(item, index) {
+      var self = this;
+      axios["delete"]('/subcategories/' + item.id, {}).then(function (response) {
+        console.log(response.data);
+        self.categories_subcategories.subcategories.splice(index, 1);
+      });
+    },
     subcategory_submit: function subcategory_submit() {
       var self = this;
       axios.post('/subcategories', this.subcat).then(function (response) {
         console.log(response.data, 'subcat');
         alert('save');
         self.categories_subcategories.subcategories.unshift(response.data);
+        self.subcat.name = '';
       });
     },
     submit: function submit() {
@@ -34277,6 +34285,16 @@ var render = function() {
                                                               attrs: {
                                                                 color: "error",
                                                                 small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.delete_sub(
+                                                                    item,
+                                                                    index
+                                                                  )
+                                                                }
                                                               }
                                                             },
                                                             [
