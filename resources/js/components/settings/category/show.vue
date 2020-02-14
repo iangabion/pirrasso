@@ -203,6 +203,8 @@
                  axios.post('/subcategories', this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
+                        this.clear()
+                        alert('save')
                     })
             },
             submit(){

@@ -2759,6 +2759,8 @@ __webpack_require__.r(__webpack_exports__);
     subcategory_submit: function subcategory_submit() {
       axios.post('/subcategories', this.subcat).then(function (response) {
         console.log(response.data, 'subcat');
+        this.clear();
+        alert('save');
       });
     },
     submit: function submit() {
