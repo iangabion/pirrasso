@@ -43,8 +43,9 @@
                                 </v-list-item-content>
                                 </v-list-item>
                                 <v-img class="pa-2"
-                                height="200"
-                                :src="items.images[0].image"
+                                aspect-ratio="1.5"
+                                contain
+                                :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                 ></v-img>
                                 <v-list-item>
                                 <v-list-item-content class="text-capitalize">

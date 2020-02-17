@@ -2323,6 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -33153,8 +33154,11 @@ var render = function() {
                                       _c("v-img", {
                                         staticClass: "pa-2",
                                         attrs: {
-                                          height: "200",
-                                          src: items.images[0].image
+                                          "aspect-ratio": "1.5",
+                                          contain: "",
+                                          src: items.images.length
+                                            ? items.images[0].image
+                                            : "https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg"
                                         }
                                       }),
                                       _vm._v(" "),
