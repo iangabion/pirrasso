@@ -138,9 +138,47 @@ class ItemsController extends Controller
      * @param  \App\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit(Items $items)
+    public function edit(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'stock' => 'required',
+            'status_id' => 'required',
+            'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
+            'images' => 'nullable',
+            'show_number' => 'nullable',
+        ]);
+
+        if($validatedData) {
+            $item = Items::findorfail($request->id);
+            $item->title =  $request->input('title');
+            $item->price =  $request->input('price');
+            $item->description =  $request->input('description');
+            $item->location =  $request->input('location');
+            $item->latitude =  $request->input('latitude');
+            $item->longitude =  $request->input('longitude');
+            $item->stock =  $request->input('stock');
+            $item->show_number =  $request->input('show_number');
+            $item->status_id =  $request->input('status_id');
+            $item->category_id =  $request->input('category_id');
+            $item->subcategory_id =  $request->input('subcategory_id');
+            $item->client_id = Auth::user()->id;
+
+            $item->save();
+            if($item ) {
+                if($request->input('images')){
+                        $this->process_images($request->images ,$item);
+                }
+            }
+            return new ItemResource($item);
+        }
     }
 
     /**
@@ -161,9 +199,12 @@ class ItemsController extends Controller
      * @param  \App\Items  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Items $items)
+    public function destroy($id)
     {
         //
+        $item = Items::findorfail($id);
+        $item->delete();
+        return 'deleted' ;
     }
 
     public function process_images($images , $item){

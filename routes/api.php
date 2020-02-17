@@ -26,7 +26,8 @@ Route::middleware('auth:api')->group(function () {
 
 	// items part
 	Route::post('add_items' ,'ItemsController@store');
-	Route::post('edit_items' ,'ItemsController@store');
+	Route::post('edit_items' ,'ItemsController@edit');
+	Route::get('delete_item/{id}' ,'ItemsController@destroy');
 	Route::get('view_item/{id}' ,'ItemsController@show');
 	
 	
