@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Items ;
+use App\Sold ;
 
 class ItemController extends Controller
 {
@@ -88,5 +89,10 @@ class ItemController extends Controller
         $item = Items::findorfail($id);
         $item->delete();
         return 'deleted' ;
+    }
+
+    public function sold_count(){
+        return $sold = Sold::all();
+        
     }
 }

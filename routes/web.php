@@ -45,6 +45,9 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('subcategories', 'SubCategoryController');
 
         Route::get('/logout' , 'ClientController@out');
+
+        // sold
+        Route::get('sold_count' , 'ItemController@sold_count');
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
     });

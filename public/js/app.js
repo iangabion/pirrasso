@@ -2162,11 +2162,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       clients: [],
-      items: []
+      items: [],
+      sold: []
     };
   },
   methods: {
@@ -2185,11 +2214,20 @@ __webpack_require__.r(__webpack_exports__);
         _this2.items = response.data;
         console.log(_this2.items);
       });
+    },
+    get_sold: function get_sold() {
+      var _this3 = this;
+
+      axios.get('/sold_count', {}).then(function (response) {
+        _this3.sold = response.data;
+        console.log(_this3.sold, 'sold');
+      });
     }
   },
   created: function created() {
     this.get_clients();
     this.get_items();
+    this.get_sold();
   }
 });
 
@@ -32900,6 +32938,76 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("v-list-item-subtitle", [_vm._v("Items on sell")])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-avatar",
+                        { attrs: { tile: "", size: "80", color: "white" } },
+                        [
+                          _c(
+                            "v-icon",
+                            { attrs: { size: "60", color: "primary" } },
+                            [_vm._v("mdi-history")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-btn", { attrs: { text: "" } }, [_vm._v("view")]),
+                      _vm._v(" "),
+                      _c("v-btn", { attrs: { text: "" } }, [_vm._v("button")])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-flex",
+            { attrs: { xs3: "" } },
+            [
+              _c(
+                "v-card",
+                {
+                  staticClass: "mx-auto purple ",
+                  attrs: {
+                    "max-width": "344",
+                    outlined: "",
+                    color: "info",
+                    dark: ""
+                  }
+                },
+                [
+                  _c(
+                    "v-list-item",
+                    { attrs: { "three-line": "" } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c("div", { staticClass: "overline mb-4" }, [
+                            _vm._v("sold")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-title",
+                            { staticClass: "headline mb-1" },
+                            [_vm._v(_vm._s(_vm.sold.length))]
+                          ),
+                          _vm._v(" "),
+                          _c("v-list-item-subtitle", [_vm._v("Sold Items")])
                         ],
                         1
                       ),
