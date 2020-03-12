@@ -25,6 +25,11 @@ class ItemsController extends Controller
         return  ItemResource::collection($items) ;
     }
 
+    public function all_items(){
+        $items = Items::all();
+        return  ItemResource::collection($items) ;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
