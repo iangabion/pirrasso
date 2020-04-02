@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PhotoResource ;
 use App\Http\Resources\ClientResource ;
 // use Illuminate\Support\Facades\Auth;
+use App\Apartment ;
 
 class ItemResource extends JsonResource
 {
@@ -18,6 +19,8 @@ class ItemResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+
+        $apartment = Apartment::where('item_id' , $this->id)->first();
         return [
             'id'=> $this->id,
             'title'=> $this->title,
@@ -35,6 +38,7 @@ class ItemResource extends JsonResource
             'published at' => $this->created_at ,
             'owner' => new ClientResource($this->client),
             'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
+            'apartment' => $apartment
         ];
     }
 }

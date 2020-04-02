@@ -9,6 +9,7 @@ use App\Http\Resources\ItemResource;
 use App\Http\Resources\SoldResource;
 use Auth ;
 use App\Sold;
+use App\Apartment ;
 
 
 class ItemsController extends Controller
@@ -97,8 +98,8 @@ class ItemsController extends Controller
             'subcategory_id' => 'nullable',
             'images' => 'nullable',
             'show_number' => 'nullable',
+            'apartment' => 'nullable'
         ]);
-
         if($validatedData) {
             $item = new Items();
             $item->title =  $request->input('title');
@@ -115,6 +116,11 @@ class ItemsController extends Controller
             $item->client_id = Auth::user()->id;
 
             $item->save();
+            if($item ) {
+                if($request->input('apartment')){
+                    $this->add_apartments($item ,  $request->input('apartment'));
+                }
+            }
             return new ItemResource($item);
         }
     }
@@ -125,6 +131,21 @@ class ItemsController extends Controller
             $this->process_images($request->images ,$item);
         }
         return 'success' ;
+    }
+
+    public function add_apartments($item , $data){
+     
+        $apartments = new Apartment() ;
+        $apartments->item_id = $item->id ;
+        $apartments->type = $data['type'] ;
+        $apartments->types_type = isset( $data['types_type']) ? $data['types_type'] : null ;
+        $apartments->is_selling = isset($data['is_selling']) ? $data['is_selling'] : null ;
+        $apartments->room_count = isset($data['room_count'] ) ? $data['room_count'] : null;
+        $apartments->is_far_from_city = isset($data['is_far_from_city']) ? $data['is_far_from_city'] : null ;
+        $apartments->height = isset($data['height']) ? $data['height'] : null ;
+        $apartments->width = isset($data['width']) ? $data['width'] : null ;
+        $apartments->save() ;
+
     }
 
 

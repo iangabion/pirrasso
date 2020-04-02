@@ -33,6 +33,9 @@ class Items extends Model
     public function status(){
         return $this->belongsTo(Status::class);
     }
+    public function apartment(){
+        return $this->belongsTo(Apartment::class);
+    }
 
     public function photos(){
         return $this->hasMany(Photos::class);
