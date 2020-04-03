@@ -10,6 +10,7 @@ use App\Http\Resources\SoldResource;
 use Auth ;
 use App\Sold;
 use App\Apartment ;
+use App\Vehicle ;
 
 
 class ItemsController extends Controller
@@ -98,7 +99,8 @@ class ItemsController extends Controller
             'subcategory_id' => 'nullable',
             'images' => 'nullable',
             'show_number' => 'nullable',
-            'apartment' => 'nullable'
+            'apartment' => 'nullable',
+            'vehicles' => 'nullable'
         ]);
         if($validatedData) {
             $item = new Items();
@@ -117,6 +119,9 @@ class ItemsController extends Controller
 
             $item->save();
             if($item ) {
+                if($request->input('vehicles')){
+                    $this->add_vehicles($item ,  $request->input('vehicles'));
+                }
                 if($request->input('apartment')){
                     $this->add_apartments($item ,  $request->input('apartment'));
                 }
@@ -137,7 +142,7 @@ class ItemsController extends Controller
      
         $apartments = new Apartment() ;
         $apartments->item_id = $item->id ;
-        $apartments->type = $data['type'] ;
+        $apartments->type = isset($data['type'] ) ?$data['type'] :null ;
         $apartments->types_type = isset( $data['types_type']) ? $data['types_type'] : null ;
         $apartments->is_selling = isset($data['is_selling']) ? $data['is_selling'] : null ;
         $apartments->room_count = isset($data['room_count'] ) ? $data['room_count'] : null;
@@ -146,6 +151,18 @@ class ItemsController extends Controller
         $apartments->width = isset($data['width']) ? $data['width'] : null ;
         $apartments->save() ;
 
+    }
+
+    public function add_vehicles($item , $data) {
+        $vehicle  = new Vehicle();
+        $vehicle->item_id = $item->id ;
+        $vehicle->type =isset($data['type'] ) ?$data['type'] :null;
+        $vehicle->types_type = isset($data['types_type']) ? $data['types_type'] : null ;
+        $vehicle->is_selling = isset($data['is_selling']) ? $data['is_selling'] :null;
+        $vehicle->fuel = isset($data['fuel']) ? $data['fuel'] : null ;
+        $vehicle->kilometer = isset($data['kilometer']) ? $data['kilometer'] : null ;
+        $vehicle->can_offroad = isset($data['can_offroad']) ? $data['can_offroad'] : null ;
+        $vehicle->save();
     }
 
 
