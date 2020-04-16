@@ -140,7 +140,7 @@ class ItemsController extends Controller
 
     public function add_apartments($item , $data){
      
-        $apartments = new Apartment() ;
+        $apartments =  Apartment::findOrNew(isset($data['id']) ?$data['id'] : ''  );
         $apartments->item_id = $item->id ;
         $apartments->type = isset($data['type'] ) ?$data['type'] :null ;
         $apartments->types_type = isset( $data['types_type']) ? $data['types_type'] : null ;
@@ -154,7 +154,7 @@ class ItemsController extends Controller
     }
 
     public function add_vehicles($item , $data) {
-        $vehicle  = new Vehicle();
+        $vehicle  =  Vehicle::findOrNew(isset($data['id']) ?$data['id'] : ''  );
         $vehicle->item_id = $item->id ;
         $vehicle->type =isset($data['type'] ) ?$data['type'] :null;
         $vehicle->types_type = isset($data['types_type']) ? $data['types_type'] : null ;
@@ -219,8 +219,11 @@ class ItemsController extends Controller
 
             $item->save();
             if($item ) {
-                if($request->input('images')){
-                        $this->process_images($request->images ,$item);
+                if($request->input('vehicles')){
+                    $this->add_vehicles($item ,  $request->input('vehicles'));
+                }
+                if($request->input('apartment')){
+                    $this->add_apartments($item ,  $request->input('apartment'));
                 }
             }
             return new ItemResource($item);
