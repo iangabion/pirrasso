@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd /var/www
+
+php artisan storage:custom-link
+
 cd /var/www/app
 
 source ./dotenv
