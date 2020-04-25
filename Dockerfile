@@ -26,6 +26,7 @@ COPY artisan artisan
 
 RUN cp .env.example .env
 RUN php artisan key:generate --force
+RUN php artisan storage:custom-link
 
 COPY .docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
