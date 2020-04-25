@@ -1,6 +1,4 @@
-FROM registry.qonvextechnology.com:5000/php:7.3-fpm-nginx
-
-RUN docker-php-ext-install pdo_mysql
+FROM registry.qonvextechnology.com:5000/php:7.3-fpm-nginx-mysql
 
 RUN apk add bash
 
