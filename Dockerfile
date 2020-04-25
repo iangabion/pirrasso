@@ -15,6 +15,7 @@ COPY .docker/entrypoint.sh .docker/entrypoint.sh
 COPY bootstrap bootstrap
 COPY public public
 COPY vendor vendor
+COPY composer.json composer.json
 COPY config config
 COPY routes routes
 COPY database database
