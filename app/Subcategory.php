@@ -13,4 +13,8 @@ class Subcategory extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function getIconAttribute($value) {
+      return $value != null ?  asset('images/icons/'. $value) : null ; 
+  }
 }

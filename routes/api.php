@@ -58,6 +58,8 @@ Route::middleware('auth:api')->group(function () {
 Route::get('items' ,'ItemsController@index');
 Route::get('all_items' , 'ItemsController@all_items');
 
+// add subcat icons
+Route::post('add_subcat_icon' ,'CategoryController@add_subcat_icon');
 // get all categories
 Route::get('categories' ,'CategoryController@index');
 // get all categories items
