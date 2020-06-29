@@ -26,6 +26,7 @@ class ClientResource extends JsonResource
             'username'=> $this->username,
             'password'=> $this->password,
             'profile_pic'=>$this->image ,
+            'fcmtoken'=>$this->fcmtoken ,
         ];
     }
 }

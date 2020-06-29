@@ -42,7 +42,7 @@ class ClientController extends Controller
      */
     public function store(StoreClientPost $request)
     {
-       
+
             $client = new Client();
             $client->first_name =  $request->input('first_name');
             $client->last_name =  $request->input('last_name');
@@ -50,6 +50,7 @@ class ClientController extends Controller
             $client->mobile =  $request->input('mobile');
             $client->username =  $request->input('username');
             $client->password = Hash::make($request->input('password'));
+            $client->fcmtoken = $request->input('fcmtoken');
 
 
             if($request->profile_pic){
@@ -77,6 +78,8 @@ class ClientController extends Controller
             $client = Client::where('username',$request->username)->first();
             if ( ($client != null) && Hash::check($request->password, $client->password) ){
                 $accessToken = $client->createToken('authToken')->accessToken;
+                $client->fcmtoken = $request->input('fcmtoken');
+                $client->save();
                 return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
             }
             return response(['message'=> 'invalid credentials']);
@@ -181,8 +184,8 @@ class ClientController extends Controller
     public function get_favorites()
     {
         $favorites = Client::findorfail(Auth::user()->id);
-        return ItemResource::collection($favorites->items_fav);        
+        return ItemResource::collection($favorites->items_fav);
     }
 
-    
+
 }
