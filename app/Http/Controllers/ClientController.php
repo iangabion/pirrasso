@@ -50,7 +50,7 @@ class ClientController extends Controller
             $client->mobile =  $request->input('mobile');
             $client->username =  $request->input('username');
             $client->password = Hash::make($request->input('password'));
-            $client->fcmtoken = $request->input('fcmtoken');
+            $client->fcm_token = $request->input('fcm_token');
 
 
             if($request->profile_pic){
@@ -78,7 +78,7 @@ class ClientController extends Controller
             $client = Client::where('username',$request->username)->first();
             if ( ($client != null) && Hash::check($request->password, $client->password) ){
                 $accessToken = $client->createToken('authToken')->accessToken;
-                $client->fcmtoken = $request->input('fcmtoken');
+                $client->fcm_oken = $request->input('fcm_token');
                 $client->save();
                 return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
             }
