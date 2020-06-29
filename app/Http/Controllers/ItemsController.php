@@ -10,6 +10,7 @@ use App\Http\Resources\SoldResource;
 use Auth ;
 use App\Sold;
 use App\Apartment ;
+use App\Http\Resources\PhotoResource;
 use App\Vehicle ;
 
 
@@ -60,7 +61,7 @@ class ItemsController extends Controller
             'seller_id' => 'required',
             'item_id' => 'required',
         ]);
-        
+
         $sold = new Sold();
         $sold->seller_id =  $request->input('seller_id');
         $sold->item_id =  $request->input('item_id');
@@ -69,7 +70,7 @@ class ItemsController extends Controller
         return $sold;
     }
 
-    public function unsold($id) 
+    public function unsold($id)
     {
         $sold = Sold::findorfail($id);
         $sold->delete();
@@ -135,11 +136,11 @@ class ItemsController extends Controller
         if($request->input('images')){
             $this->process_images($request->images ,$item);
         }
-        return 'success' ;
+        return new PhotoResource($item) ;
     }
 
     public function add_apartments($item , $data){
-     
+
         $apartments =  Apartment::findOrNew(isset($data['id']) ?$data['id'] : ''  );
         $apartments->item_id = $item->id ;
         $apartments->type = isset($data['type'] ) ?$data['type'] :null ;
