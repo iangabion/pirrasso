@@ -68,6 +68,7 @@ return [
 
     'links' => [
         public_path('images/items') => storage_path('app/images/items'),
+        public_path('images/icons') => storage_path('app/images/icons'),
         public_path('images/user_profile') => storage_path('app/images/user_profile'),
     ],
 
