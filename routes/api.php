@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:api')->group(function () {
-	// clients part
+    // clients part
+
 	Route::get('clients' ,'ClientController@index');
 	Route::post('update_profile' ,'ClientController@update_profile');
 	Route::get('view_profile' ,'ClientController@show');
@@ -30,11 +31,11 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('edit_items' ,'ItemsController@edit');
 	Route::get('delete_item/{id}' ,'ItemsController@destroy');
 	Route::get('view_item/{id}' ,'ItemsController@show');
-	
-	
+
+
 	//send message
 	Route::post('send_message' ,'SessionController@store');
-	
+
 	// retrieve messages
 	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
 	Route::get('user_messages' ,'SessionController@get_user_messages');
