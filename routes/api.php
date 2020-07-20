@@ -19,8 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:api')->group(function () {
-    // clients part
-
+	// clients part
 	Route::get('clients' ,'ClientController@index');
 	Route::post('update_profile' ,'ClientController@update_profile');
 	Route::get('view_profile' ,'ClientController@show');
