@@ -32,7 +32,7 @@
                                                 <v-file-input small-chips
                                                     accept="image/*"
                                                     label="Icon"
-                                                    @change="onFileChange"
+                                                    @change="onFileChange('cat', $event)"
                                                     v-validate="'image'"
                                                     :error-messages="errors.collect('Icon')"
                                                     data-vv-name="Icon">
@@ -131,6 +131,26 @@
                                                                 <p class="subheading pa-0 font-weight-bold">add subcategory</p>
                                                             </v-flex>
                                                             <v-flex xs12>
+                                                                <div class="preview mx-auto" >
+                                                                    <v-img
+                                                                        max-height="200"
+                                                                        class="mx-auto"
+                                                                        max-width="200"
+                                                                        contain=""
+                                                                        :src="subcat.icon || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg' "
+                                                                    >
+                                                                    </v-img>
+                                                                </div>
+                                                            </v-flex>
+                                                            <v-flex xs12>
+                                                                <v-file-input small-chips
+                                                                    accept="image/*"
+                                                                    label="Icon"
+                                                                    @change="onFileChange('subcat',$event)"
+                                                                    v-validate="'image'"
+                                                                    :error-messages="errors.collect('Icon')"
+                                                                    data-vv-name="Icon">
+                                                                </v-file-input>
                                                                 <v-text-field
                                                                     type="text"
                                                                     v-model="subcat.name"
@@ -160,12 +180,23 @@
                                         <template v-slot:default>
                                         <thead>
                                             <tr>
-                                            <th class="text-left">Name</th>
-                                            <th class="text-left">Action</th>
+                                                <th class="text-left">Icons</th>
+                                                <th class="text-left">Name</th>
+                                                <th class="text-left">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index">
+                                            <td>
+                                               <v-img
+                                                    max-height="50"
+                                                    class="mx-auto"
+                                                    max-width="50"
+                                                    contain=""
+                                                    :src="item.icon"
+                                                >
+                                                </v-img>
+                                            </td>
                                             <td>{{item.name}}</td>
                                             <td><v-icon color="info" small>mdi-pencil</v-icon> <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon></td>
                                             </tr>
@@ -197,7 +228,8 @@
             no_items:true,
             subcat: {
                 'name' : '',
-                'category_id' :''
+                'category_id' :'',
+                'icon':''
             },
             categories: [],
             categories_subcategories:[],
@@ -221,21 +253,18 @@
         ],
         }),
         methods: {
-            onFileChange(files) {
+            onFileChange(hint,files) {
                 // var files = e.target.files || e.dataTransfer.files;
 
                 if (files == "") {
                     return
                 }
 
-                this.createImage(files);
-            },
-            createImage(file) {
                 var reader = new FileReader();
                 reader.onload = (e) => {
-                    this.category.icon = e.target.result ;
+                    hint === 'cat' ?  this.category.icon = e.target.result : this.subcat.icon = e.target.result ;
                 };
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(files);
             },
             delete_sub(item,index){
                 let self = this ;
@@ -253,8 +282,7 @@
                         console.log(response.data , 'subcat')
                         alert('save')
                         self.categories_subcategories.subcategories.unshift(response.data)
-                        self.subcat.name = '';
-                        self.clear()
+                        self.subcatclear()
                     })
             },
             submit(){
@@ -316,6 +344,13 @@
 			    .then(response => {
                     this.category = response.data
 			    });
+            },
+            subcatclear() {
+               this.$validator.reset()
+                this.$refs.form.reset()
+                for (var key in this.subcat ) {
+                    this.subcat[key] = '';
+                }
             },
             clear () {
                 this.$validator.reset()

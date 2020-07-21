@@ -37,6 +37,15 @@ class SubCategoryController extends Controller
     {
         $sub = new Subcategory();
         $sub->name = $request->name ;
+        if($request->icon){
+            $image = $request->icon;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = $request->name . Time() . '_subcat.jpeg';
+            file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
+            $sub->icon =  $imageName;
+        }
         $sub->category_id = $request->category_id ;
         $sub->save();
         return $sub;

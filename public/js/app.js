@@ -2780,6 +2780,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   $_veeValidate: {
     validator: 'new'
@@ -2791,7 +2822,8 @@ __webpack_require__.r(__webpack_exports__);
       no_items: true,
       subcat: {
         'name': '',
-        'category_id': ''
+        'category_id': '',
+        'icon': ''
       },
       categories: [],
       categories_subcategories: [],
@@ -2819,24 +2851,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onFileChange: function onFileChange(files) {
+    onFileChange: function onFileChange(hint, files) {
+      var _this = this;
+
       // var files = e.target.files || e.dataTransfer.files;
       if (files == "") {
         return;
       }
 
-      this.createImage(files);
-    },
-    createImage: function createImage(file) {
-      var _this = this;
-
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.category.icon = e.target.result;
+        hint === 'cat' ? _this.category.icon = e.target.result : _this.subcat.icon = e.target.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(files);
     },
     delete_sub: function delete_sub(item, index) {
       var self = this;
@@ -2851,8 +2880,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data, 'subcat');
         alert('save');
         self.categories_subcategories.subcategories.unshift(response.data);
-        self.subcat.name = '';
-        self.clear();
+        self.subcatclear();
       });
     },
     submit: function submit() {
@@ -2919,6 +2947,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/category/' + id + '/edit', {}).then(function (response) {
         _this5.category = response.data;
       });
+    },
+    subcatclear: function subcatclear() {
+      this.$validator.reset();
+      this.$refs.form.reset();
+
+      for (var key in this.subcat) {
+        this.subcat[key] = '';
+      }
     },
     clear: function clear() {
       this.$validator.reset();
@@ -33859,7 +33895,14 @@ var render = function() {
                                                   ),
                                                   "data-vv-name": "Icon"
                                                 },
-                                                on: { change: _vm.onFileChange }
+                                                on: {
+                                                  change: function($event) {
+                                                    return _vm.onFileChange(
+                                                      "cat",
+                                                      $event
+                                                    )
+                                                  }
+                                                }
                                               }),
                                               _vm._v(" "),
                                               _c("v-text-field", {
@@ -34288,6 +34331,85 @@ var render = function() {
                                                             },
                                                             [
                                                               _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "preview mx-auto"
+                                                                },
+                                                                [
+                                                                  _c("v-img", {
+                                                                    staticClass:
+                                                                      "mx-auto",
+                                                                    attrs: {
+                                                                      "max-height":
+                                                                        "200",
+                                                                      "max-width":
+                                                                        "200",
+                                                                      contain:
+                                                                        "",
+                                                                      src:
+                                                                        _vm
+                                                                          .subcat
+                                                                          .icon ||
+                                                                        "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
+                                                                    }
+                                                                  })
+                                                                ],
+                                                                1
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs12: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-file-input",
+                                                                {
+                                                                  directives: [
+                                                                    {
+                                                                      name:
+                                                                        "validate",
+                                                                      rawName:
+                                                                        "v-validate",
+                                                                      value:
+                                                                        "image",
+                                                                      expression:
+                                                                        "'image'"
+                                                                    }
+                                                                  ],
+                                                                  attrs: {
+                                                                    "small-chips":
+                                                                      "",
+                                                                    accept:
+                                                                      "image/*",
+                                                                    label:
+                                                                      "Icon",
+                                                                    "error-messages": _vm.errors.collect(
+                                                                      "Icon"
+                                                                    ),
+                                                                    "data-vv-name":
+                                                                      "Icon"
+                                                                  },
+                                                                  on: {
+                                                                    change: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.onFileChange(
+                                                                        "subcat",
+                                                                        $event
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
                                                                 "v-text-field",
                                                                 {
                                                                   directives: [
@@ -34435,6 +34557,12 @@ var render = function() {
                                                 _c(
                                                   "th",
                                                   { staticClass: "text-left" },
+                                                  [_vm._v("Icons")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "th",
+                                                  { staticClass: "text-left" },
                                                   [_vm._v("Name")]
                                                 ),
                                                 _vm._v(" "),
@@ -34456,6 +34584,24 @@ var render = function() {
                                                     "tr",
                                                     { key: index },
                                                     [
+                                                      _c(
+                                                        "td",
+                                                        [
+                                                          _c("v-img", {
+                                                            staticClass:
+                                                              "mx-auto",
+                                                            attrs: {
+                                                              "max-height":
+                                                                "50",
+                                                              "max-width": "50",
+                                                              contain: "",
+                                                              src: item.icon
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
                                                       _c("td", [
                                                         _vm._v(
                                                           _vm._s(item.name)
