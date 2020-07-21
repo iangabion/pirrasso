@@ -58,8 +58,8 @@ class CategoryController extends Controller
             list($type, $image) = explode(';', $image);
             list(, $image)      = explode(',', $image);
             $data = base64_decode($image);
-            $imageName = $subcategory->name . '.jpeg';
-            file_put_contents(public_path() . '/' . 'images/icons/' . time(). 'subcat' , $data);
+            $imageName = $subcategory->name. time() . '_subcat.jpeg';
+            file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
 
             $subcategory->icon = $imageName ;
 
