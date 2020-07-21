@@ -198,7 +198,9 @@
                                                 </v-img>
                                             </td>
                                             <td>{{item.name}}</td>
-                                            <td><v-icon color="info" small>mdi-pencil</v-icon> <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon></td>
+                                            <td>
+                                                <v-icon color="info" small @click="get_sub(item.id)">mdi-pencil</v-icon>
+                                                <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon></td>
                                             </tr>
                                         </tbody>
                                         </template>
@@ -227,9 +229,10 @@
             subcat_dialog:false,
             no_items:true,
             subcat: {
-                'name' : '',
-                'category_id' :'',
-                'icon':''
+                name : '',
+                category_id :'',
+                icon:'',
+                id: ''
             },
             categories: [],
             categories_subcategories:[],
@@ -277,13 +280,26 @@
             },
             subcategory_save(){
                 let self = this ;
-                 axios.post('/subcategories', this.subcat )
+                const id = this.subcat.id
+                if(id != ''){
+                    axios.put('/subcategories/'+id, this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
                         alert('save')
+                        self.subcatclear()
+                        self.show_category(response.data.category_id)
+                    })
+                }
+                else {
+                    axios.post('/subcategories', this.subcat )
+                    .then(function (response) {
+                        console.log(response.data , 'subcat')
+                        alert('save')
+                        self.get_categories()
                         self.categories_subcategories.subcategories.unshift(response.data)
                         self.subcatclear()
                     })
+                }
             },
             submit(){
                 let self = this;
@@ -338,6 +354,12 @@
                 });
                 this.subcat_dialog = true ;
                 this.subcat.category_id = id ;
+            },
+            get_sub(id) {
+                axios.get('/subcategories/'+id+'/edit', {})
+			    .then(response => {
+                    this.subcat = response.data
+			    });
             },
             get_category_edit(id) {
                 axios.get('/category/'+id+'/edit', {})
