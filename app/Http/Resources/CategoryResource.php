@@ -18,7 +18,7 @@ class CategoryResource extends JsonResource
         return [
             'id'=> $this->id,
             'category' => $this->name,
-            'icon' => $this->icon,
+            'icon' => $this->icon ? $this->icon : asset('images/default.png'),
             'subcategory' => $this->subcategories,
         ];
     }
