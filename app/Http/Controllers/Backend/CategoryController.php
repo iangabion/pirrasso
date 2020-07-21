@@ -22,7 +22,7 @@ class CategoryController extends Controller
             return [
                 'id' => $cat->id ,
                 'name'=>$cat->name ,
-                'count'=>$cat->items->count(), 
+                'count'=>$cat->items->count(),
                 'subcat'=>$cat->subcategories->count()
             ];
         });
@@ -57,8 +57,19 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|unique:categories,name',
         ]);
-        
+
             $category = new Category() ;
+
+            if($request->icon){
+                $image = $request->icon;  // your base64 encoded
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
+                $data = base64_decode($image);
+                $imageName = $request->name . Time() . '_category.jpeg';
+                file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
+                $category->icon =  $imageName;
+            }
+
             $category->name = $request->name ;
             $category->save();
             return $category;
@@ -99,6 +110,19 @@ class CategoryController extends Controller
     {
         //
         $category = Category::findorfail($id);
+
+        if($request->icon){
+            try {
+                $image = $request->icon;  // your base64 encoded
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
+                $data = base64_decode($image);
+                $imageName = $request->name . Time() . '_category.jpeg';
+                file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
+                $category->icon =  $imageName;
+            } catch (\Throwable $th) {}
+        }
+
         $category->name = $request->name ;
         $category->save();
         return $category ;

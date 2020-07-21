@@ -12,5 +12,9 @@ class Category extends Model
 	}
 	public function subcategories(){
 		return $this->hasMany(Subcategory::class);
-	}
+    }
+
+    public function getIconAttribute($value) {
+        return $value != null ?  asset('images/icons/'. $value) : null ;
+      }
 }

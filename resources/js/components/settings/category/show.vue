@@ -16,13 +16,33 @@
                                             <v-flex xs12>
                                                 <p class="subheading pa-0 font-weight-bold">Category Information</p>
                                             </v-flex>
-                                            <v-flex xs12>
-                                                <v-text-field 
+                                            <v-flex xs6>
+                                                <div class="preview" >
+                                                    <v-img
+                                                        max-height="200"
+                                                        class="mx-auto"
+                                                        max-width="200"
+                                                        contain=""
+                                                        :src="category.icon || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg' "
+                                                    >
+                                                    </v-img>
+                                                </div>
+                                            </v-flex>
+                                            <v-flex xs6>
+                                                <v-file-input small-chips
+                                                    accept="image/*"
+                                                    label="Icon"
+                                                    @change="onFileChange"
+                                                    v-validate="'image'"
+                                                    :error-messages="errors.collect('Icon')"
+                                                    data-vv-name="Icon">
+                                                </v-file-input>
+                                                <v-text-field
                                                     type="text"
                                                     v-model="category.name"
-                                                    v-validate="'required'" 
-                                                    :error-messages="errors.collect('Category Name')" 
-                                                    data-vv-name="Category Name" 
+                                                    v-validate="'required'"
+                                                    :error-messages="errors.collect('Category Name')"
+                                                    data-vv-name="Category Name"
                                                     label="Category Name" required>
                                                 </v-text-field>
                                             </v-flex>
@@ -111,12 +131,12 @@
                                                                 <p class="subheading pa-0 font-weight-bold">add subcategory</p>
                                                             </v-flex>
                                                             <v-flex xs12>
-                                                                <v-text-field 
+                                                                <v-text-field
                                                                     type="text"
                                                                     v-model="subcat.name"
-                                                                    v-validate="'required'" 
-                                                                    :error-messages="errors.collect('Category Name')" 
-                                                                    data-vv-name="Category Name" 
+                                                                    v-validate="'required'"
+                                                                    :error-messages="errors.collect('Category Name')"
+                                                                    data-vv-name="Category Name"
                                                                     label=" Name" required>
                                                                 </v-text-field>
                                                             </v-flex>
@@ -125,7 +145,7 @@
                                                             <v-flex xs12 class="text-right">
                                                                 <v-btn color="success" small tile @click="subcategory_save"  >
                                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                                    save 
+                                                                    save
                                                                 </v-btn>
                                                             </v-flex>
                                                         </v-layout>
@@ -184,7 +204,8 @@
             max_height: '100px',
             category : {
                 name: '',
-                id :''
+                id :'',
+                icon:''
             },
             headers: [
           {
@@ -200,13 +221,29 @@
         ],
         }),
         methods: {
+            onFileChange(files) {
+                // var files = e.target.files || e.dataTransfer.files;
+
+                if (files == "") {
+                    return
+                }
+
+                this.createImage(files);
+            },
+            createImage(file) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.category.icon = e.target.result ;
+                };
+                reader.readAsDataURL(file);
+            },
             delete_sub(item,index){
                 let self = this ;
                  axios.delete('/subcategories/'+item.id, {})
                     .then(response => {
                         console.log(response.data)
                         self.categories_subcategories.subcategories.splice(index,1)
-                        
+
                     });
             },
             subcategory_save(){
@@ -264,7 +301,7 @@
 			            });
                     }
                 })
-                
+
             },
             show_category(id) {
                 axios.get('/category/'+id+'/edit', {})
@@ -277,13 +314,15 @@
             get_category_edit(id) {
                 axios.get('/category/'+id+'/edit', {})
 			    .then(response => {
-                    this.category.name = response.data.name ;
-                    this.category.id = response.data.id ;
+                    this.category = response.data
 			    });
             },
             clear () {
                 this.$validator.reset()
                 this.$refs.form.reset()
+                for (var key in this.category ) {
+                    this.category[key] = '';
+                }
             },
             get_categories() {
                 axios.get('/category', {})
