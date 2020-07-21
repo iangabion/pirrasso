@@ -2923,6 +2923,10 @@ __webpack_require__.r(__webpack_exports__);
     clear: function clear() {
       this.$validator.reset();
       this.$refs.form.reset();
+
+      for (var key in this.category) {
+        this.category[key] = '';
+      }
     },
     get_categories: function get_categories() {
       var _this6 = this;

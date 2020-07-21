@@ -320,6 +320,9 @@
             clear () {
                 this.$validator.reset()
                 this.$refs.form.reset()
+                for (var key in this.category ) {
+                    this.category[key] = '';
+                }
             },
             get_categories() {
                 axios.get('/category', {})

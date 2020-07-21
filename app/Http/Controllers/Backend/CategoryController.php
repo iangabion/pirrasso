@@ -112,13 +112,15 @@ class CategoryController extends Controller
         $category = Category::findorfail($id);
 
         if($request->icon){
-            $image = $request->icon;  // your base64 encoded
-            list($type, $image) = explode(';', $image);
-            list(, $image)      = explode(',', $image);
-            $data = base64_decode($image);
-            $imageName = $request->name . Time() . '_category.jpeg';
-            file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
-            $category->icon =  $imageName;
+            try {
+                $image = $request->icon;  // your base64 encoded
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
+                $data = base64_decode($image);
+                $imageName = $request->name . Time() . '_category.jpeg';
+                file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
+                $category->icon =  $imageName;
+            } catch (\Throwable $th) {}
         }
 
         $category->name = $request->name ;
