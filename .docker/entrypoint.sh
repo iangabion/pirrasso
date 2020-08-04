@@ -1,10 +1,8 @@
 #!/bin/bash
 
-cd /var/www
+cd /var/www/app
 
 php artisan storage:custom-link
-
-cd /var/www/app
 
 source ./dotenv
 .env set APP_ENV=${APP_ENV}
