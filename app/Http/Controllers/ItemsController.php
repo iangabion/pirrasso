@@ -24,12 +24,12 @@ class ItemsController extends Controller
     public function index()
     {
         //
-        $items = Items::paginate(8);
+        $items = Items::orderBy('created_at')->paginate(8);
         return  ItemResource::collection($items) ;
     }
 
     public function all_items(){
-        $items = Items::all();
+        $items = Items::orderBy('created_at')->get();
         return  ItemResource::collection($items) ;
     }
 
