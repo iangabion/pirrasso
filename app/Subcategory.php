@@ -15,6 +15,6 @@ class Subcategory extends Model
     }
 
     public function getIconAttribute($value) {
-      return $value != null ?  asset('images/icons/'. $value) : null ;
+      return $value != null ?  asset('images/icons/'. $value) : asset('images/default.png') ;
     }
 }

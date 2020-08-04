@@ -2780,6 +2780,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   $_veeValidate: {
     validator: 'new'
@@ -2790,8 +2823,10 @@ __webpack_require__.r(__webpack_exports__);
       subcat_dialog: false,
       no_items: true,
       subcat: {
-        'name': '',
-        'category_id': ''
+        name: '',
+        category_id: '',
+        icon: '',
+        id: ''
       },
       categories: [],
       categories_subcategories: [],
@@ -2819,24 +2854,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onFileChange: function onFileChange(files) {
+    onFileChange: function onFileChange(hint, files) {
+      var _this = this;
+
       // var files = e.target.files || e.dataTransfer.files;
       if (files == "") {
         return;
       }
 
-      this.createImage(files);
-    },
-    createImage: function createImage(file) {
-      var _this = this;
-
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.category.icon = e.target.result;
+        hint === 'cat' ? _this.category.icon = e.target.result : _this.subcat.icon = e.target.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(files);
     },
     delete_sub: function delete_sub(item, index) {
       var self = this;
@@ -2847,13 +2879,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     subcategory_save: function subcategory_save() {
       var self = this;
-      axios.post('/subcategories', this.subcat).then(function (response) {
-        console.log(response.data, 'subcat');
-        alert('save');
-        self.categories_subcategories.subcategories.unshift(response.data);
-        self.subcat.name = '';
-        self.clear();
-      });
+      var id = this.subcat.id;
+
+      if (id != '') {
+        axios.put('/subcategories/' + id, this.subcat).then(function (response) {
+          console.log(response.data, 'subcat');
+          alert('save');
+          self.subcatclear();
+          self.show_category(response.data.category_id);
+        });
+      } else {
+        axios.post('/subcategories', this.subcat).then(function (response) {
+          console.log(response.data, 'subcat');
+          alert('save');
+          self.get_categories();
+          self.categories_subcategories.subcategories.unshift(response.data);
+          self.subcatclear();
+        });
+      }
     },
     submit: function submit() {
       var _this2 = this;
@@ -2913,12 +2956,27 @@ __webpack_require__.r(__webpack_exports__);
       this.subcat_dialog = true;
       this.subcat.category_id = id;
     },
-    get_category_edit: function get_category_edit(id) {
+    get_sub: function get_sub(id) {
       var _this5 = this;
 
-      axios.get('/category/' + id + '/edit', {}).then(function (response) {
-        _this5.category = response.data;
+      axios.get('/subcategories/' + id + '/edit', {}).then(function (response) {
+        _this5.subcat = response.data;
       });
+    },
+    get_category_edit: function get_category_edit(id) {
+      var _this6 = this;
+
+      axios.get('/category/' + id + '/edit', {}).then(function (response) {
+        _this6.category = response.data;
+      });
+    },
+    subcatclear: function subcatclear() {
+      this.$validator.reset();
+      this.$refs.form.reset();
+
+      for (var key in this.subcat) {
+        this.subcat[key] = '';
+      }
     },
     clear: function clear() {
       this.$validator.reset();
@@ -2929,12 +2987,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     get_categories: function get_categories() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get('/category', {}).then(function (response) {
-        _this6.categories = response.data;
-        console.log(_this6.categories);
-        _this6.data_loaded = true;
+        _this7.categories = response.data;
+        console.log(_this7.categories);
+        _this7.data_loaded = true;
       });
     }
   },
@@ -33859,7 +33917,14 @@ var render = function() {
                                                   ),
                                                   "data-vv-name": "Icon"
                                                 },
-                                                on: { change: _vm.onFileChange }
+                                                on: {
+                                                  change: function($event) {
+                                                    return _vm.onFileChange(
+                                                      "cat",
+                                                      $event
+                                                    )
+                                                  }
+                                                }
                                               }),
                                               _vm._v(" "),
                                               _c("v-text-field", {
@@ -34288,6 +34353,85 @@ var render = function() {
                                                             },
                                                             [
                                                               _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "preview mx-auto"
+                                                                },
+                                                                [
+                                                                  _c("v-img", {
+                                                                    staticClass:
+                                                                      "mx-auto",
+                                                                    attrs: {
+                                                                      "max-height":
+                                                                        "200",
+                                                                      "max-width":
+                                                                        "200",
+                                                                      contain:
+                                                                        "",
+                                                                      src:
+                                                                        _vm
+                                                                          .subcat
+                                                                          .icon ||
+                                                                        "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
+                                                                    }
+                                                                  })
+                                                                ],
+                                                                1
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-flex",
+                                                            {
+                                                              attrs: {
+                                                                xs12: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-file-input",
+                                                                {
+                                                                  directives: [
+                                                                    {
+                                                                      name:
+                                                                        "validate",
+                                                                      rawName:
+                                                                        "v-validate",
+                                                                      value:
+                                                                        "image",
+                                                                      expression:
+                                                                        "'image'"
+                                                                    }
+                                                                  ],
+                                                                  attrs: {
+                                                                    "small-chips":
+                                                                      "",
+                                                                    accept:
+                                                                      "image/*",
+                                                                    label:
+                                                                      "Icon",
+                                                                    "error-messages": _vm.errors.collect(
+                                                                      "Icon"
+                                                                    ),
+                                                                    "data-vv-name":
+                                                                      "Icon"
+                                                                  },
+                                                                  on: {
+                                                                    change: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.onFileChange(
+                                                                        "subcat",
+                                                                        $event
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
                                                                 "v-text-field",
                                                                 {
                                                                   directives: [
@@ -34435,6 +34579,12 @@ var render = function() {
                                                 _c(
                                                   "th",
                                                   { staticClass: "text-left" },
+                                                  [_vm._v("Icons")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "th",
+                                                  { staticClass: "text-left" },
                                                   [_vm._v("Name")]
                                                 ),
                                                 _vm._v(" "),
@@ -34456,6 +34606,24 @@ var render = function() {
                                                     "tr",
                                                     { key: index },
                                                     [
+                                                      _c(
+                                                        "td",
+                                                        [
+                                                          _c("v-img", {
+                                                            staticClass:
+                                                              "mx-auto",
+                                                            attrs: {
+                                                              "max-height":
+                                                                "50",
+                                                              "max-width": "50",
+                                                              contain: "",
+                                                              src: item.icon
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
                                                       _c("td", [
                                                         _vm._v(
                                                           _vm._s(item.name)
@@ -34471,6 +34639,15 @@ var render = function() {
                                                               attrs: {
                                                                 color: "info",
                                                                 small: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.get_sub(
+                                                                    item.id
+                                                                  )
+                                                                }
                                                               }
                                                             },
                                                             [
@@ -92989,14 +93166,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/settings/category/show.vue ***!
   \************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _show_vue_vue_type_template_id_354b9f8d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show.vue?vue&type=template&id=354b9f8d&scoped=true& */ "./resources/js/components/settings/category/show.vue?vue&type=template&id=354b9f8d&scoped=true&");
 /* harmony import */ var _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show.vue?vue&type=script&lang=js& */ "./resources/js/components/settings/category/show.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _show_vue_vue_type_style_index_0_id_354b9f8d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./show.vue?vue&type=style&index=0&id=354b9f8d&scoped=true&lang=css& */ "./resources/js/components/settings/category/show.vue?vue&type=style&index=0&id=354b9f8d&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _show_vue_vue_type_style_index_0_id_354b9f8d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./show.vue?vue&type=style&index=0&id=354b9f8d&scoped=true&lang=css& */ "./resources/js/components/settings/category/show.vue?vue&type=style&index=0&id=354b9f8d&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -93028,7 +93206,7 @@ component.options.__file = "resources/js/components/settings/category/show.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/settings/category/show.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
