@@ -14,7 +14,7 @@ class AddColumnStatusIdToSold extends Migration
     public function up()
     {
         Schema::table('solds', function (Blueprint $table) {
-            $table->string('status_id')->after('buyer_id')->default(1);
+            $table->integer('status_id')->after('buyer_id')->default(1);
         });
     }
 

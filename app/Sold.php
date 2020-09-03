@@ -14,7 +14,7 @@ class Sold extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function getSoldIdAttribute($value) {
+    public function getStatusIdAttribute($value) {
         switch($value) {
             case 1 : return 'Processing'; break;
             case 2 : return 'Delivering'; break;
