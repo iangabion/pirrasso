@@ -70,6 +70,15 @@ class ItemsController extends Controller
         return $sold;
     }
 
+    public function changeStatus(Request $request)
+    {
+        $sold = Sold::findorfail($request->id);
+        $sold->status_id = $request->status_id;
+        $sold->save();
+
+        return $sold;
+    }
+
     public function unsold($id)
     {
         $sold = Sold::findorfail($id);

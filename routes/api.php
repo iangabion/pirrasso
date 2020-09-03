@@ -51,7 +51,9 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('is_sold' ,'ItemsController@sold');
 	Route::get('unsold/{id}' ,'ItemsController@unsold');
 	Route::get('sold_item' ,'ItemsController@getsold_items');
-	Route::get('bought_item' ,'ItemsController@getbought_items');
+    Route::get('bought_item' ,'ItemsController@getbought_items');
+
+    Route::post('change_status' ,'ItemsController@changeStatus');
 });
 
 // get all items

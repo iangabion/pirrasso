@@ -13,4 +13,12 @@ class Sold extends Model
     public function clients(){
         return $this->belongsTo(Client::class);
     }
+
+    public function getStatusIdAttribute($value) {
+        switch($value) {
+            case 1 : return 'Processing'; break;
+            case 2 : return 'Delivering'; break;
+            case 3 : return 'Completed'; break;
+        }
+    }
 }
