@@ -18,7 +18,7 @@ class SoldResource extends JsonResource
      */
     public function toArray($request)
     {
-        $buyer = Client::findorfail($this->buyer_id); 
+        $buyer = Client::findorfail($this->buyer_id);
         $seller = Client::findorfail($this->seller_id);
 
         return [
@@ -26,6 +26,7 @@ class SoldResource extends JsonResource
             'items' => $this->item ? new ItemResource($this->item) : 'wara'  ,
             'buyer' => new  ClientResource($buyer) ,
             'seller' => new  ClientResource($seller),
+            'item_status' => $this->status_id
         ];
     }
 }
