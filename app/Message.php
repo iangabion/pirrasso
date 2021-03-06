@@ -15,8 +15,8 @@ class Message extends Model
     }
 
 
-    // mutator
-    public function getCreatedatAttribute($value) {
-        return date('d F Y H:i', strtotime($value)) ; 
-    }
+    // // mutator
+    // public function getCreatedatAttribute($value) {
+    //     return date('d F Y H:i', strtotime($value)) ;
+    // }
 }
