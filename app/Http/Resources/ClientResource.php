@@ -27,6 +27,7 @@ class ClientResource extends JsonResource
             'password'=> $this->password,
             'profile_pic'=>$this->image ,
             'fcm_token'=>$this->fcm_token ,
+            'is_validated' => $this->is_verified == 0 ? 0 : 1,
         ];
     }
 }

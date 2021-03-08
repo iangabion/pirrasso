@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\StoreClientPost ;
+use App\Mail\CodeVerification;
 use Auth ;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+use Mail;
 
 class ClientController extends Controller
 {
@@ -43,31 +46,78 @@ class ClientController extends Controller
     public function store(StoreClientPost $request)
     {
 
-            $client = new Client();
-            $client->first_name =  $request->input('first_name');
-            $client->last_name =  $request->input('last_name');
-            $client->email =  $request->input('email');
-            $client->mobile =  $request->input('mobile');
-            $client->username =  $request->input('username');
-            $client->password = Hash::make($request->input('password'));
-            $client->fcm_token = $request->input('fcm_token');
+        $client = new Client();
+        $client->first_name =  $request->input('first_name');
+        $client->last_name =  $request->input('last_name');
+        $client->email =  $request->input('email');
+        $client->mobile =  $request->input('mobile');
+        $client->username =  $request->input('username');
+        $client->password = Hash::make($request->input('password'));
+        $client->fcm_token = $request->input('fcm_token');
 
 
-            if($request->profile_pic){
-                $image = $request->profile_pic;  // your base64 encoded
-                list($type, $image) = explode(';', $image);
-                list(, $image)      = explode(',', $image);
-                $data = base64_decode($image);
-                $imageName = date("YmdHis"). '.' . 'jpeg';
-                file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
+        if($request->profile_pic){
+            $image = $request->profile_pic;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = date("YmdHis"). '.' . 'jpeg';
+            file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
 
-                $client->image = $imageName ;
-            }
+            $client->image = $imageName ;
+        }
+        $client->verification_code = $this->generateRandomNumber();
+        $client->save();
+        $this->sendVerificationCode($client);
+        $accessToken = $client->createToken('authtoken')->accessToken ;
+        return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+    }
+
+    public function sendVerificationCode($client) {
+        FacadesMail::to($client->email)->send(new CodeVerification($client->id));
+        return 'okay' ;
+    }
+
+    public function checkVerificationCode(Request $request) {
+        $client = Client::findorfail($request->id);
+
+        if($client->verification_code == $request->verification_code){
+            $client->is_verified = 1 ;
             $client->save();
-            $accessToken = $client->createToken('authtoken')->accessToken ;
-            return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+            return new ClientResource($client);
+        }
+
+        return response(['message'=> 'invalid verification code']);
+    }
+
+    public function resendVerificationCode(Request $request){
+        $client = Client::findorfail($request->id);
+        if($client->is_verified == 1){
+            return response(['message'=> 'your account is already verified']);
+        }
+
+        $client->verification_code = $this->generateRandomNumber();
+        $client->save();
+        $this->sendVerificationCode($client);
+        return response(['message'=> 'verification code sent']);
+    }
+
+    public function generateRandomNumber($length = 8) {
+
+    $random = "";
+    srand((double) microtime() * 1000000);
+
+    $data = "123456123456789071234567890890";
+    $data .= "aBCdefghijklmn123opq45rs67tuv89wxyz"; // if you need alphabatic also
+
+    for ($i = 0; $i < $length; $i++) {
+            $random .= substr($data, (rand() % (strlen($data))), 1);
+    }
+
+    return $random;
 
     }
+
 
     public function login(Request $request) {
         $loginData = $request->validate([

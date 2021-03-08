@@ -76,6 +76,10 @@ Route::get('statuses' ,'CategoryController@statuses');
 // login and register
 Route::post('register' ,'ClientController@store');
 Route::post('login' ,'ClientController@login');
+Route::post('verify_code' ,'ClientController@checkVerificationCode');
+Route::post('resend_code' ,'ClientController@resendVerificationCode');
+Route::get('test_code' ,'ClientController@sendVerificationCode');
+
 
 // search items
 Route::get('search/{item?}' ,'SearchController@index');
