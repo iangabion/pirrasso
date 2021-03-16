@@ -21,10 +21,12 @@ class ClientController extends Controller
         $clients = Client::orderBy('created_at' , 'desc')->get();
         $clients = collect($clients)->map(function ($client) {
             return [
-                'fullname' => $client->first_name ,
+                'id' => $client->id ,
+                'fullname' => $client->first_name .' '. $client->last_name,
                 'email'=>$client->email ,
-                'mobile'=>$client->mobile, 
-                'username'=>$client->username , 
+                'mobile'=>$client->mobile,
+                'username'=>$client->username ,
+                'profile_pic' => $client->image,
                 'total_items'=>'0'
             ];
         });
@@ -92,7 +94,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::with('items.photos','items.category')->find($id);
+        return $client;
     }
 
     /**
@@ -126,7 +129,9 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::findorfail($id);
+        $client->delete();
+        return 'successfully deleted' ;
     }
 
     public function out()

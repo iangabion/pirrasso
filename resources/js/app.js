@@ -7,6 +7,7 @@ import vuetify from './vuetify';
 import * as VeeValidate from 'vee-validate';
 import App from './components/MainComponent' ;
 import router from './router';
+import global_mixin from './components/mixins/global'
 
 Vue.use(Vuex);
 
@@ -37,7 +38,7 @@ router.beforeEach((to, from, next) => {
     }
   })
 
-		
+
 
 
 
@@ -80,6 +81,7 @@ axios.interceptors.response.use( ( response ) => {
 Vue.use(VeeValidate);
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/snackbar.vue').default);
+Vue.mixin(global_mixin)
 
 
 

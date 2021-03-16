@@ -37,6 +37,7 @@ Route::get('/', function () {
 Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
         Route::resource('client' , 'ClientController');
+        Route::resource('clients' , 'ClientController');
         Route::resource('item' , 'ItemController');
         Route::resource('status', 'StatusController');
 
