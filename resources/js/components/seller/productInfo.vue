@@ -22,7 +22,7 @@
             </v-list-item>
 
             <v-divider></v-divider>
-            {{item.photos}}
+            <!-- {{item.photos}} -->
             <v-list dense>
                 <v-list-item>
                     <v-list-item-icon>
