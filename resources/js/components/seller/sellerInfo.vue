@@ -4,8 +4,9 @@
             max-width="375"
             class="mx-auto"
         >
+            <!-- src="https://cdn.vuetifyjs.com/images/lists/ali.png" -->
             <v-img
-            src="https://cdn.vuetifyjs.com/images/lists/ali.png"
+            :src="client.image"
             height="300px"
             dark
             >

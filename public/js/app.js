@@ -3058,6 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     'client': {
@@ -35214,11 +35215,7 @@ var render = function() {
         { staticClass: "mx-auto", attrs: { "max-width": "375" } },
         [
           _c("v-img", {
-            attrs: {
-              src: "https://cdn.vuetifyjs.com/images/lists/ali.png",
-              height: "300px",
-              dark: ""
-            }
+            attrs: { src: _vm.client.image, height: "300px", dark: "" }
           }),
           _vm._v(" "),
           _c(
