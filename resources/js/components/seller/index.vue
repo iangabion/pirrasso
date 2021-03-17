@@ -5,24 +5,25 @@
             <v-toolbar-title class="ml-3">Seller</v-toolbar-title>
 
             <v-spacer></v-spacer>
-            <v-text-field
-                placeholder="Search"
-                dense
-                rounded
-                v-model="search"
-                filled
-                hide-details
-            >
+            <v-row>
+                <v-col cols="6">
 
-            </v-text-field>
+                </v-col>
+                <v-col cols="6">
+                    <v-text-field
+                        placeholder="Search"
+                        dense
+                        rounded
+                        v-model="search"
+                        filled
+                        append-icon="mdi-magnify"
+                        hide-details
+                    >
 
-            <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-            </v-btn>
+                    </v-text-field>
+                </v-col>
+            </v-row>
 
-            <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
         </v-toolbar>
         <v-container>
             <v-row>
@@ -32,7 +33,7 @@
                     cols="3"
                 >
                     <v-card
-                        :color="item.color"
+                        color="dark"
                         dark
                     >
                         <div class="d-flex flex-no-wrap justify-space-between">

@@ -6,16 +6,17 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-                <v-icon>mdi-dots-vertical</v-icon>
+            <v-btn
+                color="primary"
+                @click="$router.go(-1)"
+                class="mr-2"
+            >
+                <v-icon
+                    left
+                >
+                    mdi-backspace
+                </v-icon>
+                back
             </v-btn>
         </v-toolbar>
         <div>
@@ -28,8 +29,16 @@
                     </v-col>
                      <v-col cols="9">
                         <sellerItems
+                            v-if="client.items ? client.items.length : ''"
                             :items="client.items ? client.items : []"
                         />
+                        <v-card
+                            height="680px"
+                            style="overflow-y:scroll;"
+                            v-else
+                        >
+                            <emptyItem/>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-container>
@@ -39,17 +48,21 @@
 <script>
 import { GetClient } from "@api/client.api";
 import sellerInfo from "./sellerInfo";
+import emptyItem from "@/components/error/emptyItems"
 import sellerItems from "./sellerItems";
 
 export default {
     components: {
         sellerInfo,
-        sellerItems
+        sellerItems,
+        emptyItem
     },
     data(){
         return {
             client:{}
         }
+    },
+    computed : {
     },
     methods: {
         getClientInfo(){

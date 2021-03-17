@@ -20,7 +20,9 @@
                 </v-list-item-icon>
 
                 <v-list-item-content>
-                <v-list-item-title>{{client.first_name}} {{client.last_name}}</v-list-item-title>
+                <v-list-item-title
+                    class="text-capitalize"
+                >{{client.first_name}} {{client.last_name}}</v-list-item-title>
                 <v-list-item-subtitle>Name</v-list-item-subtitle>
                 </v-list-item-content>
 
