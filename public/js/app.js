@@ -34869,7 +34869,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-divider"),
-          _vm._v("\n        " + _vm._s(_vm.item.photos) + "\n        "),
+          _vm._v(" "),
           _c(
             "v-list",
             { attrs: { dense: "" } },
