@@ -100,9 +100,6 @@
                                 </v-card>
                              </v-hover>
                         </v-col>
-￼
-BACK
-
                     </v-row>
                 </v-container>
             </div>
