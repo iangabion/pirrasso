@@ -34,6 +34,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return redirect('/login');
 });
+
+Route::get('/privacy-policy', function () {
+    return view('privacy');
+});
 Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
         Route::resource('client' , 'ClientController');
