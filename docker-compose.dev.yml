@@ -7,13 +7,9 @@ services:
   nginx:
     image: nginx
     container_name: buy-and-sell_nginx
-    ports:
-      - "8383:80"
     volumes:
       - ./:/var/www/html
       - ./development/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - laravel-docker
 
   php:
     build:
@@ -22,5 +18,3 @@ services:
     container_name: buy-and-sell_php
     volumes:
       - ./:/var/www/html
-    networks:
-      - laravel-docker
