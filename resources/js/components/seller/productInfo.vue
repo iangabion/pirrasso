@@ -100,6 +100,17 @@
                     style="text-align: center;font-weight: bold;padding-top: 10px;"
                     class="text-capitalize"
                 > sample photo's </div>
+                <v-btn
+                    class="mt-5"
+                    color="error"
+                    @click="deleteItem"
+                    block
+                >
+                    <!-- <v-icon left>
+                        mdi-delete
+                    </v-icon> -->
+                    DELETE ITEM
+                </v-btn>
             </div>
         </v-navigation-drawer>
     </v-sheet>
@@ -135,6 +146,7 @@ export default {
                     src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
                 },
                 {
+
                     src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
                 },
                 {
@@ -147,6 +159,9 @@ export default {
         test(payload) {
             console.log('sad', payload)
             !payload ? this.$emit('collapse-drawer', payload) : ''
+        },
+        deleteItem(){
+            console.log(this.item)
         }
     },
     created(){
