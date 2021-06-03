@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
+use App\Session;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,6 +16,14 @@ class MessageController extends Controller
     public function index()
     {
         //
+    }
+
+    public function readMessage($id){
+        $message = Session::findOrFail($id)->messages()->update([
+            'is_read' => 1
+        ]);
+
+        return 'success';
     }
 
     /**

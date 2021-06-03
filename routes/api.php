@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
 
 	//send message
 	Route::post('send_message' ,'SessionController@store');
+    Route::get('messages/read/{id}' ,'MessageController@readMessage');
 
 	// retrieve messages
 	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
@@ -45,7 +46,7 @@ Route::middleware('auth:api')->group(function () {
 	// remove favorites
 	Route::get('remove_favorite/{id}' ,'ClientController@remove_favorites');
 	//get all favorites
-	Route::get('favorites' ,'ClientController@get_favorites');\
+	Route::get('favorites' ,'ClientController@get_favorites');/
 
 	// is sold
 	Route::post('is_sold' ,'ItemsController@sold');
