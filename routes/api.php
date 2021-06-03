@@ -46,7 +46,7 @@ Route::middleware('auth:api')->group(function () {
 	// remove favorites
 	Route::get('remove_favorite/{id}' ,'ClientController@remove_favorites');
 	//get all favorites
-	Route::get('favorites' ,'ClientController@get_favorites');/
+	Route::get('favorites' ,'ClientController@get_favorites');
 
 	// is sold
 	Route::post('is_sold' ,'ItemsController@sold');
