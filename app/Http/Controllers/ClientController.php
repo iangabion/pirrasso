@@ -127,6 +127,7 @@ class ClientController extends Controller
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
             $client->social_id = $request->id;
+            $client->is_verified = 1;
             $client->save();
         }
         if($client->social_profile()->count()){
