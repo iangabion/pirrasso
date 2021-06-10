@@ -121,21 +121,27 @@ class ClientController extends Controller
     public function facebookLogin(Request $request){
         if(!$request->id)return response(['message'=> 'invalid credentials']);
 
-        $client = Client::with('social_profile')->where('social_id',$request->id)->first();
+        $client = Client::where('social_id',$request->id)->first();
         if(!$client){
             $client = New Client();
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
             $client->social_id = $request->id;
             $client->save();
-
         }
-        $client->social_profile()->create([
-            'image' => $request->picture,
-        ]);
+        if($client->social_profile()->count()){
+            $client->social_profile()->update([
+                'image' => $request->picture,
+            ]);
+        }else{
+            $client->social_profile()->create([
+                'image' => $request->picture,
+            ]);
+        }
+        $client = Client::with('social_profile')->where('social_id',$request->id)->first();
         $accessToken = $client->createToken('authToken')->accessToken;
         $client->fcm_token = $request->input('fcm_token');
-        return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
+        return response(['user' => $client , 'accessToken' => $accessToken ]);
     }
 
     public function login(Request $request) {
