@@ -119,7 +119,6 @@ class ClientController extends Controller
     }
 
     public function facebookLogin(Request $request){
-        // return $request->picture;
         if(!$request->id)return response(['message'=> 'invalid credentials']);
 
         $client = Client::with('social_profile')->where('social_id',$request->id)->first();
@@ -130,40 +129,13 @@ class ClientController extends Controller
             $client->social_id = $request->id;
             $client->save();
 
-            $client->social_profile()->create([
-                'image' => $request->picture,
-            ]);
         }
-        // return $client;
+        $client->social_profile()->create([
+            'image' => $request->picture,
+        ]);
         $accessToken = $client->createToken('authToken')->accessToken;
-        // $client->fcm_token = $request->input('fcm_token');
+        $client->fcm_token = $request->input('fcm_token');
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
-        // if ($user->id) {
-        //     $check = Client::where('email',  $user->email)->get();
-        //     if (count($check)) {
-        //         $theuser = $check[0];
-        //         if (($theuser->provider_id == '') || ($theuser->provider_id == null) || ($theuser->image == null)) {
-        //             $theuser->image = $user->public_profile ? $user->public_profile : '';
-        //             $theuser->provider_id = $user->id;
-        //             $theuser->provider = 'facebook';
-        //             $theuser->save();
-        //         }
-        //     } else {
-        //         $theuser = new Client();
-
-        //         $theuser->email = $user->email;
-        //         $theuser->fname = $user->first_name ? $user->first_name : '';
-        //         $theuser->lname = $user->last_name ? $user->last_name : '';
-        //         $theuser->provider_id = $user->id;
-        //         $theuser->image = $user->public_profile ? $user->public_profile : '';
-        //         $theuser->provider = 'facebook';
-        //         $theuser->save();
-        //     }
-        //     Auth::loginUsingId($theuser->id, true);
-        //     return Auth::user()->createToken('capfrance-token');
-        // } else {
-        //     return response()->json('This account didnt provide email', 422);
-        // }
     }
 
     public function login(Request $request) {
