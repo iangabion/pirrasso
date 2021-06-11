@@ -20,8 +20,8 @@ class SessionResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        $buyer = Client::findorfail($this->buyer_id); 
-        $seller = Client::findorfail($this->seller_id); 
+        $buyer = Client::with('social_profile')->where('id',$this->buyer_id); 
+        $seller = Client::with('social_profile')->where('id',$this->seller_id); 
 
         return [
             'session_id'=> $this->id,
