@@ -139,10 +139,10 @@ class ClientController extends Controller
                 'image' => $request->picture,
             ]);
         }
-        $client = Client::with('social_profile')->where('social_id',$request->id)->first();
+        // $client = Client::with('social_profile')->where('social_id',$request->id)->first();
         $accessToken = $client->createToken('authToken')->accessToken;
         $client->fcm_token = $request->input('fcm_token');
-        return response(['user' => $client , 'accessToken' => $accessToken ]);
+        return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
     }
 
     public function login(Request $request) {
