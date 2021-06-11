@@ -24,6 +24,7 @@ class ClientResource extends JsonResource
             'mobile'=> $this->mobile,
             'email'=> $this->email,
             'username'=> $this->username,
+            'social_id'=> $this->social_id,
             'password'=> $this->password,
             'profile_pic'=>$this->image ,
             'fcm_token'=>$this->fcm_token ,

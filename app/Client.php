@@ -47,7 +47,10 @@ class Client extends Authenticatable
     // mutator
     public function getImageAttribute($value){
         if(!$this->social_profile()->count() && !$value){
-            return $value ? asset('images/user_profile/'. $value) : 'https://tnsleepteam.com/wp-content/uploads/2016/10/placeholder_profile_male.jpg' ;
+            return 'https://tnsleepteam.com/wp-content/uploads/2016/10/placeholder_profile_male.jpg' ;
+        }
+        if($value){
+            return asset('images/user_profile/'. $value);
         }
     }
     public function getFullnameAttribute($value){
