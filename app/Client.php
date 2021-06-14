@@ -10,7 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Client extends Authenticatable
 {
      use HasApiTokens, Notifiable;
-
+     protected $hidden = [
+        'fcm_token',
+    ];
 
 
     // scopes

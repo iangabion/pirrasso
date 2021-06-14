@@ -20,8 +20,8 @@ class SessionResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        $buyer = Client::findorfail($this->buyer_id); 
-        $seller = Client::findorfail($this->seller_id); 
+        $buyer = Client::with('fcm_tokens')->findorfail($this->buyer_id); 
+        $seller = Client::with('fcm_tokens')->findorfail($this->seller_id); 
 
         return [
             'session_id'=> $this->id,
@@ -36,8 +36,8 @@ class SessionResource extends JsonResource
             'seller_id' => $seller->id ,
             'buyer_social_profile' => $buyer->social_profile ,
             'seller_social_profile' => $seller->social_profile ,
-            'seller_fcm_token' => $seller->fcm_tokens ,
-            'buyer_fcm_token' => $buyer->fcm_tokens ,
+            // 'seller_fcm_token' => $seller->fcm_tokens ,
+            // 'buyer_fcm_token' => $buyer->fcm_tokens ,
         ];
     }
 }
