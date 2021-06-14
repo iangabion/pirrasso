@@ -41,7 +41,7 @@
                             <v-card-title
                                 class="headline text-capitalize "
                             >
-                                {{item.fullname}}
+                                {{item.username}}
                             </v-card-title>
 
                             <v-card-subtitle > {{item.email}} </v-card-subtitle>
@@ -99,7 +99,7 @@ export default {
     computed : {
         filteredClient(){
             return this.clients.filter(client => {
-                return client.fullname.toLowerCase().includes(this.search.toLowerCase()) || client.email.toLowerCase().includes(this.search.toLowerCase())
+                return client.username.toLowerCase().includes(this.search.toLowerCase()) || client.email.toLowerCase().includes(this.search.toLowerCase())
             })
         }
     },
