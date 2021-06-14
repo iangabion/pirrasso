@@ -176,9 +176,9 @@ class ClientController extends Controller
         }
     }
 
-    public function logout($fcm_token){
-        return $fcm_token;
-        FcmToken::where('token',$fcm_token)->delete();
+    public function logout(Request $request){
+        // return $request->fcm_token;
+        FcmToken::where('token',$request->fcm_token)->delete();
         $client = Auth::user()->token();
         $client->revoke();
     }
