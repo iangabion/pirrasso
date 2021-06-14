@@ -181,6 +181,7 @@ class ClientController extends Controller
         FcmToken::where('token',$request->fcm_token)->delete();
         $client = Auth::user()->token();
         $client->revoke();
+        return "success";
     }
 
     /**
