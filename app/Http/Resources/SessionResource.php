@@ -36,8 +36,8 @@ class SessionResource extends JsonResource
             'seller_id' => $seller->id ,
             'buyer_social_profile' => $buyer->social_profile ,
             'seller_social_profile' => $seller->social_profile ,
-            'seller_fcm_token' => $seller->fcm_token ,
-            'buyer_fcm_token' => $buyer->fcm_token ,
+            'seller_fcm_token' => $seller->fcm_tokens ,
+            'buyer_fcm_token' => $buyer->fcm_tokens ,
         ];
     }
 }

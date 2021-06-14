@@ -39,7 +39,10 @@ class Client extends Authenticatable
     }
     
     public function social_profile(){
-        return $this->hasOne(SocialProfile::class);
+        return $this->hasMany(SocialProfile::class);
+    }
+    public function fcm_tokens(){
+        return $this->hasMany(FcmToken::class);
     }
 
 
@@ -56,7 +59,4 @@ class Client extends Authenticatable
     public function getFullnameAttribute($value){
         return ucwords($this->first_name .' '. $this->last_name) ;
     }
-
-
-
 }

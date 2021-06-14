@@ -27,7 +27,7 @@ class ClientResource extends JsonResource
             'social_id'=> $this->social_id,
             'password'=> $this->password,
             'profile_pic'=>$this->image ,
-            'fcm_token'=>$this->fcm_token ,
+            'fcm_token'=>$this->fcm_tokens ,
             'is_validated' => $this->is_verified == 0 ? 0 : 1,
             'social_profile'=>$this->social_profile ,
         ];

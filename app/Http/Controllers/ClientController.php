@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\FcmToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ClientResource;
@@ -10,6 +11,7 @@ use App\Http\Resources\ItemResource;
 use App\Http\Requests\StoreClientPost ;
 use App\Mail\CodeVerification;
 use Auth ;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
 
@@ -53,9 +55,8 @@ class ClientController extends Controller
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
-        $client->fcm_token = $request->input('fcm_token');
-
-
+        
+        
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
@@ -63,11 +64,14 @@ class ClientController extends Controller
             $data = base64_decode($image);
             $imageName = date("YmdHis"). '.' . 'jpeg';
             file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
-
+            
             $client->image = $imageName ;
         }
         $client->verification_code = $this->generateRandomNumber();
         $client->save();
+        $client->fcm_tokens->create([
+            'token'=> $request->input('fcm_token')
+        ]);
         $this->sendVerificationCode($client);
         $accessToken = $client->createToken('authtoken')->accessToken ;
         return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
@@ -141,7 +145,13 @@ class ClientController extends Controller
         }
         // $client = Client::with('social_profile')->where('social_id',$request->id)->first();
         $accessToken = $client->createToken('authToken')->accessToken;
-        $client->fcm_token = $request->input('fcm_token');
+
+        if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
+            $client->fcm_tokens()->create([
+                'token'=> $request->input('fcm_token')
+            ]); 
+        }
+
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
     }
 
@@ -154,12 +164,23 @@ class ClientController extends Controller
             $client = Client::where('username',$request->username)->first();
             if ( ($client != null) && Hash::check($request->password, $client->password) ){
                 $accessToken = $client->createToken('authToken')->accessToken;
-                $client->fcm_token = $request->input('fcm_token');
                 $client->save();
+                if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
+                    $client->fcm_tokens()->create([
+                        'token'=> $request->input('fcm_token')
+                    ]); 
+                }
                 return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
             }
             return response(['message'=> 'invalid credentials']);
         }
+    }
+
+    public function logout($fcm_token){
+        return $fcm_token;
+        FcmToken::where('token',$fcm_token)->delete();
+        $client = Auth::user()->token();
+        $client->revoke();
     }
 
     /**
