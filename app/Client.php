@@ -41,7 +41,7 @@ class Client extends Authenticatable
     }
     
     public function social_profile(){
-        return $this->hasMany(SocialProfile::class);
+        return $this->hasOne(SocialProfile::class);
     }
     public function fcm_tokens(){
         return $this->hasMany(FcmToken::class);
