@@ -69,7 +69,7 @@ class ClientController extends Controller
         }
         $client->verification_code = $this->generateRandomNumber();
         $client->save();
-        $client->fcm_tokens->create([
+        $client->fcm_tokens()->create([
             'token'=> $request->input('fcm_token')
         ]);
         $this->sendVerificationCode($client);
