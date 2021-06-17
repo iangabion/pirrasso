@@ -81,6 +81,8 @@ Route::post('login' ,'ClientController@login');
 Route::post('loginfacebook' ,'ClientController@facebookLogin');
 Route::post('verify_code' ,'ClientController@checkVerificationCode');
 Route::post('resend_code' ,'ClientController@resendVerificationCode');
+Route::post('forgot-password/send-email' ,'ForgotPasswordController@checkEmail');
+Route::post('reset-password' ,'ForgotPasswordController@checkToken');
 Route::get('test_code' ,'ClientController@sendVerificationCode');
 
 
