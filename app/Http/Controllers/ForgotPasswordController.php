@@ -27,7 +27,7 @@ class ForgotPasswordController extends Controller
         return $code;
     }
     public function generateCode($email){
-        $code = strtoupper(Str::random(7)).time();
+        $code = strtoupper(Str::random(2)).time();
         DB::table('password_resets')->where('email', $email)->delete();
         DB::table('password_resets')->insert([
             'email' => $email,
