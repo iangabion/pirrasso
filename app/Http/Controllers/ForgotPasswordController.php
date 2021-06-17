@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Http\Resources\ClientResource;
 use App\Mail\ForgotPassword;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class ForgotPasswordController extends Controller
         //check if the token is valid
         if($timediff > 15) return response("expired token",401);
         $this->reset_password($valid,$request->password);
-        return response("success",200);
+        $client  = Client::where('email',$request->email)->first();
+        return response(['user' => new ClientResource($client)],200);
     }
 }
