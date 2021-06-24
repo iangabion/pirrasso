@@ -27,6 +27,7 @@ class ClientController extends Controller
                 'mobile'=>$client->mobile,
                 'username'=>$client->username ,
                 'profile_pic' => $client->image,
+                'social_id' => $client->social_id,
                 'total_items'=>'0'
             ];
         });

@@ -38,7 +38,7 @@
                                     ></v-img>
                                 </v-list-item-avatar>
                                 <v-list-item-content>
-                                    <v-list-item-title >{{items.owner.full_name}}</v-list-item-title>
+                                    <v-list-item-title >{{items.owner.username}}</v-list-item-title>
                                     <v-list-item-subtitle>10 minutes ago</v-list-item-subtitle>
                                 </v-list-item-content>
                                 </v-list-item>
