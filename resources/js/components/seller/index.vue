@@ -41,7 +41,7 @@
                             <v-card-title
                                 class="headline text-capitalize "
                             >
-                                {{item.fullname}}
+                                {{item.username || item.social_id}}
                             </v-card-title>
 
                             <v-card-subtitle > {{item.email}} </v-card-subtitle>
@@ -98,9 +98,18 @@ export default {
     },
     computed : {
         filteredClient(){
-            return this.clients.filter(client => {
-                return client.fullname.toLowerCase().includes(this.search.toLowerCase()) || client.email.toLowerCase().includes(this.search.toLowerCase())
-            })
+            if(this.search){
+                return this.clients.filter(client => {
+                    console.log(client.social_id,"search")
+                    if(client.username&&client.email){
+                        return client.username.toLowerCase().includes(this.search.toLowerCase()) || 
+                            client.email.toLowerCase().includes(this.search.toLowerCase())
+                    }
+                        return client.social_id.includes(this.search.toLowerCase())
+
+                })
+            }
+            return this.clients
         }
     },
     methods:  {
