@@ -132,6 +132,7 @@ class ClientController extends Controller
             $client->last_name = $request->last_name;
             $client->social_id = $request->id;
             $client->is_verified = 1;
+            $client->account_type = 'facebook';
             $client->save();
         }
         if($client->social_profile()->count()){
@@ -143,7 +144,6 @@ class ClientController extends Controller
                 'image' => $request->picture,
             ]);
         }
-        // $client = Client::with('social_profile')->where('social_id',$request->id)->first();
         $accessToken = $client->createToken('authToken')->accessToken;
 
         if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
@@ -152,6 +152,20 @@ class ClientController extends Controller
             ]); 
         }
 
+        return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
+    }
+
+    public function appleLogin(Request $request){
+        $client =  Client::where('social_id',$request->id)->first();
+        if(!$client){
+            $client = new Client();
+            $client->social_id = $request->id;
+            $client->is_verified = 1;
+            $client->account_type = 'apple';
+            $client->save();
+        }
+
+        $accessToken = $client->createToken('authToken')->accessToken;
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
     }
 
