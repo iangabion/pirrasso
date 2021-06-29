@@ -164,7 +164,11 @@ class ClientController extends Controller
             $client->account_type = 'apple';
             $client->save();
         }
-
+        if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
+            $client->fcm_tokens()->create([
+                'token'=> $request->input('fcm_token')
+            ]); 
+        }
         $accessToken = $client->createToken('authToken')->accessToken;
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
     }
