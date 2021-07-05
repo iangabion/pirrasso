@@ -79,6 +79,7 @@ Route::get('statuses' ,'CategoryController@statuses');
 Route::post('register' ,'ClientController@store');
 Route::post('login' ,'ClientController@login');
 Route::post('loginfacebook' ,'ClientController@facebookLogin');
+Route::post('loginapple' ,'ClientController@appleLogin');
 Route::post('verify_code' ,'ClientController@checkVerificationCode');
 Route::post('resend_code' ,'ClientController@resendVerificationCode');
 Route::post('forgot-password/send-email' ,'ForgotPasswordController@checkEmail');
