@@ -1,5 +1,26 @@
 <template>
     <div>
+        <v-toolbar>
+            <v-col cols="12" sm="6" lg="8">
+                 <!-- <v-text-field
+                    flat
+                    solo-inverted
+                    hide-details
+                    class="hidden-sm-and-down"
+                    style= "width: 300px"
+                /> -->
+                <v-text-field
+                    flat
+                    filled dense rounded
+                    solo-inverted
+                    hide-details
+                    prepend-inner-icon="mdi-magnify"
+                    label="Search Item"
+                    v-model="form.search"
+                    :items='categories_item'
+                />
+            </v-col>
+        </v-toolbar>
         <v-sheet elevation="6">
             <v-tabs
             background-color="primary"
@@ -7,7 +28,7 @@
             next-icon="mdi-arrow-right-bold-box-outline"
             prev-icon="mdi-arrow-left-bold-box-outline"
             show-arrows
-             center-active
+            center-active
             fixed-tabs
             >
             <v-tabs-slider color="white"></v-tabs-slider>
@@ -93,8 +114,18 @@ export default {
         categories:[],
         categories_item:[],
         data_loaded : true ,
+        form:{
+            search:'',
+        }
     }),
     methods: {
+        search_item(key){
+            axios.post('/api/search', {searchkey:key}).then((data) => {
+                console.log(data, 'chan_search')
+                this.categories_item = data.data
+            });
+        },
+
         get_categories() {
             axios.get('/category', {})
             .then(response => {
@@ -111,6 +142,7 @@ export default {
                 this.data_loaded=true ;
             })
         },
+    
         destroy(id , index) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
@@ -125,9 +157,17 @@ export default {
         }
     },
     created() {
-        this.get_categories()
+        this.get_categories(),
+        this.get_items()
        
 	},
+    watch:{
+        "form.search":{
+            handler(val){
+                this.search_item(val)
+            }
+        }
+    }
 }
 </script>
 <style scoped>

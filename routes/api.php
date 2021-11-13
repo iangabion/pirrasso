@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('change_status' ,'ItemsController@changeStatus');
 });
+
+//search api
+Route::post('search', 'ItemController@search');
 
 // get all items
 Route::get('items' ,'ItemsController@index');

@@ -70,7 +70,7 @@
                         :headers="headers"
                         fixed-header
                         :items="categories"
-                        height="430"
+                        height="auto"
                         hide-default-footer
                         disable-pagination
                         class="elevation-1"
@@ -88,7 +88,7 @@
                                             <v-icon size="20" color="primary">mdi-eye</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            View
+                                            Subcategories
                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="get_category_edit(item.id)" >

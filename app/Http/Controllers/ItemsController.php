@@ -7,7 +7,7 @@ use App\Photos;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Resources\SoldResource;
-use Auth ;
+use Illuminate\Support\Facades\Auth ;
 use App\Sold;
 use App\Apartment ;
 use App\Http\Resources\PhotoResource;
@@ -267,7 +267,6 @@ class ItemsController extends Controller
     }
 
     public function process_images($images , $item){
-
         if($images ){
             $i=0;
             foreach($images as $img) {
@@ -287,6 +286,17 @@ class ItemsController extends Controller
                 $photo->save();
             }
             }
+        }
+    }
+
+    public function search(Request $request){
+        $items = Items::query();
+        if($request->input('searchkey') != ""){
+            $keyword = $request-> input('searchkey');
+            $items->where(function($query) use($keyword){
+                $query  ->where('title', 'LIKE', "%$keyword%")
+                        ->orWhere('description', 'LIKE', "%$keyword%");
+            });
         }
     }
 }
