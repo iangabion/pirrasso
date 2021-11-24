@@ -20,6 +20,7 @@
                     label="Search Product Name"
                     v-model="form.search"
                     :items='categories_item'
+                    clearable
                 />
             </v-col>
         </v-toolbar>
@@ -30,7 +31,6 @@
             next-icon="mdi-arrow-right-bold-box-outline"
             prev-icon="mdi-arrow-left-bold-box-outline"
             show-arrows
-            center-active
             fixed-tabs
             v-model='tab'
             >
@@ -121,13 +121,13 @@ export default {
         form:{
             search:'',
         },
-        id:'1',
+        // id:'1',
         loading: false,
         categor:{},
         tab:'tab-1',
     }),
     methods: {
-        search_item(key){
+        async search_item(key){
             this.loading=true
             if(this.timer){
                 clearTimeout(this.timer);
@@ -138,15 +138,15 @@ export default {
                     console.log(data, 'chan search')
                     this.categor = data.data
                     this.categories_item = this.categor.data
-                    this.loading=false
                     this.tab = 'tab-2'
+                    this.loading=false
                 }).catch((errors)=>{
                     console.log(errors)
                 });
             });
-            if(this.form.search==''){
-                this.get_categories()
-            }
+            // if(this.form.search==''){
+            //     this.get_categories()
+            // }
         },
 
         get_categories() {
@@ -155,19 +155,24 @@ export default {
                 console.log(response.data, 'here is category chan')
                 this.categories = response.data;
                 console.log(this.categories,'chandun here this category ')
-                this.tab = 'tab-2'
+                // this.tab = 'tab-2'
                 this.get_items(this.categories[1].id)
             }).catch((errors)=>{
                 console.log(errors)
             });
         },
         get_items(id) {
+            // this.loading=true
             if(id===2) {
+                this.loading=true
+                this.data_loaded=false
                 axios.get('/api/get_all_items').then(response =>{
                     console.log(response.data.data, 'test' )
                     this.categories_item = response.data.data
-                    this.tab = 'tab-2'
+                    this.tab ='tab-2'
                     this.form.search=''
+                    this.data_loaded=true
+                    this.loading=false
                 })
             }
             else{
@@ -181,8 +186,6 @@ export default {
                     this.data_loaded=true ;
                 })
             }
-            
-           
         },
     
         destroy(id , index) {
@@ -198,8 +201,10 @@ export default {
             });
         }
     },
-    created() {
-        this.get_categories()
+     mounted() {
+        // if(this.form.search==''){
+             this.get_categories()
+        // }
 	},
     watch:{
         "form.search":{
