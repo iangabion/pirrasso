@@ -11,11 +11,13 @@
                 /> -->
                 <v-text-field
                     flat
-                    filled dense rounded
-                    solo-inverted
+                    filled
+                    dense
+                    single-line
+                    rounded
                     hide-details
                     prepend-inner-icon="mdi-magnify"
-                    label="Search Item"
+                    label="Search Product Name"
                     v-model="form.search"
                     :items='categories_item'
                 />
@@ -30,12 +32,14 @@
             show-arrows
             center-active
             fixed-tabs
+            v-model='tab'
             >
             <v-tabs-slider color="white"></v-tabs-slider>
-            <v-tab
+            <v-tab 
+                :href="'#tab-'+ i.id"
                 v-for="i in categories"
                 :key="i.id"
-                @click="get_items(i.id)"
+                @click.prevent="get_items(i.id)"
             >
                  {{ i.name }}
             </v-tab>
@@ -116,31 +120,69 @@ export default {
         data_loaded : true ,
         form:{
             search:'',
-        }
+        },
+        id:'1',
+        loading: false,
+        categor:{},
+        tab:'tab-1',
     }),
     methods: {
         search_item(key){
-            axios.post('/api/search', {searchkey:key}).then((data) => {
-                console.log(data, 'chan_search')
-                this.categories_item = data.data
+            this.loading=true
+            if(this.timer){
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(()=> {
+                axios.post('/api/searchchan', {searchkey:key}, {}).then((data) => {
+                    console.log(data, 'chan search')
+                    this.categor = data.data
+                    this.categories_item = this.categor.data
+                    this.loading=false
+                    this.tab = 'tab-2'
+                }).catch((errors)=>{
+                    console.log(errors)
+                });
             });
+            if(this.form.search==''){
+                this.get_categories()
+            }
         },
 
         get_categories() {
-            axios.get('/category', {})
+            axios.get('/api/categories', {})
             .then(response => {
+                console.log(response.data, 'here is category chan')
                 this.categories = response.data;
-                this.get_items(response.data[0].id)
+                console.log(this.categories,'chandun here this category ')
+                this.tab = 'tab-2'
+                this.get_items(this.categories[1].id)
+            }).catch((errors)=>{
+                console.log(errors)
             });
         },
         get_items(id) {
-            this.data_loaded=false ;
-            axios.get('/category_items/' + id, {})
-            .then(response => {
-                this.categories_item = response.data.data ;
-                console.log(this.categories_item)
-                this.data_loaded=true ;
-            })
+            if(id===2) {
+                axios.get('/api/get_all_items').then(response =>{
+                    console.log(response.data.data, 'test' )
+                    this.categories_item = response.data.data
+                    this.tab = 'tab-2'
+                    this.form.search=''
+                })
+            }
+            else{
+                this.data_loaded=false;
+                axios.get('api/get_items/' + id, {})
+                .then(response => {
+                    console.log(response.data, 'chan here items console')
+                    this.categories_item = response.data.data ;
+                    console.log(this.categories_item, 'chan here get_items')
+                    this.form.search=''
+                    this.data_loaded=true ;
+                })
+            }
+            
+           
         },
     
         destroy(id , index) {
@@ -157,16 +199,15 @@ export default {
         }
     },
     created() {
-        this.get_categories(),
-        this.get_items()
-       
+        this.get_categories()
 	},
     watch:{
         "form.search":{
             handler(val){
                 this.search_item(val)
-            }
-        }
+            },
+            deep: true,
+        },
     }
 }
 </script>

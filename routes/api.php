@@ -72,12 +72,16 @@ Route::post('add_subcat_icon' ,'CategoryController@add_subcat_icon');
 Route::get('categories' ,'CategoryController@index');
 // get all categories items
 Route::get('category_items/{id}' ,'CategoryController@category_items');
+Route::get('get_items/{id}' ,'CategoryController@get_items');
+Route::get('get_all_items' ,'CategoryController@get_all');
+
+
 // get all status
 Route::get('statuses' ,'CategoryController@statuses');
-
-
-
-
+Route::post('update_catPos', 'CategoryController@update_catPos');
+Route::post('update_subCatPos', 'CategoryController@update_subCatPos');
+// Route::post('getSubCat/{id}', 'CategoryController@getSubCat');
+Route::get('getAll', 'CategoryController@getAll');
 
 // login and register
 Route::post('register' ,'ClientController@store');
@@ -92,4 +96,5 @@ Route::get('test_code' ,'ClientController@sendVerificationCode');
 
 
 // search items
+Route::post('searchchan' ,'SearchController@searchchan');
 Route::get('search/{item?}' ,'SearchController@index');

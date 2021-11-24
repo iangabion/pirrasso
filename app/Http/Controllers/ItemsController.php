@@ -297,6 +297,7 @@ class ItemsController extends Controller
                 $query  ->where('title', 'LIKE', "%$keyword%")
                         ->orWhere('description', 'LIKE', "%$keyword%");
             });
-        }
+        };
+        return $items->get();
     }
 }

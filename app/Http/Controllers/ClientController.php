@@ -10,7 +10,7 @@ use App\Http\Resources\ClientResource;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\StoreClientPost ;
 use App\Mail\CodeVerification;
-use Auth ;
+use Illuminate\Support\Facades\Auth ;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;

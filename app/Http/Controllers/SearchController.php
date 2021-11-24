@@ -21,6 +21,19 @@ class SearchController extends Controller
         $item = Items::where('title', 'like', "%" . $item . "%")->get();
         return ItemResource::collection($item);
     }
+    public function searchchan(Request $request)
+    {
+        $item = Items::query();
+        If ($request->input('searchkey') != ''){
+            $keyword = $request->input('searchkey');
+                $item->where(function($query)use($keyword){
+                        $query  ->where('title', 'LIKE', "%$keyword%")
+                                ->orWhere('description', 'LIKE', "%$keyword%");
+                });
+        };
+        return ItemResource::collection($item->get());
+        // return ItemResource::collection($item);
+    }
 
     
 

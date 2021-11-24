@@ -66,51 +66,70 @@
                     </v-form>
                 </v-flex>
                 <v-flex xs6 sm6 class="pa-4">
-                    <v-data-table
-                        :headers="headers"
-                        fixed-header
-                        :items="categories"
-                        height="auto"
-                        hide-default-footer
-                        disable-pagination
-                        class="elevation-1"
-                    >
-                        <template v-slot:item.action="{ item }">
-                             <v-menu bottom origin="right center" transition="scale-transition">
-                                <template v-slot:activator="{ on }">
-                                    <v-btn text color="primary" dark v-on="on" @click.stop>
-                                        <v-icon>mdi-dots-vertical</v-icon>
-                                    </v-btn>
-                                </template>
-                                <v-list class="pa-0">
-                                    <v-list-item @click="show_category(item.id)" >
-                                        <v-list-item-icon class="mr-0">
-                                            <v-icon size="20" color="primary">mdi-eye</v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-title>
-                                            Subcategories
-                                        </v-list-item-title>
-                                    </v-list-item>
-                                    <v-list-item @click="get_category_edit(item.id)" >
-                                        <v-list-item-icon class="mr-0">
-                                            <v-icon size="20" color="primary">mdi-pencil</v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-title>
-                                            Edit
-                                        </v-list-item-title>
-                                    </v-list-item>
-                                    <v-list-item @click="destroy(item.id)" >
-                                        <v-list-item-icon class="mr-0">
-                                            <v-icon size="20" color="error">mdi-delete</v-icon>
-                                        </v-list-item-icon>
-                                        <v-list-item-title>
-                                            Delete
-                                        </v-list-item-title>
-                                    </v-list-item>
-                                </v-list>
-                            </v-menu>
-                        </template>
-                    </v-data-table>
+                        <v-data-table
+                            :headers="headers"
+                            fixed-header
+                            :items="categories"
+                            height="auto"
+                            hide-default-footer
+                            class="elevation-1"
+                            v-sortable-data-table
+                            @sorted="saveOrder"
+                            :page.sync="page"
+                            @page-count="pageCount = $event"
+                        >
+ <!-- here -->
+                                            <template v-slot:item.name="{ item }">
+                                                            <div class="cat-name">
+                                                                <v-icon class='mr-2, '>mdi-drag</v-icon>
+                                                                <span >{{ item.name }}</span>
+                                                            </div>
+                                            </template>
+
+                                    <template v-slot:item.action="{ item }">
+                                        <v-menu bottom origin="right center" transition="scale-transition">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn text color="primary" dark v-on="on" @click.stop>
+                                                    <v-icon>mdi-dots-vertical</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <v-list class="pa-0">
+                                                <v-list-item @click.prevent="showcategory(item.id)" >
+                                                    <v-list-item-icon class="mr-0">
+                                                        <v-icon size="20" color="primary">mdi-eye</v-icon>
+                                                    </v-list-item-icon>
+                                                    <v-list-item-title>
+                                                        Subcategories
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                                <v-list-item @click="get_category_edit(item.id)" >
+                                                    <v-list-item-icon class="mr-0">
+                                                        <v-icon size="20" color="primary">mdi-pencil</v-icon>
+                                                    </v-list-item-icon>
+                                                    <v-list-item-title>
+                                                        Edit
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                                <v-list-item @click="destroy(item.id)" >
+                                                    <v-list-item-icon class="mr-0">
+                                                        <v-icon size="20" color="error">mdi-delete</v-icon>
+                                                    </v-list-item-icon>
+                                                    <v-list-item-title>
+                                                        Delete
+                                                    </v-list-item-title>
+                                                </v-list-item>
+                                            </v-list>
+                                        </v-menu>
+                                    </template>
+<!-- here -->
+                        </v-data-table>
+                        <v-pagination
+                            v-model="page"
+                            color="orange"
+                            :total-visible="50"
+                            :length="pageCount"
+                            circle
+                        ></v-pagination>
                 </v-flex>
                  <v-dialog
                     v-model="subcat_dialog"
@@ -176,7 +195,59 @@
                                     </v-form>
                                 </v-flex>
                                 <v-flex xs12 sm6>
-                                    <v-simple-table class="elevation-1">
+                                    <v-data-table
+                                        :headers="headers2"
+                                        height="auto" fixed-header
+                                        :items="categories_subcategories.subcategories"
+                                        hide-default-footer
+                                        v-sortable-data-table
+                                        @sorted="saveOrder2"
+                                        class="elevation-1"
+                                        :page.sync="page2"
+                                        @page-count="pageCount2 = $event"
+                                    >
+                                        <template v-slot:item.name="{item}">
+                                            <div class="cat-name">
+                                                <v-icon class='mr-2, '>mdi-drag</v-icon>
+                                                <span >{{ item.name }}</span>
+                                            </div>
+                                        </template>
+                                        <template v-slot:item.actions="{item}">
+                                            <v-btn
+                                                color="info"
+                                                text
+                                                icon
+                                            >
+                                                <v-icon color="info" small @click="get_sub(item.id)">mdi-pencil</v-icon>
+                                            </v-btn>
+                                            <v-btn
+                                                color="error"
+                                                text
+                                            >
+                                               <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon>
+                                            </v-btn>
+                                        </template>
+
+                                        <template v-slot:item.icon="{item}">
+                                            <v-img
+                                                max-height="50"
+                                                class="mx-auto"
+                                                max-width="60"
+                                                contain=""
+                                                :src="item.icon"
+                                                >
+                                            </v-img>
+                                        </template>
+                                    </v-data-table>
+                                    <v-pagination
+                                        v-model="page2"
+                                        color="orange"
+                                        :total-visible="5"
+                                        :length="pageCount2"
+                                        circle
+                                    ></v-pagination>
+
+                                    <!-- <v-simple-table class="elevation-1">
                                         <template v-slot:default>
                                         <thead>
                                             <tr>
@@ -186,25 +257,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index">
-                                            <td>
-                                               <v-img
-                                                    max-height="50"
-                                                    class="mx-auto"
-                                                    max-width="50"
-                                                    contain=""
-                                                    :src="item.icon"
-                                                >
-                                                </v-img>
-                                            </td>
-                                            <td>{{item.name}}</td>
-                                            <td>
-                                                <v-icon color="info" small @click="get_sub(item.id)">mdi-pencil</v-icon>
-                                                <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon></td>
+                                            <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index"
+                                            >
+                                                <td>
+                                                <v-img
+                                                        max-height="50"
+                                                        class="mx-auto"
+                                                        max-width="50"
+                                                        contain=""
+                                                        :src="item.icon"
+                                                    >
+                                                    </v-img>
+                                                </td>
+                                                <td>{{item.name}}</td>
+                                                <td>
+                                                    <v-icon color="info" small @click="get_sub(item.id)">mdi-pencil</v-icon>
+                                                    <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon>
+                                                </td>
                                             </tr>
                                         </tbody>
                                         </template>
-                                    </v-simple-table>
+                                    </v-simple-table> -->
                                 </v-flex>
                             </v-layout>
                         </v-card-text>
@@ -220,11 +293,26 @@
     </div>
 </template>
 <script>
-    export default {
+
+import Sortable from "sortablejs";
+
+export default {
         $_veeValidate: {
             validator: 'new'
         },
         data: () => ({
+            page:1,
+            page2: 1,
+            pageCount: 0,
+            pageCount2: 0,
+            category_idChan:{},
+            isDragging: true,
+            items:'',
+            item:'',
+            index:'',
+            subCategories: [],
+            getAll:'',
+
             default_footer:true,
             subcat_dialog:false,
             no_items:true,
@@ -235,6 +323,8 @@
                 id: ''
             },
             categories: [],
+            sub_count:'',
+            items_count:'',
             categories_subcategories:[],
             max_height: '100px',
             category : {
@@ -254,6 +344,11 @@
           { text: 'Subcat count', value: 'subcat' },
           { text: 'actions', value: 'action' },
         ],
+            headers2:[
+                {text:'Icons', align:'start', value:'icon', width:'25%'},
+                {text:'Name', align:'start', value:'name', width:'30%'},
+                {text:'Actions', value:'actions', align:'left'},
+            ]
         }),
         methods: {
             onFileChange(hint,files) {
@@ -287,7 +382,7 @@
                         console.log(response.data , 'subcat')
                         alert('save')
                         self.subcatclear()
-                        self.show_category(response.data.category_id)
+                        self.showcategory(response.data.category_id)
                     })
                 }
                 else {
@@ -317,16 +412,15 @@
                                         dis.clear()
                                         dis.category.id= ''
                                          alert('updated')
-
                                     })
                                 } else {
-                                axios.post('/category', this.category )
-                                .then(function (response) {
-                                    dis.get_categories()
-                                    console.log(response.data , ' saved')
-                                    dis.clear()
-                                     alert('saved')
-                                })
+                                    axios.post('/category', this.category )
+                                    .then(function (response) {
+                                        dis.get_categories()
+                                        console.log(response.data , ' saved')
+                                        dis.clear()
+                                        alert('saved')
+                                    })
                                 }
                             }
                         })
@@ -347,10 +441,14 @@
                 })
 
             },
-            show_category(id) {
-                axios.get('/category/'+id+'/edit', {})
-			    .then(response => {
-                    this.categories_subcategories = response.data ;
+            showcategory(id) {
+                console.log(id, 'id category')
+                axios.get('/category/'+ id +'/edit', {})
+			    .then(data => {
+                    console.log(data.data, "chan here subcategory")
+                    this.categories_subcategories = data.data
+
+                    console.log(this.categories_subcategories, "chan here subcategory final")
                 });
                 this.subcat_dialog = true ;
                 this.subcat.category_id = id ;
@@ -382,21 +480,114 @@
                 }
             },
             get_categories() {
-                axios.get('/category', {})
+
+                axios.get('api/getAll')
+                .then(response =>{
+                console.log(response.data, 'chandun get all')
+                    this.getAll = response.data
+                });
+
+                axios.get('category', {})
 			    .then(response => {
-                    this.categories = response.data;
-                    console.log(this.categories)
+                    let category = response.data.filter(chan_filter=>
+                        chan_filter.id != 2
+                    ) 
+                    this.categories = category;
+                    console.log(response.data, 'chan here category data here');
                     this.data_loaded = true;
 			    });
-            }
-        },
+            },
+            updatePosition(){
+                console.log(this.categories, 'chan nakapasok')
+
+                this.categories.forEach((chan_categor, key)=> {
+                    console.log('Key' + key + '' + chan_categor.name)
+                });
+
+                let postCat = {};
+
+                postCat.categories = this.categories.map(chan_categor => {
+                    return {
+                        position: chan_categor.id,
+                        name: chan_categor.name,
+                        id:chan_categor.id,
+                    }
+                });
+                console.log(postCat, 'chan category update postcat')
+
+                axios.post('/api/update_catPos', postCat).then(response=>{
+                    console.log(response.data, 'chan category update')
+                }).catch(error=>{
+                    console.log(error)
+                })
+            },
+            updatePosition2(){
+                console.log(this.categories_subcategories.subcategories, "subcategory chan")
+
+                 this.categories_subcategories.subcategories.forEach((chan_categor2, key)=> {
+                    console.log('Key' + key + '' + chan_categor2.name)
+                });
+
+                this.subCategories = this.categories_subcategories.subcategories
+
+                let postSubCat = {};
+
+                postSubCat.subCategories =
+                this.subCategories.map(chan_categor2 => {
+                    return {
+                        sub_position: chan_categor2.id,
+                        name: chan_categor2.name,
+                        id:chan_categor2.id
+                    }
+                });
+                console.log(postSubCat, 'chan category update postcat2')
+                axios.post('/api/update_subCatPos', postSubCat).then(response=>{
+                    console.log(response.data, 'chan subCategory update 2')
+                }).catch(error=>{
+                    console.log(error)
+                })
+
+            },
+            saveOrder (event) {
+                const movedItem = this.categories.splice(event.oldIndex, 1)[0];
+                this.categories.splice(event.newIndex, 0, movedItem);
+              
+                this.updatePosition()
+            },
+             saveOrder2 (event) {
+                const movedItem = this.categories_subcategories.subcategories.splice(event.oldIndex, 1)[0];
+                this.categories_subcategories.subcategories.splice(event.newIndex, 0, movedItem);
+                this.updatePosition2()
+            },
+        },  
+
         created() {
             this.get_categories()
 	    },
-    }
+        directives: {
+            sortableDataTable: {
+                bind (el, binding, vnode) {
+                    const options = {
+                        animation: 150,
+                        onUpdate: function (event) {
+                            vnode.child.$emit('sorted', event)
+                        }
+                    }
+                    Sortable.create(el.getElementsByTagName('tbody')[0], options)
+                }
+            }
+        },
+}
 </script>
 <style scoped>
     .my_table {
         max-height: 100px !important ;
+    }
+    .cat-name{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 138px;
+        cursor:all-scroll;
     }
 </style>
