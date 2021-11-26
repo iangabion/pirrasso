@@ -2502,6 +2502,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2519,8 +2530,9 @@ __webpack_require__.r(__webpack_exports__);
       categories_with: [],
       categories_witho: [],
       id_chan: 'tab-1',
-      selected_category: '' // isgray: "chan_con"
-
+      selected_category: '',
+      // isgray: "chan_con"
+      isgrey: 1
     };
   },
   methods: {
@@ -2590,8 +2602,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.categories_witho = response.data.filter(function (chan_filter) {
           return chan_filter.id != 2;
         });
-        console.log(_this2.categories_witho, 'chandun here this categories_witho chan 14');
-        _this2.id_chan = 'tab-2';
+        console.log(_this2.categories_witho, 'chandun here this categories_witho chan 14'); // this.id_chan = 'tab-2'
 
         _this2.get_items(_this2.categories_with[0].id);
       })["catch"](function (errors) {
@@ -2611,6 +2622,8 @@ __webpack_require__.r(__webpack_exports__);
           _this3.categories_item = response.data.data; // this.tab ='tab-2'
           // this.form.search=null
 
+          _this3.highlight(id);
+
           _this3.data_loaded = true;
           _this3.loading = false;
         });
@@ -2624,6 +2637,10 @@ __webpack_require__.r(__webpack_exports__);
           _this3.data_loaded = true;
         });
       }
+    },
+    highlight: function highlight(id) {
+      // alert(id)
+      return id === this.isgrey;
     },
     destroy: function destroy(id, index) {
       var _this4 = this;
@@ -4407,7 +4424,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.row[data-v-34363a3e] {\n     margin-left: 5px ;\n     margin-right: 5px ;\n}\n.sm2[data-v-34363a3e] {\n     margin: 10px;\n}\n.custom[data-v-34363a3e] .v-input__slot:before{\n    border-style:none !important;\n}\n.custom[data-v-34363a3e] .v-input__slot:after{\n    border-style:none !important;\n}\n.chan_con[data-v-34363a3e]{\n    color: green;\n}\n", ""]);
+exports.push([module.i, "\n.row[data-v-34363a3e] {\n     margin-left: 5px ;\n     margin-right: 5px ;\n}\n.sm2[data-v-34363a3e] {\n     margin: 10px;\n}\n.custom[data-v-34363a3e] .v-input__slot:before{\n    border-style:none !important;\n}\n.custom[data-v-34363a3e] .v-input__slot:after{\n    border-style:none !important;\n}\n.chan_con[data-v-34363a3e]{\n    color: green;\n}\n.chan_grey[data-v-34363a3e]{\n    background-color: rgb(131, 127, 127);\n    border-radius: 10px;\n    color: white !important;\n}\n", ""]);
 
 // exports
 
@@ -39782,14 +39799,6 @@ var render = function() {
                                           [
                                             _c(
                                               "v-list-item-content",
-                                              {
-                                                on: {
-                                                  click: function($event) {
-                                                    _vm.selected_category =
-                                                      item.id
-                                                  }
-                                                }
-                                              },
                                               [
                                                 _c("v-list-item-title", [
                                                   _vm._v(
@@ -39827,23 +39836,41 @@ var render = function() {
                                   "v-list-item",
                                   {
                                     key: i,
+                                    class: {
+                                      chan_grey: _vm.highlight(subcat.id)
+                                    },
                                     on: {
-                                      click: function($event) {
-                                        _vm.selected_category = subcat.id
-                                      }
+                                      click: [
+                                        function($event) {
+                                          _vm.selected_category = subcat.id
+                                        },
+                                        function($event) {
+                                          _vm.isgrey = subcat.id
+                                        }
+                                      ]
                                     }
                                   },
                                   [
                                     _c(
                                       "v-list-item-content",
                                       [
-                                        _c("v-list-item-title", [
-                                          _vm._v(
-                                            "\n                                " +
-                                              _vm._s(subcat.name) +
-                                              "\n                            "
-                                          )
-                                        ])
+                                        _c(
+                                          "v-list-item-title",
+                                          {
+                                            class: {
+                                              chan_grey: _vm.highlight(
+                                                subcat.id
+                                              )
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(subcat.name) +
+                                                "\n                            "
+                                            )
+                                          ]
+                                        )
                                       ],
                                       1
                                     )
@@ -39858,11 +39885,17 @@ var render = function() {
                             "v-list-item",
                             {
                               key: item.id,
+                              class: { chan_grey: _vm.highlight(item.id) },
                               on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.get_items(item.id)
-                                }
+                                click: [
+                                  function($event) {
+                                    $event.preventDefault()
+                                    return _vm.get_items(item.id)
+                                  },
+                                  function($event) {
+                                    _vm.isgrey = item.id
+                                  }
+                                ]
                               }
                             },
                             [
@@ -39872,13 +39905,21 @@ var render = function() {
                                   _c(
                                     "v-list-item-content",
                                     [
-                                      _c("v-list-item-title", [
-                                        _vm._v(
-                                          "\n                                " +
-                                            _vm._s(item.name) +
-                                            "\n                            "
-                                        )
-                                      ])
+                                      _c(
+                                        "v-list-item-title",
+                                        {
+                                          class: {
+                                            chan_grey: _vm.highlight(item.id)
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.name) +
+                                              "\n                            "
+                                          )
+                                        ]
+                                      )
                                     ],
                                     1
                                   )

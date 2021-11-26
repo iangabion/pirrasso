@@ -55,16 +55,19 @@
     <v-card width=25% max-height=auto elevation="0">
         <v-list dense>
 <!-- first -->
-            <template v-for="item in categories">
-                <v-row v-if="item.heading" :key="item.heading" align="center">
+            <template v-for="item in categories" >
+                <v-row v-if="item.heading" :key="item.heading" align="center" >
                 </v-row>
                 <v-list-group
                     v-else-if="item.subcategories!=0" :key="item.name" v-model="item.model"
+                     
                 >
+                <!-- v-bind:class="{chan_grey : isgrey(item.id)}" -->
                     <template v-slot:activator>
                         <v-list-item>
-                            <v-list-item-content @click="selected_category = item.id">
-                                <v-list-item-title >
+                            <v-list-item-content 
+                            >
+                                <v-list-item-title  >
                                     {{ item.name }}
                                 </v-list-item-title>
                             </v-list-item-content>
@@ -72,25 +75,33 @@
                     </template>
 
                     <v-list-item v-for="(subcat, i) in item.subcategories" 
-                        :key="i" @click="selected_category = subcat.id" 
+                        :key="i" @click="selected_category = subcat.id"
+                        v-bind:class="{'chan_grey' : highlight(subcat.id) }"
+                        v-on:click="isgrey = subcat.id"
                     >  
+                        <!-- v-bind:class="{chan_grey : isgrey}" -->
+
                         <!-- <v-list-item-action v-if="subcat.name">
                             <v-icon>{{subcat.name}}</v-icon>
                         </v-list-item-action> -->
-                        <v-list-item-content>
-                            <v-list-item-title>
+                        <v-list-item-content >
+                            <v-list-item-title v-bind:class="{'chan_grey' : highlight(subcat.id) }">
                                 {{ subcat.name }}
                             </v-list-item-title>
                         </v-list-item-content>   
                     </v-list-item>
                 </v-list-group>
-                <v-list-item v-else :key="item.id" @click.prevent="get_items(item.id)">
+                <v-list-item v-else :key="item.id" @click.prevent="get_items(item.id)"
+                    v-bind:class="{'chan_grey' : highlight(item.id) }" v-on:click="isgrey = item.id"
+                >
+                    <!-- v-bind:class="{chan_grey : isgrey}" -->
+
                     <!-- <v-list-item-action>
                         <v-icon>{{item.icon}}</v-icon>
                     </v-list-item-action> -->
                     <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title>
+                            <v-list-item-title v-bind:class="{'chan_grey' : highlight(item.id) }">
                                 {{ item.name }}
                             </v-list-item-title>
                         </v-list-item-content>
@@ -216,6 +227,8 @@ export default {
         id_chan:'tab-1',
         selected_category:'',
         // isgray: "chan_con"
+
+        isgrey: 1
     }),
     methods: {
         search_item(key){
@@ -270,6 +283,7 @@ export default {
             //     this.get_categories()
             // }
         },
+       
 
         get_categories() {
             axios.get('/api/categories', {})
@@ -283,9 +297,8 @@ export default {
                 this.categories_witho = response.data.filter(chan_filter=>
                     chan_filter.id !=2
                 )
-
                 console.log(this.categories_witho,'chandun here this categories_witho chan 14')
-                this.id_chan = 'tab-2'
+                // this.id_chan = 'tab-2'
                 this.get_items(this.categories_with[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -303,6 +316,7 @@ export default {
                     this.categories_item = response.data.data
                     // this.tab ='tab-2'
                     // this.form.search=null
+                    this.highlight(id)
                     this.data_loaded=true
                     this.loading=false
                 })
@@ -319,7 +333,12 @@ export default {
                 })
             }
         },
-    
+
+        highlight(id){
+            // alert(id)
+            return id === this.isgrey
+        },
+
         destroy(id , index) {
             this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
                 if(result) {
@@ -370,5 +389,10 @@ export default {
 }
 .chan_con{
     color: green;
+}
+.chan_grey{
+    background-color: rgb(131, 127, 127);
+    border-radius: 10px;
+    color: white !important;
 }
 </style>
