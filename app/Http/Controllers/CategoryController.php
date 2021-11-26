@@ -32,8 +32,8 @@ class CategoryController extends Controller
     public function get_items($id){
         {
           
-                $category = Category::findorfail($id)->items()->get();
-                return ItemResource::collection($category);
+                $subcategory = Subcategory::findorfail($id)->items()->get();
+                return ItemResource::collection($subcategory);
         }
     }
 
