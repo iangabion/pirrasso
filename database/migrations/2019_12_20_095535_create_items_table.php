@@ -22,6 +22,10 @@ class CreateItemsTable extends Migration
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->integer('stock');
+            $table->integer('is_urgent');
+            $table->integer('is_expired');
+            $table->integer('is_displayed');
+            $table->integer('is_active');
             $table->boolean('show_number')->nullable();
             $table->tinyInteger('is_sold')->default('0');
             $table->unsignedBigInteger('status_id');

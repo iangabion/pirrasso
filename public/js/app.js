@@ -2300,295 +2300,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/item/show.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      categories: [],
-      categories_item: [],
-      data_loaded: true,
-      form: {
-        search: ''
-      },
-      loading: false,
-      categor: {},
-      tab: 'tab-1',
-      selectedItem: 1,
-      categories_with: [],
-      categories_witho: [],
-      id_chan: 'tab-1',
-      selected_category: '',
-      isgrey: 1
-    };
-  },
-  methods: {
-    search_item: function search_item(key) {
-      var _this = this;
-
-      this.loading = true;
-
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
-      }
-
-      this.timer = setTimeout(function () {
-        if (key === _this.selected_category) {
-          _this.get_items(_this.selected_category);
-
-          _this.selected_category = '';
-          _this.loading = false;
-        } else {
-          if (_this.timer) {
-            clearTimeout(_this.timer);
-            _this.timer = null;
-          }
-
-          _this.timer = setTimeout(function () {
-            var payload = {
-              searchkey: key,
-              subcat_category: _this.selected_category
-            };
-
-            if (key === null) {
-              _this.get_categories();
-            } else {
-              axios.post('/api/searchchan', payload, {}).then(function (data) {
-                console.log(data, 'chan search');
-                _this.categor = data.data;
-                _this.categories_item = _this.categor.data;
-                _this.loading = false;
-                _this.selected_category = '';
-              })["catch"](function (errors) {
-                console.log(errors);
-              });
-            }
-          });
-        }
-      });
-    },
-    get_categories: function get_categories() {
-      var _this2 = this;
-
-      axios.get('/api/categories', {}).then(function (response) {
-        console.log(response.data, 'here is category chan');
-        _this2.categories = response.data;
-        _this2.categories_with = response.data.filter(function (chan_filter) {
-          return chan_filter.id == 2;
-        });
-        console.log(_this2.categories_with, 'here is categories_with chan 1');
-        _this2.categories_witho = response.data.filter(function (chan_filter) {
-          return chan_filter.id != 2;
-        });
-        console.log(_this2.categories_witho, 'chandun here this categories_witho chan 14');
-
-        _this2.get_items(_this2.categories_with[0].id);
-      })["catch"](function (errors) {
-        console.log(errors);
-      });
-    },
-    get_items: function get_items(id) {
-      var _this3 = this;
-
-      if (id === 2) {
-        this.loading = true;
-        this.data_loaded = false;
-        axios.get('/api/get_all_items').then(function (response) {
-          console.log(response.data.data, 'test');
-          _this3.categories_item = response.data.data;
-
-          _this3.highlight(id);
-
-          _this3.data_loaded = true;
-          _this3.loading = false;
-        });
-      } else {
-        this.data_loaded = false;
-        axios.get('api/get_items/' + id, {}).then(function (response) {
-          console.log(response.data, 'chan here items console');
-          _this3.categories_item = response.data.data;
-          console.log(_this3.categories_item, 'chan here get_items');
-          _this3.data_loaded = true;
-        });
-      }
-    },
-    highlight: function highlight(id) {
-      return id === this.isgrey;
-    },
-    destroy: function destroy(id, index) {
-      var _this4 = this;
-
-      this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
-        if (result) {
-          axios["delete"]('/item/' + id, {}).then(function (response) {
-            _this4.categories_item.splice(index, 1);
-
-            console.log(response.data);
-            alert('delete');
-          });
-        }
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.get_categories();
-  },
-  watch: {
-    "form.search": {
-      handler: function handler(val) {
-        this.search_item(val);
-      },
-      deep: true
-    },
-    selected_category: function selected_category(val) {
-      if (val) {
-        this.search_item(val);
-      }
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\cachero\\buy-and-sell\\resources\\js\\components\\item\\show.vue: Unexpected token (449:2)\n\n\u001b[0m \u001b[90m 447 | \u001b[39m                            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategor \u001b[33m=\u001b[39m data\u001b[33m.\u001b[39mdata\u001b[0m\n\u001b[0m \u001b[90m 448 | \u001b[39m                            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategories_item \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategor\u001b[33m.\u001b[39mdata\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 449 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 450 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 451 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 452 | \u001b[39m                            \u001b[90m// app.$data.isgray=true\u001b[39m\u001b[0m\n    at Parser.raise (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:7012:17)\n    at Parser.unexpected (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:8405:16)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9661:20)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9237:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOpBaseRightExpr (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9177:34)\n    at Parser.parseExprOpRightExpr (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9170:21)\n    at Parser.parseExprOp (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9133:27)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9093:17)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9043:25)\n    at Parser.parseExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:8965:23)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10819:23)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10690:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11266:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11253:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11237:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10256:24)\n    at Parser.parseArrowExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10197:10)\n    at Parser.parseParenAndDistinguishExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9823:12)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9237:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9083:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)\n    at Parser.parseExprListItem (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10331:18)\n    at Parser.parseCallExpressionArguments (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9434:22)\n    at Parser.parseSubscript (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9342:29)\n    at Parser.parseSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9258:19)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9247:17)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9083:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)");
 
 /***/ }),
 
@@ -2804,6 +2518,55 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_client_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @api/client.api */ "./resources/js/repositories/client.api.js");
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2896,31 +2659,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      clients: [],
-      search: ''
-    };
+    var _ref;
+
+    return _ref = {
+      itemsPerPage: null,
+      current_page: 1,
+      pageCount: 0,
+      page: 1,
+      url: ''
+    }, _defineProperty(_ref, "pageCount", 0), _defineProperty(_ref, "itemsPerPage", 10), _defineProperty(_ref, "total_client", 0), _defineProperty(_ref, "clients", []), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+      text: 'Username',
+      align: 'start',
+      sortable: false,
+      value: 'username'
+    }, {
+      text: 'Social ID',
+      value: 'social_id'
+    }, {
+      text: 'Email',
+      value: 'email'
+    }, {
+      text: 'Actions',
+      value: 'actions',
+      sortable: false
+    }]), _ref;
   },
-  computed: {
-    filteredClient: function filteredClient() {
+  computed: {// filteredClient(){
+    //     if(this.search){
+    //         return this.clients.filter(client => {
+    //             console.log(client.social_id,"search")
+    //             if(client.username&&client.email){
+    //                 return client.username.toLowerCase().includes(this.search.toLowerCase()) || 
+    //                     client.email.toLowerCase().includes(this.search.toLowerCase())
+    //             }
+    //                 return client.social_id.includes(this.search.toLowerCase())
+    //         })
+    //     }
+    //     return this.clients
+    // }
+  },
+  methods: (_methods = {
+    fetchClientsData: function fetchClientsData(page) {
+      this.current_page = page.page;
+      this.indexSeller();
+    },
+    // set_data_fromServer(data) {
+    //     this.clients = data.data
+    //     this.total_client = data.total
+    //     this.itemsPerPage = data.per_page
+    //     this.pageCount = data.last_page
+    // },
+    indexSeller: function indexSeller() {
       var _this = this;
 
-      if (this.search) {
-        return this.clients.filter(function (client) {
-          console.log(client.social_id, "search");
+      this.url = 'client/pagination?page=' + this.current_page + '&keyword=' + this.search;
 
-          if (client.username && client.email) {
-            return client.username.toLowerCase().includes(_this.search.toLowerCase()) || client.email.toLowerCase().includes(_this.search.toLowerCase());
-          }
-
-          return client.social_id.includes(_this.search.toLowerCase());
-        });
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
       }
 
-      return this.clients;
-    }
-  },
-  methods: {
+      this.timer = setTimeout(function () {
+        Object(_api_client_api__WEBPACK_IMPORTED_MODULE_0__["GetAllClients"])(_this.url).then(function (_ref2) {
+          var data = _ref2.data;
+          _this.clients = data.data; // this.total_client = data.total
+          // this.itemsPerPage = data.per_page
+          // this.pageCount = data.last_page
+        });
+      }, 800);
+    },
     showClient: function showClient(item) {
       this.$router.push({
         name: 'view_client',
@@ -2928,32 +2735,39 @@ __webpack_require__.r(__webpack_exports__);
           id: item.id
         }
       });
-    },
-    indexSeller: function indexSeller() {
-      var _this2 = this;
-
-      Object(_api_client_api__WEBPACK_IMPORTED_MODULE_0__["GetAllClients"])().then(function (_ref) {
-        var data = _ref.data;
-        _this2.clients = data;
-        console.log(data, 'test');
-      });
-    },
-    deleteSeller: function deleteSeller(item) {
-      var _this3 = this;
-
-      this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
-        if (result) {
-          Object(_api_client_api__WEBPACK_IMPORTED_MODULE_0__["DeleteClient"])(item.id).then(function (_ref2) {
-            var data = _ref2.data;
-
-            _this3.$arraysplicer(item, _this3.clients);
-          });
-        }
-      });
     }
-  },
+  }, _defineProperty(_methods, "indexSeller", function indexSeller() {
+    var _this2 = this;
+
+    Object(_api_client_api__WEBPACK_IMPORTED_MODULE_0__["GetAllClients"])().then(function (_ref3) {
+      var data = _ref3.data;
+      _this2.clients = data;
+      console.log(data, 'test');
+    });
+  }), _defineProperty(_methods, "deleteSeller", function deleteSeller(item) {
+    var _this3 = this;
+
+    this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
+      if (result) {
+        Object(_api_client_api__WEBPACK_IMPORTED_MODULE_0__["DeleteClient"])(item.id).then(function (_ref4) {
+          var data = _ref4.data;
+
+          _this3.$arraysplicer(item, _this3.clients);
+        });
+      }
+    });
+  }), _methods),
   created: function created() {
     this.indexSeller();
+  },
+  watch: {
+    "search": {
+      handler: function handler(val) {
+        this.page = 1;
+        this.indexSeller(val);
+      },
+      deep: true
+    }
   }
 });
 
@@ -4406,7 +4220,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.row[data-v-34363a3e] {\n     margin-left: 5px ;\n     margin-right: 5px ;\n}\n.sm2[data-v-34363a3e] {\n     margin: 10px;\n}\n.custom[data-v-34363a3e] .v-input__slot:before{\n    border-style:none !important;\n}\n.custom[data-v-34363a3e] .v-input__slot:after{\n    border-style:none !important;\n}\n.chan_con[data-v-34363a3e]{\n    color: green;\n}\n.chan_grey[data-v-34363a3e]{\n    background-color: rgb(131, 127, 127);\n    border-radius: 10px;\n    color: white !important;\n}\n", ""]);
+exports.push([module.i, "\n.row[data-v-34363a3e] {\n     margin-left: 5px ;\n     margin-right: 5px ;\n}\n.sm2[data-v-34363a3e] {\n     margin: 10px;\n}\n.custom[data-v-34363a3e] .v-input__slot:before{\n    border-style:none !important;\n}\n.custom[data-v-34363a3e] .v-input__slot:after{\n    border-style:none !important;\n}\n.chan_con[data-v-34363a3e]{\n    color: green;\n}\n.chan_grey[data-v-34363a3e]{\n    background-color: rgb(131, 127, 127);\n    border-radius: 10px;\n    color: white !important;\n}\n.hide[data-v-34363a3e]{\n     display: none;\n}\n", ""]);
 
 // exports
 
@@ -39746,7 +39560,9 @@ var render = function() {
         ],
         1
       ),
+      _vm._v("\n\n<<<<<<< HEAD\n=======\n"),
       _vm._v(" "),
+      _vm._v("\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n"),
       _c(
         "v-row",
         [
@@ -39813,55 +39629,36 @@ var render = function() {
                             },
                             [
                               _vm._v(" "),
-                              _vm._l(item.subcategories, function(subcat, i) {
-                                return _c(
-                                  "v-list-item",
-                                  {
-                                    key: i,
-                                    class: {
-                                      chan_grey: _vm.highlight(subcat.id)
+                              _vm._v(
+                                "\n<<<<<<< HEAD\n                    >  \n=======\n                    >\n                        "
+                              ),
+                              _vm._v(" "),
+                              _vm._v(
+                                "\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n                        "
+                              ),
+                              _c(
+                                "v-list-item-content",
+                                [
+                                  _c(
+                                    "v-list-item-title",
+                                    {
+                                      class: {
+                                        chan_grey: _vm.highlight(_vm.subcat.id)
+                                      }
                                     },
-                                    on: {
-                                      click: [
-                                        function($event) {
-                                          _vm.selected_category = subcat.id
-                                        },
-                                        function($event) {
-                                          _vm.isgrey = subcat.id
-                                        }
-                                      ]
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c(
-                                          "v-list-item-title",
-                                          {
-                                            class: {
-                                              chan_grey: _vm.highlight(
-                                                subcat.id
-                                              )
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(subcat.name) +
-                                                "\n                            "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              })
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(_vm.subcat.name) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
                             ],
-                            2
+                            1
                           )
                         : _c(
                             "v-list-item",
@@ -39912,7 +39709,12 @@ var render = function() {
                             1
                           )
                     ]
-                  })
+                  }),
+                  _vm._v("\n<<<<<<< HEAD\n=======\n"),
+                  _vm._v(" "),
+                  _vm._v(
+                    "\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n\n        "
+                  )
                 ],
                 2
               )
@@ -39995,16 +39797,7 @@ var render = function() {
                                                             items.owner.username
                                                           )
                                                         )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "v-list-item-subtitle",
-                                                        [
-                                                          _vm._v(
-                                                            "10 minutes ago"
-                                                          )
-                                                        ]
-                                                      )
+                                                      ])
                                                     ],
                                                     1
                                                   )
@@ -40100,6 +39893,67 @@ var render = function() {
                                                           )
                                                         ],
                                                         1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-list-item-subtitle",
+                                                        [
+                                                          items.is_urgent == 1
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-alert-octagon"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    "\n                                         Urgent\n                                    "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-list-item-subtitle",
+                                                        [
+                                                          items.is_active == 1
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-alert-octagon"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    "\n                                            ACTIVE\n                                        "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          items.is_active == 0
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-alert-octagon"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    "\n                                            UNACTIVE\n                                        "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            : _vm._e()
+                                                        ]
                                                       )
                                                     ],
                                                     1
@@ -40122,9 +39976,48 @@ var render = function() {
                                                         {
                                                           attrs: {
                                                             color: "primary"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.show(
+                                                                items,
+                                                                index
+                                                              )
+                                                            }
                                                           }
                                                         },
                                                         [_vm._v("mdi-eye")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: { icon: "" },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.destroy(
+                                                            items.id,
+                                                            index
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        {
+                                                          attrs: {
+                                                            color: "yellow"
+                                                          }
+                                                        },
+                                                        [_vm._v("mdi mdi-coin")]
                                                       )
                                                     ],
                                                     1
@@ -40154,6 +40047,777 @@ var render = function() {
                                                           }
                                                         },
                                                         [_vm._v("mdi-delete")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  items.is_active == 0
+                                                    ? _c(
+                                                        "span",
+                                                        [
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-icon",
+                                                                {
+                                                                  attrs: {
+                                                                    icon: ""
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.show_deactivate(
+                                                                        items,
+                                                                        index
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "mdi-check"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  items.is_active == 1
+                                                    ? _c(
+                                                        "span",
+                                                        [
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.show_activate(
+                                                                    items,
+                                                                    index
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-close"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    : _vm._e()
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-dialog",
+                                            {
+                                              attrs: { width: "300px" },
+                                              model: {
+                                                value: _vm.dialogActivate,
+                                                callback: function($$v) {
+                                                  _vm.dialogActivate = $$v
+                                                },
+                                                expression: "dialogActivate"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c(
+                                                    "v-card",
+                                                    { staticClass: "hide" },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                       " +
+                                                          _vm._s(
+                                                            _vm.payload.owner
+                                                              .username
+                                                          ) +
+                                                          "\n                                        "
+                                                      ),
+                                                      _c(
+                                                        "v-responsive",
+                                                        {
+                                                          staticClass:
+                                                            "image_container",
+                                                          attrs: {
+                                                            height: "20%"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("img", {
+                                                            staticClass:
+                                                              "image",
+                                                            attrs: {
+                                                              alt:
+                                                                _vm.payload
+                                                                  .image,
+                                                              src: _vm.payload
+                                                                .image
+                                                                ? _vm.payload
+                                                                    .image
+                                                                : "https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg"
+                                                            }
+                                                          })
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-list-item",
+                                                        [
+                                                          _c(
+                                                            "v-list-item-content",
+                                                            {
+                                                              staticClass:
+                                                                "text-capitalize"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-list-item-title",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1 font-weight-bold"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .id
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-title",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1 font-weight-bold"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .title
+                                                                      ) +
+                                                                      "1212"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-coin"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " PHP " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .price
+                                                                      ) +
+                                                                      "13123231"
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1"
+                                                                },
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-comment"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        items.description
+                                                                      )
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  items.is_urgent ==
+                                                                  1
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "v-icon",
+                                                                            [
+                                                                              _vm._v(
+                                                                                "mdi-alert-octagon"
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Urgent "
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : _vm._e()
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-alert-octagon"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .is_active
+                                                                      ) +
+                                                                      " "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("p", [
+                                                    _vm._v(
+                                                      "are you sure to activate this Item?"
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  items.is_active == 0
+                                                    ? _c(
+                                                        "span",
+                                                        [
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.activate()
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-check"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  _vm.dialogActivate = false
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-close"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    : _vm._e()
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-dialog",
+                                            {
+                                              attrs: { width: "300px" },
+                                              model: {
+                                                value: _vm.dialogDeActivate,
+                                                callback: function($$v) {
+                                                  _vm.dialogDeActivate = $$v
+                                                },
+                                                expression: "dialogDeActivate"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c(
+                                                    "v-card",
+                                                    { staticClass: "hide" },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                       " +
+                                                          _vm._s(
+                                                            _vm.payload.owner
+                                                              .username
+                                                          ) +
+                                                          "\n                                        "
+                                                      ),
+                                                      _c(
+                                                        "v-responsive",
+                                                        {
+                                                          staticClass:
+                                                            "image_container",
+                                                          attrs: {
+                                                            height: "20%"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("img", {
+                                                            staticClass:
+                                                              "image",
+                                                            attrs: {
+                                                              alt:
+                                                                _vm.payload
+                                                                  .image,
+                                                              src: _vm.payload
+                                                                .image
+                                                                ? _vm.payload
+                                                                    .image
+                                                                : "https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg"
+                                                            }
+                                                          })
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-list-item",
+                                                        [
+                                                          _c(
+                                                            "v-list-item-content",
+                                                            {
+                                                              staticClass:
+                                                                "text-capitalize"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "v-list-item-title",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1 font-weight-bold"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .id
+                                                                      )
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-title",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1 font-weight-bold"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .title
+                                                                      ) +
+                                                                      "1212"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-coin"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " PHP " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .price
+                                                                      ) +
+                                                                      "13123231"
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-1"
+                                                                },
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-comment"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        items.description
+                                                                      )
+                                                                  )
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  items.is_urgent ==
+                                                                  1
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "v-icon",
+                                                                            [
+                                                                              _vm._v(
+                                                                                "mdi-alert-octagon"
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Urgent "
+                                                                          )
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : _vm._e()
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "v-list-item-subtitle",
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "mdi-alert-octagon"
+                                                                    )
+                                                                  ]),
+                                                                  _vm._v(
+                                                                    " " +
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .payload
+                                                                          .is_active
+                                                                      ) +
+                                                                      " "
+                                                                  )
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("p", [
+                                                    _vm._v(
+                                                      "are you sure to deactivate this Item?"
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  items.is_active == 1
+                                                    ? _c(
+                                                        "span",
+                                                        [
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.deactivate()
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-check"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-btn",
+                                                            {
+                                                              attrs: {
+                                                                icon: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  _vm.dialogActivate = false
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-close"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    : _vm._e()
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-dialog",
+                                            {
+                                              attrs: { width: "500px" },
+                                              model: {
+                                                value: _vm.dialogItem,
+                                                callback: function($$v) {
+                                                  _vm.dialogItem = $$v
+                                                },
+                                                expression: "dialogItem"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _vm._v(
+                                                    "\n                                       " +
+                                                      _vm._s(
+                                                        _vm.editedItem.username
+                                                      ) +
+                                                      "\n                                       " +
+                                                      _vm._s(
+                                                        _vm.payload.owner
+                                                          .username
+                                                      ) +
+                                                      "\n                                        "
+                                                  ),
+                                                  _c(
+                                                    "v-responsive",
+                                                    {
+                                                      staticClass:
+                                                        "image_container",
+                                                      attrs: { height: "20%" }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        staticClass: "image",
+                                                        attrs: {
+                                                          alt:
+                                                            _vm.payload.image,
+                                                          src: _vm.payload.image
+                                                            ? _vm.payload.image
+                                                            : "https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg"
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-list-item",
+                                                    [
+                                                      _c(
+                                                        "v-list-item-content",
+                                                        {
+                                                          staticClass:
+                                                            "text-capitalize"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-list-item-title",
+                                                            {
+                                                              staticClass:
+                                                                "py-1 font-weight-bold"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "  " +
+                                                                  _vm._s(
+                                                                    _vm.payload
+                                                                      .title
+                                                                  ) +
+                                                                  "}"
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-list-item-subtitle",
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-coin"
+                                                                )
+                                                              ]),
+                                                              _vm._v(
+                                                                " PHP " +
+                                                                  _vm._s(
+                                                                    items.price
+                                                                  )
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-list-item-subtitle",
+                                                            {
+                                                              staticClass:
+                                                                "py-1"
+                                                            },
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "mdi-comment"
+                                                                )
+                                                              ]),
+                                                              _vm._v(
+                                                                " " +
+                                                                  _vm._s(
+                                                                    items.description
+                                                                  )
+                                                              )
+                                                            ],
+                                                            1
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "v-list-item-subtitle",
+                                                            [
+                                                              items.is_urgent ==
+                                                              1
+                                                                ? _c(
+                                                                    "span",
+                                                                    [
+                                                                      _c(
+                                                                        "v-icon",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "mdi-alert-octagon"
+                                                                          )
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " Urgent "
+                                                                      )
+                                                                    ],
+                                                                    1
+                                                                  )
+                                                                : _vm._e()
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
                                                       )
                                                     ],
                                                     1
@@ -40521,124 +41185,47 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-container",
-        [
-          _c(
-            "v-row",
-            _vm._l(_vm.filteredClient, function(item) {
-              return _c(
-                "v-col",
-                { key: item.id, attrs: { cols: "3" } },
-                [
-                  _c("v-card", { attrs: { color: "dark", dark: "" } }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "d-flex flex-no-wrap justify-space-between"
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "truncate" },
-                          [
-                            _c(
-                              "v-card-title",
-                              { staticClass: "headline text-capitalize " },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(item.username || item.social_id) +
-                                    "\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("v-card-subtitle", [
-                              _vm._v(" " + _vm._s(item.email) + " ")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "v-card-actions",
-                              [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "ml-2 mt-3",
-                                    attrs: {
-                                      fab: "",
-                                      color: "primary",
-                                      height: "40px",
-                                      right: "",
-                                      width: "40px"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.showClient(item)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", { attrs: { small: "" } }, [
-                                      _vm._v("mdi-account-cog")
-                                    ])
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "ml-2 mt-3",
-                                    attrs: {
-                                      color: "error",
-                                      fab: "",
-                                      height: "40px",
-                                      right: "",
-                                      width: "40px"
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteSeller(item)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", { attrs: { small: "" } }, [
-                                      _vm._v("mdi-delete")
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-avatar",
-                          {
-                            staticClass: "ma-3",
-                            attrs: { size: "125", tile: "" }
-                          },
-                          [_c("v-img", { attrs: { src: item.profile_pic } })],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ],
-                1
-              )
-            }),
-            1
-          )
-        ],
-        1
-      )
+      _c("v-data-table", {
+        attrs: { headers: _vm.headers, items: _vm.clients },
+        scopedSlots: _vm._u([
+          {
+            key: "item.actions",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "v-icon",
+                  {
+                    staticClass: "mr-2",
+                    attrs: { small: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.showClient(item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n            mdi-account-cog\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-icon",
+                  {
+                    attrs: { small: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteSeller(item)
+                      }
+                    }
+                  },
+                  [_vm._v("\n            mdi-delete\n        ")]
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center pt-2" })
     ],
     1
   )
@@ -102196,7 +102783,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/repositories/client.api.js ***!
   \*************************************************/
-/*! exports provided: CreateClient, UpdateClient, GetAllClients, GetClient, DeleteClient */
+/*! exports provided: CreateClient, UpdateClient, GetAllClients, GetClient, DeleteClient, ClientsPagination */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102206,6 +102793,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetAllClients", function() { return GetAllClients; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetClient", function() { return GetClient; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteClient", function() { return DeleteClient; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientsPagination", function() { return ClientsPagination; });
 var resource = '/clients';
 var CreateClient = function CreateClient(payload) {
   return axios.post("".concat(resource), payload);
@@ -102221,6 +102809,9 @@ var GetClient = function GetClient(id) {
 };
 var DeleteClient = function DeleteClient(id) {
   return axios["delete"]("".concat(resource, "/").concat(id));
+};
+var ClientsPagination = function ClientsPagination(url, payload) {
+  return axios.get("/".concat(url), payload);
 };
 
 /***/ }),
