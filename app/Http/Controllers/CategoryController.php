@@ -6,6 +6,7 @@ use App\Category;
 use App\Status;
 use Illuminate\Http\Request;
 use App\Subcategory ;
+
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\StatusResource;
 use App\Http\Resources\ItemResource ;
@@ -68,6 +69,8 @@ class CategoryController extends Controller
             return $subcategory ;
         }
     }
+
+    
 
     /**
      * Store a newly created resource in storage.

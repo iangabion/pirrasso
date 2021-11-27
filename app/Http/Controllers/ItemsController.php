@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Items;
 use App\Photos;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Resources\SoldResource;
 use Auth ;
 use App\Sold;
+use App\Client;
 use App\Apartment ;
 use App\Http\Resources\PhotoResource;
 use App\Vehicle ;
@@ -110,7 +112,12 @@ class ItemsController extends Controller
             'images' => 'nullable',
             'show_number' => 'nullable',
             'apartment' => 'nullable',
-            'vehicles' => 'nullable'
+            'vehicles' => 'nullable',
+
+             // added Fields
+             'is_urgent' => 'required',
+             'is_displayed' => 'required',
+
         ]);
         if($validatedData) {
             $item = new Items();
@@ -126,6 +133,10 @@ class ItemsController extends Controller
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
             $item->client_id = Auth::user()->id;
+
+            // added Fields
+
+            
 
             $item->save();
             if($item ) {
@@ -288,5 +299,8 @@ class ItemsController extends Controller
             }
             }
         }
+
+       
     }
+   
 }

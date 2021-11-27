@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,20 +42,31 @@ Route::get('/privacy-policy', function () {
 });
 Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
-        Route::resource('client' , 'ClientController');
-        Route::resource('clients' , 'ClientController');
-        Route::resource('item' , 'ItemController');
+
         Route::resource('status', 'StatusController');
 
         Route::get('category_items/{id}' , 'CategoryController@get_items');
-        Route::resource('category', 'CategoryController');
-        Route::resource('subcategories', 'SubCategoryController');
+       
 
         Route::get('/logout' , 'ClientController@out');
 
+        Route::get('getweekly' ,'ItemController@getweekly');
+        Route::get('expirationDate', 'ItemController@expirationDate');
+        Route::get('getdaily', 'ItemController@getdaily');
+        Route::put('activate', 'ItemController@activate');
+        Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
+        
+        Route::get('showClient/pagination','ClientController@showClient');
+        Route::resource('client' , 'ClientController');
+        Route::resource('clients' , 'ClientController');
+        Route::resource('item' , 'ItemController');
+        Route::resource('category', 'CategoryController');
+        Route::resource('subcategories', 'SubCategoryController');
+
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
+
     });
 });

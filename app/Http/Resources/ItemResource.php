@@ -26,8 +26,7 @@ class ItemResource extends JsonResource
         return [
             'id'=> $this->id,
             'title'=> $this->title,
-            'price'=> $this->price,
-            'price'=> $this->price,
+            'price'=> $this->price,                                                                                                          
             'stock'=> $this->stock,
             'description'=> $this->description,
             'location'=> $this->location,
@@ -42,6 +41,10 @@ class ItemResource extends JsonResource
             'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' , 
             'apartment_filter' => $apartment ,
             'vehicles_filter' => $vehicle ,
+            'is_urgent' => $this->is_urgent,
+            'is_displayed' => $this->is_displayed,
+            'is_active' => $this->is_active
+            
         ];
     }
 }

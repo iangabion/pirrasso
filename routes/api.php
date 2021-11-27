@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +32,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('delete_item/{id}' ,'ItemsController@destroy');
 	Route::get('view_item/{id}' ,'ItemsController@show');
 
+//
+	
 
 	//send message
 	Route::post('send_message' ,'SessionController@store');
@@ -56,6 +58,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('bought_item' ,'ItemsController@getbought_items');
 
     Route::post('change_status' ,'ItemsController@changeStatus');
+
+	
 });
 
 // get all items
@@ -70,6 +74,9 @@ Route::get('categories' ,'CategoryController@index');
 Route::get('category_items/{id}' ,'CategoryController@category_items');
 // get all status
 Route::get('statuses' ,'CategoryController@statuses');
+
+
+
 
 
 

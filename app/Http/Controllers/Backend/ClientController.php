@@ -93,11 +93,27 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showClient($id)
     {
         $client = Client::with('items.photos','items.category')->find($id);
-        return $client;
+        return $client->paginate(10);
     }
+
+    // public function showClient()
+    // {
+    //     $client = Client::with('items.photos','items.category')->get();
+    //     return $client;
+    // }
+
+    // public function show(Request $request){
+    //     $clients = Client::query();
+    //     $clients->with('items.photos','items.category');
+    //     $keyword = $request->input('keyword');
+    //     $clients->where(function($query) use($keyword){
+    //         $query  ->where('username', 'LIKE', "%$keyword%");                                
+    //     });
+    //     return $clients->orderBy('created_at', 'desc')->paginate(10);
+    // }
 
     /**
      * Show the form for editing the specified resource.

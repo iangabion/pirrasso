@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Items ;
 use App\Sold ;
 
@@ -74,8 +75,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request;
+        // return Items::where('id', $request->id)
+        // ->where('is_active', 0)
+        // ->update(['is_active' => 1]);
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -94,5 +100,34 @@ class ItemController extends Controller
     public function sold_count(){
         return $sold = Sold::all();
         
+    }
+
+    public function getweekly()
+    {
+        $category = Items::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->paginate(10) ;
+        return $category;
+    }
+    public function getdaily()
+    {
+        $category = Items::whereDay('created_at', now()->day)->paginate(10);
+        return $category;
+    }
+    public function expirationDate(){
+        $items = Items::where( 'updated_at', '>=', Carbon::today()->subDays(60))
+                ->get();
+                return $items;
+
+    }
+
+    public function activate(Request $request){
+        return Items::where('id', $request->id)
+                        // ->where('is_active', 0)
+                        ->update(['is_active' => 1]);
+    }
+
+    public function deactivate(Request $request){
+        return Items::where('id', $request->id)
+                        // ->where('is_active', 0)
+                        ->update(['is_active' => 0]);
     }
 }
