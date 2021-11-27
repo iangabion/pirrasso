@@ -22,9 +22,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        // $categories = Category::all();
-        // return CategoryResource::collection($categories) ;
 
         $categories = Category::with('items', 'subcategories')->orderBy('id', 'asc')->get();
         return $categories;
