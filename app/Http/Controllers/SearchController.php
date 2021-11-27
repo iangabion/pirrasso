@@ -21,6 +21,39 @@ class SearchController extends Controller
         $item = Items::where('title', 'like', "%" . $item . "%")->get();
         return ItemResource::collection($item);
     }
+    public function searchchan(Request $request)
+    {
+
+        $item = Items::whereHas('subcategory', function($q) use($request){
+            if($request->input('subcat_category')!=''){
+                $q->where('id', $request->input('subcat_category'));
+            }
+            // else if($request->input('searchkey')===$request->input('subcat_category'))
+            // {
+            //     $q->where('id', $request->input('subcat_category'));
+            // }
+        });
+        If ($request->input('searchkey') != ''){
+            $keyword = $request->input('searchkey');
+                $item->where(function($query)use($keyword){
+                        $query  ->where('title', 'LIKE', "%$keyword%")
+                                ->orWhere('description', 'LIKE', "%$keyword%")
+                                ;
+                });
+        }
+        else
+        if($request->input('searchkey')===$request->input('subcat_category'))
+        {
+            $item = Items::whereHas('subcategory', function ($q) use($request){
+                $q->where('id', $request->input('subcat_category'));
+            });
+        }
+        ;
+        // $item->where(   )
+
+        return ItemResource::collection($item->get());
+        // return ItemResource::collection($item);
+    }
 
     
 

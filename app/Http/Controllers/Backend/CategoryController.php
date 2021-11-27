@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category ;
 use App\Http\Resources\ItemResource;
+use App\Items;
+use App\Subcategory;
 
 class CategoryController extends Controller
 {
@@ -17,16 +19,52 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = Category::orderBy('created_at' , 'desc')->get();
-        $category = collect($category)->map(function ($cat) {
-            return [
-                'id' => $cat->id ,
-                'name'=>$cat->name ,
-                'count'=>$cat->items->count(),
-                'subcat'=>$cat->subcategories->count()
-            ];
-        });
-        return $category;
+        // $category = Category::orderBy('created_at' , 'desc')->get();
+        // $category = collect($category)->map(function ($cat) {
+        //     return [
+        //         'id' => $cat->id ,
+        //         'name'=>$cat->name ,
+        //         'count'=>$cat->items->count(),
+        //         'subcat'=>$cat->subcategories->count()
+        //     ];
+        // });
+        // return $category;
+
+        $item = Items::get();
+        $subcat = Subcategory::get();
+        $category = Category::with('items')->orderBy('position' , 'asc')->get();
+        $category = collect($category)->map(function ($cat) use ($subcat, $item) {
+            if($cat->id===1){
+                return [
+                    'id' => $cat->id ,
+                    'name'=> $cat->name ,
+                    'count'=> $item->count(),
+                    'subcat'=> $subcat->count(),
+                    'position' => $cat->id,
+                    'icon' => $cat->icon,
+                    'items' => $cat->items,
+                    // 'all_subcategories' => $subcat->count(),
+                    // 'all_items' => $item->count()
+                    // 'subcat_all' => $cat->allSubcategory
+                ];
+            }else{
+                return [
+                    'id' => $cat->id ,
+                    'name'=> $cat->name ,
+                    'count'=> $cat->items->count(),
+                    'subcat'=> $cat->subcategories->count(),
+                    'position' => $cat->id,
+                    'icon' => $cat->icon,
+                    'items' => $cat->items,
+                    'all_subcategories' => $subcat->count(),
+                    'all_items' => $item->count()
+                    // 'subcat_all' => $cat->allSubcategory
+                ];
+            }
+        })
+        // ->with('subcategories')->get()
+        ;
+        return $category->all();
     }
 
     public function get_items($id)
@@ -95,8 +133,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $category = Category::with('subcategories')->findorfail($id);
-        return $category ;
+            $category = Category::with(['subcategories' => function($q){
+                $q->orderBy('sub_position', 'asc');
+            }])
+            ->findorfail($id);
+            return $category ;
     }
 
     /**

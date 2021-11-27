@@ -9,6 +9,8 @@ use App\Subcategory ;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\StatusResource;
 use App\Http\Resources\ItemResource ;
+use App\Items;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -20,8 +22,24 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return CategoryResource::collection($categories) ;
+        // $categories = Category::all();
+        // return CategoryResource::collection($categories) ;
+
+        $categories = Category::with('items', 'subcategories')->orderBy('id', 'asc')->get();
+        return $categories;
+    }
+
+    public function get_items($id){
+        {
+          
+                $subcategory = Subcategory::findorfail($id)->items()->get();
+                return ItemResource::collection($subcategory);
+        }
+    }
+
+    public function get_all(){
+        $items = Items::orderBy('created_at', 'desc')->get();
+        return  ItemResource::collection($items) ;
     }
 
     public function statuses(){
@@ -68,13 +86,51 @@ class CategoryController extends Controller
             return $subcategory ;
         }
     }
+    public function update_catPos(Request $request){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+        $postCat = $this->validate($request, [
+            'categories' => 'required|array',
+        ]);
+
+        foreach ($postCat['categories'] as $key=> $category){
+            $postCa = Category::find($category['id']);
+            $postCa->position = $key + 1;
+            $postCa->save();
+        }
+
+        return response()->json($postCa);
+
+    }
+    public function update_subCatPos(Request $request){
+
+        $postSubCat = $this->validate($request, [
+            'subCategories' => 'required|array'
+        ]);
+
+        foreach ($postSubCat['subCategories'] as $key=> $subCategory){
+            $postSubCat = Subcategory::find($subCategory['id']);
+            $postSubCat->sub_position = $key + 1;
+            $postSubCat->save();
+        }
+        return response()->json($postSubCat);
+    }
+    public function getSubCat($id)
+    {
+        //
+        $category = Category::
+            findOrFail($id)
+            ->with('subcategories')
+            ->get()
+            ;
+        return $category ;
+    }
+
+    public function getAll(){
+        $subcategory = Subcategory::get();
+        return $subcategory;
+    }
+
+   
     public function store(Request $request)
     {
         //

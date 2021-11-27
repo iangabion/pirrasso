@@ -7,7 +7,9 @@ import vuetify from './vuetify';
 import * as VeeValidate from 'vee-validate';
 import App from './components/MainComponent' ;
 import router from './router';
-import global_mixin from './components/mixins/global'
+import global_mixin from './components/mixins/global';
+import VueDraggable from 'vue-draggable';
+import Vue from "vue";
 
 Vue.use(Vuex);
 
@@ -82,7 +84,7 @@ Vue.use(VeeValidate);
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/snackbar.vue').default);
 Vue.mixin(global_mixin)
-
+Vue.use(VueDraggable)
 
 
 

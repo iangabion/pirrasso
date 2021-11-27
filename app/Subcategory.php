@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subcategory extends Model
 {
+    protected $with = ['category'];
+    protected $guarded = [];
+    protected $fillable = [
+      'name',
+      'icon',
+      'category_id',
+      'sub_position',
+    ];
     //
     public function items(){
 		return $this->hasMany(Items::class);
