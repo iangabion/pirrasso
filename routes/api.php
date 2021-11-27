@@ -33,6 +33,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('delete_item/{id}' ,'ItemsController@destroy');
 	Route::get('view_item/{id}' ,'ItemsController@show');
 
+//
+
 
 	//send message
 	Route::post('send_message' ,'SessionController@store');
@@ -57,6 +59,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('bought_item' ,'ItemsController@getbought_items');
 
     Route::post('change_status' ,'ItemsController@changeStatus');
+
+
 });
 
 //search api
@@ -82,6 +86,9 @@ Route::post('update_catPos', 'CategoryController@update_catPos');
 Route::post('update_subCatPos', 'CategoryController@update_subCatPos');
 // Route::post('getSubCat/{id}', 'CategoryController@getSubCat');
 Route::get('getAll', 'CategoryController@getAll');
+
+
+
 
 // login and register
 Route::post('register' ,'ClientController@store');

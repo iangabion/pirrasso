@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->string('image')->nullable();
+        
             $table->timestamps();
         });
     }
