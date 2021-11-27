@@ -18,18 +18,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        // $category = Category::orderBy('created_at' , 'desc')->get();
-        // $category = collect($category)->map(function ($cat) {
-        //     return [
-        //         'id' => $cat->id ,
-        //         'name'=>$cat->name ,
-        //         'count'=>$cat->items->count(),
-        //         'subcat'=>$cat->subcategories->count()
-        //     ];
-        // });
-        // return $category;
-
         $item = Items::get();
         $subcat = Subcategory::get();
         $category = Category::with('items')->orderBy('position' , 'asc')->get();
@@ -43,9 +31,6 @@ class CategoryController extends Controller
                     'position' => $cat->id,
                     'icon' => $cat->icon,
                     'items' => $cat->items,
-                    // 'all_subcategories' => $subcat->count(),
-                    // 'all_items' => $item->count()
-                    // 'subcat_all' => $cat->allSubcategory
                 ];
             }else{
                 return [
@@ -58,11 +43,9 @@ class CategoryController extends Controller
                     'items' => $cat->items,
                     'all_subcategories' => $subcat->count(),
                     'all_items' => $item->count()
-                    // 'subcat_all' => $cat->allSubcategory
                 ];
             }
         })
-        // ->with('subcategories')->get()
         ;
         return $category->all();
     }
