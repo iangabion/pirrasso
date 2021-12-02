@@ -216,11 +216,11 @@
                                 </v-btn>
                                 <span v-if="(items.is_active)==0">
                                     <v-btn icon>
-                                        <v-icon icon @click="show_deactivate(items , index)">mdi-check</v-icon>
+                                        <v-icon icon @click="show_activate(items , index)">mdi-check</v-icon>
                                     </v-btn>
                                 </span>
                                  <span v-if="(items.is_active)==1">
-                                    <v-btn icon  @click="show_activate(items , index)">
+                                    <v-btn icon  @click="show_deactivate(items , index)">
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </span>

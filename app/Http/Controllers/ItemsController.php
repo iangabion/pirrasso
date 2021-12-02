@@ -115,8 +115,8 @@ class ItemsController extends Controller
             'vehicles' => 'nullable',
 
              // added Fields
-             'is_urgent' => 'required',
-             'is_displayed' => 'required',
+             'is_urgent' => 'nullable',
+             'is_displayed' => 'nullable',
 
         ]);
         if($validatedData) {

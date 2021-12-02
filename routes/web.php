@@ -1,11 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +52,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/logout' , 'ClientController@out');
 
         Route::get('getweekly' ,'ItemController@getweekly');
-        Route::get('expirationDate', 'ItemController@expirationDate');
+        // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
