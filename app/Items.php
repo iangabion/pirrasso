@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //
-
+    // protected $guarded = [];
     // scopes
     public function scopeTitleSearch($query , $searchTerm)
     {
@@ -41,7 +41,7 @@ class Items extends Model
     }
 
     public function photos(){
-        return $this->hasMany(Photos::class);
+        return $this->morphToMany(Photos::class, 'imageable');
     }
 
     public function sessions(){

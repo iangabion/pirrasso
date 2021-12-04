@@ -2300,9 +2300,585 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/item/show.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\cachero\\buy-and-sell\\resources\\js\\components\\item\\show.vue: Unexpected token (449:2)\n\n\u001b[0m \u001b[90m 447 | \u001b[39m                            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategor \u001b[33m=\u001b[39m data\u001b[33m.\u001b[39mdata\u001b[0m\n\u001b[0m \u001b[90m 448 | \u001b[39m                            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategories_item \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcategor\u001b[33m.\u001b[39mdata\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 449 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 450 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 451 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 452 | \u001b[39m                            \u001b[90m// app.$data.isgray=true\u001b[39m\u001b[0m\n    at Parser.raise (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:7012:17)\n    at Parser.unexpected (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:8405:16)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9661:20)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9237:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOpBaseRightExpr (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9177:34)\n    at Parser.parseExprOpRightExpr (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9170:21)\n    at Parser.parseExprOp (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9133:27)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9093:17)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9043:25)\n    at Parser.parseExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:8965:23)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10819:23)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10690:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11266:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11253:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:11237:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10256:24)\n    at Parser.parseArrowExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10197:10)\n    at Parser.parseParenAndDistinguishExpression (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9823:12)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9237:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9083:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)\n    at Parser.parseExprListItem (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:10331:18)\n    at Parser.parseCallExpressionArguments (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9434:22)\n    at Parser.parseSubscript (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9342:29)\n    at Parser.parseSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9258:19)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9247:17)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9217:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9083:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9056:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\cachero\\buy-and-sell\\node_modules\\@babel\\parser\\lib\\index.js:9015:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dialogActivate: false,
+      dialogDeActivate: false,
+      dialogItem: false,
+      categories: [],
+      categories_item: [],
+      data_loaded: true,
+      form: {
+        search: ''
+      },
+      loading: false,
+      categor: {},
+      tab: 'tab-1',
+      selectedItem: 1,
+      categories_with: [],
+      categories_witho: [],
+      id_chan: 'tab-1',
+      selected_category: '',
+      isgrey: 1,
+      is_show: true,
+      editedIndex: -1,
+      editedItem: {
+        username: '',
+        image: '',
+        title: '',
+        price: '',
+        description: '',
+        status: ''
+      },
+      payload: {
+        id: '',
+        owner: {
+          username: ''
+        },
+        username: '',
+        image: '',
+        title: '',
+        price: '',
+        description: '',
+        status: ''
+      }
+    };
+  },
+  methods: {
+    search_item: function search_item(key) {
+      var _this = this;
+
+      this.loading = true;
+
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+
+      this.timer = setTimeout(function () {
+        if (key === _this.selected_category) {
+          _this.get_items(_this.selected_category);
+
+          _this.selected_category = '';
+          _this.loading = false;
+        } else {
+          if (_this.timer) {
+            clearTimeout(_this.timer);
+            _this.timer = null;
+          }
+
+          _this.timer = setTimeout(function () {
+            var payload = {
+              searchkey: key,
+              subcat_category: _this.selected_category
+            };
+
+            if (key === null) {
+              _this.get_categories();
+            } else {
+              axios.post('/api/searchchan', payload, {}).then(function (data) {
+                console.log(data, 'chan search');
+                _this.categor = data.data;
+                _this.categories_item = _this.categor.data; // app.$data.isgray=true
+                // ({})
+                // this.tab = 'tab-2'
+
+                _this.loading = false;
+                _this.selected_category = '';
+              })["catch"](function (errors) {
+                console.log(errors);
+              });
+            }
+          });
+        }
+      });
+    },
+    get_categories: function get_categories() {
+      var _this2 = this;
+
+      axios.get('/api/categories', {}).then(function (response) {
+        console.log(response.data, 'here is category chan');
+        _this2.categories = response.data;
+        _this2.categories_with = response.data.filter(function (chan_filter) {
+          return chan_filter.id == 2;
+        });
+        console.log(_this2.categories_with, 'here is categories_with chan 1');
+        _this2.categories_witho = response.data.filter(function (chan_filter) {
+          return chan_filter.id != 2;
+        });
+        console.log(_this2.categories_witho, 'chandun here this categories_witho chan 14');
+
+        _this2.get_items(_this2.categories_with[0].id);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    },
+    get_items: function get_items(id) {
+      var _this3 = this;
+
+      if (id === 2) {
+        this.loading = true;
+        this.data_loaded = false;
+        axios.get('/api/get_all_items').then(function (response) {
+          console.log(response.data.data, 'test');
+          _this3.categories_item = response.data.data;
+
+          _this3.highlight(id);
+
+          _this3.data_loaded = true;
+          _this3.loading = false;
+        });
+      } else {
+        this.data_loaded = false;
+        axios.get('api/get_items/' + id, {}).then(function (response) {
+          console.log(response.data, 'chan here items console');
+          _this3.categories_item = response.data.data;
+          console.log(_this3.categories_item, 'chan here get_items');
+          _this3.data_loaded = true;
+        });
+      }
+    },
+    highlight: function highlight(id) {
+      return id === this.isgrey;
+    },
+    destroy: function destroy(id, index) {
+      var _this4 = this;
+
+      this.$root.$confirm('Are you sure you want to delete ?').then(function (result) {
+        if (result) {
+          axios["delete"]('/item/' + id, {}).then(function (response) {
+            _this4.categories_item.splice(index, 1);
+
+            console.log(response.data);
+            alert('delete');
+          });
+        }
+      });
+    },
+    activate: function activate() {
+      var _this5 = this;
+
+      // axios.put('/subcategories/'+id, this.subcat )
+      console.log(this.payload, 'test'); // return
+
+      axios.put('activate/', this.payload).then(function (res) {
+        console.log(res, 'activate');
+
+        _this5.get_categories();
+
+        _this5.dialogActivate = false;
+      });
+    },
+    deactivate: function deactivate() {
+      var _this6 = this;
+
+      console.log(this.payload, 'test'); // return
+
+      axios.put('deactivate/', this.payload).then(function (res) {
+        console.log(res, 'deactivate');
+
+        _this6.get_categories();
+
+        _this6.dialogDeActivate = false;
+      });
+    },
+    show: function show(items) {
+      this.editedIndex = this.categories_item.indexOf(items);
+      this.payload = JSON.parse(JSON.stringify(items));
+      this.dialogItem = true;
+    },
+    show_activate: function show_activate(items) {
+      this.editedIndex = this.categories_item.indexOf(items);
+      this.payload = JSON.parse(JSON.stringify(items));
+      this.dialogActivate = true;
+    },
+    show_deactivate: function show_deactivate(items) {
+      this.editedIndex = this.categories_item.indexOf(items);
+      this.payload = JSON.parse(JSON.stringify(items));
+      this.dialogDeActivate = true;
+    }
+  },
+  mounted: function mounted() {
+    this.get_categories();
+  },
+  watch: {
+    "form.search": {
+      handler: function handler(val) {
+        this.search_item(val);
+      },
+      deep: true
+    },
+    selected_category: function selected_category(val) {
+      if (val) {
+        this.search_item(val);
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -3699,7 +4275,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         axios.post('/subcategories', this.subcat).then(function (response) {
           console.log(response.data, 'subcat');
-          alert('save');
+          alert('else save');
           self.get_categories();
           self.categories_subcategories.subcategories.unshift(response.data);
           self.subcatclear();
@@ -3973,13 +4549,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      category: ''
+      cat_image: '',
+      subcat_image: '',
+      item_image: '',
+      sample: ''
     };
   },
-  methods: {}
+  methods: {
+    getAllPhoto: function getAllPhoto() {
+      var _this = this;
+
+      axios.get('api/get_allPhoto/').then(function (data) {
+        _this.sample = data.data;
+        console.log(_this.sample, 'chan here all photo');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } // getsubcategory(){
+    //     axios.get('api/get_sub_image').then((response)=>{
+    //         this.subcat_image=response.data
+    //         console.log(this.subcat_image, "sub image Chan")
+    //     })
+    // },
+    // getcategory(){
+    //     axios.get('api/get_catgry_image').then((response)=>{
+    //         this.cat_image=response.data
+    //         console.log(this.cat_image, "cat image Chan")
+    //     })
+    // },
+    // getitem(){
+    //     axios.get('api/').then((response)=>{
+    //         this.item_image=response.data
+    //         console.log(this.item_image, "cat image Chan")
+    //     })
+    // }
+
+  },
+  mounted: function mounted() {
+    this.getAllPhoto(); // this.getsubcategory()
+    // this.getcategory()
+    // this.getitem()
+  }
 });
 
 /***/ }),
@@ -39560,9 +40203,7 @@ var render = function() {
         ],
         1
       ),
-      _vm._v("\n\n<<<<<<< HEAD\n=======\n"),
       _vm._v(" "),
-      _vm._v("\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n"),
       _c(
         "v-row",
         [
@@ -39629,36 +40270,55 @@ var render = function() {
                             },
                             [
                               _vm._v(" "),
-                              _vm._v(
-                                "\n<<<<<<< HEAD\n                    >  \n=======\n                    >\n                        "
-                              ),
-                              _vm._v(" "),
-                              _vm._v(
-                                "\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n                        "
-                              ),
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c(
-                                    "v-list-item-title",
-                                    {
-                                      class: {
-                                        chan_grey: _vm.highlight(_vm.subcat.id)
-                                      }
+                              _vm._l(item.subcategories, function(subcat, i) {
+                                return _c(
+                                  "v-list-item",
+                                  {
+                                    key: i,
+                                    class: {
+                                      chan_grey: _vm.highlight(subcat.id)
                                     },
-                                    [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(_vm.subcat.name) +
-                                          "\n                            "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
+                                    on: {
+                                      click: [
+                                        function($event) {
+                                          _vm.selected_category = subcat.id
+                                        },
+                                        function($event) {
+                                          _vm.isgrey = subcat.id
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c(
+                                          "v-list-item-title",
+                                          {
+                                            class: {
+                                              chan_grey: _vm.highlight(
+                                                subcat.id
+                                              )
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(subcat.name) +
+                                                "\n                            "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              })
                             ],
-                            1
+                            2
                           )
                         : _c(
                             "v-list-item",
@@ -39709,12 +40369,7 @@ var render = function() {
                             1
                           )
                     ]
-                  }),
-                  _vm._v("\n<<<<<<< HEAD\n=======\n"),
-                  _vm._v(" "),
-                  _vm._v(
-                    "\n>>>>>>> 757171a352c6daf6e645536d33bb077fa3fc6a85\n\n        "
-                  )
+                  })
                 ],
                 2
               )
@@ -43201,203 +43856,75 @@ var render = function() {
         { attrs: { "grid-list-xs": "" } },
         [
           _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
+            "v-card",
             [
-              _c(
-                "v-flex",
-                { attrs: { xs12: "", sm6: "" } },
-                [
-                  _c(
-                    "v-form",
-                    { ref: "form" },
-                    [
-                      _c(
-                        "v-container",
-                        { attrs: { "grid-list-md": "" } },
+              _c("span", [_vm._v("All Images")]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm.sample != ""
+                ? _c(
+                    "v-row",
+                    _vm._l(_vm.sample, function(item) {
+                      return _c(
+                        "v-col",
+                        {
+                          key: item.id,
+                          staticClass: "d-flex child-flex",
+                          attrs: { cols: "3" }
+                        },
                         [
-                          _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            [
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "pa-5" },
-                                    [
+                          _c("v-img", {
+                            staticClass: "grey lighten-2",
+                            attrs: { "aspect-ratio": "1", src: item.filename },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [
                                       _c(
-                                        "v-layout",
+                                        "v-row",
                                         {
-                                          staticClass: "text-capitalize",
+                                          staticClass: "fill-height ma-0",
                                           attrs: {
-                                            row: "",
-                                            wrap: "",
-                                            "mb-3": ""
+                                            align: "center",
+                                            justify: "center"
                                           }
                                         },
                                         [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "" } },
-                                            [
-                                              _c(
-                                                "p",
-                                                {
-                                                  staticClass:
-                                                    "subheading pa-0 font-weight-bold"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "Image Information/Changing"
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-flex", { attrs: { xs6: "" } }, [
-                                            _c(
-                                              "div",
-                                              { staticClass: "preview" },
-                                              [
-                                                _c("v-img", {
-                                                  staticClass: "mx-auto",
-                                                  attrs: {
-                                                    "max-height": "200",
-                                                    "max-width": "200",
-                                                    contain: "",
-                                                    src:
-                                                      _vm.category.icon ||
-                                                      "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs6: "" } },
-                                            [
-                                              _c("v-file-input", {
-                                                attrs: {
-                                                  "small-chips": "",
-                                                  accept: "image/*",
-                                                  label: "Icon/Images",
-                                                  "data-vv-name": "Icon/Images"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  type: "text",
-                                                  "data-vv-name":
-                                                    "Global Folder Name",
-                                                  label: "Global Folder Name",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        {
-                                          attrs: {
-                                            row: "",
-                                            wrap: "",
-                                            "mb-3": "",
-                                            "justify-end": ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            {
-                                              staticClass: "text-right",
-                                              attrs: { xs12: "" }
-                                            },
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "success",
-                                                    tile: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "v-icon",
-                                                    { attrs: { left: "" } },
-                                                    [
-                                                      _vm._v(
-                                                        "mdi-content-save-edit-outline"
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(
-                                                    "\n                                                save category\n                                            "
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "primary",
-                                                    tile: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "v-icon",
-                                                    { attrs: { left: "" } },
-                                                    [_vm._v("mdi-lock-reset")]
-                                                  ),
-                                                  _vm._v(
-                                                    "\n                                                reload form\n                                            "
-                                                  )
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
+                                          _c("v-progress-circular", {
+                                            attrs: {
+                                              indeterminate: "",
+                                              color: "grey lighten-5"
+                                            }
+                                          })
                                         ],
                                         1
                                       )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          })
                         ],
                         1
                       )
-                    ],
+                    }),
                     1
                   )
-                ],
-                1
-              )
+                : _c("span", { staticClass: "d-flex justify-center" }, [
+                    _vm._v(" no content ")
+                  ])
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-divider", { attrs: { inset: "" } })
         ],
         1
       )
@@ -102591,15 +103118,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/js/components/settings/images/show.vue ***!
   \**********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _show_vue_vue_type_template_id_588b5913___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show.vue?vue&type=template&id=588b5913& */ "./resources/js/components/settings/images/show.vue?vue&type=template&id=588b5913&");
 /* harmony import */ var _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show.vue?vue&type=script&lang=js& */ "./resources/js/components/settings/images/show.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _show_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -102629,7 +103155,7 @@ component.options.__file = "resources/js/components/settings/images/show.vue"
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/settings/images/show.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

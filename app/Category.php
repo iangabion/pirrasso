@@ -8,8 +8,7 @@ class Category extends Model
 {
     
     protected $guarded = [];
-    //relation
-	public function items(){
+    public function items(){
 		return $this  ->hasMany(Items::class);
 	}
 	public function subcategories(){
@@ -18,5 +17,8 @@ class Category extends Model
 
     public function getIconAttribute($value) {
         return $value != null ?  asset('images/icons/'. $value) : null ;
+    }
+    public function photos(){
+        return $this->morphMany(Photos::class, 'imageable');
     }
 }

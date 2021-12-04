@@ -1,5 +1,6 @@
 <?php
 
+use App\Photos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -105,3 +106,8 @@ Route::get('test_code' ,'ClientController@sendVerificationCode');
 // search items
 Route::post('searchchan' ,'SearchController@searchchan');
 Route::get('search/{item?}' ,'SearchController@index');
+
+//API Settings Apps Images
+Route::get('get_catgry_image','CategoryController@get_catgry_image');
+Route::get('get_sub_image','CategoryController@get_sub_image');
+Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
