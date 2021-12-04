@@ -128,6 +128,17 @@ class CategoryController extends Controller
         return $subcategory;
     }
 
+    // get subcat image
+    public function get_sub_image(){
+        $sub = Subcategory::with('photos')->get();
+        // $sub = Subcategory::find(1);
+        return $sub;
+    }
+
+    //get category image
+    public function get_catgry_image(){
+        return Category::get();
+    }
 
 
 

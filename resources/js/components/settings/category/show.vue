@@ -356,7 +356,7 @@ export default {
                     axios.post('/subcategories', this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
-                        alert('save')
+                        alert('else save')
                         self.get_categories()
                         self.categories_subcategories.subcategories.unshift(response.data)
                         self.subcatclear()

@@ -25,4 +25,7 @@ class Subcategory extends Model
     public function getIconAttribute($value) {
       return $value != null ?  asset('images/icons/'. $value) : asset('images/default.png') ;
     }
+    public function photos(){
+      return $this->morphMany(Photos::class, 'imageable');
+    }
 }

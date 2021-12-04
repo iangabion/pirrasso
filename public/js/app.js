@@ -4220,7 +4220,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         axios.post('/subcategories', this.subcat).then(function (response) {
           console.log(response.data, 'subcat');
-          alert('save');
+          alert('else save');
           self.get_categories();
           self.categories_subcategories.subcategories.unshift(response.data);
           self.subcatclear();
@@ -4494,13 +4494,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      category: ''
+      cat_image: '',
+      subcat_image: '',
+      item_image: '',
+      sample: ''
     };
   },
-  methods: {}
+  methods: {
+    getAllPhoto: function getAllPhoto() {
+      var _this = this;
+
+      axios.get('api/get_allPhoto/').then(function (data) {
+        _this.sample = data.data;
+        console.log(_this.sample, 'chan here all photo');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } // getsubcategory(){
+    //     axios.get('api/get_sub_image').then((response)=>{
+    //         this.subcat_image=response.data
+    //         console.log(this.subcat_image, "sub image Chan")
+    //     })
+    // },
+    // getcategory(){
+    //     axios.get('api/get_catgry_image').then((response)=>{
+    //         this.cat_image=response.data
+    //         console.log(this.cat_image, "cat image Chan")
+    //     })
+    // },
+    // getitem(){
+    //     axios.get('api/').then((response)=>{
+    //         this.item_image=response.data
+    //         console.log(this.item_image, "cat image Chan")
+    //     })
+    // }
+
+  },
+  mounted: function mounted() {
+    this.getAllPhoto(); // this.getsubcategory()
+    // this.getcategory()
+    // this.getitem()
+  }
 });
 
 /***/ }),
@@ -43734,203 +43801,75 @@ var render = function() {
         { attrs: { "grid-list-xs": "" } },
         [
           _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
+            "v-card",
             [
-              _c(
-                "v-flex",
-                { attrs: { xs12: "", sm6: "" } },
-                [
-                  _c(
-                    "v-form",
-                    { ref: "form" },
-                    [
-                      _c(
-                        "v-container",
-                        { attrs: { "grid-list-md": "" } },
+              _c("span", [_vm._v("All Images")]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm.sample != ""
+                ? _c(
+                    "v-row",
+                    _vm._l(_vm.sample, function(item) {
+                      return _c(
+                        "v-col",
+                        {
+                          key: item.id,
+                          staticClass: "d-flex child-flex",
+                          attrs: { cols: "3" }
+                        },
                         [
-                          _c(
-                            "v-layout",
-                            { attrs: { row: "", wrap: "" } },
-                            [
-                              _c(
-                                "v-flex",
-                                { attrs: { xs12: "" } },
-                                [
-                                  _c(
-                                    "v-card",
-                                    { staticClass: "pa-5" },
-                                    [
+                          _c("v-img", {
+                            staticClass: "grey lighten-2",
+                            attrs: { "aspect-ratio": "1", src: item.filename },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "placeholder",
+                                  fn: function() {
+                                    return [
                                       _c(
-                                        "v-layout",
+                                        "v-row",
                                         {
-                                          staticClass: "text-capitalize",
+                                          staticClass: "fill-height ma-0",
                                           attrs: {
-                                            row: "",
-                                            wrap: "",
-                                            "mb-3": ""
+                                            align: "center",
+                                            justify: "center"
                                           }
                                         },
                                         [
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs12: "" } },
-                                            [
-                                              _c(
-                                                "p",
-                                                {
-                                                  staticClass:
-                                                    "subheading pa-0 font-weight-bold"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "Image Information/Changing"
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("v-flex", { attrs: { xs6: "" } }, [
-                                            _c(
-                                              "div",
-                                              { staticClass: "preview" },
-                                              [
-                                                _c("v-img", {
-                                                  staticClass: "mx-auto",
-                                                  attrs: {
-                                                    "max-height": "200",
-                                                    "max-width": "200",
-                                                    contain: "",
-                                                    src:
-                                                      _vm.category.icon ||
-                                                      "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-flex",
-                                            { attrs: { xs6: "" } },
-                                            [
-                                              _c("v-file-input", {
-                                                attrs: {
-                                                  "small-chips": "",
-                                                  accept: "image/*",
-                                                  label: "Icon/Images",
-                                                  "data-vv-name": "Icon/Images"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  type: "text",
-                                                  "data-vv-name":
-                                                    "Global Folder Name",
-                                                  label: "Global Folder Name",
-                                                  required: ""
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-layout",
-                                        {
-                                          attrs: {
-                                            row: "",
-                                            wrap: "",
-                                            "mb-3": "",
-                                            "justify-end": ""
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "v-flex",
-                                            {
-                                              staticClass: "text-right",
-                                              attrs: { xs12: "" }
-                                            },
-                                            [
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "success",
-                                                    tile: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "v-icon",
-                                                    { attrs: { left: "" } },
-                                                    [
-                                                      _vm._v(
-                                                        "mdi-content-save-edit-outline"
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(
-                                                    "\n                                                save category\n                                            "
-                                                  )
-                                                ],
-                                                1
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    color: "primary",
-                                                    tile: ""
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "v-icon",
-                                                    { attrs: { left: "" } },
-                                                    [_vm._v("mdi-lock-reset")]
-                                                  ),
-                                                  _vm._v(
-                                                    "\n                                                reload form\n                                            "
-                                                  )
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
+                                          _c("v-progress-circular", {
+                                            attrs: {
+                                              indeterminate: "",
+                                              color: "grey lighten-5"
+                                            }
+                                          })
                                         ],
                                         1
                                       )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
+                                    ]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          })
                         ],
                         1
                       )
-                    ],
+                    }),
                     1
                   )
-                ],
-                1
-              )
+                : _c("span", { staticClass: "d-flex justify-center" }, [
+                    _vm._v(" no content ")
+                  ])
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-divider", { attrs: { inset: "" } })
         ],
         1
       )

@@ -8,6 +8,7 @@ use App\Category ;
 use App\Http\Resources\ItemResource;
 use App\Items;
 use App\Subcategory;
+use App\Photos;
 
 class CategoryController extends Controller
 {
@@ -19,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $item = Items::get();
-        $subcat = Subcategory::get();
+        $subcat = Subcategory::with('photos')->get();
         $category = Category::with('items')->orderBy('position' , 'asc')->get();
         $category = collect($category)->map(function ($cat) use ($subcat, $item) {
             if($cat->id===1){
@@ -79,8 +80,6 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories,name',
         ]);
 
-            $category = new Category() ;
-
             if($request->icon){
                 $image = $request->icon;  // your base64 encoded
                 list($type, $image) = explode(';', $image);
@@ -88,11 +87,19 @@ class CategoryController extends Controller
                 $data = base64_decode($image);
                 $imageName = $request->name . Time() . '_category.jpeg';
                 file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
-                $category->icon =  $imageName;
             }
 
-            $category->name = $request->name ;
-            $category->save();
+            $category = Category::create([
+                'name' => $request->name,
+                'position'=> 0,
+                'icon' => $imageName
+            ]);
+            $photo = Photos::create([
+                'imageable_id' => $category->id,
+                'imageable_type' => 'App\Category',
+                'filename' => $imageName
+            ]);
+
             return $category;
     }
 
@@ -117,7 +124,7 @@ class CategoryController extends Controller
     {
         //
             $category = Category::with(['subcategories' => function($q){
-                $q->orderBy('sub_position', 'asc');
+                $q->orderBy('sub_position', 'asc')->with('photos');
             }])
             ->findorfail($id);
             return $category ;

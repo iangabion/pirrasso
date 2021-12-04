@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Photos;
 use Illuminate\Http\Request;
 use App\Subcategory;
 class SubCategoryController extends Controller
@@ -35,8 +36,6 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $sub = new Subcategory();
-        $sub->name = $request->name ;
         if($request->icon){
             $image = $request->icon;  // your base64 encoded
             list($type, $image) = explode(';', $image);
@@ -44,10 +43,18 @@ class SubCategoryController extends Controller
             $data = base64_decode($image);
             $imageName = $request->name . Time() . '_subcat.jpeg';
             file_put_contents(public_path() . '/' . 'images/icons/' . $imageName, $data);
-            $sub->icon =  $imageName;
         }
-        $sub->category_id = $request->category_id ;
-        $sub->save();
+        $sub = Subcategory::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'icon' => $imageName
+        ]);
+
+        $photo = Photos::create([
+            'imageable_id' => $sub->id,
+            'imageable_type' => 'App\Subcategory',
+            'filename' => $imageName
+        ]);
         return $sub;
     }
 

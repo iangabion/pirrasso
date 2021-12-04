@@ -82,4 +82,10 @@ class PhotosController extends Controller
     {
         //
     }
+    
+    public function get_allPhoto(){
+        $photo = Photos::get();
+
+        return $photo;
+    }
 }
