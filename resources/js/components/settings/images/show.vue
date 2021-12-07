@@ -4,154 +4,101 @@
             <v-toolbar-title class="px-4">Apps Images</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
-        <v-container grid-list-xs>
+        <v-card>
+            <v-row no-gutters>
+                <v-card width="50%" align="center" elevation=0>
+                        
+                        <v-img
+                            max-height="400"
+                            min-height="400"
+                            max-width="400"
+                            min-width="400"
+                            contain=""
+                            src="images/app_images/123.jpeg"
+                        >
+                        </v-img >
+                        <v-card-subtitle align="center" class ="mt-0 pt-0">
+                            <h1>Current App Logo</h1>
+                        </v-card-subtitle>
+                </v-card>
 
-<!-- first sample -->
-            <!-- <v-card min-height="100" elevation="0">
-                <span>Items</span> <br>
-                <v-row v-if="item_image!=''">
-                    <v-col v-for="item in item_image" :key="item.id" cols="3" class="d-flex child-flex">
-                        <v-img aspect-ratio="1" class="grey lighten-2" :src="item.icon" >
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
-                    </v-col>
-                </v-row>
-                <span v-else class="d-flex justify-center"> no content </span>
-            </v-card>
-                <v-divider inset></v-divider>
-// division
-            <v-card min-height="100" elevation="0">
-                <span>Categories</span><br>
-                <v-row v-if="cat_image.icon!=null">
-                    <v-col v-for="item in cat_image" :key="item.id" cols="3" class="d-flex child-flex">
-                        <v-img aspect-ratio="1" class="grey lighten-2" :src="item.icon" :alt="item.icon">
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center">
-                                    <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
-                    </v-col>
-                </v-row>
-                <span v-else class="d-flex justify-center"> no content </span>
-            </v-card>
-                <v-divider inset></v-divider>
-// division
-            <v-card>
-                <span>SubCategories</span> <br>
-                <v-row v-if="subcat_image!=''">
-                    <v-col v-for="item in subcat_image" :key="item.id" cols="3" class="d-flex child-flex">
-                        <v-img aspect-ratio="1" class="grey lighten-2" :src="item.icon" >
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
-                    </v-col>
-                </v-row>
-                <span v-else class="d-flex justify-center"> no content </span>
-            </v-card>
-                <v-divider inset></v-divider> -->
-<!-- first sample -->
-        
-         <v-card>
-                <span>All Images</span> <br>
-                <v-row v-if="sample!=''">
-                    <v-col v-for="item in sample" :key="item.id" cols="3" class="d-flex child-flex">
-                        <v-img aspect-ratio="1" class="grey lighten-2" :src="item.filename" >
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
-                    </v-col>
-                </v-row>
-                <span v-else class="d-flex justify-center"> no content </span>
-            </v-card>
-                <v-divider inset></v-divider>
+                <v-card width="50%" elevation="0">
+                    <v-row no-gutters align="center" class="mt-8">
+                            <v-img
 
-        </v-container>
+                                max-height="200"
+                                min-height="200"
+                                class="mx-auto mt-12"
+                                max-width="200"
+                                min-width="200"
+                                contain=""
+                                :src="logo.image || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'"
+                            >
+                            </v-img>
+                            <v-file-input
+                                class="pr-12"
+                                small-chips
+                                accept="image/*"
+                                label="Change Logo"
+                                v-validate="'image'"
+                                :error-messages="errors.collect('Logo')"
+                                data-vv-name="Logo"
+                                @change="onFileChange('cat', $event)"
+                                >
+                            </v-file-input>
+                    </v-row>
+                    <v-flex xs12 class="text-left mt-6 ml-9">
+                            <v-btn color="success" small title @click.prevent="save_logo">
+                                <v-icon left>mdi-content-save-edit-outline</v-icon>
+                                save logo
+                            </v-btn>
+                    </v-flex>
+                </v-card>
+            </v-row>
+        </v-card>
     </div>
 </template>
 
 <script>
 export default {
     data:() => ({
-        cat_image:'',
-        subcat_image:'',
-        item_image:'',
-
-        sample:'',
+        logo:{
+            image:'',
+            id:'',
+        }     
     }),
     methods:{
 
-        getAllPhoto(){
-            axios.get('api/get_allPhoto/').then((data)=>{
-                this.sample = data.data
-                console.log(this.sample, 'chan here all photo')
-            }).catch((error)=>{
-                console.log(error)
-            })
-        }
+        onFileChange(hint,files) {
+                // var files = e.target.files || e.dataTransfer.files;
 
-        // getsubcategory(){
-        //     axios.get('api/get_sub_image').then((response)=>{
-        //         this.subcat_image=response.data
-        //         console.log(this.subcat_image, "sub image Chan")
-        //     })
-        // },
-        // getcategory(){
-        //     axios.get('api/get_catgry_image').then((response)=>{
-        //         this.cat_image=response.data
-        //         console.log(this.cat_image, "cat image Chan")
-        //     })
-        // },
-        // getitem(){
-        //     axios.get('api/').then((response)=>{
-        //         this.item_image=response.data
-        //         console.log(this.item_image, "cat image Chan")
-        //     })
-        // }
+                if (files == "") {
+                    return
+                }
+
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    hint === 'cat' ,  this.logo.image = e.target.result ;
+                };
+                reader.readAsDataURL(files);
+        },
+
+        save_logo(){
+            const id = this.logo.id
+            axios.post('api/add_photo4Logo/' + id, this.logo).then((response)=>{
+                console.log(response.data, 'save log status')
+                this.subcatclear()
+                window.location.reload()
+            })
+        },
+
+        subcatclear(){
+            this.$validator.reset()
+            for (var key in this.logo){
+                this.logo[key] = '';
+            }
+        },
     },
-    mounted(){
-        this.getAllPhoto()
-        // this.getsubcategory()
-        // this.getcategory()
-        // this.getitem()
-    }
 }
 </script>
 

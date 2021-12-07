@@ -4531,97 +4531,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cat_image: '',
-      subcat_image: '',
-      item_image: '',
-      sample: ''
+      logo: {
+        image: '',
+        id: ''
+      }
     };
   },
   methods: {
-    getAllPhoto: function getAllPhoto() {
+    onFileChange: function onFileChange(hint, files) {
       var _this = this;
 
-      axios.get('api/get_allPhoto/').then(function (data) {
-        _this.sample = data.data;
-        console.log(_this.sample, 'chan here all photo');
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    } // getsubcategory(){
-    //     axios.get('api/get_sub_image').then((response)=>{
-    //         this.subcat_image=response.data
-    //         console.log(this.subcat_image, "sub image Chan")
-    //     })
-    // },
-    // getcategory(){
-    //     axios.get('api/get_catgry_image').then((response)=>{
-    //         this.cat_image=response.data
-    //         console.log(this.cat_image, "cat image Chan")
-    //     })
-    // },
-    // getitem(){
-    //     axios.get('api/').then((response)=>{
-    //         this.item_image=response.data
-    //         console.log(this.item_image, "cat image Chan")
-    //     })
-    // }
+      // var files = e.target.files || e.dataTransfer.files;
+      if (files == "") {
+        return;
+      }
 
-  },
-  mounted: function mounted() {
-    this.getAllPhoto(); // this.getsubcategory()
-    // this.getcategory()
-    // this.getitem()
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        hint === 'cat', _this.logo.image = e.target.result;
+      };
+
+      reader.readAsDataURL(files);
+    },
+    save_logo: function save_logo() {
+      var _this2 = this;
+
+      var id = this.logo.id;
+      axios.post('api/add_photo4Logo/' + id, this.logo).then(function (response) {
+        console.log(response.data, 'save log status');
+
+        _this2.subcatclear();
+
+        window.location.reload();
+      });
+    },
+    subcatclear: function subcatclear() {
+      this.$validator.reset();
+
+      for (var key in this.logo) {
+        this.logo[key] = '';
+      }
+    }
   }
 });
 
@@ -43852,79 +43806,122 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-container",
-        { attrs: { "grid-list-xs": "" } },
+        "v-card",
         [
           _c(
-            "v-card",
+            "v-row",
+            { attrs: { "no-gutters": "" } },
             [
-              _c("span", [_vm._v("All Images")]),
+              _c(
+                "v-card",
+                { attrs: { width: "50%", align: "center", elevation: "0" } },
+                [
+                  _c("v-img", {
+                    attrs: {
+                      "max-height": "400",
+                      "min-height": "400",
+                      "max-width": "400",
+                      "min-width": "400",
+                      contain: "",
+                      src: "images/app_images/123.jpeg"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-subtitle",
+                    { staticClass: "mt-0 pt-0", attrs: { align: "center" } },
+                    [_c("h1", [_vm._v("Current App Logo")])]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _vm.sample != ""
-                ? _c(
+              _c(
+                "v-card",
+                { attrs: { width: "50%", elevation: "0" } },
+                [
+                  _c(
                     "v-row",
-                    _vm._l(_vm.sample, function(item) {
-                      return _c(
-                        "v-col",
+                    {
+                      staticClass: "mt-8",
+                      attrs: { "no-gutters": "", align: "center" }
+                    },
+                    [
+                      _c("v-img", {
+                        staticClass: "mx-auto mt-12",
+                        attrs: {
+                          "max-height": "200",
+                          "min-height": "200",
+                          "max-width": "200",
+                          "min-width": "200",
+                          contain: "",
+                          src:
+                            _vm.logo.image ||
+                            "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-file-input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "image",
+                            expression: "'image'"
+                          }
+                        ],
+                        staticClass: "pr-12",
+                        attrs: {
+                          "small-chips": "",
+                          accept: "image/*",
+                          label: "Change Logo",
+                          "error-messages": _vm.errors.collect("Logo"),
+                          "data-vv-name": "Logo"
+                        },
+                        on: {
+                          change: function($event) {
+                            return _vm.onFileChange("cat", $event)
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { staticClass: "text-left mt-6 ml-9", attrs: { xs12: "" } },
+                    [
+                      _c(
+                        "v-btn",
                         {
-                          key: item.id,
-                          staticClass: "d-flex child-flex",
-                          attrs: { cols: "3" }
+                          attrs: { color: "success", small: "", title: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.save_logo($event)
+                            }
+                          }
                         },
                         [
-                          _c("v-img", {
-                            staticClass: "grey lighten-2",
-                            attrs: { "aspect-ratio": "1", src: item.filename },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "placeholder",
-                                  fn: function() {
-                                    return [
-                                      _c(
-                                        "v-row",
-                                        {
-                                          staticClass: "fill-height ma-0",
-                                          attrs: {
-                                            align: "center",
-                                            justify: "center"
-                                          }
-                                        },
-                                        [
-                                          _c("v-progress-circular", {
-                                            attrs: {
-                                              indeterminate: "",
-                                              color: "grey lighten-5"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ],
-                              null,
-                              true
-                            )
-                          })
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-content-save-edit-outline")
+                          ]),
+                          _vm._v(
+                            "\n                            save logo\n                        "
+                          )
                         ],
                         1
                       )
-                    }),
+                    ],
                     1
                   )
-                : _c("span", { staticClass: "d-flex justify-center" }, [
-                    _vm._v(" no content ")
-                  ])
+                ],
+                1
+              )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("v-divider", { attrs: { inset: "" } })
+          )
         ],
         1
       )

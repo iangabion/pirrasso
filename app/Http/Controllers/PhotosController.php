@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AppImages;
 use App\Photos;
 use Illuminate\Http\Request;
 
@@ -87,5 +88,30 @@ class PhotosController extends Controller
         $photo = Photos::get();
 
         return $photo;
+    }
+
+    public function get_appImages(){
+        $app = AppImages::get();
+
+        return $app;
+    }
+
+    public function add_photo4Logo(Request $request){
+
+        if(\File::exists(public_path('images/app_images/123.jpeg'))){
+            \File::delete('images/app_images/123.jpeg');
+        }else{
+            dd('File does not exists.');
+        };
+      
+        if($request->image){
+            $image = $request->image;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = '123.jpeg';
+            file_put_contents(public_path() . '/' . 'images/app_images/' . $imageName, $data);
+        }
+
     }
 }
