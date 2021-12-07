@@ -111,3 +111,4 @@ Route::get('search/{item?}' ,'SearchController@index');
 Route::get('get_catgry_image','CategoryController@get_catgry_image');
 Route::get('get_sub_image','CategoryController@get_sub_image');
 Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
+Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
