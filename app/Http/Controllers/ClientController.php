@@ -175,7 +175,7 @@ class ClientController extends Controller
 
     public function login(Request $request) {
         $loginData = $request->validate([
-            'username' => 'required',
+           
             'password' => 'required'
         ]);
         if($loginData){
