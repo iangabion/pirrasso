@@ -1,8 +1,7 @@
 <?php
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,18 +47,18 @@ Route::middleware('auth:web')->group(function () {
         Route::resource('status', 'StatusController');
 
         Route::get('category_items/{id}' , 'CategoryController@get_items');
-       
+
 
         Route::get('/logout' , 'ClientController@out');
 
         Route::get('getweekly' ,'ItemController@getweekly');
-        Route::get('expirationDate', 'ItemController@expirationDate');
+        // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
-        
+
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');
         Route::resource('clients' , 'ClientController');

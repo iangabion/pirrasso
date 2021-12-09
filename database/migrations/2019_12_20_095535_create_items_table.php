@@ -15,23 +15,25 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->integer('price');
-            $table->string('description');
-            $table->string('location');
+            $table->string('description')->nullable();
+            $table->string('brand');
+            $table->string('variation');
+            $table->string('location')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->integer('stock');
-            $table->integer('is_urgent');
-            $table->integer('is_expired');
-            $table->integer('is_displayed');
-            $table->integer('is_active');
+            $table->integer('is_urgent')->nullable();
+            $table->integer('is_expired')->nullable();
+            $table->integer('is_displayed')->nullable();
+            $table->integer('is_active')->nullable();
             $table->boolean('show_number')->nullable();
             $table->tinyInteger('is_sold')->default('0');
-            $table->unsignedBigInteger('status_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('subcategory_id')->nullable();
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('status_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('subcategory_id')->nullable()->nullable();
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->foreign('client_id')->references('id')
                 ->on('clients')->onDelete('cascade');
             $table->foreign('category_id')

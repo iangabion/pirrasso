@@ -19,32 +19,6 @@
             </v-col>
         </v-toolbar>
 
-<!-- here1 -->
-
-        <!-- <v-sheet elevation="6">
-            <v-tabs
-            background-color="primary"
-            dark
-            next-icon="mdi-arrow-right-bold-box-outline"
-            prev-icon="mdi-arrow-left-bold-box-outline"
-            show-arrows
-            fixed-tabs
-            v-model='tab'
-            >
-            <v-tabs-slider color="white"></v-tabs-slider>
-            <v-tab
-                :href="'#tab-'+ i.id"
-                v-for="i in categories"
-                :key="i.id"
-                @click.prevent="get_items(i.id)"
-            >
-                 {{ i.name }}
-            </v-tab>
-            </v-tabs>
-        </v-sheet> -->
-
-<!-- here1 -->
-<!-- here2 -->
 <v-row>
     <v-card width=25% max-height=auto elevation="0">
         <v-list dense>
@@ -71,11 +45,6 @@
                         v-bind:class="{'chan_grey' : highlight(subcat.id) }"
                         v-on:click="isgrey = subcat.id"
                     >
-                        <!-- v-bind:class="{chan_grey : isgrey}" -->
-
-                        <!-- <v-list-item-action v-if="subcat.name">
-                            <v-icon>{{subcat.name}}</v-icon>
-                        </v-list-item-action> -->
                         <v-list-item-content >
                             <v-list-item-title v-bind:class="{'chan_grey' : highlight(subcat.id) }">
                                 {{ subcat.name }}
@@ -96,30 +65,6 @@
                 </v-list-item>
 
             </template>
-<!-- first -->
-
-<!-- mid -->
-                <!-- <v-list-item-group
-                    v-model="tab" color="primary"
-                >
-                    <v-list-item v-model="id_chan" class="pb-5 pt-2" v-for="(item,i) in categories_with" :key="i.name" :href="'#tab-'+ i.id"
-                        @click.prevent="get_items(i.id)"
-                    >
-                        {{ item.name }}
-                    </v-list-item>
-
-                    <v-list-item
-                        v-for="(item,i) in categories_witho"
-                        :key="i"
-                    >
-                        <v-select class="custom" :items="item.subcategories" :placeholder="item.name" item-text="name"
-                            dense
-                        >
-                         {{ item.subcategories.name }}
-                        </v-select>
-                    </v-list-item>
-                </v-list-item-group> -->
-<!-- mid -->
 
         </v-list>
     </v-card>
@@ -201,11 +146,11 @@
                                 </v-btn>
                                 <span v-if="(items.is_active)==0">
                                     <v-btn icon>
-                                        <v-icon icon @click="show_deactivate(items , index)">mdi-check</v-icon>
+                                        <v-icon icon @click="show_activate(items , index)">mdi-check</v-icon>
                                     </v-btn>
                                 </span>
                                  <span v-if="(items.is_active)==1">
-                                    <v-btn icon  @click="show_activate(items , index)">
+                                    <v-btn icon  @click="show_deactivate(items , index)">
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </span>
