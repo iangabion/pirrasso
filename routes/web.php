@@ -54,6 +54,8 @@ Route::middleware('auth:web')->group(function () {
         Route::get('getweekly' ,'ItemController@getweekly');
         // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
+        Route::get('items/getToApprovedItems', 'ItemController@getToApprovedItems');
+        Route::get('items/approve_item/{id}', 'ItemController@approvedItem');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
         // sold

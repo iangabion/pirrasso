@@ -73,6 +73,7 @@
         { icon: 'mdi-view-dashboard', text: 'Dashboard' ,url:'/dashboard' },
         { icon: 'mdi-history', text: 'Items' ,url:'/items' },
         { icon: 'mdi-account-group', text: 'Sellers' ,url:'/sellers' },
+        { icon: 'mdi-check', text: 'Approved Items' ,url:'/approved_items' },
         {
           icon: 'mdi-settings',
           'icon-alt': 'mdi-settings',
