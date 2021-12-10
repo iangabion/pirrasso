@@ -1,7 +1,7 @@
 import show_category from '../settings/category/show'
 import show_status from '../settings/status/show'
 import show_apps_images from '../settings/images/show'
-import show_email from '../settings/email_smtp/show'
+import smtp from '../settings/smtp/index'
 import show_sms from '../settings/sms_sender/show'
 import show_dashboard from '../dashboard/show'
 import show_item from '../item/show'
@@ -47,9 +47,9 @@ export default [
 
 	},
 	{
-		path : '/email-smtp',
-	    component: show_email,
-	    name: 'email',
+		path : '/smtp',
+	    component: smtp,
+	    name: 'smtp',
 
 	},
 	{
