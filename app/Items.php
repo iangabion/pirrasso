@@ -41,7 +41,7 @@ class Items extends Model
     }
 
     public function photos(){
-        return $this->morphToMany(Photos::class, 'imageable');
+        return $this->hasMany(Photos::class);
     }
 
     public function sessions(){
