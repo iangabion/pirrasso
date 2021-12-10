@@ -20,4 +20,8 @@ class Photos extends Model
     public function getLinkAttribute(){
         return asset('images/items/'. $this->filename);
     }
+    public function item(){
+		return $this->belongsTo(Items::class);
+	}
+
 }

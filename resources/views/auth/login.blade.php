@@ -87,7 +87,7 @@
 		}
 		.my_title {
 			position: absolute;
-    		top: 24%;
+    		top: 30%;
 			color: #fc440a;
 		}
 		</style>
@@ -104,7 +104,7 @@
 				<div class="d-flex justify-content-center form_container" style="display: flex; flex-direction: column; margin: 150px auto 0px auto;">
 					<div style="justify-content:center; margin: auto; line-height: 0.5!important">
 						<h1 class="my_title" style="margin:0; left: 28%;">BonPlan</h1>
-						<p style="font-size: 10px; margin:0; position: absolute; top: 35%; left: 48%; font-weight: bold">Online Shopping</p>
+						<p style="font-size: 10px; margin:0; position: absolute; top: 42%; left: 48%; font-weight: bold">Online Shopping</p>
 					</div>
 					<form method="POST" action="{{ route('login') }}">
 						@csrf

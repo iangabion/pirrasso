@@ -3104,54 +3104,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3164,20 +3116,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       page: 1,
       url: ''
     }, _defineProperty(_ref, "pageCount", 0), _defineProperty(_ref, "itemsPerPage", 10), _defineProperty(_ref, "total_client", 0), _defineProperty(_ref, "clients", []), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+      text: 'Full Name',
+      width: '20%',
+      value: 'fullname'
+    }, {
+      text: 'Mobile',
+      value: 'mobile',
+      width: '20%'
+    }, {
+      text: 'Total Items',
+      value: 'total_items',
+      width: '10%'
+    }, {
       text: 'Username',
       align: 'start',
       sortable: false,
-      value: 'username'
-    }, {
-      text: 'Social ID',
-      value: 'social_id'
+      value: 'username',
+      width: '20%'
     }, {
       text: 'Email',
-      value: 'email'
+      value: 'email',
+      width: '20%'
     }, {
       text: 'Actions',
       value: 'actions',
-      sortable: false
+      sortable: false,
+      width: '10%'
     }]), _ref;
   },
   computed: {// filteredClient(){
@@ -3185,7 +3149,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //         return this.clients.filter(client => {
     //             console.log(client.social_id,"search")
     //             if(client.username&&client.email){
-    //                 return client.username.toLowerCase().includes(this.search.toLowerCase()) || 
+    //                 return client.username.toLowerCase().includes(this.search.toLowerCase()) ||
     //                     client.email.toLowerCase().includes(this.search.toLowerCase())
     //             }
     //                 return client.social_id.includes(this.search.toLowerCase())
@@ -41926,36 +41890,80 @@ var render = function() {
       _c(
         "v-toolbar",
         [
-          _c("v-toolbar-title", { staticClass: "ml-3" }, [_vm._v("Seller")]),
+          _c("v-toolbar-title", { staticClass: "px-4" }, [
+            _vm._v("Seller List")
+          ]),
           _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
+          _c("v-spacer")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xs": "" } },
+        [
           _c(
-            "v-row",
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
             [
-              _c("v-col", { attrs: { cols: "6" } }),
-              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "6" } },
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      placeholder: "Search",
-                      dense: "",
-                      rounded: "",
-                      filled: "",
-                      "append-icon": "mdi-magnify",
-                      "hide-details": ""
-                    },
-                    model: {
-                      value: _vm.search,
-                      callback: function($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search"
-                    }
-                  })
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-data-table", {
+                        attrs: { headers: _vm.headers, items: _vm.clients },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "item.actions",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-icon",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showClient(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                mdi-account-cog\n                            "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-icon",
+                                  {
+                                    attrs: { small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteSeller(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                mdi-delete\n                            "
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -41964,49 +41972,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("v-data-table", {
-        attrs: { headers: _vm.headers, items: _vm.clients },
-        scopedSlots: _vm._u([
-          {
-            key: "item.actions",
-            fn: function(ref) {
-              var item = ref.item
-              return [
-                _c(
-                  "v-icon",
-                  {
-                    staticClass: "mr-2",
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.showClient(item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n            mdi-account-cog\n        ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-icon",
-                  {
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteSeller(item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n            mdi-delete\n        ")]
-                )
-              ]
-            }
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center pt-2" })
+      )
     ],
     1
   )
