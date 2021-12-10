@@ -410,10 +410,10 @@ export default {
                 // this.categories_with = response.data.filter(chan_filter=>
                 //     chan_filter.id==2
                 // );
-                this.categories_witho = response.data.filter(chan_filter=>
-                    chan_filter.id !=2
-                )
-                this.get_items(this.categories_with[0].id)
+                // this.categories_witho = response.data.filter(chan_filter=>
+                //     chan_filter.id !=2
+                // )
+                this.get_items(this.categories[0].id)
             }).catch((errors)=>{
                 console.log(errors)
             });

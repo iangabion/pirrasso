@@ -2715,13 +2715,12 @@ __webpack_require__.r(__webpack_exports__);
         _this2.categories.unshift(payload); // this.categories_with = response.data.filter(chan_filter=>
         //     chan_filter.id==2
         // );
+        // this.categories_witho = response.data.filter(chan_filter=>
+        //     chan_filter.id !=2
+        // )
 
 
-        _this2.categories_witho = response.data.filter(function (chan_filter) {
-          return chan_filter.id != 2;
-        });
-
-        _this2.get_items(_this2.categories_with[0].id);
+        _this2.get_items(_this2.categories[0].id);
       })["catch"](function (errors) {
         console.log(errors);
       });
