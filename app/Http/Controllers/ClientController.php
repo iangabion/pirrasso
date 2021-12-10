@@ -55,8 +55,8 @@ class ClientController extends Controller
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
-        
-        
+
+
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
@@ -64,7 +64,7 @@ class ClientController extends Controller
             $data = base64_decode($image);
             $imageName = date("YmdHis"). '.' . 'jpeg';
             file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
-            
+
             $client->image = $imageName ;
         }
         $client->verification_code = $this->generateRandomNumber();
@@ -149,7 +149,7 @@ class ClientController extends Controller
         if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
             $client->fcm_tokens()->create([
                 'token'=> $request->input('fcm_token')
-            ]); 
+            ]);
         }
 
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
@@ -167,7 +167,7 @@ class ClientController extends Controller
         if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
             $client->fcm_tokens()->create([
                 'token'=> $request->input('fcm_token')
-            ]); 
+            ]);
         }
         $accessToken = $client->createToken('authToken')->accessToken;
         return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
@@ -175,18 +175,19 @@ class ClientController extends Controller
 
     public function login(Request $request) {
         $loginData = $request->validate([
-            'username' => 'required',
+            'email_mobile' => 'required',
             'password' => 'required'
         ]);
         if($loginData){
-            $client = Client::where('username',$request->username)->first();
+            $client = Client::where('email',$request->email_mobile)
+            ->orWhere('mobile',$request->email_mobile)->first();
             if ( ($client != null) && Hash::check($request->password, $client->password) ){
                 $accessToken = $client->createToken('authToken')->accessToken;
                 $client->save();
                 if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
                     $client->fcm_tokens()->create([
                         'token'=> $request->input('fcm_token')
-                    ]); 
+                    ]);
                 }
                 return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
             }
