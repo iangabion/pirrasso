@@ -17,7 +17,7 @@
                             max-width="400"
                             min-width="400"
                             contain=""
-                            src="images/app_images/123.jpeg"
+                            src="images/app_images/logo.jpeg"
                         >
                         </v-img >
                         <v-card-subtitle align="center" class ="mt-0 pt-0">

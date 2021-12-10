@@ -43762,7 +43762,7 @@ var render = function() {
                           "max-width": "400",
                           "min-width": "400",
                           contain: "",
-                          src: "images/app_images/123.jpeg"
+                          src: "images/app_images/logo.jpeg"
                         }
                       }),
                       _vm._v(" "),
