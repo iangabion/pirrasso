@@ -2740,13 +2740,21 @@ __webpack_require__.r(__webpack_exports__);
           _this3.data_loaded = true;
           _this3.loading = false;
         });
-      } else {
-        this.data_loaded = false;
-        axios.post('api/get_category/' + id, {}).then(function (response) {
-          _this3.categories_item = response.data.data;
-          _this3.data_loaded = true;
-        });
-      }
+      } // else if(item.subcategories===0){
+      //     this.data_loaded=false;
+      //     axios.post('api/get_category/' + id, {})
+      //     .then(response => {
+      //         this.categories_item = response.data.data ;
+      //         this.data_loaded=true ;
+      //     })
+      // }
+      else {
+          this.data_loaded = false;
+          axios.get('api/get_items/' + id, {}).then(function (response) {
+            _this3.categories_item = response.data.data;
+            _this3.data_loaded = true;
+          });
+        }
     },
     highlight: function highlight(id) {
       return id === this.isgrey;
@@ -41455,6 +41463,17 @@ var render = function() {
           ])
         ]
       ),
+      _vm._v(" "),
+      _c("v-text-field", {
+        staticClass: "hidden-sm-and-down",
+        attrs: {
+          flat: "",
+          "solo-inverted": "",
+          "hide-details": "",
+          "prepend-inner-icon": "mdi-magnify",
+          label: "Search"
+        }
+      }),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),

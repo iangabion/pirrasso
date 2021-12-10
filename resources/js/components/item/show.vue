@@ -41,7 +41,7 @@
                     </template>
 
                     <v-list-item v-for="(subcat, i) in item.subcategories"
-                        :key="i" @click="selected_category = subcat.id"
+                        :key="i" @click=" selected_category = subcat.id"
                         v-bind:class="{'chan_grey' : highlight(subcat.id) }"
                         v-on:click="isgrey = subcat.id"
                     >
@@ -430,11 +430,18 @@ export default {
                     this.loading=false
                 })
             }
+            // else if(item.subcategories===0){
+            //     this.data_loaded=false;
+            //     axios.post('api/get_category/' + id, {})
+            //     .then(response => {
+            //         this.categories_item = response.data.data ;
+            //         this.data_loaded=true ;
+            //     })
+            // }
             else{
                 this.data_loaded=false;
-                axios.post('api/get_category/' + id, {})
-                .then(response => {
-                    this.categories_item = response.data.data ;
+                axios.get('api/get_items/' + id, {}).then(response=>{
+                    this.categories_item = response.data.data
                     this.data_loaded=true ;
                 })
             }
