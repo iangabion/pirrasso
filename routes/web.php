@@ -60,6 +60,8 @@ Route::middleware('auth:web')->group(function () {
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
+        Route::get('smtp/pagination', 'SmtpSettingController@pagination');
+        Route::post('smtp', 'SmtpSettingController@store');
 
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');
