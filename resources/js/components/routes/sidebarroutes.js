@@ -6,6 +6,7 @@ import show_sms from '../settings/sms_sender/show'
 import show_dashboard from '../dashboard/show'
 import show_item from '../item/show'
 import index_seller from '../seller/index'
+import approved_items from '../approved_items/index'
 export default [
   	{
 	    path : '/categories',
@@ -31,6 +32,12 @@ export default [
 		path : '/sellers',
 	    component: index_seller,
 	    name: 'seller',
+
+	},
+	{
+		path : '/approved_items',
+	    component: approved_items,
+	    name: 'approved_item',
 
 	},
     {
