@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SMSController;
+use App\Photos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +80,8 @@ Route::get('categories' ,'CategoryController@index');
 Route::get('category_items/{id}' ,'CategoryController@category_items');
 Route::get('get_items/{id}' ,'CategoryController@get_items');
 Route::get('get_all_items' ,'CategoryController@get_all');
+Route::post('get_category/{id}','CategoryController@get_category');
+
 
 
 // get all status
@@ -105,3 +109,12 @@ Route::get('test_code' ,'ClientController@sendVerificationCode');
 // search items
 Route::post('searchchan' ,'SearchController@searchchan');
 Route::get('search/{item?}' ,'SearchController@index');
+
+//API Settings Apps Images
+Route::get('get_catgry_image','CategoryController@get_catgry_image');
+Route::get('get_sub_image','CategoryController@get_sub_image');
+Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
+Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
+
+//Sms api
+Route::get('sendMessage', 'SMSController@sendMessage');

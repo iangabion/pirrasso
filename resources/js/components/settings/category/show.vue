@@ -78,7 +78,6 @@
                             :page.sync="page"
                             @page-count="pageCount = $event"
                         >
- <!-- here -->
                                             <template v-slot:item.name="{ item }">
                                                             <div class="cat-name">
                                                                 <v-icon class='mr-2, '>mdi-drag</v-icon>
@@ -121,7 +120,6 @@
                                             </v-list>
                                         </v-menu>
                                     </template>
-<!-- here -->
                         </v-data-table>
                         <v-pagination
                             v-model="page"
@@ -247,37 +245,6 @@
                                         circle
                                     ></v-pagination>
 
-                                    <!-- <v-simple-table class="elevation-1">
-                                        <template v-slot:default>
-                                        <thead>
-                                            <tr>
-                                                <th class="text-left">Icons</th>
-                                                <th class="text-left">Name</th>
-                                                <th class="text-left">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(item ,index) in categories_subcategories.subcategories" :key="index"
-                                            >
-                                                <td>
-                                                <v-img
-                                                        max-height="50"
-                                                        class="mx-auto"
-                                                        max-width="50"
-                                                        contain=""
-                                                        :src="item.icon"
-                                                    >
-                                                    </v-img>
-                                                </td>
-                                                <td>{{item.name}}</td>
-                                                <td>
-                                                    <v-icon color="info" small @click="get_sub(item.id)">mdi-pencil</v-icon>
-                                                    <v-icon color="error" small @click="delete_sub(item , index)">mdi-delete</v-icon>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        </template>
-                                    </v-simple-table> -->
                                 </v-flex>
                             </v-layout>
                         </v-card-text>
@@ -389,7 +356,7 @@ export default {
                     axios.post('/subcategories', this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
-                        alert('save')
+                        alert('else save')
                         self.get_categories()
                         self.categories_subcategories.subcategories.unshift(response.data)
                         self.subcatclear()
@@ -489,10 +456,10 @@ export default {
 
                 axios.get('category', {})
 			    .then(response => {
-                    let category = response.data.filter(chan_filter=>
-                        chan_filter.id != 2
-                    ) 
-                    this.categories = category;
+                    // let category = response.data.filter(chan_filter=>
+                    //     chan_filter.id != 2
+                    // ) 
+                    this.categories = response.data;
                     console.log(response.data, 'chan here category data here');
                     this.data_loaded = true;
 			    });

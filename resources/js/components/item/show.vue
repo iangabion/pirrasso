@@ -3,13 +3,6 @@
     <div>
         <v-toolbar elevation="0">
             <v-col cols="12" sm="6" lg="8">
-                 <!-- <v-text-field
-                    flat
-                    solo-inverted
-                    hide-details
-                    class="hidden-sm-and-down"
-                    style= "width: 300px"
-                /> -->
                 <v-text-field
                     flat
                     filled
@@ -26,36 +19,9 @@
             </v-col>
         </v-toolbar>
 
-<!-- here1 -->
-
-        <!-- <v-sheet elevation="6">
-            <v-tabs
-            background-color="primary"
-            dark
-            next-icon="mdi-arrow-right-bold-box-outline"
-            prev-icon="mdi-arrow-left-bold-box-outline"
-            show-arrows
-            fixed-tabs
-            v-model='tab'
-            >
-            <v-tabs-slider color="white"></v-tabs-slider>
-            <v-tab
-                :href="'#tab-'+ i.id"
-                v-for="i in categories"
-                :key="i.id"
-                @click.prevent="get_items(i.id)"
-            >
-                 {{ i.name }}
-            </v-tab>
-            </v-tabs>
-        </v-sheet> -->
-
-<!-- here1 -->
-<!-- here2 -->
 <v-row>
     <v-card width=25% max-height=auto elevation="0">
         <v-list dense>
-<!-- first -->
             <template v-for="item in categories" >
                 <v-row v-if="item.heading" :key="item.heading" align="center" >
                 </v-row>
@@ -63,7 +29,6 @@
                     v-else-if="item.subcategories!=0" :key="item.name" v-model="item.model"
 
                 >
-                <!-- v-bind:class="{chan_grey : isgrey(item.id)}" -->
                     <template v-slot:activator>
                         <v-list-item>
                             <v-list-item-content
@@ -80,11 +45,6 @@
                         v-bind:class="{'chan_grey' : highlight(subcat.id) }"
                         v-on:click="isgrey = subcat.id"
                     >
-                        <!-- v-bind:class="{chan_grey : isgrey}" -->
-
-                        <!-- <v-list-item-action v-if="subcat.name">
-                            <v-icon>{{subcat.name}}</v-icon>
-                        </v-list-item-action> -->
                         <v-list-item-content >
                             <v-list-item-title v-bind:class="{'chan_grey' : highlight(subcat.id) }">
                                 {{ subcat.name }}
@@ -95,11 +55,6 @@
                 <v-list-item v-else :key="item.id" @click.prevent="get_items(item.id)"
                     v-bind:class="{'chan_grey' : highlight(item.id) }" v-on:click="isgrey = item.id"
                 >
-                    <!-- v-bind:class="{chan_grey : isgrey}" -->
-
-                    <!-- <v-list-item-action>
-                        <v-icon>{{item.icon}}</v-icon>
-                    </v-list-item-action> -->
                     <v-list-item>
                         <v-list-item-content>
                             <v-list-item-title v-bind:class="{'chan_grey' : highlight(item.id) }">
@@ -110,34 +65,9 @@
                 </v-list-item>
 
             </template>
-<!-- first -->
-
-<!-- mid -->
-                <!-- <v-list-item-group
-                    v-model="tab" color="primary"
-                >
-                    <v-list-item v-model="id_chan" class="pb-5 pt-2" v-for="(item,i) in categories_with" :key="i.name" :href="'#tab-'+ i.id"
-                        @click.prevent="get_items(i.id)"
-                    >
-                        {{ item.name }}
-                    </v-list-item>
-
-                    <v-list-item
-                        v-for="(item,i) in categories_witho"
-                        :key="i"
-                    >
-                        <v-select class="custom" :items="item.subcategories" :placeholder="item.name" item-text="name"
-                            dense
-                        >
-                         {{ item.subcategories.name }}
-                        </v-select>
-                    </v-list-item>
-                </v-list-item-group> -->
-<!-- mid -->
 
         </v-list>
     </v-card>
-<!-- here2 -->
     <v-card width=70% elevation="0">
         <v-container class="">
             <v-layout row wrap>
@@ -384,7 +314,6 @@ export default {
         form:{
             search:'',
         },
-        // id:'1',
         loading: false,
         categor:{},
         tab:'tab-1',
@@ -394,7 +323,6 @@ export default {
         categories_witho:[],
         id_chan:'tab-1',
         selected_category:'',
-        // isgray: "chan_con"
 
         isgrey: 1,
         is_show: true,
@@ -435,9 +363,6 @@ export default {
                     this.selected_category=''
                     this.loading=false
                 }
-                // else if(key===''){
-                //     this.get_categories()
-                // }
                 else{
 
                     if(this.timer){
@@ -453,7 +378,6 @@ export default {
                                 this.get_categories()
                         }else{
                             axios.post('/api/searchchan', payload, {}).then((data) => {
-                            console.log(data, 'chan search')
                             this.categor = data.data
                             this.categories_item = this.categor.data
 
@@ -470,27 +394,25 @@ export default {
                 }
             });
 
-
-            // if(this.form.search==''){
-            //     this.get_categories()
-            // }
         },
-
 
         get_categories() {
             axios.get('/api/categories', {})
+
             .then(response => {
-                console.log(response.data, 'here is category chan')
                 this.categories = response.data;
-                this.categories_with = response.data.filter(chan_filter=>
-                    chan_filter.id==2
-                );
-                console.log( this.categories_with, 'here is categories_with chan 1')
+                let payload = {
+                    id: 0,
+                    name: 'All',
+                    subcategories: 0
+                }
+                this.categories.unshift(payload)
+                // this.categories_with = response.data.filter(chan_filter=>
+                //     chan_filter.id==2
+                // );
                 this.categories_witho = response.data.filter(chan_filter=>
                     chan_filter.id !=2
                 )
-                console.log(this.categories_witho,'chandun here this categories_witho chan 14')
-                // this.id_chan = 'tab-2'
                 this.get_items(this.categories_with[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -498,16 +420,11 @@ export default {
         },
 
         get_items(id) {
-            // this.loading=true
-            // alert(id)
-            if(id===2) {
+            if(id===0) {
                 this.loading=true
                 this.data_loaded=false
                 axios.get('/api/get_all_items').then(response =>{
-                    console.log(response.data.data, 'test' )
                     this.categories_item = response.data.data
-                    // this.tab ='tab-2'
-                    // this.form.search=null
                     this.highlight(id)
                     this.data_loaded=true
                     this.loading=false
@@ -515,19 +432,15 @@ export default {
             }
             else{
                 this.data_loaded=false;
-                axios.get('api/get_items/' + id, {})
+                axios.post('api/get_category/' + id, {})
                 .then(response => {
-                    console.log(response.data, 'chan here items console')
                     this.categories_item = response.data.data ;
-                    console.log(this.categories_item, 'chan here get_items')
-                    // this.form.search=null
                     this.data_loaded=true ;
                 })
             }
         },
 
         highlight(id){
-            // alert(id)
             return id === this.isgrey
         },
 
@@ -537,7 +450,6 @@ export default {
                     axios.delete('/item/'+id, {})
                     .then(response => {
                         this.categories_item.splice(index,1)
-                        console.log(response.data)
                         alert('delete')
                     });
                 }
@@ -546,7 +458,6 @@ export default {
 
         activate(){
             // axios.put('/subcategories/'+id, this.subcat )
-            console.log(this.payload, 'test')
             // return
             axios.put('activate/',this.payload).then(res=> {
                 console.log(res, 'activate')
@@ -585,8 +496,6 @@ export default {
     },
      mounted() {
              this.get_categories()
-            //  this.get_items()
-
 	},
     watch:{
         "form.search":{

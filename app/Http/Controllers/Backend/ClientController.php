@@ -99,18 +99,18 @@ class ClientController extends Controller
         return $client->paginate(10);
     }
 
-    // public function showClient()
-    // {
-    //     $client = Client::with('items.photos','items.category')->get();
-    //     return $client;
-    // }
+    public function show($id)
+    {
+        $client = Client::with('items.photos','items.category')->find(3);
+        return $client;
+    }
 
     // public function show(Request $request){
     //     $clients = Client::query();
     //     $clients->with('items.photos','items.category');
     //     $keyword = $request->input('keyword');
     //     $clients->where(function($query) use($keyword){
-    //         $query  ->where('username', 'LIKE', "%$keyword%");                                
+    //         $query  ->where('username', 'LIKE', "%$keyword%");
     //     });
     //     return $clients->orderBy('created_at', 'desc')->paginate(10);
     // }

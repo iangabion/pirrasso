@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //
-
+    // protected $guarded = [];
     // scopes
     public function scopeTitleSearch($query , $searchTerm)
     {

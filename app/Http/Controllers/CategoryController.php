@@ -22,9 +22,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        // $categories = Category::all();
-        // return CategoryResource::collection($categories) ;
 
         $categories = Category::with('items', 'subcategories')->orderBy('id', 'asc')->get();
         return $categories;
@@ -131,6 +128,24 @@ class CategoryController extends Controller
         return $subcategory;
     }
 
+    // get subcat image
+    public function get_sub_image(){
+        $sub = Subcategory::with('photos')->get();
+        // $sub = Subcategory::find(1);
+        return $sub;
+    }
+
+    //get category image
+    public function get_catgry_image(){
+        return Category::get();
+    }
+
+    public function get_category($id){
+        $cat = Items::whereHas('category', function($q) use($id){
+            $q->where('id', $id);
+        })->get();
+        return ItemResource::collection($cat);
+    }
 
 
 
