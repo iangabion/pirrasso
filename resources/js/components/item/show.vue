@@ -378,7 +378,6 @@ export default {
                                 this.get_categories()
                         }else{
                             axios.post('/api/searchchan', payload, {}).then((data) => {
-                            console.log(data, 'chan search')
                             this.categor = data.data
                             this.categories_item = this.categor.data
 
@@ -397,20 +396,23 @@ export default {
 
         },
 
-
         get_categories() {
             axios.get('/api/categories', {})
+
             .then(response => {
-                console.log(response.data, 'here is category chan')
                 this.categories = response.data;
-                this.categories_with = response.data.filter(chan_filter=>
-                    chan_filter.id==2
-                );
-                console.log( this.categories_with, 'here is categories_with chan 1')
+                let payload = {
+                    id: 0,
+                    name: 'All',
+                    subcategories: 0
+                }
+                this.categories.unshift(payload)
+                // this.categories_with = response.data.filter(chan_filter=>
+                //     chan_filter.id==2
+                // );
                 this.categories_witho = response.data.filter(chan_filter=>
                     chan_filter.id !=2
                 )
-                console.log(this.categories_witho,'chandun here this categories_witho chan 14')
                 this.get_items(this.categories_with[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -418,11 +420,10 @@ export default {
         },
 
         get_items(id) {
-            if(id===2) {
+            if(id===0) {
                 this.loading=true
                 this.data_loaded=false
                 axios.get('/api/get_all_items').then(response =>{
-                    console.log(response.data.data, 'test' )
                     this.categories_item = response.data.data
                     this.highlight(id)
                     this.data_loaded=true
@@ -431,11 +432,9 @@ export default {
             }
             else{
                 this.data_loaded=false;
-                axios.get('api/get_items/' + id, {})
+                axios.post('api/get_category/' + id, {})
                 .then(response => {
-                    console.log(response.data, 'chan here items console')
                     this.categories_item = response.data.data ;
-                    console.log(this.categories_item, 'chan here get_items')
                     this.data_loaded=true ;
                 })
             }
@@ -451,7 +450,6 @@ export default {
                     axios.delete('/item/'+id, {})
                     .then(response => {
                         this.categories_item.splice(index,1)
-                        console.log(response.data)
                         alert('delete')
                     });
                 }
@@ -460,7 +458,6 @@ export default {
 
         activate(){
             // axios.put('/subcategories/'+id, this.subcat )
-            console.log(this.payload, 'test')
             // return
             axios.put('activate/',this.payload).then(res=> {
                 console.log(res, 'activate')
