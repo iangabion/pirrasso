@@ -3128,54 +3128,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3188,20 +3140,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       page: 1,
       url: ''
     }, _defineProperty(_ref, "pageCount", 0), _defineProperty(_ref, "itemsPerPage", 10), _defineProperty(_ref, "total_client", 0), _defineProperty(_ref, "clients", []), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+      text: 'Full Name',
+      width: '20%',
+      value: 'fullname'
+    }, {
+      text: 'Mobile',
+      value: 'mobile',
+      width: '20%'
+    }, {
+      text: 'Total Items',
+      value: 'total_items',
+      width: '10%'
+    }, {
       text: 'Username',
       align: 'start',
       sortable: false,
-      value: 'username'
-    }, {
-      text: 'Social ID',
-      value: 'social_id'
+      value: 'username',
+      width: '20%'
     }, {
       text: 'Email',
-      value: 'email'
+      value: 'email',
+      width: '20%'
     }, {
       text: 'Actions',
       value: 'actions',
-      sortable: false
+      sortable: false,
+      width: '10%'
     }]), _ref;
   },
   computed: {// filteredClient(){
@@ -3209,7 +3173,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //         return this.clients.filter(client => {
     //             console.log(client.social_id,"search")
     //             if(client.username&&client.email){
-    //                 return client.username.toLowerCase().includes(this.search.toLowerCase()) || 
+    //                 return client.username.toLowerCase().includes(this.search.toLowerCase()) ||
     //                     client.email.toLowerCase().includes(this.search.toLowerCase())
     //             }
     //                 return client.social_id.includes(this.search.toLowerCase())
@@ -4742,7 +4706,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.v-dialog .v-card {\r\n    border-radius:0px !important;\n}\n.v-dialog .v-card__text {\r\n    font-size: 19px;\r\n    padding: 25px!important;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-dialog .v-card {\n    border-radius:0px !important;\n}\n.v-dialog .v-card__text {\n    font-size: 19px;\n    padding: 25px!important;\n}\n", ""]);
 
 // exports
 
@@ -4780,7 +4744,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.truncate[data-v-4e3ea10d] {\r\n    width: 97%;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
+exports.push([module.i, "\n.truncate[data-v-4e3ea10d] {\n    width: 97%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n}\n", ""]);
 
 // exports
 
@@ -4799,7 +4763,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .v-responsive .v-image v-carousel__item{\r\n    height: 250px !important;\r\n    width: 334px !important;\r\n} */\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .v-responsive .v-image v-carousel__item{\n    height: 250px !important;\n    width: 334px !important;\n} */\n", ""]);
 
 // exports
 
@@ -41698,36 +41662,80 @@ var render = function() {
       _c(
         "v-toolbar",
         [
-          _c("v-toolbar-title", { staticClass: "ml-3" }, [_vm._v("Seller")]),
+          _c("v-toolbar-title", { staticClass: "px-4" }, [
+            _vm._v("Seller List")
+          ]),
           _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
+          _c("v-spacer")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xs": "" } },
+        [
           _c(
-            "v-row",
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
             [
-              _c("v-col", { attrs: { cols: "6" } }),
-              _vm._v(" "),
               _c(
-                "v-col",
-                { attrs: { cols: "6" } },
+                "v-flex",
+                { attrs: { xs12: "" } },
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      placeholder: "Search",
-                      dense: "",
-                      rounded: "",
-                      filled: "",
-                      "append-icon": "mdi-magnify",
-                      "hide-details": ""
-                    },
-                    model: {
-                      value: _vm.search,
-                      callback: function($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search"
-                    }
-                  })
+                  _c(
+                    "v-card",
+                    [
+                      _c("v-data-table", {
+                        attrs: { headers: _vm.headers, items: _vm.clients },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "item.actions",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-icon",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showClient(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                mdi-account-cog\n                            "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-icon",
+                                  {
+                                    attrs: { small: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteSeller(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                mdi-delete\n                            "
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -41736,49 +41744,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("v-data-table", {
-        attrs: { headers: _vm.headers, items: _vm.clients },
-        scopedSlots: _vm._u([
-          {
-            key: "item.actions",
-            fn: function(ref) {
-              var item = ref.item
-              return [
-                _c(
-                  "v-icon",
-                  {
-                    staticClass: "mr-2",
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.showClient(item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n            mdi-account-cog\n        ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-icon",
-                  {
-                    attrs: { small: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteSeller(item)
-                      }
-                    }
-                  },
-                  [_vm._v("\n            mdi-delete\n        ")]
-                )
-              ]
-            }
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center pt-2" })
+      )
     ],
     1
   )
@@ -103360,8 +103326,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\cachero\buy-and-sell\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\cachero\buy-and-sell\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/htdocs/PROJECT/Bon-Plan/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/htdocs/PROJECT/Bon-Plan/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
