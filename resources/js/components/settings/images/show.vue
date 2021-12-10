@@ -4,6 +4,9 @@
             <v-toolbar-title class="px-4">Apps Images</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
+
+        <v-container grid-list-xs >
+        <!-- <v-layout row wrap> -->
         <v-card>
             <v-row no-gutters>
                 <v-card width="50%" align="center" elevation=0>
@@ -56,6 +59,8 @@
                 </v-card>
             </v-row>
         </v-card>
+        <!-- </v-layout> -->
+        </v-container>
     </div>
 </template>
 

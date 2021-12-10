@@ -4439,6 +4439,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -43716,109 +43721,124 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-card",
+        "v-container",
+        { attrs: { "grid-list-xs": "" } },
         [
           _c(
-            "v-row",
-            { attrs: { "no-gutters": "" } },
+            "v-card",
             [
               _c(
-                "v-card",
-                { attrs: { width: "50%", align: "center", elevation: "0" } },
-                [
-                  _c("v-img", {
-                    attrs: {
-                      "max-height": "400",
-                      "min-height": "400",
-                      "max-width": "400",
-                      "min-width": "400",
-                      contain: "",
-                      src: "images/app_images/123.jpeg"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-subtitle",
-                    { staticClass: "mt-0 pt-0", attrs: { align: "center" } },
-                    [_c("h1", [_vm._v("Current App Logo")])]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                { attrs: { width: "50%", elevation: "0" } },
+                "v-row",
+                { attrs: { "no-gutters": "" } },
                 [
                   _c(
-                    "v-row",
+                    "v-card",
                     {
-                      staticClass: "mt-8",
-                      attrs: { "no-gutters": "", align: "center" }
+                      attrs: { width: "50%", align: "center", elevation: "0" }
                     },
                     [
                       _c("v-img", {
-                        staticClass: "mx-auto mt-12",
                         attrs: {
-                          "max-height": "200",
-                          "min-height": "200",
-                          "max-width": "200",
-                          "min-width": "200",
+                          "max-height": "400",
+                          "min-height": "400",
+                          "max-width": "400",
+                          "min-width": "400",
                           contain: "",
-                          src:
-                            _vm.logo.image ||
-                            "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
+                          src: "images/app_images/123.jpeg"
                         }
                       }),
                       _vm._v(" "),
-                      _c("v-file-input", {
-                        directives: [
-                          {
-                            name: "validate",
-                            rawName: "v-validate",
-                            value: "image",
-                            expression: "'image'"
-                          }
-                        ],
-                        staticClass: "pr-12",
-                        attrs: {
-                          "small-chips": "",
-                          accept: "image/*",
-                          label: "Change Logo",
-                          "error-messages": _vm.errors.collect("Logo"),
-                          "data-vv-name": "Logo"
+                      _c(
+                        "v-card-subtitle",
+                        {
+                          staticClass: "mt-0 pt-0",
+                          attrs: { align: "center" }
                         },
-                        on: {
-                          change: function($event) {
-                            return _vm.onFileChange("cat", $event)
-                          }
-                        }
-                      })
+                        [_c("h1", [_vm._v("Current App Logo")])]
+                      )
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-flex",
-                    { staticClass: "text-left mt-6 ml-9", attrs: { xs12: "" } },
+                    "v-card",
+                    { attrs: { width: "50%", elevation: "0" } },
                     [
                       _c(
-                        "v-btn",
+                        "v-row",
                         {
-                          attrs: { color: "success", small: "", title: "" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.save_logo($event)
-                            }
-                          }
+                          staticClass: "mt-8",
+                          attrs: { "no-gutters": "", align: "center" }
                         },
                         [
-                          _c("v-icon", { attrs: { left: "" } }, [
-                            _vm._v("mdi-content-save-edit-outline")
-                          ]),
-                          _vm._v(
-                            "\n                            save logo\n                        "
+                          _c("v-img", {
+                            staticClass: "mx-auto mt-12",
+                            attrs: {
+                              "max-height": "200",
+                              "min-height": "200",
+                              "max-width": "200",
+                              "min-width": "200",
+                              contain: "",
+                              src:
+                                _vm.logo.image ||
+                                "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-file-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "image",
+                                expression: "'image'"
+                              }
+                            ],
+                            staticClass: "pr-12",
+                            attrs: {
+                              "small-chips": "",
+                              accept: "image/*",
+                              label: "Change Logo",
+                              "error-messages": _vm.errors.collect("Logo"),
+                              "data-vv-name": "Logo"
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.onFileChange("cat", $event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        {
+                          staticClass: "text-left mt-6 ml-9",
+                          attrs: { xs12: "" }
+                        },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "success", small: "", title: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.save_logo($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { left: "" } }, [
+                                _vm._v("mdi-content-save-edit-outline")
+                              ]),
+                              _vm._v(
+                                "\n                            save logo\n                        "
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
