@@ -101,7 +101,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        $client = Client::with('items.photos','items.category')->find(3);
+        $client = Client::with('items.photos','items.category')->find($id);
         return $client;
     }
 
