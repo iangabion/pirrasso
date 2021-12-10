@@ -61,7 +61,7 @@
 		}
 		.login_btn {
 			width: 100%;
-			background: #ff9f00 !important;
+			background: #fc440a;;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -87,8 +87,8 @@
 		}
 		.my_title {
 			position: absolute;
-    		top: 28%;
-			color: white;
+    		top: 24%;
+			color: #fc440a;
 		}
 		</style>
 <!--Coded with love by Mutiullah Samim-->
@@ -101,8 +101,11 @@
 						<img src="https://thumbs.dreamstime.com/b/buy-sell-hold-dice-25918039.jpg" class="brand_logo" alt="Logo">
 					</div>
 				</div>
-				<div class="d-flex justify-content-center form_container">
-					<h4 class="my_title">Qonvex Buy and Sell</h4>
+				<div class="d-flex justify-content-center form_container" style="display: flex; flex-direction: column; margin: 150px auto 0px auto;">
+					<div style="justify-content:center; margin: auto; line-height: 0.5!important">
+						<h1 class="my_title" style="margin:0; left: 28%;">BonPlan</h1>
+						<p style="font-size: 10px; margin:0; position: absolute; top: 35%; left: 48%; font-weight: bold">Online Shopping</p>
+					</div>
 					<form method="POST" action="{{ route('login') }}">
 						@csrf
 						<div class="input-group mb-3">
@@ -131,7 +134,7 @@
                                 @enderror
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="submit" name="button" class="btn login_btn">Login</button>
+				 	<button type="submit" name="button" class="btn login_btn" style="color: #fc440a;!important">Login</button>
 				   </div>
 					</form>
 				</div>

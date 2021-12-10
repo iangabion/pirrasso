@@ -2662,7 +2662,6 @@ __webpack_require__.r(__webpack_exports__);
               _this.get_categories();
             } else {
               axios.post('/api/searchchan', payload, {}).then(function (data) {
-                console.log(data, 'chan search');
                 _this.categor = data.data;
                 _this.categories_item = _this.categor.data; // app.$data.isgray=true
                 // ({})
@@ -2682,16 +2681,21 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/api/categories', {}).then(function (response) {
-        console.log(response.data, 'here is category chan');
         _this2.categories = response.data;
-        _this2.categories_with = response.data.filter(function (chan_filter) {
-          return chan_filter.id == 2;
-        });
-        console.log(_this2.categories_with, 'here is categories_with chan 1');
+        var payload = {
+          id: 0,
+          name: 'All',
+          subcategories: 0
+        };
+
+        _this2.categories.unshift(payload); // this.categories_with = response.data.filter(chan_filter=>
+        //     chan_filter.id==2
+        // );
+
+
         _this2.categories_witho = response.data.filter(function (chan_filter) {
           return chan_filter.id != 2;
         });
-        console.log(_this2.categories_witho, 'chandun here this categories_witho chan 14');
 
         _this2.get_items(_this2.categories_with[0].id);
       })["catch"](function (errors) {
@@ -2701,11 +2705,10 @@ __webpack_require__.r(__webpack_exports__);
     get_items: function get_items(id) {
       var _this3 = this;
 
-      if (id === 2) {
+      if (id === 0) {
         this.loading = true;
         this.data_loaded = false;
         axios.get('/api/get_all_items').then(function (response) {
-          console.log(response.data.data, 'test');
           _this3.categories_item = response.data.data;
 
           _this3.highlight(id);
@@ -2715,10 +2718,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.data_loaded = false;
-        axios.get('api/get_items/' + id, {}).then(function (response) {
-          console.log(response.data, 'chan here items console');
+        axios.post('api/get_category/' + id, {}).then(function (response) {
           _this3.categories_item = response.data.data;
-          console.log(_this3.categories_item, 'chan here get_items');
           _this3.data_loaded = true;
         });
       }
@@ -2734,7 +2735,6 @@ __webpack_require__.r(__webpack_exports__);
           axios["delete"]('/item/' + id, {}).then(function (response) {
             _this4.categories_item.splice(index, 1);
 
-            console.log(response.data);
             alert('delete');
           });
         }
@@ -2744,8 +2744,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       // axios.put('/subcategories/'+id, this.subcat )
-      console.log(this.payload, 'test'); // return
-
+      // return
       axios.put('activate/', this.payload).then(function (res) {
         console.log(res, 'activate');
 
@@ -4302,10 +4301,10 @@ __webpack_require__.r(__webpack_exports__);
         _this7.getAll = response.data;
       });
       axios.get('category', {}).then(function (response) {
-        var category = response.data.filter(function (chan_filter) {
-          return chan_filter.id != 2;
-        });
-        _this7.categories = category;
+        // let category = response.data.filter(chan_filter=>
+        //     chan_filter.id != 2
+        // ) 
+        _this7.categories = response.data;
         console.log(response.data, 'chan here category data here');
         _this7.data_loaded = true;
       });
