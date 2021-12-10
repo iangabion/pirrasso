@@ -140,6 +140,13 @@ class CategoryController extends Controller
         return Category::get();
     }
 
+    public function get_category($id){
+        $cat = Items::whereHas('category', function($q) use($id){
+            $q->where('id', $id);
+        })->get();
+        return ItemResource::collection($cat);
+    }
+
 
 
     /**
