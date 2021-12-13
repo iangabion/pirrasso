@@ -16,7 +16,7 @@
         />
       </div>
       <v-btn @click="dialog2 = true">
-        <v-icon style="padding-right: 10px">
+        <v-icon class="add_smtp">
           mdi-database-plus
         </v-icon>
         Add Setting
@@ -44,8 +44,8 @@
                         <v-icon>mdi-dots-vertical</v-icon>
                       </v-btn>
                     </template>
-                    <v-list style="padding: 0">
-                      <v-list-item class="dd" style="padding: 0">
+                    <v-list class="action_list">
+                      <v-list-item class="action_list">
                         <v-btn
                           icon
                         >
@@ -85,8 +85,8 @@
           </v-flex>
         </v-layout>
         <v-dialog v-model="dialog2" persistent>
-          <v-card style="width: 100;justify-content: center;margin: auto;">
-            <div class="container" style="width: 500px">
+          <v-card class="card_main">
+            <div class="container card_container">
               <form>
                 <v-text-field
                   v-model="formData.mail_mailer"
@@ -160,7 +160,6 @@
 export default {
   data() {
     return {
-      dialog_alert: false,
       dialog2: false,
       formData: {
         mail_mailer: '',
@@ -171,16 +170,10 @@ export default {
         mail_encryption: '',
         id: '',
       },
-      current_page: 1,
       form: {
         search: '',
       },
-      pageCount: 0,
-      itemsPerPage: null,
-      total_index: 0,
       smtp: [],
-      page: 1,
-      url: '',
       loading: false,
       on_menu: true,
       headers: [
@@ -222,11 +215,13 @@ export default {
       },800);
     },
     destroy(id) {
+      this.loading = true
       var conf = confirm('Are you sure want to delete this record?');
       if(conf)
       axios.delete('smtp/delete/'+ id).then((response)=> {
         console.log(response.data)
         this.search();
+        this.loading = false
       })
     },
     edit(id) {
@@ -251,6 +246,7 @@ export default {
       this.$validator.reset();
     },
     create() {
+      this.loading = true
       this.$validator.validateAll().then(result => {
         if (result){
           this.$root.$confirm('Are you sure you want to save ?').then((result) => {
@@ -262,6 +258,7 @@ export default {
                   dis.clearformData()
                   dis.dialog2=false;
                   dis.search();
+                  dis.loading = false
                   alert('Successfully Updated');
               })
               }else{
@@ -269,6 +266,7 @@ export default {
                   console.log(data)
                   this.clearformData()
                   this.dialog2=false;
+                  this.loading = false
                   this.search();
                   alert('Successfully Created');
                 }).catch((error)=> {
@@ -291,3 +289,23 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.add_smtp {
+  padding-right: 10px;
+}
+
+.action_list {
+  padding: 0;
+}
+
+.card_main {
+  width: 100;
+  justify-content: center;
+  margin: auto;
+}
+
+.card_container {
+  width: 500px;
+}
+</style>
