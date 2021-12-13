@@ -156,3 +156,8 @@
   height: 50px;
   border-radius: 50%;
 }
+
+.v-dialog {
+  box-shadow: none!important;
+  width: 30%!important;
+}

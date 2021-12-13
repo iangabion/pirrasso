@@ -83,7 +83,7 @@
             { icon: 'mdi-tab', text: 'Items Categories' , url:'/categories' },
             { icon: 'mdi-new-box', text: 'Items Status' , url:'/statuses' },
             { icon: 'mdi-image', text: 'Apps Images' , url:'/apps_images' },
-            { icon: 'mdi-email-newsletter', text: 'Email SMTP Settings' , url:'/smtp' },
+            { icon: 'mdi-email-newsletter', text: 'Email SMTP Settings' , url:'/smtps' },
             { icon: 'mdi-message-processing', text: 'SMS Sender Settings' , url:'/sms' },
           ],
         },

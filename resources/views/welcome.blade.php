@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/main.css')}}">
         <link rel="icon" type="image/png"  href="{{asset('images/qonvex_buy_sell.png')}}">
 
     </head>
