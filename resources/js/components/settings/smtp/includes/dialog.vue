@@ -1,0 +1,225 @@
+<template>
+    <v-dialog v-model="dialog" persistent width="30%">
+          <v-card>
+            <v-card-title class="text-h5 grey lighten-2">
+                SMTP CREDENTIALS
+            </v-card-title>
+
+            <v-card-text>
+                <v-container fluid>
+                    <v-row>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Mailer</v-subheader>
+                            <v-text-field
+                                v-model="formData.mail_mailer"
+                                name= "MAIL_MAILER"
+                                ref="MAIL_MAILER"
+                                dense
+                                filled
+                                solo
+                                hide-details
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_MAILER')"
+                                data-vv-name="MAIL_MAILER"
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Host</v-subheader>
+                            <v-text-field
+                               v-model="formData.mail_host"
+                                name="MAIL_HOST"
+                                ref="MAIL_HOST"
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_HOST')"
+                                data-vv-name="MAIL_HOST"
+                                dense
+                                filled
+                                solo
+                                hide-details
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Port</v-subheader>
+                            <v-text-field
+                                type="number"
+                                v-model="formData.mail_port"
+                                ref="MAIL_PORT"
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_PORT')"
+                                data-vv-name="MAIL_PORT"
+                                dense
+                                filled
+                                solo
+                                hide-details
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Username</v-subheader>
+                            <v-text-field
+                                v-model="formData.mail_username"
+                                ref="MAIL_USERNAME"
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_USERNAME')"
+                                data-vv-name="MAIL_USERNAME"
+                                dense
+                                filled
+                                solo
+                                hide-details
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Password</v-subheader>
+                            <v-text-field
+                                v-model="formData.mail_password"
+                                ref="MAIL_PASSWORD"
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_PASSWORD')"
+                                data-vv-name="MAIL_PASSWORD"
+                                dense
+                                hide-details
+                                filled
+                                solo
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Mail Encryption</v-subheader>
+                            <v-text-field
+                                v-model="formData.mail_encryption"
+                                ref="MAIL_ENCRYPTION"
+                                v-validate="'required'"
+                                :error-messages="errors.collect('MAIL_ENCRYPTION')"
+                                data-vv-name="MAIL_ENCRYPTION"
+                                dense
+                                filled
+                                solo
+                            ></v-text-field>
+                        </v-flex>
+                    </v-row>
+                </v-container>
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                    color="primary"
+                    small
+                    width="70px"
+                    @click="create"
+                >
+                    Submit
+                </v-btn>
+                <v-btn
+                    color="error"
+                    small
+                    width="70px"
+                    @click="$emit('close')"
+                    @click.prevent= 'clearformData()'
+                >
+                    Close
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+</template>
+<script>
+export default {
+    data(){
+        return {
+            formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            }
+        }
+    },
+    props: {
+        dialog:{
+            required: true,
+            type: Boolean,
+            default: false
+        },
+        id:{
+            type:Number,
+        }
+    },
+     watch:{
+        id: function(val){
+            if(val != 0){
+                console.log(val, 'val')
+                this.edit(val)
+            }
+        }
+    },
+    methods: {
+        create() {
+            this.loading = true
+            this.$validator.validateAll().then(result => {
+                if (result){
+                this.$root.$confirm('Are you sure you want to save ?').then((result) => {
+                    if(result) {
+                        let dis = this ;
+                        let id = this.formData.id;
+                        if(id != 0) {
+                            axios.put('smtp/update/'+id, this.formData ).then(function (response) {
+                            dis.clearformData()
+                            dis.$emit('search')
+                            dis.$emit('close')
+                            dis.loading = false
+                            alert('Successfully Updated');
+                        })
+                        }else{
+                            axios.post('smtp/create', this.formData).then((data)=> {
+                            console.log(data)
+                            this.clearformData()
+                            this.$emit('search')
+                            this.$emit('close')
+                            this.loading = false
+                            alert('Successfully Created');
+                            }).catch((error)=> {
+                            console.log(error)
+                        });
+                    }
+                    }
+                })
+                }
+            })
+        },
+        edit(id) {
+            axios.get('smtp/show/'+ id, {}).then(response => {
+                console.log(response.data, 'test')
+                this.formData.id = response.data.id;
+                this.formData.mail_mailer = response.data.mail_mailer;
+                this.formData.mail_host= response.data.mail_host;
+                this.formData.mail_port= response.data.mail_port;
+                this.formData.mail_username= response.data.mail_username;
+                this.formData.mail_password= response.data.mail_password;
+                this.formData.mail_encryption= response.data.mail_encryption;
+            });
+        },
+
+        clearformData() {
+            this.formData.mail_mailer ='',
+            this.formData.mail_host= '',
+            this.formData.mail_port= '',
+            this.formData.mail_username= '',
+            this.formData.mail_password= '',
+            this.formData.mail_encryption= '',
+            this.formData.id= ''
+            this.$validator.reset();
+        },
+    }
+}
+</script>
+<style scoped>
+.v-subheader{
+    height: 30px !important;
+    margin-bottom: 1px;
+    margin-top: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+</style>

@@ -1,5 +1,38 @@
 export default {
 
+    sidebar: {
+        dashboard: "Dashboard",
+        items: "Items",
+        sellers: "Sellers",
+        approved_items: "Approved Items",
+        item_categories: "Item Categories",
+        item_status: "Item Status",
+        apps_images: "Apps Images",
+        email_smtp_settings: "Email SMTP Settings",
+        sms_sender_settings: "SMS Sender Settings",
+    },
+    approved_items: {
+        to_be_approved_items: "To be approved Items",
+        approve: "Approve",
+        disapproved: "Disapprove",
+        item_name: "Item Name",
+        category: "Category",
+        price: "Price",
+        seller_username: "Seller Username",
+        added_on: "Added On",
+
+        disapproved_dialog: {
+            disapprovement_notice: "Disapprovement Notice",
+            send: "Send",
+            Cancel: "Cancel",
+        }
+    },
+    alert: {
+        confirm: {
+            okay: "Okay",
+            cancel: "Cancel"
+        }
+    },
 
     error: {
         emptyItems: {
@@ -74,6 +107,25 @@ export default {
             apps_images: "Apps Images",
             current_app_logo: "Current App Logo",
             save_logo: "Save Logo",
+
+
+        },
+        smtp: {
+            smtp: "Setting",
+            add_setting: "Add Setting",
+            remove_default: "Remove Default",
+            set_as_default: "Set as Default",
+            edit: "Edit",
+            delete: "Delete",
+            no_data_found: "No Data Found",
+            mail_mailer: "Mail Mailer",
+            mail_host: "Mail Host",
+            mail_port: "Mail Port",
+            mail_username: "Mail Port",
+            mail_password: "Mail Password",
+            mail_encryption: "Mail Encryption",
+            default: "Default",
+            are_you_sure_want_to_delete_this_record: "Are you sure you want to delete this Record?"
 
 
         },

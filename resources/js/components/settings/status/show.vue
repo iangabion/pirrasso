@@ -17,13 +17,13 @@
                                                 <p class="subheading pa-0 font-weight-bold">{{$t('settings.status_information')}}</p>
                                             </v-flex>
                                             <v-flex xs12>
-                                                <v-text-field 
+                                                <v-text-field
                                                     type="text"
                                                     v-model="statuses.name"
-                                                    v-validate="'required'" 
-                                                    :error-messages="errors.collect('Status Name')" 
-                                                    data-vv-name="Status Name" 
-                                                    :label="this.$t('settings.status.status_name')" required>
+                                                    v-validate="'required'"
+                                                    :error-messages="errors.collect('Status Name')"
+                                                    data-vv-name="Status Name"
+                                                    label="Status Name" required>
                                                 </v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -58,12 +58,12 @@
                         <template v-slot:item.action="{ item }">
                              <v-menu bottom origin="right center" transition="scale-transition">
                                 <template v-slot:activator="{ on }">
-                                    <v-btn text color="primary" dark v-on="on" @click.stop>
+                                    <v-btn icon color="primary" dark v-on="on" @click.stop>
                                         <v-icon>mdi-dots-vertical</v-icon>
                                     </v-btn>
                                 </template>
                                 <v-list class="pa-0">
-                                    <v-list-item @click="get_status_edit(item.id)" >
+                                    <v-list-item @click="get_status_edit(item.id)" dense>
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                         </v-list-item-icon>
@@ -71,7 +71,7 @@
                                             {{$t('settings.status.edit')}}
                                          </v-list-item-title>
                                     </v-list-item>
-                                    <v-list-item @click="destroy(item.id)" >
+                                    <v-list-item @click="destroy(item.id)" dense>
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="error">mdi-delete</v-icon>
                                         </v-list-item-icon>
