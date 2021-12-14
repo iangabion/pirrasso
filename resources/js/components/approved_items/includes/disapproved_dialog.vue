@@ -72,6 +72,7 @@
     </v-dialog>
 </template>
 <script>
+import { DisapproveMail, RemoveDisapproveItem } from "@api/item.api";
 export default {
     data(){
         return {
@@ -101,12 +102,9 @@ export default {
         sendMail() {
             alert('click');
             this.progress_circular = true;
-            console.log(this.payload.client.email,"client");
-            console.log(this.payload.title,"title");
-            console.log(this.payload.reason,"reason");
-            axios.post('approved_items/disapprovement', this.payload).then((response) => {
+            DisapproveMail (payload).then((response) => {
                 this.progress_circular = false;
-                axios.delete('items/disapproved/'+ this.payload.id).then((response) => {
+                RemoveDisapproveItem(payload.id).then((response) => {
                     console.log(response.data)
                     this.loading = false
                     this.$emit('closedisapproved');
