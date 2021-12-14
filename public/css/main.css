@@ -61,7 +61,7 @@
         top: -4%;
     }
     /*end datatables style*/
-    
+
     /* navigation style*/
    	.main_content_holder {
    		margin-left: 18%;
@@ -71,7 +71,7 @@
     .fixed-action-btn {
     right: 37px !important;
     bottom: 37px !important;
-  
+
 }
 
    	.nav_layout {
@@ -84,7 +84,7 @@
    		font-size: 25px;
     	letter-spacing: 2px;
    	}
-    
+
     .menu_item {
         margin-top: 3px;
     }
@@ -127,10 +127,10 @@
     /*all images holder*/
     .img_preview_holder{
       width: auto ;
-      height: 181px; 
-      background-repeat: no-repeat; 
-      background-size: contain; 
-      background-position: center; 
+      height: 181px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
 
     .img_view_holder {
@@ -155,9 +155,4 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-}
-
-.v-dialog {
-  box-shadow: none!important;
-  width: 30%!important;
 }

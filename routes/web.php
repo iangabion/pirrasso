@@ -45,12 +45,12 @@ Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
 
         Route::resource('status', 'StatusController');
-        
+
         Route::get('category_items/{id}' , 'CategoryController@get_items');
-        
-        
+
+
         Route::get('/logout' , 'ClientController@out');
-        
+
         Route::get('getweekly' ,'ItemController@getweekly');
         // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
@@ -61,7 +61,7 @@ Route::middleware('auth:web')->group(function () {
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
-        
+
         //smtp crud
         Route::post('smtp/search', 'SmtpSettingController@search');
         Route::post('smtp/create', 'SmtpSettingController@store');
@@ -71,15 +71,18 @@ Route::middleware('auth:web')->group(function () {
 
         Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
         
+        Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
+
+
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');
         Route::resource('clients' , 'ClientController');
         Route::resource('item' , 'ItemController');
         Route::resource('category', 'CategoryController');
         Route::resource('subcategories', 'SubCategoryController');
-        
+
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
-        
+
     });
 });
