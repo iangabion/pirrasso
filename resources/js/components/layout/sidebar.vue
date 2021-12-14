@@ -1,6 +1,7 @@
 <template>
     <v-navigation-drawer
-      v-model="drawer"
+    
+      v-model="$store.state.sidebar"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
@@ -59,6 +60,7 @@
           </v-list-item>
         </template>
       </v-list>
+      
     </v-navigation-drawer>
 </template>
 <script>

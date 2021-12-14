@@ -105,17 +105,17 @@
                                     <v-list-item-subtitle >
                                     <span v-if="(items.is_urgent)==1">
                                         <v-icon>mdi-alert-octagon</v-icon>
-                                         Urgent
+                                         {{$t('item.show.urgent')}}
                                     </span>
                                     </v-list-item-subtitle>
                                     <v-list-item-subtitle>
                                         <span v-if="(items.is_active)==1">
                                             <v-icon>mdi-alert-octagon</v-icon>
-                                            ACTIVE
+                                             {{$t('item.show.active')}}
                                         </span>
                                         <span v-if="(items.is_active)==0">
                                             <v-icon>mdi-alert-octagon</v-icon>
-                                            UNACTIVE
+                                            {{$t('item.show.unactive')}}
                                         </span>
                                     </v-list-item-subtitle>
                                 <!-- <v-list-item-subtitle>
@@ -289,7 +289,7 @@
                             type="error"
                             elevation="2"
                             >
-                            no items for this category
+                            {{$t('item.show.no_items_for_this_category')}}
                             </v-alert>
                         </v-flex>
                     </v-layout>
