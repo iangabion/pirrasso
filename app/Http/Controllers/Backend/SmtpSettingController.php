@@ -30,7 +30,7 @@ class SmtpSettingController extends Controller
                         ->orWhere('mail_port', 'LIKE', "%$keyword%")
                         ->orWhere('mail_username', 'LIKE', "%$keyword%")
                         ->orWhere('mail_password', 'LIKE', "%$keyword%")
-                        ->orWhere('mail_encryption', 'LIKE', "%$keyword%"); 
+                        ->orWhere('mail_encryption', 'LIKE', "%$keyword%");
             });
         }
         return $smtp->get();
@@ -125,5 +125,12 @@ class SmtpSettingController extends Controller
         $smtp_delete= SmtpSetting::find($id);
         $smtp_delete->delete();
         return response()->json($smtp_delete);
+    }
+
+    public function setDefault($id){
+        SmtpSetting::where('status_on', 1)->update(['status_on' => 0]);
+        SmtpSetting::where('id', $id)->update(['status_on' => 1]);
+
+        return $id;
     }
 }
