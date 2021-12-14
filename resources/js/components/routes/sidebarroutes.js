@@ -54,7 +54,7 @@ export default [
 
 	},
 	{
-		path : '/smtp',
+		path : '/smtps',
 	    component: smtp,
 	    name: 'smtp',
 

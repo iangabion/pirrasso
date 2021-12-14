@@ -13,26 +13,27 @@ class SmtpSettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $smtp = SmtpSetting::all();
-    //     return $smtp;
-    // }
-
-    public function pagination(Request $request)
+    public function index()
     {
-        $purch = SmtpSetting::query();
-        if($request->input('keyword') != ""){
-            $keyword = $request->input('keyword');
-            $purch->where(function($query) use($keyword){
+        $smtp = SmtpSetting::get();
+        return $smtp;
+    }
+
+    public function search(Request $request)
+    {
+        $smtp = SmtpSetting::query();
+        if ($request->input('searchkey') != "") {
+            $keyword = $request->input('searchkey');
+            $smtp->where(function($query) use($keyword) {
                 $query  ->where('mail_mailer', 'LIKE', "%$keyword%")
-                        ->orwhere('mail_host', 'LIKE', "%$keyword%")
-                        ->orwhere('mail_port', 'LIKE', "%$keyword%")
-                        ->orwhere('mail_username', 'LIKE', "%$keyword%")
-                        ->orwhere('mail_encryption', 'LIKE', "%$keyword%");
+                        ->orWhere('mail_host', 'LIKE', "%$keyword%")
+                        ->orWhere('mail_port', 'LIKE', "%$keyword%")
+                        ->orWhere('mail_username', 'LIKE', "%$keyword%")
+                        ->orWhere('mail_password', 'LIKE', "%$keyword%")
+                        ->orWhere('mail_encryption', 'LIKE', "%$keyword%");
             });
         }
-        return $purch->orderBy('created_at','desc')->paginate(10);
+        return $smtp->get();
     }
 
     /**
@@ -65,7 +66,7 @@ class SmtpSettingController extends Controller
         $smtp->mail_username    = $request->mail_username;
         $smtp->mail_password    = $request->mail_password;
         $smtp->mail_encryption  = $request->mail_encryption;
-        $smtp->status_on = 0;
+        $smtp->status_on        = 0;
         $smtp->save();
         return response()->json($smtp);
     }
@@ -99,9 +100,18 @@ class SmtpSettingController extends Controller
      * @param  \App\SmtpSetting  $smtpSetting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SmtpSetting $smtpSetting)
+    public function update(Request $request, $id)
     {
-        //
+        $smtp = SmtpSetting::findorfail($id);
+        $smtp->mail_mailer      = $request->mail_mailer;
+        $smtp->mail_host        = $request->mail_host;
+        $smtp->mail_port        = $request->mail_port;
+        $smtp->mail_username    = $request->mail_username;
+        $smtp->mail_password    = $request->mail_password;
+        $smtp->mail_encryption  = $request->mail_encryption;
+        $smtp->status_on        = 0;
+        $smtp->save();
+        return $smtp ;
     }
 
     /**
@@ -115,5 +125,12 @@ class SmtpSettingController extends Controller
         $smtp_delete= SmtpSetting::find($id);
         $smtp_delete->delete();
         return response()->json($smtp_delete);
+    }
+
+    public function setDefault($id){
+        SmtpSetting::where('status_on', 1)->update(['status_on' => 0]);
+        SmtpSetting::where('id', $id)->update(['status_on' => 1]);
+
+        return $id;
     }
 }

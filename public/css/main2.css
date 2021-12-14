@@ -31,3 +31,9 @@ tbody tr {
     height: initial !important;
     padding: 13px !important;
 }
+
+
+
+.v-dialog {
+    box-shadow: none!important;
+}

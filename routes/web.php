@@ -60,8 +60,15 @@ Route::middleware('auth:web')->group(function () {
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
-        Route::get('smtp/pagination', 'SmtpSettingController@pagination');
-        Route::post('smtp', 'SmtpSettingController@store');
+
+        //smtp crud
+        Route::post('smtp/search', 'SmtpSettingController@search');
+        Route::post('smtp/create', 'SmtpSettingController@store');
+        Route::delete('smtp/delete/{id}', 'SmtpSettingController@destroy');
+        Route::get('smtp/show/{id}','SmtpSettingController@show');
+        Route::put('smtp/update/{id}','SmtpSettingController@update');
+        Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
+
 
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');
