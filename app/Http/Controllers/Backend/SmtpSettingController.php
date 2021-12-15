@@ -22,8 +22,8 @@ class SmtpSettingController extends Controller
     public function search(Request $request)
     {
         $smtp = SmtpSetting::query();
-        if ($request->input('searchkey') != "") {
-            $keyword = $request->input('searchkey');
+        if ($request->searchkey != "") {
+            $keyword = $request->searchkey;
             $smtp->where(function($query) use($keyword) {
                 $query  ->where('mail_mailer', 'LIKE', "%$keyword%")
                         ->orWhere('mail_host', 'LIKE', "%$keyword%")

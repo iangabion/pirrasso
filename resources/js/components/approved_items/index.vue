@@ -6,6 +6,7 @@
         </v-toolbar>
         <disapprovedDialog
             :dialog="dialog"
+            @closedisapproved="disapproved_close"
             :item="selected_item"
             @close="dialog=false"
         ></disapprovedDialog>
@@ -87,7 +88,6 @@ export default {
                 { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
                 { text: 'Added On', value: 'created_at', width:'20%' },
                 { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
-
             ],
         }
     },
@@ -97,6 +97,10 @@ export default {
                 console.log(data, 'test')
                 this.items = data
             })
+        },
+        disapproved_close() {
+            this.dialog = false
+            this.build();
         },
         disapproved(item){
             this.selected_item = item
