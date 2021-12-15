@@ -11,11 +11,11 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
-        "laravel/nexmo-notification-channel": "^2.5",
         "laravel/passport": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.1",
-        "lcobucci/jwt": "3.3.3"
+        "lcobucci/jwt": "3.3.3",
+        "nexmo/laravel": "^2.4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

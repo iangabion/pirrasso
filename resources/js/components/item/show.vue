@@ -1,7 +1,12 @@
 <template>
 
     <div>
-        <v-toolbar elevation="0">
+        <!-- <v-toolbar> -->
+            <v-spacer></v-spacer>
+        <!-- </v-toolbar> -->
+        <v-toolbar >
+            <v-toolbar-title class="px-4">items</v-toolbar-title>
+
             <v-col cols="12" sm="6" lg="8">
                 <v-text-field
                     flat
@@ -19,8 +24,8 @@
             </v-col>
         </v-toolbar>
 
-<v-row>
-    <v-card width=25% max-height=auto elevation="0">
+<v-row width="100%" class="mt-3">
+    <v-div width=25% max-height=auto >
         <v-list dense>
             <template v-for="item in categories" >
                 <v-row v-if="item.heading" :key="item.heading" align="center" >
@@ -67,9 +72,9 @@
             </template>
 
         </v-list>
-    </v-card>
-    <v-card width=70% elevation="0">
-        <v-container class="">
+    </v-div>
+    <v-card width=70%>
+        <!-- <v-container class=""> -->
             <v-layout row wrap>
                 <v-flex xs12 v-if="!data_loaded">
                     <v-skeleton-loader
@@ -296,7 +301,7 @@
 
                 </v-flex>
             </v-layout>
-        </v-container>
+        <!-- </v-container> -->
     </v-card>
 </v-row>
 
