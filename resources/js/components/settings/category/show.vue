@@ -79,10 +79,10 @@
                             @page-count="pageCount = $event"
                         >
                                             <template v-slot:item.name="{ item }">
-                                                            <div class="cat-name">
-                                                                <v-icon class='mr-2, '>mdi-drag</v-icon>
-                                                                <span >{{ item.name }}</span>
-                                                            </div>
+                                                <div class="cat-name">
+                                                    <v-icon class='mr-2, '>mdi-drag</v-icon>
+                                                    <span >{{ item.name }}</span>
+                                                </div>
                                             </template>
 
                                     <template v-slot:item.action="{ item }">
