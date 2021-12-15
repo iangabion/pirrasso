@@ -10,6 +10,11 @@
             :item="selected_item"
             @close="dialog=false"
         ></disapprovedDialog>
+        <productInfo
+            :drawer="drawer"
+            :item="selected_data"
+            @collapse-drawer="drawer = !drawer"
+        />
         <v-container grid-list-xs>
             <v-layout row wrap>
                 <v-flex xs12>
@@ -25,6 +30,24 @@
                                 </span>
                             </template>
                             <template v-slot:item.actions="{ item }">
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn
+                                            class="mr-2"
+                                            fab
+                                            dark
+                                            v-on="on"
+                                            small
+                                            color="green"
+                                            @click="open_info(item)"
+                                        >
+                                            <v-icon dark small>
+                                                mdi-eye
+                                            </v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <span>view</span>
+                                </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
                                         <v-btn
@@ -72,22 +95,26 @@
 <script>
 import disapprovedDialog from './includes/disapproved_dialog.vue'
 import { GetToApprovedItems, ApprovedItem } from "@api/item.api";
+import productInfo from './includes/productInfo.vue'
 export default {
     components : {
-        disapprovedDialog
+        disapprovedDialog,
+        productInfo
     },
     data(){
         return{
             items:[],
             dialog:false,
             selected_item:{},
+            drawer: false,
+            selected_data: {},
             headers: [
                 { text: 'Item Name',width:'20%', value: 'title' },
                 { text: 'Category', value: 'category.name', width:'20%' },
                 { text: 'Price', value: 'price', width:'10%' },
                 { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: 'Added On', value: 'created_at', width:'20%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
+                { text: 'Added On', value: 'created_at', width:'10%' },
+                { text: 'Actions', value: 'actions', sortable: false, width:'20%' ,align: 'center'},
             ],
         }
     },
@@ -113,7 +140,12 @@ export default {
                 this.build()
                 alert('item approved!')
             })
-        }
+        },
+        open_info(item){
+            this.drawer = true
+            this.selected_data = item
+            console.log(item , 'sad')
+        },
     },
     created(){
         this.build();

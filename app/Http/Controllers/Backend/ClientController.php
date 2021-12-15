@@ -34,6 +34,11 @@ class ClientController extends Controller
         return $clients;
     }
 
+    public function searchClient(Request $request)
+    {
+        # code...
+    }
+
 
     /**
      * Show the form for creating a new resource.
