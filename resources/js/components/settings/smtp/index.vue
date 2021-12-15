@@ -95,7 +95,7 @@
 </template>
 <script>
 import addDialog from './includes/dialog.vue'
-import { SetDefault } from "@api/smtp.api";
+import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
 export default {
     components : {
         addDialog
@@ -141,13 +141,11 @@ export default {
   },
   methods: {
     changeStatus(id){
-       SetDefault(id).then(response => {
-           console.log(response, 'response')
-           this.search();
-       })
+      SetDefault(id).then(response => {
+        this.search();
+      })
     },
     toggleOnCreate() {
-      console.log("click")
       this.on_menu = false
     },
     toggleOffCreate() {
@@ -155,12 +153,16 @@ export default {
     },
     search(key) {
       this.loading = true
+      let payload = {
+        searchkey:key
+      }
+      console.log(payload)
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
       }
       this.timer = setTimeout(() => {
-        axios.post('smtp/search', {searchkey:key}).then((response) => {
+        GetAllSmtp(payload).then((response) => {
           this.smtp = response.data
           this.loading = false
         }).catch((errors) => {
@@ -172,17 +174,17 @@ export default {
       this.loading = true
       var conf = confirm(this.$t('settings.smtp.are_you_sure_want_to_delete_this_record'));
       if(conf)
-      axios.delete('smtp/delete/'+ id).then((response)=> {
+      DeleteSmtpData(id).then((response)=> {
         console.log(response.data)
         this.search();
         this.loading = false
       })
     },
     edit(id) {
-        this.selected_item_id = id
-         this.$nextTick(() => {
-            this.dialog2 = true
-        })
+      this.selected_item_id = id
+        this.$nextTick(() => {
+          this.dialog2 = true
+      })
     },
   },
   watch: {

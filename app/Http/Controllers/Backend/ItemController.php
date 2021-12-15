@@ -140,4 +140,11 @@ class ItemController extends Controller
                         // ->where('is_active', 0)
                         ->update(['is_approved' => 1]);
     }
+
+    public function deleteApprovedItem($id)
+    {
+        $smtp_delete= Items::find($id);
+        $smtp_delete->delete();
+        return response()->json($smtp_delete);
+    }
 }

@@ -6,6 +6,7 @@
         </v-toolbar>
         <disapprovedDialog
             :dialog="dialog"
+            @closedisapproved="disapproved_close"
             :item="selected_item"
             @close="dialog=false"
         ></disapprovedDialog>
@@ -110,6 +111,10 @@ export default {
                 console.log(data, 'test')
                 this.items = data
             })
+        },
+        disapproved_close() {
+            this.dialog = false
+            this.build();
         },
         disapproved(item){
             this.selected_item = item
