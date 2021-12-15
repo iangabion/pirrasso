@@ -17,7 +17,6 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
         $clients = Client::orderBy('created_at' , 'desc')->get();
         $clients = collect($clients)->map(function ($client) {
             return [
@@ -36,7 +35,17 @@ class ClientController extends Controller
 
     public function searchClient(Request $request)
     {
-        # code...
+        $client = Client::query();
+        if ($request->searchkey != "") {
+            $keyword = $request->searchkey;
+            $client->where(function($query) use($keyword) {
+                $query  ->where('first_name', 'LIKE', "%$keyword%")
+                        ->orWhere('last_name', 'LIKE', "%$keyword%")
+                        ->orWhere('email', 'LIKE', "%$keyword%")
+                        ->orWhere('username', 'LIKE', "%$keyword%");
+            });
+        }
+        return $client->orderBy('created_at' , 'desc')->get();
     }
 
 
