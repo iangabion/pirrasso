@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4 text-capitalize">To be approved items</v-toolbar-title>
+            <v-toolbar-title class="px-4 text-capitalize">{{$t('approved_items.to_be_approved_items')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <disapprovedDialog
@@ -41,7 +41,7 @@
                                             </v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>approve</span>
+                                    <span>{{$t('approved_items.approve')}}</span>
                                 </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
@@ -59,7 +59,7 @@
                                             </v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>disapprove</span>
+                                    <span>{{$t('approved_items.disapprove')}}</span>
                                 </v-tooltip>
                             </template>
                         </v-data-table>
@@ -81,14 +81,28 @@ export default {
             items:[],
             dialog:false,
             selected_item:{},
-            headers: [
-                { text: 'Item Name',width:'20%', value: 'title' },
-                { text: 'Category', value: 'category.name', width:'20%' },
-                { text: 'Price', value: 'price', width:'10%' },
-                { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: 'Added On', value: 'created_at', width:'20%' },
+            // headers: [
+            //     { text: 'Item Name',width:'20%', value: 'title' },
+            //     { text: 'Category', value: 'category.name', width:'20%' },
+            //     { text: 'Price', value: 'price', width:'10%' },
+            //     { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
+            //     { text: 'Added On', value: 'created_at', width:'20%' },
+            //     { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
+
+            // ],
+        }
+    },
+
+    computed: {
+        headers(){
+            return [
+                { text: this.$t('approved_items.item_name'),width:'20%', value: 'title' },
+                { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
+                { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
+                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
+                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'20%' },
                 { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
-            ],
+            ]
         }
     },
     methods:{
