@@ -148,6 +148,7 @@ export default {
         this.timer = setTimeout(() => {
           GetAllClients(this.url).then(({data}) => {
             this.clients = data.data
+            console.log(this.clients)
             // this.total_client = data.total
             // this.itemsPerPage = data.per_page
             // this.pageCount = data.last_page
