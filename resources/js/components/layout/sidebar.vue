@@ -73,6 +73,7 @@
         { icon: 'mdi-view-dashboard', text: 'Dashboard' ,url:'/dashboard' },
         { icon: 'mdi-history', text: 'Items' ,url:'/items' },
         { icon: 'mdi-account-group', text: 'Sellers' ,url:'/sellers' },
+        { icon: 'mdi-check', text: 'Approved Items' ,url:'/approved_items' },
         {
           icon: 'mdi-settings',
           'icon-alt': 'mdi-settings',
@@ -82,7 +83,7 @@
             { icon: 'mdi-tab', text: 'Items Categories' , url:'/categories' },
             { icon: 'mdi-new-box', text: 'Items Status' , url:'/statuses' },
             { icon: 'mdi-image', text: 'Apps Images' , url:'/apps_images' },
-            { icon: 'mdi-email-newsletter', text: 'Email SMTP Settings' , url:'/email-smtp' },
+            { icon: 'mdi-email-newsletter', text: 'Email SMTP Settings' , url:'/smtps' },
             { icon: 'mdi-message-processing', text: 'SMS Sender Settings' , url:'/sms' },
           ],
         },

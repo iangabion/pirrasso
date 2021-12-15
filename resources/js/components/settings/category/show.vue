@@ -79,10 +79,10 @@
                             @page-count="pageCount = $event"
                         >
                                             <template v-slot:item.name="{ item }">
-                                                            <div class="cat-name">
-                                                                <v-icon class='mr-2, '>mdi-drag</v-icon>
-                                                                <span >{{ item.name }}</span>
-                                                            </div>
+                                                <div class="cat-name">
+                                                    <v-icon class='mr-2, '>mdi-drag</v-icon>
+                                                    <span >{{ item.name }}</span>
+                                                </div>
                                             </template>
 
                                     <template v-slot:item.action="{ item }">
@@ -93,7 +93,7 @@
                                                 </v-btn>
                                             </template>
                                             <v-list class="pa-0">
-                                                <v-list-item @click.prevent="showcategory(item.id)" >
+                                                <v-list-item @click.prevent="showcategory(item.id)" dense >
                                                     <v-list-item-icon class="mr-0">
                                                         <v-icon size="20" color="primary">mdi-eye</v-icon>
                                                     </v-list-item-icon>
@@ -101,7 +101,7 @@
                                                         Subcategories
                                                     </v-list-item-title>
                                                 </v-list-item>
-                                                <v-list-item @click="get_category_edit(item.id)" >
+                                                <v-list-item @click="get_category_edit(item.id)" dense>
                                                     <v-list-item-icon class="mr-0">
                                                         <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                                     </v-list-item-icon>
@@ -109,7 +109,7 @@
                                                         Edit
                                                     </v-list-item-title>
                                                 </v-list-item>
-                                                <v-list-item @click="destroy(item.id)" >
+                                                <v-list-item @click="destroy(item.id)" dense>
                                                     <v-list-item-icon class="mr-0">
                                                         <v-icon size="20" color="error">mdi-delete</v-icon>
                                                     </v-list-item-icon>
@@ -458,7 +458,7 @@ export default {
 			    .then(response => {
                     // let category = response.data.filter(chan_filter=>
                     //     chan_filter.id != 2
-                    // ) 
+                    // )
                     this.categories = response.data;
                     console.log(response.data, 'chan here category data here');
                     this.data_loaded = true;
@@ -518,7 +518,7 @@ export default {
             saveOrder (event) {
                 const movedItem = this.categories.splice(event.oldIndex, 1)[0];
                 this.categories.splice(event.newIndex, 0, movedItem);
-              
+
                 this.updatePosition()
             },
              saveOrder2 (event) {
@@ -526,7 +526,7 @@ export default {
                 this.categories_subcategories.subcategories.splice(event.newIndex, 0, movedItem);
                 this.updatePosition2()
             },
-        },  
+        },
 
         created() {
             this.get_categories()

@@ -81,7 +81,7 @@ class ItemController extends Controller
         // ->update(['is_active' => 1]);
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -99,7 +99,7 @@ class ItemController extends Controller
 
     public function sold_count(){
         return $sold = Sold::all();
-        
+
     }
 
     public function getweekly()
@@ -129,5 +129,22 @@ class ItemController extends Controller
         return Items::where('id', $request->id)
                         // ->where('is_active', 0)
                         ->update(['is_active' => 0]);
+    }
+
+    public function getToApprovedItems(){
+        return Items::with('category','client')->where('is_approved', 0)->get();
+    }
+
+    public function approvedItem($id){
+        return Items::where('id', $id)
+                        // ->where('is_active', 0)
+                        ->update(['is_approved' => 1]);
+    }
+
+    public function deleteApprovedItem($id)
+    {
+        $smtp_delete= Items::find($id);
+        $smtp_delete->delete();
+        return response()->json($smtp_delete);
     }
 }

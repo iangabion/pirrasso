@@ -1,5 +1,5 @@
 <script>
-
+import moment from "moment"
 export default {
 
     methods: {
@@ -10,9 +10,9 @@ export default {
         $arrayupdater(item, array_given) {
             array_given.unshift(item);
         },
-        
-
-        
+        $defaultDate(date){
+            return moment(date).format('DD-MM-YYYY');
+        }
     }
 
 }

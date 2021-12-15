@@ -55,10 +55,25 @@ Route::middleware('auth:web')->group(function () {
         Route::get('getweekly' ,'ItemController@getweekly');
         // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
+        Route::get('items/getToApprovedItems', 'ItemController@getToApprovedItems');
+        Route::delete('items/disapproved/{id}','ItemController@deleteApprovedItem');
+        Route::get('items/approve_item/{id}', 'ItemController@approvedItem');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
         Route::get('sold_count' , 'ItemController@sold_count');
+
+        //smtp crud
+        Route::post('smtp/search', 'SmtpSettingController@search');
+        Route::post('smtp/create', 'SmtpSettingController@store');
+        Route::delete('smtp/delete/{id}', 'SmtpSettingController@destroy');
+        Route::get('smtp/show/{id}','SmtpSettingController@show');
+        Route::put('smtp/update/{id}','SmtpSettingController@update');
+
+        Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
+        
+        Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
+
 
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');

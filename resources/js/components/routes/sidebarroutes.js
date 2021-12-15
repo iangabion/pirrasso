@@ -1,11 +1,12 @@
 import show_category from '../settings/category/show'
 import show_status from '../settings/status/show'
 import show_apps_images from '../settings/images/show'
-import show_email from '../settings/email_smtp/show'
+import smtp from '../settings/smtp/index'
 import show_sms from '../settings/sms_sender/show'
 import show_dashboard from '../dashboard/show'
 import show_item from '../item/show'
 import index_seller from '../seller/index'
+import approved_items from '../approved_items/index'
 export default [
   	{
 	    path : '/categories',
@@ -33,6 +34,12 @@ export default [
 	    name: 'seller',
 
 	},
+	{
+		path : '/approved_items',
+	    component: approved_items,
+	    name: 'approved_item',
+
+	},
     {
 		path : '/statuses',
 	    component: show_status,
@@ -47,9 +54,9 @@ export default [
 
 	},
 	{
-		path : '/email-smtp',
-	    component: show_email,
-	    name: 'email',
+		path : '/smtps',
+	    component: smtp,
+	    name: 'smtp',
 
 	},
 	{
