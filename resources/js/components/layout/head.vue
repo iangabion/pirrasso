@@ -7,7 +7,7 @@
       <v-toolbar-title><span class="hidden-sm-and-down">Buy and Sell</span></v-toolbar-title>
  </v-app-bar> -->
     <v-app-bar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
+    
       app
       color="blue darken-3"
       dark

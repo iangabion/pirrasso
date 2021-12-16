@@ -122,6 +122,8 @@
 </template>
 <script>
 import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
+
+
 export default {
     data(){
         return {
