@@ -3,6 +3,7 @@ export default {
     okay: "Ok",
     cancel: "Annuler",
     setting: "Paramètre",
+    send: "Envoyer",
     sidebar: {
         dashboard: "Tableau de bord",
         items: "Articles",

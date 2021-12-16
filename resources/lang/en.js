@@ -4,6 +4,7 @@ export default {
     okay: "Okay",
     cancel: "Cancel",
     setting: "Setting",
+    send: "Send",
     sidebar: {
         dashboard: "Dashboard",
         items: "Items",
