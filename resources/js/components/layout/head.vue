@@ -9,8 +9,8 @@
     <v-app-bar
     
       app
-      color="blue darken-3"
-      dark
+     
+    
     >
       <v-app-bar-nav-icon @click="toggle()" />
       <v-toolbar-title

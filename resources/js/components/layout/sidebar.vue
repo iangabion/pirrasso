@@ -2,9 +2,16 @@
     <v-navigation-drawer
     
       v-model="$store.state.sidebar"
-      :clipped="$vuetify.breakpoint.lgAndUp"
+      class="padding"
       app
     >
+    <v-img contain
+            :src="logo"
+            size="1"
+            max-height="90"
+            max-width="180"
+            class="mx-auto"
+            />
       <v-list dense>
         <template v-for="item in items">
           <v-row
@@ -64,6 +71,7 @@
     </v-navigation-drawer>
 </template>
 <script>
+import logo from '../../../../public/images/logo-c.png'
   export default {
     props: {
       source: String,
@@ -71,6 +79,7 @@
     data: () => ({
       dialog: false,
       drawer: null,
+      logo,
       // items: [
       //   { icon: 'mdi-view-dashboard', text: 'Dashboard' ,url:'/dashboard' },
       //   { icon: 'mdi-history', text: 'Items' ,url:'/items' },
@@ -117,3 +126,8 @@
     }
   }
 </script>
+<style scoped>
+.padding {
+  padding-top: 2em;
+}
+</style>
