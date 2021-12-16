@@ -318,7 +318,7 @@ export default {
             // ]
         }),
 
-        mounted: {
+        computed: {
             headers(){
                 return [
                      {text:this.$t('settings.category.category_name'), value: 'name', width: '20%'},

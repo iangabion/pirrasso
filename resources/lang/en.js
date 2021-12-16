@@ -1,5 +1,9 @@
 export default {
 
+
+    okay: "Okay",
+    cancel: "Cancel",
+    setting: "Setting",
     sidebar: {
         dashboard: "Dashboard",
         items: "Items",

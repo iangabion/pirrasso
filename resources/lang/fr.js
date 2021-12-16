@@ -1,5 +1,8 @@
 export default {
 
+    okay: "Ok",
+    cancel: "Annuler",
+    setting: "Paramètre",
     sidebar: {
         dashboard: "Tableau de bord",
         items: "Articles",

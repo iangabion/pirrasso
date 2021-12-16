@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-title class="px-4">SMTP {{$t('settings.smtp.setting')}}</v-toolbar-title>
+      <v-toolbar-title class="px-4">SMTP {{$t('setting')}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="search1">
         <v-text-field
@@ -45,7 +45,7 @@
                             ></v-switch>
                         </template>
                         <span>
-                            {{item.is_default ? this.$t('settings.smtp.remove_default') : this.$t('settings.smtp.set_as_default')}}
+                            {{item.is_default ? $t('settings.smtp.remove_default') : $t('settings.smtp.set_as_default')}}
                         </span>
                     </v-tooltip>
                 </template>
