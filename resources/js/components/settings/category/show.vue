@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">Item Categories</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('settings.category.item_categories')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-container grid-list-xs>
@@ -14,7 +14,7 @@
                                     <v-card class="pa-5" >
                                         <v-layout row wrap mb-3 class="text-capitalize">
                                             <v-flex xs12>
-                                                <p class="subheading pa-0 font-weight-bold">Category Information</p>
+                                                <p class="subheading pa-0 font-weight-bold">{{$t('settings.category.category_information')}}</p>
                                             </v-flex>
                                             <v-flex xs6>
                                                 <div class="preview" >
@@ -51,11 +51,11 @@
                                             <v-flex xs12 class="text-right">
                                                 <v-btn color="success" tile @click="submit"  >
                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                    save category
+                                                    {{$t('settings.category.save_category')}}
                                                 </v-btn>
                                                 <v-btn color="primary" tile @click="clear"  >
                                                     <v-icon left>mdi-lock-reset</v-icon>
-                                                    reload form
+                                                    {{$t('settings.category.reload_form')}}
                                                 </v-btn>
                                             </v-flex>
                                         </v-layout>
@@ -98,7 +98,7 @@
                                                         <v-icon size="20" color="primary">mdi-eye</v-icon>
                                                     </v-list-item-icon>
                                                     <v-list-item-title>
-                                                        Subcategories
+                                                        {{$t('settings.category.subcategories')}}
                                                     </v-list-item-title>
                                                 </v-list-item>
                                                 <v-list-item @click="get_category_edit(item.id)" dense>
@@ -106,7 +106,7 @@
                                                         <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                                     </v-list-item-icon>
                                                     <v-list-item-title>
-                                                        Edit
+                                                        {{$t('settings.category.edit')}}
                                                     </v-list-item-title>
                                                 </v-list-item>
                                                 <v-list-item @click="destroy(item.id)" dense>
@@ -114,7 +114,7 @@
                                                         <v-icon size="20" color="error">mdi-delete</v-icon>
                                                     </v-list-item-icon>
                                                     <v-list-item-title>
-                                                        Delete
+                                                        {{$t('settings.category.delete')}}
                                                     </v-list-item-title>
                                                 </v-list-item>
                                             </v-list>
@@ -134,7 +134,7 @@
                     max-width="1000"
                     >
                     <v-card>
-                        <v-card-title class="headline">{{categories_subcategories.name}} list of sub categories</v-card-title>
+                        <v-card-title class="headline">{{categories_subcategories.name}}  {{$t('settings.category.list_of_subcategories')}}</v-card-title>
                         <v-card-text>
                             <v-layout row wrap>
                                 <v-flex xs12 sm6>
@@ -145,7 +145,7 @@
                                                     <v-card class="pa-5" >
                                                         <v-layout row wrap mb-3 class="text-capitalize">
                                                             <v-flex xs12>
-                                                                <p class="subheading pa-0 font-weight-bold">add subcategory</p>
+                                                                <p class="subheading pa-0 font-weight-bold">{{$t('settings.category.add_subcategory')}}</p>
                                                             </v-flex>
                                                             <v-flex xs12>
                                                                 <div class="preview mx-auto" >
@@ -182,7 +182,7 @@
                                                             <v-flex xs12 class="text-right">
                                                                 <v-btn color="success" small tile @click="subcategory_save"  >
                                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                                    save
+                                                                    {{$t('settings.category.save')}}
                                                                 </v-btn>
                                                             </v-flex>
                                                         </v-layout>
@@ -251,7 +251,7 @@
 
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="green darken-1" text  @click="subcat_dialog = false" > OKAY </v-btn>
+                            <v-btn color="green darken-1" text  @click="subcat_dialog = false" >{{$t('settings.category.okay')}}</v-btn>
                         </v-card-actions>
                     </v-card>
                     </v-dialog>
@@ -299,24 +299,44 @@ export default {
                 id :'',
                 icon:''
             },
-            headers: [
-          {
-            text: 'Category Name',
-            align: 'left',
-            sortable: false,
-            value: 'name',
-          },
-          ,
-          { text: 'items count', value: 'count' },
-          { text: 'Subcat count', value: 'subcat' },
-          { text: 'actions', value: 'action' },
-        ],
-            headers2:[
-                {text:'Icons', align:'start', value:'icon', width:'25%'},
-                {text:'Name', align:'start', value:'name', width:'30%'},
-                {text:'Actions', value:'actions', align:'left'},
-            ]
+        //     headers: [
+        //   {
+        //     text: 'Category Name',
+        //     align: 'left',
+        //     sortable: false,
+        //     value: 'name',
+        //   },
+        //   ,
+        //   { text: 'items count', value: 'count' },
+        //   { text: 'Subcat count', value: 'subcat' },
+        //   { text: 'actions', value: 'action' },
+        // ],
+            // headers2:[
+            //     {text:'Icons', align:'start', value:'icon', width:'25%'},
+            //     {text:'Name', align:'start', value:'name', width:'30%'},
+            //     {text:'Actions', value:'actions', align:'left'},
+            // ]
         }),
+
+        mounted: {
+            headers(){
+                return [
+                     {text:this.$t('settings.category.category_name'), value: 'name', width: '20%'},
+                     {text:this.$t('settings.category.item_count'), value: 'count', width: '20%'},
+                     {text:this.$t('settings.category.subcategory_count'), value: 'subcat', width: '20%'},
+                     {text:this.$t('settings.category.action'), value: 'action', width: '20%'},
+                ];
+
+            },
+            headers2(){
+                return [
+                     {text:this.$t('settings.category.icons'), value: 'icon', width: '20%'},
+                      {text:this.$t('settings.category.name'), value: 'name', width: '20%'},
+                      {text:this.$t('settings.category.action'), value: 'action', width: '20%'},
+                ]
+
+            }
+        },
         methods: {
             onFileChange(hint,files) {
                 // var files = e.target.files || e.dataTransfer.files;

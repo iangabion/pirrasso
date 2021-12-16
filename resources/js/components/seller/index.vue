@@ -73,7 +73,8 @@ export default {
             form: {
                 search: ''
             },
-             headers: [
+            searchQuery: null,
+            headers: [
                     { text: 'Full Name',width:'20%', value: 'fullname' },
                     { text: 'Mobile', value: 'mobile', width:'20%' },
                     { text: 'Total Items', value: 'total_items', width:'10%' },

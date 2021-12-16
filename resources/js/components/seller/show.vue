@@ -2,7 +2,7 @@
     <div>
         <v-toolbar>
 
-            <v-toolbar-title class="ml-3">Seller Info</v-toolbar-title>
+            <v-toolbar-title class="ml-3">{{$t('seller.show.seller_info')}}</v-toolbar-title>
 
             <v-spacer></v-spacer>
 
@@ -16,7 +16,7 @@
                 >
                     mdi-backspace
                 </v-icon>
-                back
+                {{$t('seller.show.back')}}
             </v-btn>
         </v-toolbar>
         <div>

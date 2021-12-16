@@ -7,62 +7,68 @@ import show_dashboard from '../dashboard/show'
 import show_item from '../item/show'
 import index_seller from '../seller/index'
 import approved_items from '../approved_items/index'
-export default [
-  	{
-	    path : '/categories',
-	    component: show_category,
-	    name: 'category',
-
-	},
-  	{
-      	path : '/dashboard',
-    	// beforeEnter: yourGuard,
-		component: show_dashboard,
-		name: 'dashboard',
+import test from '../test/test.vue'
+export default [{
+        path: '/categories',
+        component: show_category,
+        name: 'category',
 
     },
-  	{
-      	path : '/items',
-    	// beforeEnter: yourGuard,
-		component: show_item,
-		name: 'item',
-
-	},
-	{
-		path : '/sellers',
-	    component: index_seller,
-	    name: 'seller',
-
-	},
-	{
-		path : '/approved_items',
-	    component: approved_items,
-	    name: 'approved_item',
-
-	},
     {
-		path : '/statuses',
-	    component: show_status,
-	    name: 'status',
+        path: '/dashboard',
+        // beforeEnter: yourGuard,
+        component: show_dashboard,
+        name: 'dashboard',
 
-	},
+    },
+    {
+        path: '/items',
+        // beforeEnter: yourGuard,
+        component: show_item,
+        name: 'item',
 
-	{
-		path : '/apps_images',
-	    component: show_apps_images,
-	    name: 'images',
+    },
+    {
+        path: '/sellers',
+        component: index_seller,
+        name: 'seller',
 
-	},
-	{
-		path : '/smtps',
-	    component: smtp,
-	    name: 'smtp',
+    },
+    {
+        path: '/approved_items',
+        component: approved_items,
+        name: 'approved_item',
 
-	},
-	{
-		path : '/sms',
-	    component: show_sms,
-	    name: 'sms',
+    },
+    {
+        path: '/statuses',
+        component: show_status,
+        name: 'status',
 
-	},
+    },
+
+    {
+        path: '/apps_images',
+        component: show_apps_images,
+        name: 'images',
+
+    },
+    {
+        path: '/smtps',
+        component: smtp,
+        name: 'smtp',
+
+    },
+    {
+        path: '/sms',
+        component: show_sms,
+        name: 'sms',
+
+    },
+
+    {
+        path: '/test',
+        component: test,
+        name: 'test'
+    }
 ]

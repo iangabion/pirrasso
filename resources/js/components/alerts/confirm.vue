@@ -9,10 +9,10 @@
 		<v-card-actions class="pt-0">
 			<v-spacer></v-spacer>
              <v-btn class="ma-2 px-5" tile outlined color="success" @click.native="agree">
-                <v-icon left>mdi-check</v-icon> OKAY   
+                <v-icon left>mdi-check</v-icon> {{$t('alerts.confirm.okay')}}   
             </v-btn>
             <v-btn class="ma-2 px-5" tile outlined color="success" @click.native="cancel">
-                <v-icon left>mdi-cancel</v-icon> CANCEL
+                <v-icon left>mdi-cancel</v-icon> {{$t('alerts.confirm.cancel')}}
             </v-btn>
 		</v-card-actions>
 		</v-card>

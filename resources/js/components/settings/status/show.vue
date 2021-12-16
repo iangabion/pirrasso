@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">Item Status</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('settings.item_status')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-container grid-list-xs>
@@ -14,7 +14,7 @@
                                     <v-card class="pa-5" >
                                         <v-layout row wrap mb-3 class="text-capitalize">
                                             <v-flex xs12>
-                                                <p class="subheading pa-0 font-weight-bold">Status Information</p>
+                                                <p class="subheading pa-0 font-weight-bold">{{$t('settings.status_information')}}</p>
                                             </v-flex>
                                             <v-flex xs12>
                                                 <v-text-field
@@ -31,11 +31,11 @@
                                             <v-flex xs12 class="text-right">
                                                 <v-btn color="success" tile @click="submit"  >
                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                                    save status
+                                                    {{$t('settings.status.save_status')}}
                                                 </v-btn>
                                                 <v-btn color="primary" tile @click="clear"  >
                                                     <v-icon left>mdi-lock-reset</v-icon>
-                                                    reload form
+                                                     {{$t('settings.status.reload_form')}}
                                                 </v-btn>
                                             </v-flex>
                                         </v-layout>
@@ -68,15 +68,15 @@
                                             <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Edit
-                                        </v-list-item-title>
+                                            {{$t('settings.status.edit')}}
+                                         </v-list-item-title>
                                     </v-list-item>
                                     <v-list-item @click="destroy(item.id)" dense>
                                         <v-list-item-icon class="mr-0">
                                             <v-icon size="20" color="error">mdi-delete</v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-title>
-                                            Delete
+                                            {{$t('settings.status.delete')}}
                                         </v-list-item-title>
                                     </v-list-item>
                                 </v-list>
@@ -101,18 +101,28 @@
                 name: '',
                 id :''
             },
-            headers: [
-                { text: 'Status Name', align: 'left', sortable: false, value: 'name' },
-                { text: 'Items Count',  value: 'count' },
-                { text: 'actions', value: 'action' },
-            ],
+            // headers: [
+            //     { text: 'Status Name', align: 'left', sortable: false, value: 'name' },
+            //     { text: 'Items Count',  value: 'count' },
+            //     { text: 'actions', value: 'action' },
+            // ],
         }),
+
+        computed: {
+            headers(){
+                return [
+                     { text: this.$t('settings.status.status_name'), align: 'left', sortable: false, value: 'name' },
+                     { text: this.$t('settings.status.item_count'),  value: 'count' },
+                     { text: 'actions', value: 'action' },
+                ]
+            }
+        },
         methods: {
             submit(){
                 let self = this;
                 this.$validator.validateAll().then(result => {
                     if (result){
-                        this.$root.$confirm('Are you sure you want to save ?').then((result) => {
+                        this.$root.$confirm(this.$t('settings.status.are_you_sure_you_want_to_save')).then((result) => {
                             if(result) {
                                 let dis = this ;
                                 let id = this.statuses.id ;
@@ -140,7 +150,7 @@
                 });
             },
             destroy(id){
-                this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
+                this.$root.$confirm(this.$t('settings.status.are_you_sure_you_want_to_delete')).then((result) => {
                     if(result) {
                         axios.delete('/status/'+id, {})
                         .then(response => {
