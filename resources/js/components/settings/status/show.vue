@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">{{$t('settings.item_status')}}</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('settings.status.item_status')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-container grid-list-xs>
@@ -14,7 +14,7 @@
                                     <v-card class="pa-5" >
                                         <v-layout row wrap mb-3 class="text-capitalize">
                                             <v-flex xs12>
-                                                <p class="subheading pa-0 font-weight-bold">{{$t('settings.status_information')}}</p>
+                                                <p class="subheading pa-0 font-weight-bold">{{$t('settings.status.status_information')}}</p>
                                             </v-flex>
                                             <v-flex xs12>
                                                 <v-text-field
