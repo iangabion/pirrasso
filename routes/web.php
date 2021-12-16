@@ -73,6 +73,7 @@ Route::middleware('auth:web')->group(function () {
         
         Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
 
+        Route::post('client/search', 'ClientController@searchClient');
 
         Route::get('showClient/pagination','ClientController@showClient');
         Route::resource('client' , 'ClientController');

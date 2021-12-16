@@ -5,24 +5,23 @@
             <v-spacer></v-spacer>
             <div class="search1">
                 <v-text-field
-                hide-details
-                placeholder="Search"
-                v-model="search"
-                filled
-                rounded
-                dense
-                single-line
-                append-icon="mdi-magnify" class=" mx-4"
+                    hide-details
+                    placeholder="Search"
+                    v-model="search"
+                    filled
+                    rounded
+                    dense
+                    single-line
+                    append-icon="mdi-magnify" class=" mx-4"
                 />
             </div>
             <v-btn @click="dialog2 = true" class="d-none">
                 <v-icon class="mr-2">
-                mdi-cart
+                    mdi-cart
                 </v-icon>
-                Add Setting
+                    Add Setting
             </v-btn>
         </v-toolbar>
-
         <v-row>
             <v-card width=25% max-height=auto elevation="0">
                 <v-list dense>
@@ -43,7 +42,6 @@
                                     </v-list-item-content>
                                 </v-list-item>
                             </template>
-
                             <v-list-item v-for="(subcat, i) in item.subcategories"
                                 :key="i" @click="selected_category = subcat.id"
                                 v-bind:class="{'chan_grey' : highlight(subcat.id) }"
@@ -129,6 +127,9 @@
                                                             <v-icon>mdi-check</v-icon>
                                                             </span>
 
+                                                            <span v-if="(items.is_active)==0">
+                                                            <v-icon>mdi-close</v-icon>
+                                                            </span>
 
                                                             <span v-if="(items.is_active)==0">
                                                             <v-icon>mdi-close</v-icon>

@@ -102,9 +102,9 @@ export default {
         sendMail() {
             alert('click');
             this.progress_circular = true;
-            DisapproveMail (payload).then((response) => {
+            DisapproveMail (this.payload).then((response) => {
                 this.progress_circular = false;
-                RemoveDisapproveItem(payload.id).then((response) => {
+                RemoveDisapproveItem(this.payload.id).then((response) => {
                     console.log(response.data)
                     this.loading = false
                     this.$emit('closedisapproved');

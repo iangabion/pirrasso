@@ -1,57 +1,26 @@
 <template>
-    <!-- <v-container>
-        <v-toolbar>
-            <v-toolbar-title class="ml-3">Seller</v-toolbar-title>
-
-            <v-spacer></v-spacer>
-            <v-row>
-                <v-col cols="6">
-
-                </v-col>
-                <v-col cols="6">
-                    <v-text-field
-                        placeholder="Search"
-                        dense
-                        rounded
-                        v-model="search"
-                        filled
-                        append-icon="mdi-magnify"
-                        hide-details
-                    >
-
-                    </v-text-field>
-                </v-col>
-            </v-row>
-
-        </v-toolbar>
-
-        <v-data-table
-            :headers="headers"
-            :items="clients"
-
-        >
-        <template v-slot:item.actions="{ item }">
-            <v-icon
-                small
-                class="mr-2"
-                @click="showClient(item)"
-            >
-                mdi-account-cog
-            </v-icon>
-            <v-icon
-                small
-                @click="deleteSeller(item)"
-            >
-                mdi-delete
-            </v-icon>
-            </template>
-        </v-data-table>
-
-    </v-container> -->
     <div>
         <v-toolbar>
             <v-toolbar-title class="px-4">Seller List</v-toolbar-title>
             <v-spacer></v-spacer>
+            <div class="search1">
+                <v-text-field
+                    hide-details
+                    placeholder="Search"
+                    v-model="form.search"
+                    filled
+                    rounded
+                    dense
+                    single-line
+                    append-icon="mdi-magnify" class=" mx-4"
+                />
+            </div>
+            <v-btn>
+                <v-icon>
+                    mdi-database-plus
+                </v-icon>
+                Add
+            </v-btn>
         </v-toolbar>
         <v-container grid-list-xs>
             <v-layout row wrap>
@@ -62,6 +31,9 @@
                             :items="clients"
 
                         >
+                            <template v-slot:item.fullname="{ item }">
+                                {{item.first_name}} {{item.last_name}}
+                            </template>
                             <template v-slot:item.actions="{ item }">
                                 <v-icon
                                     small
@@ -85,7 +57,7 @@
     </div>
 </template>
 <script>
-import { GetAllClients, DeleteClient } from "@api/client.api";
+import { GetAllClients, DeleteClient, FetchAllClient } from "@api/client.api";
 export default {
     data() {
         return {
@@ -98,8 +70,11 @@ export default {
             itemsPerPage: 10,
             total_client: 0,
             clients: [],
-            search: '',
-             headers: [
+            form: {
+                search: ''
+            },
+            searchQuery: null,
+            headers: [
                     { text: 'Full Name',width:'20%', value: 'fullname' },
                     { text: 'Mobile', value: 'mobile', width:'20%' },
                     { text: 'Total Items', value: 'total_items', width:'10%' },
@@ -126,11 +101,14 @@ export default {
         //     return this.clients
         // }
     },
+    mounted() {
+        this.search();
+    },
     methods:  {
-        fetchClientsData(page) {
-            this.current_page = page.page
-            this.indexSeller()
-        },
+        // fetchClientsData(page) {
+        //     this.current_page = page.page
+        //     this.indexSeller()
+        // },
         // set_data_fromServer(data) {
         //     this.clients = data.data
         //     this.total_client = data.total
@@ -138,36 +116,54 @@ export default {
         //     this.pageCount = data.last_page
         // },
 
-        indexSeller() {
-        this.url = 'client/pagination?page='+this.current_page+ '&keyword=' +this.search
+        // indexSeller() {
+        // this.url = 'client/pagination?page='+this.current_page+ '&keyword=' +this.search
 
-        if (this.timer) {
-          clearTimeout(this.timer);
-          this.timer = null;
-        }
-        this.timer = setTimeout(() => {
-          GetAllClients(this.url).then(({data}) => {
-            this.clients = data.data
-            console.log(this.clients)
-            // this.total_client = data.total
-            // this.itemsPerPage = data.per_page
-            // this.pageCount = data.last_page
+        // if (this.timer) {
+        //   clearTimeout(this.timer);
+        //   this.timer = null;
+        // }
+        // this.timer = setTimeout(() => {
+        //   GetAllClients(this.url).then(({data}) => {
+        //     this.clients = data.data
+        //     this.total_client = data.total
+        //     this.itemsPerPage = data.per_page
+        //     this.pageCount = data.last_page
 
-            })
-            }, 800);
-        },
+        //     })
+        //     }, 800);
+        // },
 
         showClient(item) {
            this.$router.push({name: 'view_client', params: { id: item.id },})
         },
-        indexSeller() {
-            GetAllClients().then(({data}) => {
-                this.clients = data
-                console.log(data, 'test')
-            })
+        // indexSeller() {
+        //     GetAllClients().then(({data}) => {
+        //         this.clients = data
+        //         console.log(data, 'test')
+        //     })
+        // },
+
+        search(key) {
+            this.loading = true
+            let payload = {
+                searchkey:key
+            }
+            console.log(payload)
+            if (this.timer) {
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => {
+                FetchAllClient(payload).then((response) => {
+                    console.log(response.data,"seller")
+                    this.clients = response.data
+                    this.loading = false
+                }).catch((errors) => {
+                    console.log(errors)
+                });
+            },800);
         },
-
-
         deleteSeller(item) {
             this.$root.$confirm('Are you sure you want to delete ?')
             .then((result) => {
@@ -179,17 +175,23 @@ export default {
             })
         }
     },
-    created() {
-        this.indexSeller()
-    },
+    // created() {
+    //     this.indexSeller()
+    // },
     watch: {
-         "search": {
+        "form.search": {
             handler(val) {
-            this.page = 1
-            this.indexSeller(val)
-        },
+                this.search(val)
+            },
         deep: true,
-      },
+    },
+    //      "search": {
+    //         handler(val) {
+    //         this.page = 1
+    //         this.indexSeller(val)
+    //     },
+    //     deep: true,
+    //   },
     }
 }
 </script>
