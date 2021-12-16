@@ -387,7 +387,7 @@ export default {
                 let self = this;
                 this.$validator.validateAll().then(result => {
                     if (result){
-                        this.$root.$confirm('Are you sure you want to save ?').then((result) => {
+                        this.$root.$confirm(this.$t('settings.category.are_you_sure_you_want_to_save')).then((result) => {
                             if(result) {
                                 let dis = this ;
                                 let id = this.category.id ;

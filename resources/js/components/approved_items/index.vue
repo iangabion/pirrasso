@@ -82,7 +82,7 @@
                                             </v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>{{$t('approved_items.disapprove')}}</span>
+                                    <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
                             </template>
                         </v-data-table>
@@ -125,8 +125,8 @@ export default {
                 { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
                 { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
                 { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'20%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
+                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'10%' },
+                { text: 'Actions', value: 'actions', sortable: false, width:'20%' ,align: 'center'},
             ]
         }
     },

@@ -129,9 +129,9 @@ export default {
             mail_password: "Mot de passe du Mail",
             mail_encryption: "Cryptage du Mail",
             default: "Valeur par défaut",
-            are_you_sure_want_to_delete_this_record: "Etes-vous sûr de vouloir supprimer cet enregistrement?"
-
-
+            are_you_sure_want_to_delete_this_record: "Etes-vous sûr de vouloir supprimer cet enregistrement?",
+            are_you_sure_you_want_to_save: "Etes-vous sûr de vouloir enregistrer ?",
+            credentials: "Références"
         },
         status: {
             item_status: "Statut de l'article",
