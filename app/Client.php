@@ -14,6 +14,10 @@ class Client extends Authenticatable
         'fcm_token',
     ];
 
+    protected $appends = [
+        'total_items'
+    ];
+
 
     // scopes
     public function scopeNameSearch($query , $searchTerm)
@@ -60,5 +64,9 @@ class Client extends Authenticatable
     }
     public function getFullnameAttribute($value){
         return ucwords($this->first_name .' '. $this->last_name) ;
+    }
+
+    public function getTotalItemsAttribute(){
+        return count($this->items);
     }
 }

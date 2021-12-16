@@ -1,5 +1,10 @@
 export default {
 
+
+    okay: "Okay",
+    cancel: "Cancel",
+    setting: "Setting",
+    send: "Send",
     sidebar: {
         dashboard: "Dashboard",
         items: "Items",
@@ -101,6 +106,7 @@ export default {
             action: "Action",
             icons: "Icons",
             name: "Name",
+            are_you_sure_you_want_to_save: "Are you sure you want to save?",
 
         },
         images: {
@@ -125,9 +131,9 @@ export default {
             mail_password: "Mail Password",
             mail_encryption: "Mail Encryption",
             default: "Default",
-            are_you_sure_want_to_delete_this_record: "Are you sure you want to delete this Record?"
-
-
+            are_you_sure_want_to_delete_this_record: "Are you sure you want to delete this Record?",
+            are_you_sure_you_want_to_save: "Are you sure you want to save?",
+            credentials: "Credentials"
         },
         status: {
             item_status: "Item Status",
@@ -143,5 +149,6 @@ export default {
 
         }
 
-    }
+    },
+
 }

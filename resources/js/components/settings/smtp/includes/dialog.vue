@@ -2,13 +2,13 @@
     <v-dialog v-model="dialog" persistent width="30%">
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
-                    SMTP CREDENTIALS
+                    SMTP {{$t('settings.smtp.credentials')}}
                 </v-card-title>
                 <v-card-text>
                     <v-container fluid>
                         <v-row>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Mailer</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_mailer')}}</v-subheader>
                                 <v-text-field
                                     v-model="formData.mail_mailer"
                                     name= "MAIL_MAILER"
@@ -23,7 +23,7 @@
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Host</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_host')}}</v-subheader>
                                 <v-text-field
                                 v-model="formData.mail_host"
                                     name="MAIL_HOST"
@@ -38,7 +38,7 @@
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Port</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_port')}}</v-subheader>
                                 <v-text-field
                                     type="number"
                                     v-model="formData.mail_port"
@@ -53,7 +53,7 @@
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Username</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_username')}}</v-subheader>
                                 <v-text-field
                                     v-model="formData.mail_username"
                                     ref="MAIL_USERNAME"
@@ -67,7 +67,7 @@
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Password</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_password')}}</v-subheader>
                                 <v-text-field
                                     v-model="formData.mail_password"
                                     ref="MAIL_PASSWORD"
@@ -81,7 +81,7 @@
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
-                                <v-subheader class="px-0">Mail Encryption</v-subheader>
+                                <v-subheader class="px-0">{{$t('settings.smtp.mail_encryption')}}</v-subheader>
                                 <v-text-field
                                     v-model="formData.mail_encryption"
                                     ref="MAIL_ENCRYPTION"
@@ -105,7 +105,7 @@
                         width="70px"
                         @click="create"
                     >
-                        Submit
+                        {{$t('send')}}
                     </v-btn>
                     <v-btn
                         color="error"
@@ -114,7 +114,7 @@
                         @click="$emit('close')"
                         @click.prevent= 'clearformData()'
                     >
-                        Close
+                        {{$t('cancel')}}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -122,6 +122,8 @@
 </template>
 <script>
 import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
+
+
 export default {
     data(){
         return {
@@ -160,7 +162,7 @@ export default {
             let payload = this.formData
             this.$validator.validateAll().then(result => {
                 if (result){
-                this.$root.$confirm('Are you sure you want to save ?').then((result) => {
+                this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
                     if(result) {
                         let dis = this ;
                         let id = this.formData.id;
