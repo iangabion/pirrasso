@@ -6,7 +6,7 @@
       app
     >
     <v-img contain
-            :src="logo"
+            src="/images/logo-c.png"
             size="1"
             max-height="90"
             max-width="180"
@@ -69,9 +69,10 @@
       </v-list>
       
     </v-navigation-drawer>
+    <!-- <h1>dawd</h1> -->
 </template>
 <script>
-import logo from '../../../../public/images/logo-c.png'
+// import logo from '/public/images/logo-c.png'
   export default {
     props: {
       source: String,
@@ -79,7 +80,7 @@ import logo from '../../../../public/images/logo-c.png'
     data: () => ({
       dialog: false,
       drawer: null,
-      logo,
+    
       // items: [
       //   { icon: 'mdi-view-dashboard', text: 'Dashboard' ,url:'/dashboard' },
       //   { icon: 'mdi-history', text: 'Items' ,url:'/items' },
