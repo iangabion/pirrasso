@@ -106,6 +106,7 @@ export default {
             items:[],
             dialog:false,
             selected_item:{},
+            drawer: false,
             // headers: [
             //     { text: 'Item Name',width:'20%', value: 'title' },
             //     { text: 'Category', value: 'category.name', width:'20%' },

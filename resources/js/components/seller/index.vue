@@ -15,13 +15,19 @@
                     append-icon="mdi-magnify" class=" mx-4"
                 />
             </div>
-            <v-btn>
+            <!-- <v-btn
+                @click="addSeller()"
+            >
                 <v-icon>
                     mdi-database-plus
                 </v-icon>
                 Add
-            </v-btn>
+            </v-btn> -->
         </v-toolbar>
+        <!-- <AddSeller
+            :dialog="dialog"
+             @close="dialog=false"
+        ></AddSeller> -->
         <v-container grid-list-xs>
             <v-layout row wrap>
                 <v-flex xs12>
@@ -57,10 +63,15 @@
     </div>
 </template>
 <script>
+// import AddSeller from './add_seller.vue'
 import { GetAllClients, DeleteClient, FetchAllClient } from "@api/client.api";
 export default {
+    // components :{
+    //     AddSeller
+    // },
     data() {
         return {
+            dialog:false,
             itemsPerPage: null,
             current_page: 1,
             pageCount: 0,
@@ -173,7 +184,12 @@ export default {
                     })
                 }
             })
-        }
+        },
+        // addSeller(){
+        //     this.$nextTick(() => {
+        //         this.dialog = true
+        //     })
+        // },
     },
     // created() {
     //     this.indexSeller()
