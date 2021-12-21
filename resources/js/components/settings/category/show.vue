@@ -120,6 +120,9 @@
                                             </v-list>
                                         </v-menu>
                                     </template>
+                                    <template v-slot:no-data>
+                                    {{$t('settings.smtp.no_data_found')}}
+                                    </template>
                         </v-data-table>
                         <v-pagination
                             v-model="page"
@@ -235,6 +238,9 @@
                                                 :src="item.icon"
                                                 >
                                             </v-img>
+                                        </template>
+                                        <template v-slot:no-data>
+                                        {{$t('settings.smtp.no_data_found')}}
                                         </template>
                                     </v-data-table>
                                     <v-pagination

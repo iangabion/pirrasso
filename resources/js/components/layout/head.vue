@@ -9,6 +9,8 @@
     <v-app-bar
     
       app
+      color="white"
+      elevation="0"
      
     
     >
@@ -111,4 +113,5 @@ export default {
     width: 120px;
    
   }
+
 </style>
