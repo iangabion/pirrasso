@@ -10,8 +10,8 @@
         </transition> -->
         
         <v-content >
-            <v-container fill-height>
-                <v-layout  class="white">
+            <v-container fill-height >
+                <v-layout  class="white" >
                     <v-flex xs12>
                         <transition name="fade" mode="out-in">
                             <router-view></router-view>

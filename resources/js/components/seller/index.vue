@@ -49,6 +49,9 @@
                                     mdi-delete
                                 </v-icon>
                             </template>
+                           <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
+                            </template>
                         </v-data-table>
                     </v-card>
                 </v-flex>

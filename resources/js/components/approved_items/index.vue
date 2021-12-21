@@ -85,6 +85,9 @@
                                     <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
                             </template>
+                             <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
+                            </template>
                         </v-data-table>
                     </v-card>
                 </v-flex>
@@ -164,3 +167,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>
+
+
