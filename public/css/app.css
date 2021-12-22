@@ -30872,7 +30872,7 @@ html.overflow-y-hidden {
   right: 0;
 }table > thead.v-data-table-header > tr > th,
 thead .v-data-table__checkbox > .v-icon {
-  background-color: #1565c0 !important;
+  background-color: #FF5722 !important;
   color: #fff !important;
   text-transform: capitalize !important;
 }

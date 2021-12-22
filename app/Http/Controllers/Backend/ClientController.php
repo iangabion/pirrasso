@@ -97,7 +97,7 @@ class ClientController extends Controller
                 $client->image = $imageName ;
             }
             $client->save();
-            return $client;
+            return response()->json($client);
         }
     }
 

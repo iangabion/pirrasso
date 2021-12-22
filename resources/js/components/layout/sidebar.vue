@@ -4,6 +4,7 @@
       v-model="$store.state.sidebar"
       class="padding"
       app
+      elevation="0"
     >
     <v-img contain
             src="/images/logo-c.png"
@@ -12,12 +13,17 @@
             max-width="180"
             class="mx-auto"
             />
-      <v-list dense>
-        <template v-for="item in items">
+      <v-list dense
+      
+       >
+        <template v-for="item in items"
+        
+        >
           <v-row
             v-if="item.heading"
             :key="item.heading"
             align="center"
+            class="tile"
           >
           </v-row>
           <v-list-group
@@ -25,11 +31,16 @@
             :key="item.text"
             v-model="item.model"
             :prepend-icon="item.model ? item.icon : item['icon-alt']"
+              class="tile"
+         
           >
             <template v-slot:activator>
               <v-list-item
+                   class="tile" 
                 >
-                <v-list-item-content>
+                <v-list-item-content
+               
+                >
                   <v-list-item-title >
                     {{ item.text }}
                   </v-list-item-title>
@@ -40,6 +51,7 @@
               v-for="(child, i) in item.children"
               :key="i"
               link :to="child.url"
+            
             >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
@@ -55,6 +67,7 @@
             v-else
             :key="item.text"
             link :to="item.url"
+               class="tile"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
@@ -128,7 +141,46 @@
   }
 </script>
 <style scoped>
+
 .padding {
   padding-top: 2em;
+}
+
+.tile {
+  margin: 5px;
+  border-radius: 4px;
+}
+
+a.tile:hover {
+  background: #FF5722;
+}
+
+.v-list-group.tile .v-list-item.v-list-group__header:hover {
+  background: #FF5722 !important;
+}
+
+
+.v-application a {
+  border-radius: 4px;
+}
+
+.v-application a:hover {
+  background: #FF5722;
+}
+
+/* .tile:active {
+  background: orange;
+} */
+
+.v-list-item--active {
+  background: #FF5722;
+}
+
+.v-list-group.tile > div:first-child:hover {
+  background:#FF5722 !important;
+}
+
+.v-list-item--link:before:hover {
+  background-color: #FF5722 !important;
 }
 </style>

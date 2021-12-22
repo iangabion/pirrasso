@@ -112,7 +112,7 @@
                                     type="password"
                                     solo
                                 ></v-text-field>
-                                <button @click="switchVisibility()"><v-icon>mdi-eye</v-icon></button>
+                                <button @click="switchVisibility()"><v-icon :color="is_true ? 'primary': 'error'">{{ is_true ? 'mdi-eye' : 'mdi-eye-off'}}</v-icon></button>
                             </div>
                         </v-flex>
                     </v-row>
@@ -144,6 +144,7 @@
     </v-dialog>
 </template>
 <script>
+import { CreateClient } from '@api/client.api'
 export default {
     data(){
         return {
@@ -154,8 +155,9 @@ export default {
                 mobile:'',
                 username:'',
                 email:'',
-                password:'',
+                password:'password',
             },
+            is_true:false,
         }
     },
     props: {
@@ -181,6 +183,11 @@ export default {
         },
         create() {
             alert("clicked")
+            let payload = this.formData
+            CreateClient(payload).then((data)=> {
+                console.log("data",data.data);
+
+            })
         },
         reset(){
             this.formData.profile_picture='';
@@ -189,7 +196,7 @@ export default {
             this.formData.mobile='';
             this.formData.username='';
             this.formData.email='';
-            this.formData.password='';
+            this.formData.password='password';
 
             document.getElementById('fileData').value='';
         },
@@ -197,9 +204,11 @@ export default {
             const passwordField = document.querySelector('#password')
             if (passwordField.getAttribute('type') === 'password'){
                  passwordField.setAttribute('type', 'text');
+                 this.is_true = true
             }
             else{
                 passwordField.setAttribute('type', 'password');
+                this.is_true = false
             } 
         },
     }

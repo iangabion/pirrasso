@@ -22,7 +22,6 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
-
                         >
                             <template v-slot:item.created_at="{ item }">
                                 <span>
@@ -84,6 +83,9 @@
                                     </template>
                                     <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
+                            </template>
+                             <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
                             </template>
                         </v-data-table>
                     </v-card>
@@ -165,3 +167,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>
+
+
