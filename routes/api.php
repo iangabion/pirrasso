@@ -123,4 +123,4 @@ Route::get('sendMessage', 'SMSController@sendMessage');
 
 Route::put('update_review/{id}','ProductReviewController@update_review');
 Route::delete('delete_review/{id}','ProductReviewController@destroy');
-// Route::
+Route::get('getStarRating', 'ItemsController@getStarRating');

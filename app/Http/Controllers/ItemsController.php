@@ -36,6 +36,13 @@ class ItemsController extends Controller
         return  ItemResource::collection($items) ;
     }
 
+    public function getStarRating() {
+        // return round($this->rating()->avg('rating'),1);
+        $starcountsum = with('reviews')->sum('rating');
+        $average = $starcountsum/$this->reviews()->count();
+        return $average; 
+    }
+
     /**
      * Show the form for creating a new resource.
      *
