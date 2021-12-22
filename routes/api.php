@@ -62,6 +62,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('change_status' ,'ItemsController@changeStatus');
 
+	Route::post('add_review','ProductReviewController@store');
+
 
 });
 
@@ -118,3 +120,7 @@ Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
 Route::get('sendMessage', 'SMSController@sendMessage');
+
+Route::put('update_review/{id}','ProductReviewController@update_review');
+Route::delete('delete_review/{id}','ProductReviewController@destroy');
+// Route::

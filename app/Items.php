@@ -50,6 +50,20 @@ class Items extends Model
     public function solds(){
         return $this->hasMany(Sold::class);
     }
+    public function reviews(){
+        return $this->hasMany(ProductReview::class);
+    }
+
+    protected $appends = [
+        'average-rating'
+    ];
+
+    public function getStarRating() {
+        return round($this->rating()->avg('rating'),1);
+        // return $starcountsum = $this->reviews()->sum('rating');
+        // $average = $starcountsum/$this->reviews()->count();
+        // return $average; 
+    }
 
 
     //mutator
