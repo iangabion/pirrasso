@@ -54,16 +54,11 @@ class Items extends Model
         return $this->hasMany(ProductReview::class);
     }
 
-    protected $appends = [
-        'average-rating'
-    ];
+    // protected $appends = [
+    //     'average-rating'
+    // ];
 
-    public function getStarRating() {
-        return round($this->rating()->avg('rating'),1);
-        // return $starcountsum = $this->reviews()->sum('rating');
-        // $average = $starcountsum/$this->reviews()->count();
-        // return $average; 
-    }
+    
 
 
     //mutator
