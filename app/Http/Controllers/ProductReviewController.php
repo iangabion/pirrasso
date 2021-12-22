@@ -52,4 +52,6 @@ class ProductReviewController extends Controller
         $review->delete();
         return response()->json("Record deleted");
     }
+
+    
 }
