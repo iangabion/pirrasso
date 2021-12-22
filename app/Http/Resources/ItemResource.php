@@ -46,6 +46,9 @@ class ItemResource extends JsonResource
             'is_active' => $this->is_active,
             'variation'=> $this->variation,
 
+            // 'rating'=>$this->rating,
+            // 'review_description' => $this->review_description,
+
         ];
     }
 }

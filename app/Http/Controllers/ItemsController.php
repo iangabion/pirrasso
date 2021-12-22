@@ -31,7 +31,8 @@ class ItemsController extends Controller
     }
 
     public function all_items(){
-        $items = Items::where('stock','>',0)->orderBy('created_at', 'desc')->get();
+        $items = Items::with('reviews')->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
+        return $items;
         return  ItemResource::collection($items) ;
     }
 

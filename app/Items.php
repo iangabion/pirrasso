@@ -50,6 +50,9 @@ class Items extends Model
     public function solds(){
         return $this->hasMany(Sold::class);
     }
+    public function reviews(){
+        return $this->hasMany(ProductReview::class);
+    }
 
 
     //mutator

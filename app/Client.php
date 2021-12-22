@@ -50,6 +50,9 @@ class Client extends Authenticatable
     public function fcm_tokens(){
         return $this->hasMany(FcmToken::class);
     }
+    public function reviews(){
+        return $this->hasMany(ProductReview::class);
+    }
 
 
 
