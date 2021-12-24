@@ -15,9 +15,9 @@
             <v-list two-line>
             <v-list-item>
                 <v-list-item-icon>
-                <v-icon color="indigo">
-                    mdi-account
-                </v-icon>
+                    <v-icon color="indigo">
+                        mdi-account
+                    </v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>

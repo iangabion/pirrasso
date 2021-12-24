@@ -61,6 +61,9 @@
                     </v-card>
                 </v-flex>
             </v-layout>
+            <AddSeller
+                :dialog="dialog2"
+            ></AddSeller>
         </v-container>
     </div>
 </template>
