@@ -176,12 +176,12 @@ export default {
                         })
                         }else{
                             CreateSmtp(payload).then((data)=> {
-                            console.log(data)
-                            this.clearformData()
-                            this.$emit('search')
-                            this.$emit('close')
-                            this.loading = false
-                            alert('Successfully Created');
+                                console.log(data)
+                                this.clearformData()
+                                this.$emit('search')
+                                this.$emit('close')
+                                this.loading = false
+                                alert('Successfully Created');
                             }).catch((error)=> {
                                 console.log(error)
                             });
