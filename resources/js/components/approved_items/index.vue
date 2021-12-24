@@ -92,6 +92,17 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-dialog       
+            v-model="progress_circular"
+            max-width="100"
+            persistent
+        >
+            <v-card>
+                <v-card-text class="text-xs-center pt-1">
+                    <v-progress-circular :size="50" indeterminate class="primary--text"/>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 <script>
@@ -109,6 +120,7 @@ export default {
             dialog:false,
             selected_item:{},
             selected_data:{},
+            progress_circular : false,
             drawer: false,
             // headers: [
             //     { text: 'Item Name',width:'20%', value: 'title' },
@@ -152,11 +164,13 @@ export default {
             })
         },
         approved(item){
+            this.progress_circular = true;
             let payload = this.item;
             ApproveMail(item).then((response) => {
+                this.progress_circular = false;
                 ApprovedItem(item.id).then(() => {
                     this.build()
-                    alert('item approved!')
+                    alert('Message Sent Successfull');
                 })
             });
         },
