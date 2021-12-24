@@ -28,3 +28,11 @@ thead .v-data-table__checkbox>.v-icon {
 .fade-leave-active {
     opacity: 0
 }
+
+tbody tr:nth-of-type(odd) {
+    background-color:#fcd2c6;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: rgb(250 ,250, 250);
+}

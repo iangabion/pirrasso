@@ -35,7 +35,6 @@
                         <v-data-table
                             :headers="headers"
                             :items="clients"
-
                         >
                             <template v-slot:item.fullname="{ item }">
                                 {{item.first_name}} {{item.last_name}}
@@ -221,4 +220,12 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+tbody tr:nth-of-type(odd) {
+   background-color: rgba(0, 0, 0, .05);
+ }
+
+
+
 </style>
