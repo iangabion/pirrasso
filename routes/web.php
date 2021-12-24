@@ -68,10 +68,11 @@ Route::middleware('auth:web')->group(function () {
         Route::delete('smtp/delete/{id}', 'SmtpSettingController@destroy');
         Route::get('smtp/show/{id}','SmtpSettingController@show');
         Route::put('smtp/update/{id}','SmtpSettingController@update');
+        Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
 
         Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
+        Route::post('approved_items/approve', 'EmailNoticeController@approveEmail')->name('approve');
         
-        Route::get('smtp/set_default/{id}', 'SmtpSettingController@setDefault');
 
         Route::post('client/search', 'ClientController@searchClient');
 

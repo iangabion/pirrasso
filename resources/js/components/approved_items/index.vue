@@ -96,7 +96,7 @@
 </template>
 <script>
 import disapprovedDialog from './includes/disapproved_dialog.vue'
-import { GetToApprovedItems, ApprovedItem } from "@api/item.api";
+import { GetToApprovedItems, ApprovedItem, ApproveMail } from "@api/item.api";
 import productInfo from './includes/productInfo.vue'
 export default {
     components : {
@@ -108,6 +108,7 @@ export default {
             items:[],
             dialog:false,
             selected_item:{},
+            selected_data:{},
             drawer: false,
             // headers: [
             //     { text: 'Item Name',width:'20%', value: 'title' },
@@ -151,10 +152,13 @@ export default {
             })
         },
         approved(item){
-            ApprovedItem(item.id).then(() => {
-                this.build()
-                alert('item approved!')
-            })
+            let payload = this.item;
+            ApproveMail(item).then((response) => {
+                ApprovedItem(item.id).then(() => {
+                    this.build()
+                    alert('item approved!')
+                })
+            });
         },
         open_info(item){
             this.drawer = true
