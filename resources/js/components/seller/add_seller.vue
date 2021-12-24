@@ -9,8 +9,8 @@
                     <v-row>
                         <div class="js--image-preview" style="margin: auto;">
                             <v-img
-                                style="width: 200px; height: 160px"
-                                :src="formData.profile_picture || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'"
+                                style="width: 200px; height: 150px"
+                                :src="formData.profile_picture || '/images/profile.jpg'"
                             ></v-img>
                         </div>
                         <div class="upload-options" required style="padding-top: 5px;">

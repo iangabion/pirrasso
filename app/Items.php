@@ -54,6 +54,10 @@ class Items extends Model
         return $this->hasMany(ProductReview::class);
     }
 
+    public function reviews1(){
+        return $this->reviews()->sum('rating');
+    }
+
     // protected $appends = [
     //     'average-rating'
     // ];
