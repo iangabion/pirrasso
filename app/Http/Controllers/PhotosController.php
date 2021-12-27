@@ -98,8 +98,8 @@ class PhotosController extends Controller
 
     public function add_photo4Logo(Request $request){
 
-        if(\File::exists(public_path('images/app_images/123.jpeg'))){
-            \File::delete('images/app_images/123.jpeg');
+        if(\File::exists(public_path('images/app_images/logo.jpeg'))){
+            \File::delete('images/app_images/logo.jpeg');
         }else{
             dd('File does not exists.');
         };
@@ -109,7 +109,7 @@ class PhotosController extends Controller
             list($type, $image) = explode(';', $image);
             list(, $image)      = explode(',', $image);
             $data = base64_decode($image);
-            $imageName = '123.jpeg';
+            $imageName = 'logo.jpeg';
             file_put_contents(public_path() . '/' . 'images/app_images/' . $imageName, $data);
         }
 

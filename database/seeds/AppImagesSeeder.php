@@ -14,7 +14,7 @@ class AppImagesSeeder extends Seeder
     {
         //
         AppImages::create([
-            'filename' => '123.jpeg',
+            'filename' => 'logo.jpeg',
         ]);
     }
 }

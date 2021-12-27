@@ -11,6 +11,9 @@ import VueDraggable from 'vue-draggable';
 import Vue from "vue";
 import axios from 'axios';
 import i18n from './i18n';
+import "./plugins/validate";
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+
 // import en from '../lang/en.js'
 // import fr from '../lang/fr.js'
 
@@ -92,6 +95,9 @@ axios.interceptors.response.use((response) => {
 Vue.use(VeeValidate);
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/snackbar.vue').default);
+Vue.component('validation-provider', ValidationProvider);
+Vue.component('validation-observer', ValidationObserver);
+
 Vue.mixin(global_mixin)
 Vue.use(VueDraggable)
 
