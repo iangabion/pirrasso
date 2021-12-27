@@ -7,6 +7,7 @@ use App\Notifications\SMSNotification;
 use Illuminate\Notifications\Notification;
 use Twilio\Rest\Client;
 use App\User;
+use App\Items;
 Use Illuminate\Support\Facades\Auth;
 use Exception;
 
@@ -44,8 +45,9 @@ class SmsController extends Controller
     }
 
     public function sms_sender(Request $request){
-        $receiverNumber = '+' + $request->input('number');
-        $message = "This is testing from Qonvex.com";
+        $items = Items::where('id', $request->input('id') )->get('title');
+        $receiverNumber = '+' . $request->input('number');
+        $message = "This is testing from Qonvex.com. Your " . $items . " item has been Approved!";
         try {
             $account_sid = 'ACfb0e0ca8f0786a4b8c937db4eb8d8daa';
             $auth_token = 'e70d8db712c8e1b6abb13e50255a4eaf';

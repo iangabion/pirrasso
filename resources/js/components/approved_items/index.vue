@@ -173,11 +173,15 @@ export default {
                     alert('Message Sent Successfull');
                 })
             });
-            // let payload ={
-            //     number: item.mobile
-            // }
+            this.approved_sms(item)
+        },
+        approved_sms(item){
+             let payload = {
+                number: item.client.mobile,
+                id: item.id
+            }
             axios.post('api/sms_sender/', payload).then((response)=>{
-                console.log(response)
+                console.log(response.data , 'chan')
             })
         },
         open_info(item){
