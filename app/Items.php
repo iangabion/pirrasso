@@ -50,6 +50,19 @@ class Items extends Model
     public function solds(){
         return $this->hasMany(Sold::class);
     }
+    public function reviews(){
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function reviews1(){
+        return $this->reviews()->sum('rating');
+    }
+
+    // protected $appends = [
+    //     'average-rating'
+    // ];
+
+    
 
 
     //mutator
@@ -62,6 +75,8 @@ class Items extends Model
     public function getShownumberAttribute($value) {
         return $value == 1 ? 'true' :'false' ; 
     }
+
+    
 
 
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">Apps Images</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('settings.images.apps_images')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
 
@@ -21,7 +21,7 @@
                         >
                         </v-img >
                         <v-card-subtitle align="center" class ="mt-0 pt-0">
-                            <h1>Current App Logo</h1>
+                            <h1>{{$t('settings.images.current_app_logo')}}</h1>
                         </v-card-subtitle>
                 </v-card>
 
@@ -53,7 +53,7 @@
                     <v-flex xs12 class="text-left mt-6 ml-9">
                             <v-btn color="success" small title @click.prevent="save_logo">
                                 <v-icon left>mdi-content-save-edit-outline</v-icon>
-                                save logo
+                                {{$t('settings.images.save_logo')}}
                             </v-btn>
                     </v-flex>
                 </v-card>

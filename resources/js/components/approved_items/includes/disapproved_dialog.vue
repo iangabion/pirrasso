@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" width="600" persistent>
         <v-card>
             <v-card-title class="text-h5 grey lighten-2">
-                Disapprovement Notice
+                {{$t('approved_items.disapproved_dialog.disapprovement_notice')}}
             </v-card-title>
             <v-card-text>
                 <v-container fluid>
@@ -46,7 +46,7 @@
                     @click.prevent="sendMail()"
                      @click="progress_circular = true"
                 >
-                    Send
+                    {{$t('send')}}
                 </v-btn>
                 <v-btn
                     color="error"
@@ -54,7 +54,7 @@
                     width="70px"
                     @click="$emit('close')"
                 >
-                    Cancel
+                    {{$t('cancel')}}
                 </v-btn>
             </v-card-actions>
         </v-card>
@@ -102,9 +102,9 @@ export default {
         sendMail() {
             alert('click');
             this.progress_circular = true;
-            DisapproveMail (payload).then((response) => {
+            DisapproveMail (this.payload).then((response) => {
                 this.progress_circular = false;
-                RemoveDisapproveItem(payload.id).then((response) => {
+                RemoveDisapproveItem(this.payload.id).then((response) => {
                     console.log(response.data)
                     this.loading = false
                     this.$emit('closedisapproved');

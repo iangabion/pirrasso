@@ -106,7 +106,7 @@ export default {
             axios.get('/item', {})
             .then(response => {
                 this.items = response.data;
-                console.log(this.items)
+                console.log(this.items,"item")
             });
         },
         get_sold(){

@@ -15,16 +15,16 @@
             <v-list two-line>
             <v-list-item>
                 <v-list-item-icon>
-                <v-icon color="indigo">
-                    mdi-account
-                </v-icon>
+                    <v-icon color="indigo">
+                        mdi-account
+                    </v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
                 <v-list-item-title
                     class="text-capitalize"
                 >{{client.first_name}} {{client.last_name}}</v-list-item-title>
-                <v-list-item-subtitle>Name</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ $t('seller.sellerinfo.name')}}</v-list-item-subtitle>
                 </v-list-item-content>
 
             </v-list-item>
@@ -39,7 +39,7 @@
 
                 <v-list-item-content>
                 <v-list-item-title>{{client.mobile}}</v-list-item-title>
-                <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ $t('seller.sellerinfo.mobile')}}</v-list-item-subtitle>
                 </v-list-item-content>
 
             </v-list-item>
@@ -54,7 +54,7 @@
 
                 <v-list-item-content>
                 <v-list-item-title>{{client.username}}</v-list-item-title>
-                <v-list-item-subtitle>User Name</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ $t('seller.sellerinfo.user_name')}}</v-list-item-subtitle>
                 </v-list-item-content>
 
             </v-list-item>
@@ -70,7 +70,7 @@
 
                 <v-list-item-content>
                 <v-list-item-title>{{client.email}}</v-list-item-title>
-                <v-list-item-subtitle>Email</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ $t('seller.sellerinfo.email')}}</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 

@@ -32,7 +32,7 @@
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.price }}</v-list-item-title>
-                         <v-list-item-subtitle>Price</v-list-item-subtitle>
+                         <v-list-item-subtitle>{{$t('seller.productinfo.price')}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -43,7 +43,7 @@
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.description }}</v-list-item-title>
-                         <v-list-item-subtitle>Description</v-list-item-subtitle>
+                         <v-list-item-subtitle>{{$t('seller.productinfo.description')}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -54,7 +54,7 @@
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.is_sold }}</v-list-item-title>
-                         <v-list-item-subtitle>Sold</v-list-item-subtitle>
+                         <v-list-item-subtitle>{{$t('seller.productinfo.sold')}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -65,7 +65,7 @@
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.category ? item.category.name : '' }}</v-list-item-title>
-                         <v-list-item-subtitle>Category</v-list-item-subtitle>
+                         <v-list-item-subtitle>{{$t('seller.productinfo.category')}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -76,7 +76,7 @@
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.created_at }}</v-list-item-title>
-                         <v-list-item-subtitle>Date Published</v-list-item-subtitle>
+                         <v-list-item-subtitle>{{$t('seller.productinfo.date_published')}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -99,7 +99,7 @@
                 <div
                     style="text-align: center;font-weight: bold;padding-top: 10px;"
                     class="text-capitalize"
-                > sample photo's </div>
+                >{{$t('seller.productinfo.sample_photo')}}</div>
                 <v-btn
                     class="mt-5"
                     color="error"
@@ -109,7 +109,7 @@
                     <!-- <v-icon left>
                         mdi-delete
                     </v-icon> -->
-                    DELETE ITEM
+                    {{$t('seller.productinfo.delete_item')}}
                 </v-btn>
             </div>
         </v-navigation-drawer>

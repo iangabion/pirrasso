@@ -33,7 +33,7 @@ class ItemResource extends JsonResource
             'latitude'=> $this->latitude,
             'longitude'=> $this->longitude,
             'status'=> $this->status->name,
-            'category' => $this->category->name ,
+            'category' => $this->category,
             'subcategory' =>  isset($this->subcategory->name) ? $this->subcategory->name : '' ,
             'show_number' => $this->show_number,
             'published at' => $this->created_at ,
@@ -43,7 +43,11 @@ class ItemResource extends JsonResource
             'vehicles_filter' => $vehicle ,
             'is_urgent' => $this->is_urgent,
             'is_displayed' => $this->is_displayed,
-            'is_active' => $this->is_active
+            'is_active' => $this->is_active,
+            'variation'=> $this->variation,
+
+            // 'rating'=>$this->rating,
+            // 'review_description' => $this->review_description,
 
         ];
     }

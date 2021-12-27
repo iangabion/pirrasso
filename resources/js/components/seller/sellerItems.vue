@@ -15,7 +15,7 @@
                 style="position:sticky; top:0; z-index:1;"
             >
                 <v-toolbar-title>
-                    Items Details
+                    {{$t('seller.selleritems.item_details')}}
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn
@@ -29,7 +29,7 @@
                         left
                         class="mr-3"
                     > mdi-heart</v-icon>
-                    Items
+                    {{$t('seller.selleritems.items')}}
                 </v-btn>
                 <v-btn
                     @click="change_active('sold')"
@@ -42,7 +42,7 @@
                         left
                         class="mr-3"
                     > mdi-heart</v-icon>
-                    Sold
+                    {{$t('seller.selleritems.sold')}}
                 </v-btn>
                 <v-btn
                     @click="change_active('cart')"
@@ -55,7 +55,7 @@
                         left
                         class="mr-3"
                     > mdi-heart</v-icon>
-                    Cart
+                    {{$t('seller.selleritems.cart')}}
                 </v-btn>
             </v-toolbar>
             <v-divider></v-divider>

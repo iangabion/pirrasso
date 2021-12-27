@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-title class="px-4">SMTP Setting</v-toolbar-title>
+      <v-toolbar-title class="px-4">SMTP {{$t('setting')}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="search1">
         <v-text-field
@@ -19,7 +19,7 @@
         <v-icon class="add_smtp">
           mdi-database-plus
         </v-icon>
-        Add Setting
+        {{$t('settings.smtp.add_setting')}}
       </v-btn>
     </v-toolbar>
     <div>
@@ -45,7 +45,7 @@
                             ></v-switch>
                         </template>
                         <span>
-                            {{item.is_default ? 'Remove Default' : 'Set As Default'}}
+                            {{item.is_default ? $t('settings.smtp.remove_default') : $t('settings.smtp.set_as_default')}}
                         </span>
                     </v-tooltip>
                 </template>
@@ -62,7 +62,7 @@
                                     <v-icon size="20" color="primary">mdi-pencil</v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-title>
-                                    Edit
+                                    {{$t('settings.smtp.edit')}}
                                 </v-list-item-title>
                             </v-list-item>
                             <v-list-item @click="destroy(item.id)" dense>
@@ -70,14 +70,14 @@
                                     <v-icon size="20" color="error">mdi-delete</v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-title>
-                                    Delete
+                                     {{$t('settings.smtp.delete')}}
                                 </v-list-item-title>
                             </v-list-item>
                         </v-list>
                     </v-menu>
                 </template>
                 <template v-slot:no-data>
-                  No Data Found
+                  {{$t('settings.smtp.no_data_found')}}
                 </template>
               </v-data-table>
             </v-card>
@@ -110,16 +110,30 @@ export default {
       smtp: [],
       loading: false,
       on_menu: true,
-      headers: [
-        { text: 'MAIL_MAILER', align: 'start', value: 'mail_mailer', width: '10%',},
-        { text: 'MAIL_HOST', align: 'start', value: 'mail_host', width: '15%'},
-        { text: 'MAIL_PORT', align: 'start', value: 'mail_port', width: '10%'},
-        { text: 'MAIL_USERNAME', align: 'start', value: 'mail_username', width: '15%'},
-        { text: 'MAIL_PASSWORD', align: 'start', value: 'mail_password', width: '25%'},
-        { text: 'MAIL_ENCRYPTION', align: 'start', value: 'mail_encryption', width: '15%'},
-        { text: 'Default', align: 'start', value: 'status_on', width: '10%'},
+      // headers: [
+      //   { text: 'MAIL_MAILER', align: 'start', value: 'mail_mailer', width: '10%',},
+      //   { text: 'MAIL_HOST', align: 'start', value: 'mail_host', width: '15%'},
+      //   { text: 'MAIL_PORT', align: 'start', value: 'mail_port', width: '10%'},
+      //   { text: 'MAIL_USERNAME', align: 'start', value: 'mail_username', width: '15%'},
+      //   { text: 'MAIL_PASSWORD', align: 'start', value: 'mail_password', width: '25%'},
+      //   { text: 'MAIL_ENCRYPTION', align: 'start', value: 'mail_encryption', width: '15%'},
+      //   { text: 'Default', align: 'start', value: 'status_on', width: '10%'},
+      //   { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+      // ],
+    }
+  },
+  computed: {
+    headers(){
+      return [
+        { text: this.$t('settings.smtp.mail_mailer'), align: 'start', value: 'mail_mailer', width: '10%',},
+        { text: this.$t('settings.smtp.mail_host'), align: 'start', value: 'mail_host', width: '15%'},
+        { text: this.$t('settings.smtp.mail_port'), align: 'start', value: 'mail_port', width: '10%'},
+        { text: this.$t('settings.smtp.mail_username'), align: 'start', value: 'mail_username', width: '15%'},
+        { text: this.$t('settings.smtp.mail_password'), align: 'start', value: 'mail_password', width: '25%'},
+        { text: this.$t('settings.smtp.mail_encryption'), align: 'start', value: 'mail_encryption', width: '15%'},
+        { text: this.$t('settings.smtp.default'), align: 'start', value: 'status_on', width: '10%'},
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
-      ],
+      ]
     }
   },
   mounted() {
@@ -158,7 +172,7 @@ export default {
     },
     destroy(id) {
       this.loading = true
-      var conf = confirm('Are you sure want to delete this record?');
+      var conf = confirm(this.$t('settings.smtp.are_you_sure_want_to_delete_this_record'));
       if(conf)
       DeleteSmtpData(id).then((response)=> {
         console.log(response.data)

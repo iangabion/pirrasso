@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4 text-capitalize">To be approved items</v-toolbar-title>
+            <v-toolbar-title class="px-4 text-capitalize">{{$t('approved_items.to_be_approved_items')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <disapprovedDialog
@@ -10,6 +10,11 @@
             :item="selected_item"
             @close="dialog=false"
         ></disapprovedDialog>
+        <productInfo
+            :drawer="drawer"
+            :item="selected_data"
+            @collapse-drawer="drawer = !drawer"
+        />
         <v-container grid-list-xs>
             <v-layout row wrap>
                 <v-flex xs12>
@@ -17,7 +22,6 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
-
                         >
                             <template v-slot:item.created_at="{ item }">
                                 <span>
@@ -25,6 +29,24 @@
                                 </span>
                             </template>
                             <template v-slot:item.actions="{ item }">
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn
+                                            class="mr-2"
+                                            fab
+                                            dark
+                                            v-on="on"
+                                            small
+                                            color="green"
+                                            @click="open_info(item)"
+                                        >
+                                            <v-icon dark small>
+                                                mdi-eye
+                                            </v-icon>
+                                        </v-btn>
+                                    </template>
+                                    <span>view</span>
+                                </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
                                         <v-btn
@@ -41,7 +63,7 @@
                                             </v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>approve</span>
+                                    <span>{{$t('approved_items.approve')}}</span>
                                 </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
@@ -59,36 +81,69 @@
                                             </v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>disapprove</span>
+                                    <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
+                            </template>
+                             <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
                             </template>
                         </v-data-table>
                     </v-card>
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-dialog       
+            v-model="progress_circular"
+            max-width="100"
+            persistent
+        >
+            <v-card>
+                <v-card-text class="text-xs-center pt-1">
+                    <v-progress-circular :size="50" indeterminate class="primary--text"/>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 <script>
 import disapprovedDialog from './includes/disapproved_dialog.vue'
-import { GetToApprovedItems, ApprovedItem } from "@api/item.api";
+import { GetToApprovedItems, ApprovedItem, ApproveMail } from "@api/item.api";
+import productInfo from './includes/productInfo.vue'
 export default {
     components : {
-        disapprovedDialog
+        disapprovedDialog,
+        productInfo
     },
     data(){
         return{
             items:[],
             dialog:false,
             selected_item:{},
-            headers: [
-                { text: 'Item Name',width:'20%', value: 'title' },
-                { text: 'Category', value: 'category.name', width:'20%' },
-                { text: 'Price', value: 'price', width:'10%' },
-                { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: 'Added On', value: 'created_at', width:'20%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
-            ],
+            selected_data:{},
+            progress_circular : false,
+            drawer: false,
+            // headers: [
+            //     { text: 'Item Name',width:'20%', value: 'title' },
+            //     { text: 'Category', value: 'category.name', width:'20%' },
+            //     { text: 'Price', value: 'price', width:'10%' },
+            //     { text: 'Seller Username',align: 'start',sortable: false,value: 'client.username', width:'20%'},
+            //     { text: 'Added On', value: 'created_at', width:'20%' },
+            //     { text: 'Actions', value: 'actions', sortable: false, width:'10%' ,align: 'center'},
+
+            // ],
+        }
+    },
+
+    computed: {
+        headers(){
+            return [
+                { text: this.$t('approved_items.item_name'),width:'20%', value: 'title' },
+                { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
+                { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
+                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
+                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'10%' },
+                { text: 'Actions', value: 'actions', sortable: false, width:'20%' ,align: 'center'},
+            ]
         }
     },
     methods:{
@@ -109,20 +164,35 @@ export default {
             })
         },
         approved(item){
-            ApprovedItem(item.id).then(() => {
-                this.build()
-                alert('item approved!')
-            })
-            let payload ={
-                number: item.mobile
-            }
+            this.progress_circular = true;
+            let payload = this.item;
+            ApproveMail(item).then((response) => {
+                this.progress_circular = false;
+                ApprovedItem(item.id).then(() => {
+                    this.build()
+                    alert('Message Sent Successfull');
+                })
+            });
+            // let payload ={
+            //     number: item.mobile
+            // }
             axios.post('api/sms_sender/', payload).then((response)=>{
                 console.log(response)
             })
-        }
+        },
+        open_info(item){
+            this.drawer = true
+            this.selected_data = item
+            console.log(item , 'sad')
+        },
     },
     created(){
         this.build();
     }
 }
 </script>
+<style scoped>
+
+</style>
+
+

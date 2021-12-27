@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration
             $table->string('title')->nullable();
             $table->integer('price');
             $table->string('description')->nullable();
-            $table->string('brand');
-            $table->string('variation');
+            $table->string('brand')->nullable();
+            $table->string('variation')->nullable();
             $table->string('location')->nullable();
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();

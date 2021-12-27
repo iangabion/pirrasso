@@ -13,6 +13,9 @@ class Sold extends Model
     public function clients(){
         return $this->belongsTo(Client::class);
     }
+    public function reviews(){
+        return $this->belongsTo(ProductReview::class);
+    }
 
     public function getStatusIdAttribute($value) {
         switch($value) {
