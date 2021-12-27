@@ -20,8 +20,7 @@
                                                 <v-text-field
                                                     type="text"
                                                     v-model="statuses.name"
-                                                    v-validate="'required'"
-                                                    :error-messages="errors.collect('Status Name')"
+                                                   :rules="required"
                                                     data-vv-name="Status Name"
                                                     :label="$t('settings.status.status_name')" required>
                                                 </v-text-field>
@@ -99,6 +98,7 @@
         data: () => ({
             default_footer:true,
             status: [],
+            required: [],
             max_height: '100px',
             statuses : {
                 name: '',

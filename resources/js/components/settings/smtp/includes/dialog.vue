@@ -17,7 +17,7 @@
                                     filled
                                     solo
                                     hide-details
-                                    v-validate="'required'"
+                                    :rules="required"
                                    
                                     data-vv-name="MAIL_MAILER"
                                 ></v-text-field>
@@ -28,7 +28,7 @@
                                 v-model="formData.mail_host"
                                     name="MAIL_HOST"
                                     ref="MAIL_HOST"
-                                    v-validate="'required'"
+                                    :rules="required"
                                     data-vv-name="MAIL_HOST"
                                     dense
                                     filled
@@ -42,7 +42,7 @@
                                     type="number"
                                     v-model="formData.mail_port"
                                     ref="MAIL_PORT"
-                                    v-validate="'required'"
+                                   :rules="required"
                                     data-vv-name="MAIL_PORT"
                                     dense
                                     filled
@@ -55,7 +55,7 @@
                                 <v-text-field
                                     v-model="formData.mail_username"
                                     ref="MAIL_USERNAME"
-                                    v-validate="'required'"
+                                   :rules="required"
                                     data-vv-name="MAIL_USERNAME"
                                     dense
                                     filled
@@ -68,7 +68,7 @@
                                 <v-text-field
                                     v-model="formData.mail_password"
                                     ref="MAIL_PASSWORD"
-                                    v-validate="'required'"
+                                    :rules="required"
                                     data-vv-name="MAIL_PASSWORD"
                                     dense
                                     hide-details
@@ -81,7 +81,7 @@
                                 <v-text-field
                                     v-model="formData.mail_encryption"
                                     ref="MAIL_ENCRYPTION"
-                                    v-validate="'required'"
+                                    :rules="required"
                                     data-vv-name="MAIL_ENCRYPTION"
                                     dense
                                     filled
@@ -122,6 +122,7 @@ import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
 export default {
     data(){
         return {
+            required: [],
             formData:{
                 id:'',
                 mail_mailer:'',
