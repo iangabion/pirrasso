@@ -173,6 +173,12 @@ export default {
                     alert('Message Sent Successfull');
                 })
             });
+            // let payload ={
+            //     number: item.mobile
+            // }
+            axios.post('api/sms_sender/', payload).then((response)=>{
+                console.log(response)
+            })
         },
         open_info(item){
             this.drawer = true

@@ -482,9 +482,6 @@ export default {
 
                 axios.get('category', {})
 			    .then(response => {
-                    // let category = response.data.filter(chan_filter=>
-                    //     chan_filter.id != 2
-                    // )
                     this.categories = response.data;
                     console.log(response.data, 'chan here category data here');
                     this.data_loaded = true;
