@@ -18,7 +18,7 @@
                                     solo
                                     hide-details
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_MAILER')"
+                                   
                                     data-vv-name="MAIL_MAILER"
                                 ></v-text-field>
                             </v-flex>
@@ -29,7 +29,6 @@
                                     name="MAIL_HOST"
                                     ref="MAIL_HOST"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_HOST')"
                                     data-vv-name="MAIL_HOST"
                                     dense
                                     filled
@@ -44,7 +43,6 @@
                                     v-model="formData.mail_port"
                                     ref="MAIL_PORT"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_PORT')"
                                     data-vv-name="MAIL_PORT"
                                     dense
                                     filled
@@ -58,7 +56,6 @@
                                     v-model="formData.mail_username"
                                     ref="MAIL_USERNAME"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_USERNAME')"
                                     data-vv-name="MAIL_USERNAME"
                                     dense
                                     filled
@@ -72,7 +69,6 @@
                                     v-model="formData.mail_password"
                                     ref="MAIL_PASSWORD"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_PASSWORD')"
                                     data-vv-name="MAIL_PASSWORD"
                                     dense
                                     hide-details
@@ -86,7 +82,6 @@
                                     v-model="formData.mail_encryption"
                                     ref="MAIL_ENCRYPTION"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('MAIL_ENCRYPTION')"
                                     data-vv-name="MAIL_ENCRYPTION"
                                     dense
                                     filled
