@@ -43,8 +43,7 @@
                                 small-chips
                                 accept="image/*"
                                 label="Change Logo"
-                                v-validate="'image'"
-                                :error-messages="errors.collect('Logo')"
+                                :rules="image"
                                 data-vv-name="Logo"
                                 @change="onFileChange('cat', $event)"
                                 >
@@ -70,7 +69,9 @@ export default {
         logo:{
             image:'',
             id:'',
-        }     
+           
+        },     
+         image: [],
     }),
     methods:{
 
