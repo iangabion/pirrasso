@@ -117,4 +117,7 @@ Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
 Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
-Route::get('sendMessage', 'SMSController@sendMessage');
+Route::get('get_number', 'ClientController@get_number'); 
+Route::post('sms_sender/{id}', 'SMSController@sms_sender');
+Route::put('change_number', 'ClientController@change_number');
+Route::post('send_sms_test', 'SMSController@send_sms_test');

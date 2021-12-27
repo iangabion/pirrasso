@@ -113,6 +113,12 @@ export default {
                 this.build()
                 alert('item approved!')
             })
+            let payload ={
+                number: item.mobile
+            }
+            axios.post('api/sms_sender/', payload).then((response)=>{
+                console.log(response)
+            })
         }
     },
     created(){

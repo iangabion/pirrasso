@@ -141,7 +141,7 @@ class CategoryController extends Controller
     }
 
     public function get_category($id){
-        $cat = Items::whereHas('category', function($q) use($id){
+        $cat = Items::whereHas('subcategory', function($q) use($id){
             $q->where('id', $id);
         })->get();
         return ItemResource::collection($cat);

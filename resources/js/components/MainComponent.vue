@@ -9,7 +9,7 @@
             </v-alert>
         </transition> -->
         
-        <v-content >
+        <v-main >
             <v-container fill-height>
                 <v-layout  class="white">
                     <v-flex xs12>
@@ -19,7 +19,7 @@
                     </v-flex>
                 </v-layout>
             </v-container>
-        </v-content>
+        </v-main>
   </v-app>
 </template>
 
