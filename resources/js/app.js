@@ -19,18 +19,18 @@ import { required } from "vee-validate/dist/rules";
 localize({
     en: {
         names: {
-            MAIL_ENCRYPTION: "MAIL_ENCRYPTION"
+            MAIL_ENCRYPTION: "MAIL ENCRYPTION"
         },
         fields: {
-            MAIL_ENCRYPTION: { required: "this" }
+            MAIL_ENCRYPTION: { required: "The field {_field_} is required" }
         }
     },
     fr: {
         names: {
-            MAIL_ENCRYPTION: "MAIL_ENCRYPTION1231"
+            MAIL_ENCRYPTION: "Cryptage du Mail"
         },
         fields: {
-            MAIL_ENCRYPTION: { required: "123123" }
+            MAIL_ENCRYPTION: { required: "Le champ {_field_} est obligatoire" }
         }
     }
 });
