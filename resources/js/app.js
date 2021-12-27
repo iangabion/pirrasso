@@ -11,8 +11,37 @@ import VueDraggable from 'vue-draggable';
 import Vue from "vue";
 import axios from 'axios';
 import i18n from './i18n';
-import "./plugins/validate";
-import { ValidationProvider, ValidationObserver } from "vee-validate";
+import { localize, ValidationProvider, extend } from "vee-validate";
+import { required } from "vee-validate/dist/rules";
+// import en from "vee-validate/dist/locale/en.json";
+// import fr from "vee-validate/dist/locale/fr.json";
+
+localize({
+    en: {
+        names: {
+            MAIL_ENCRYPTION: "MAIL_ENCRYPTION"
+        },
+        fields: {
+            MAIL_ENCRYPTION: { required: "this" }
+        }
+    },
+    fr: {
+        names: {
+            MAIL_ENCRYPTION: "MAIL_ENCRYPTION1231"
+        },
+        fields: {
+            MAIL_ENCRYPTION: { required: "123123" }
+        }
+    }
+});
+// const localize = localStorage.getItem('lang') || 'en';
+localize(localStorage.getItem('lang'));
+extend("required", required);
+Vue.component("ValidationProvider", ValidationProvider);
+Vue.config.productionTip = false;
+
+// import "./plugins/validate";
+// import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 // import en from '../lang/en.js'
 // import fr from '../lang/fr.js'
@@ -52,6 +81,11 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+
+//
+
+
+// extend("required", required);
 
 
 
@@ -95,8 +129,7 @@ axios.interceptors.response.use((response) => {
 Vue.use(VeeValidate);
 Vue.component('app-confirm', require('./components/alerts/confirm.vue').default);
 Vue.component('app-alert', require('./components/alerts/snackbar.vue').default);
-Vue.component('validation-provider', ValidationProvider);
-Vue.component('validation-observer', ValidationObserver);
+// Vue.component("ValidationProvider", ValidationProvider);
 
 Vue.mixin(global_mixin)
 Vue.use(VueDraggable)

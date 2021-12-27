@@ -1,14 +1,21 @@
 <template>
     <v-dialog v-model="dialog" persistent width="30%">
             <v-card>
+               
                 <v-card-title class="text-h5 grey lighten-2">
                     SMTP {{$t('settings.smtp.credentials')}}
                 </v-card-title>
                 <v-card-text>
+                     
                     <v-container fluid>
                         <v-row>
                             <v-flex xs12>
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_mailer')}}</v-subheader>
+                                <validation-provider
+                                v-slot="{ errors }"
+                                name="MAIL_MAILER"
+                                rules="required"
+                                >
                                 <v-text-field
                                     v-model="formData.mail_mailer"
                                     name= "MAIL_MAILER"
@@ -17,79 +24,110 @@
                                     filled
                                     solo
                                     hide-details
-                                    :rules="required"
-                                   
-                                    data-vv-name="MAIL_MAILER"
+                                  
+                                   :error-messages="errors"
+                                    
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                             <v-flex xs12>
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_host')}}</v-subheader>
+                                <validation-provider
+                                    v-slot="{ errors }"
+                                   name="MAIL_HOST"
+                                    rules="required"
+                                    >
                                 <v-text-field
                                 v-model="formData.mail_host"
-                                    name="MAIL_HOST"
+                                
                                     ref="MAIL_HOST"
-                                    :rules="required"
-                                    data-vv-name="MAIL_HOST"
+                                    :error-messages="errors"
+                               
                                     dense
                                     filled
                                     solo
                                     hide-details
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                             <v-flex xs12>
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_port')}}</v-subheader>
+                                <validation-provider
+                                v-slot="{ errors }"
+                                name="MAIL_PORT"
+                                rules="required"
+                                >
                                 <v-text-field
                                     type="number"
                                     v-model="formData.mail_port"
                                     ref="MAIL_PORT"
-                                   :rules="required"
-                                    data-vv-name="MAIL_PORT"
+                                     :error-messages="errors"
+                                    
                                     dense
                                     filled
                                     solo
                                     hide-details
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                             <v-flex xs12>
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_username')}}</v-subheader>
+                                <validation-provider
+                                v-slot="{ errors }"
+                                name="MAIL_USERNAME"
+                                rules="required"
+                                >
                                 <v-text-field
                                     v-model="formData.mail_username"
                                     ref="MAIL_USERNAME"
-                                   :rules="required"
-                                    data-vv-name="MAIL_USERNAME"
+                                     :error-messages="errors"
+                                    
                                     dense
                                     filled
                                     solo
                                     hide-details
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                             <v-flex xs12>
+                                
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_password')}}</v-subheader>
+                                <validation-provider
+                                v-slot="{ errors }"
+                                name="MAIL_PASSWORD"
+                                rules="required"
+                                >
                                 <v-text-field
                                     v-model="formData.mail_password"
                                     ref="MAIL_PASSWORD"
-                                    :rules="required"
-                                    data-vv-name="MAIL_PASSWORD"
+                                     :error-messages="errors"
                                     dense
                                     hide-details
                                     filled
                                     solo
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                             <v-flex xs12>
                                 <v-subheader class="px-0">{{$t('settings.smtp.mail_encryption')}}</v-subheader>
+                                <validation-provider
+                                v-slot="{ errors }"
+                                name="MAIL_ENCRYPTION"
+                                rules="required"
+                                >
                                 <v-text-field
                                     v-model="formData.mail_encryption"
                                     ref="MAIL_ENCRYPTION"
-                                    :rules="required"
-                                    data-vv-name="MAIL_ENCRYPTION"
+                                    :error-messages="errors"
                                     dense
                                     filled
                                     solo
                                 ></v-text-field>
+                                </validation-provider>
                             </v-flex>
                         </v-row>
                     </v-container>
+                  
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
@@ -152,12 +190,13 @@ export default {
             }
         }
     },
+
     methods: {
         create() {
             this.loading = true
             let payload = this.formData
-            this.$validator.validateAll().then(result => {
-                if (result){
+            // this.$validator.validateAll().then(result => {
+                // if (result){
                 this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
                     if(result) {
                         let dis = this ;
@@ -184,8 +223,10 @@ export default {
                         }
                     }
                 })
-                }
-            })
+            
+                // }
+            // })
+           
         },
         edit(id) {
             ShowSmtp(id, {}).then(response => {
@@ -208,7 +249,7 @@ export default {
             this.formData.mail_password= '',
             this.formData.mail_encryption= '',
             this.formData.id= ''
-            this.$validator.reset();
+            // this.$validator.reset();
         },
     }
 }
