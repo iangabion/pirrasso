@@ -13,15 +13,15 @@ import axios from 'axios';
 import i18n from './i18n';
 // import { localize, ValidationProvider, extend } from "vee-validate";
 // import { required } from "vee-validate/dist/rules";
-import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
-import { required, alpha } from "vee-validate/dist/rules";
-extend("required", required);
-extend("alpha", alpha);
-Vue.component("ValidationProvider", ValidationProvider);
-Vue.component("ValidationObserver", ValidationObserver);
+// import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
+// import { required, alpha } from "vee-validate/dist/rules";
+// extend("required", required);
+// extend("alpha", alpha);
+// Vue.component("ValidationProvider", ValidationProvider);
+// Vue.component("ValidationObserver", ValidationObserver);
 // import en from "vee-validate/dist/locale/en.json";
 // import fr from "vee-validate/dist/locale/fr.json";
-Vue.config.productionTip = false;
+// Vue.config.productionTip = false;
 // localize({
 //     en: {
 //         names: {
