@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" persistent width="30%">
             <v-card>
                
-                <v-card-title class="text-h5 grey lighten-2">
+              <v-card-title class="text-h5 grey lighten-2">
                     SMTP {{$t('settings.smtp.credentials')}}
                 </v-card-title>
                 <v-card-text>
@@ -149,7 +149,8 @@
                     >
                         {{$t('cancel')}}
                     </v-btn>
-                </v-card-actions>
+                </v-card-actions> 
+               
             </v-card>
     </v-dialog>
 </template>
@@ -169,7 +170,8 @@ export default {
                 mail_username:'',
                 mail_password:'',
                 mail_encryption:'',
-            }
+            },
+        
         }
     },
     props: {
@@ -192,11 +194,23 @@ export default {
     },
 
     methods: {
+
+         async onSubmit() {
+      const success = await this.$refs.form.validate();
+      if (!success) {
+        return;
+      }
+      alert("submitted");
+      this.$nextTick(() => {
+        this.$refs.form.reset();
+      });
+
+  },
         create() {
             this.loading = true
             let payload = this.formData
-            // this.$validator.validateAll().then(result => {
-                // if (result){
+            this.$error.validateAll().then(result => {
+                if (result){
                 this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
                     if(result) {
                         let dis = this ;
@@ -224,8 +238,8 @@ export default {
                     }
                 })
             
-                // }
-            // })
+                }
+            })
            
         },
         edit(id) {
