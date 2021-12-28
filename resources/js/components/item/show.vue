@@ -375,48 +375,49 @@ export default {
     }),
     methods: {
         search_item(key){
-            this.loading=true
-            if(this.timer){
-                clearTimeout(this.timer);
-                this.timer = null;
-            }
-            this.timer = setTimeout(()=> {
-                if(key===this.selected_category){
-                    this.get_items(this.selected_category)
-                    this.selected_category=''
-                    this.loading=false
+                this.loading=true
+                if(this.timer){
+                    clearTimeout(this.timer);
+                    this.timer = null;
                 }
-                else{
-
-                    if(this.timer){
-                        clearTimeout(this.timer);
-                        this.timer = null;
-                    }
-                    this.timer = setTimeout(()=> {
-                        let payload = {
-                            searchkey:key,
-                            subcat_category: this.selected_category
-                        }
-                        if(key===null){
-                                this.get_categories()
+                this.timer = setTimeout(()=> {
+                    if(key===this.selected_category){
+                        if(key!='')
+                        {
+                        this.get_items(this.selected_category)
+                        this.selected_category=''
+                        this.loading=false
                         }else{
-                            axios.post('/api/searchchan', payload, {}).then((data) => {
-                            this.categor = data.data
-                            this.categories_item = this.categor.data
-
-                            // app.$data.isgray=true
-                            // ({})
-                            // this.tab = 'tab-2'
-                            this.loading=false
-                            this.selected_category=''
-                            }).catch((errors)=>{
-                                console.log(errors)
-                            });
+                            this.get_categories()
                         }
-                    });
-                }
-            });
+                    }
+                    else{
 
+                        if(this.timer){
+                            clearTimeout(this.timer);
+                            this.timer = null;
+                        }
+                        this.timer = setTimeout(()=> {
+                            let payload = {
+                                searchkey:key,
+                                subcat_category: this.selected_category
+                            }
+                            // if(key===null){
+                            //         this.get_categories()
+                            // }else{
+                                axios.post('/api/searchchan', payload, {}).then((data) => {
+                                this.categor = data.data
+                                this.categories_item = this.categor.data
+
+                                this.loading=false
+                                this.selected_category=''
+                                }).catch((errors)=>{
+                                    console.log(errors)
+                                });
+                            // }
+                        });
+                    }
+                });
         },
 
         get_categories() {
@@ -517,7 +518,7 @@ export default {
 
         }
     },
-    mounted() {
+    created() {
              this.get_categories()
 	},
     watch:{

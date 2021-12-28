@@ -171,9 +171,11 @@ export default {
                 ApprovedItem(item.id).then(() => {
                     this.build()
                     alert('Message Sent Successfull');
+                    this.approved_sms(item)
+                }).catch((error)=>{
+                    console.log(error)
                 })
             });
-            this.approved_sms(item)
         },
         approved_sms(item){
              let payload = {
