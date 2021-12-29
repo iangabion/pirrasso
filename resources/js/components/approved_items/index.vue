@@ -171,13 +171,19 @@ export default {
                 ApprovedItem(item.id).then(() => {
                     this.build()
                     alert('Message Sent Successfull');
+                    this.approved_sms(item)
+                }).catch((error)=>{
+                    console.log(error)
                 })
             });
-            // let payload ={
-            //     number: item.mobile
-            // }
+        },
+        approved_sms(item){
+             let payload = {
+                number: item.client.mobile,
+                id: item.id
+            }
             axios.post('api/sms_sender/', payload).then((response)=>{
-                console.log(response)
+                console.log(response.data , 'chan')
             })
         },
         open_info(item){

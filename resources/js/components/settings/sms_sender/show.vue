@@ -49,8 +49,13 @@
                                         <td>********************</td>
                                     </tr>
                                     <tr>
-                                        <th> Twilio Country Code</th>
-                                        <td>+63</td>
+                                        <th>Country Code</th>
+                                        <td>
+                                            <!-- :hint="`${select.nation}`" -->
+                                            <v-select v-model="select" :items="country" item-text="nation" item-value="number"
+                                                persistent-hint return-object prepend-icon="mdi-map">
+                                            </v-select>    
+                                        </td>
                                     </tr>
                                      <tr>
                                         <th>Test Twilio Settings</th>
@@ -119,7 +124,12 @@ export default {
             // headers: [
             //     {text: , }
             // ]
-            items:['No','Yes']
+            items:['No','Yes'],
+            country:[
+                {nation: 'France, +33', number:'+33', icon:'mdi-alert-circle'},
+                {nation: 'Philippines, +63', number:'+63', icon:'mdi-alert-circle'},
+            ],
+            select: {nation:'France, +33', number:'+33', icon:'mdi-alert-circle'}
         }
     },
     methods:{
