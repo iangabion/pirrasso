@@ -128,3 +128,10 @@ Route::get('sendMessage', 'SMSController@sendMessage');
 Route::put('update_review/{id}','ProductReviewController@update_review');
 Route::delete('delete_review/{id}','ProductReviewController@destroy');
 Route::get('getStarRating', 'ItemsController@getStarRating');
+
+//add drafts
+Route::post('save_draft','ItemsController@storeDraft');
+Route::get('getDrafts','ItemsController@getDrafts');
+Route::get('editDrafts','ItemsController@editDrafts');
+Route::delete('deleteDraft','ItemsController@deleteDrafts');
+
