@@ -62,6 +62,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('change_status' ,'ItemsController@changeStatus');
 
+	Route::post('add_review','ProductReviewController@store');
+
 
 });
 
@@ -117,4 +119,12 @@ Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
 Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
+Route::get('get_number', 'ClientController@get_number'); 
+Route::post('sms_sender', 'SMSController@sms_sender');
+Route::put('change_number', 'ClientController@change_number');
+Route::post('send_sms_test', 'SMSController@send_sms_test');
 Route::get('sendMessage', 'SMSController@sendMessage');
+
+Route::put('update_review/{id}','ProductReviewController@update_review');
+Route::delete('delete_review/{id}','ProductReviewController@destroy');
+Route::get('getStarRating', 'ItemsController@getStarRating');

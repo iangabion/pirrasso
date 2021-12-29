@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth ;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
+use App\User;
 
 class ClientController extends Controller
 {
@@ -55,7 +56,7 @@ class ClientController extends Controller
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
-
+        
 
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
@@ -304,5 +305,12 @@ class ClientController extends Controller
         return ItemResource::collection($favorites->items_fav);
     }
 
+    public function change_number(Request $request){
+        $user = Client::find(Auth::id());
+        $user->mobile = '63' + $request->input('new');
+        $user->save();
 
+        return $user;
+        
+    }
 }

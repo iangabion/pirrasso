@@ -37,6 +37,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return redirect('/login');
 });
+Route::get('sendMessage', 'SMSController@sendMessage');
 
 Route::get('/privacy-policy', function () {
     return view('privacy');

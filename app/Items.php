@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //
+    protected $fillable = ['title', 'price', 'stock', 'is_sold', 'client_id', 'category_id', 'status_id',
+        'subcategory_id', 'description', 'location'];
     // protected $guarded = [];
     // scopes
     public function scopeTitleSearch($query , $searchTerm)
@@ -50,6 +52,19 @@ class Items extends Model
     public function solds(){
         return $this->hasMany(Sold::class);
     }
+    public function reviews(){
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function reviews1(){
+        return $this->reviews()->sum('rating');
+    }
+
+    // protected $appends = [
+    //     'average-rating'
+    // ];
+
+    
 
 
     //mutator

@@ -30,10 +30,10 @@
 
                 >
                     <template v-slot:activator>
-                        <v-list-item>
+                        <v-list-item dense style="cursor:pointer;">
                             <v-list-item-content
                             >
-                                <v-list-item-title  >
+                                <v-list-item-title class="category_name ml-0">
                                     {{ item.name }}
                                 </v-list-item-title>
                             </v-list-item-content>
@@ -494,7 +494,7 @@ export default {
 
         }
     },
-     mounted() {
+    mounted() {
              this.get_categories()
 	},
     watch:{
@@ -538,4 +538,7 @@ export default {
  .hide{
      display: none;
  }
+ /* .category_name{
+      text-overflow: ellipsis;
+ } */
 </style>
