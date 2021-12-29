@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //
+    protected $fillable = ['title', 'price', 'stock', 'is_sold', 'client_id', 'category_id', 'status_id',
+        'subcategory_id', 'description', 'location'];
     // protected $guarded = [];
     // scopes
     public function scopeTitleSearch($query , $searchTerm)
