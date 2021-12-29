@@ -50,12 +50,15 @@ class ClientController extends Controller
     {
 
         $client = new Client();
-        $client->first_name =  $request->input('first_name');
-        $client->last_name =  $request->input('last_name');
+        $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
+
 
 
         if($request->profile_pic){
