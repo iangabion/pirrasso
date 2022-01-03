@@ -67,8 +67,12 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-//search api
+//global search
 Route::post('search', 'ItemController@search');
+Route::post('global_search_item','SearchController@global_search_item');
+Route::post('global_search_client','SearchController@global_search_client');
+Route::post('global_search', 'SearchController@global_search');
+
 
 // get all items
 Route::get('items' ,'ItemsController@index');
