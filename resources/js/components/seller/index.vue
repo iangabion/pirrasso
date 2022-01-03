@@ -37,7 +37,7 @@
                             :items="clients"
                         >
                             <template v-slot:item.fullname="{ item }">
-                                {{item.first_name}} {{item.last_name}}
+                                {{item.full_name}}
                             </template>
                             <template v-slot:item.actions="{ item }">
                                 <v-icon
@@ -77,6 +77,7 @@ export default {
     data() {
         return {
             dialog:false,
+             dialog2:false,
             itemsPerPage: null,
             current_page: 1,
             pageCount: 0,

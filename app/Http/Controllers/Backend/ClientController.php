@@ -21,7 +21,7 @@ class ClientController extends Controller
         $clients = collect($clients)->map(function ($client) {
             return [
                 'id' => $client->id ,
-                'fullname' => $client->first_name .' '. $client->last_name,
+                'fullname' => $client->fullname,
                 'email'=>$client->email ,
                 'mobile'=>$client->mobile,
                 'username'=>$client->username ,

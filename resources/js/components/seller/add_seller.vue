@@ -23,29 +23,55 @@
                             </label>
                         </div>
                         <v-flex xs12>
-                            <v-subheader class="px-0">First Name</v-subheader>
+                            <v-subheader class="px-0">Full Name</v-subheader>
                             <v-text-field
-                                v-model="formData.first_name"
-                                name= "First Name"
-                                ref="First Name"
+                                v-model="formData.full_name"
+                                name= "Full Name"
+                                ref="Full Name"
                                 dense
                                 filled
                                 solo
                                 hide-details
                                 v-validate="'required'"
-                                :error-messages="errors.collect('First Name')"
                                 data-vv-name="First Name"
                             ></v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-subheader class="px-0">Last Name</v-subheader>
+                            <v-subheader class="px-0">Email</v-subheader>
                             <v-text-field
-                            v-model="formData.last_name"
-                                name="Last Name"
-                                ref="Last Name"
-                                v-validate="'required'"
-                                :error-messages="errors.collect('Last Name')"
-                                data-vv-name="Last Name"
+                                v-model="formData.email"
+                                ref="email"
+                                v-validate="'required|email'"
+                                data-vv-name="Email"
+                                dense
+                                hide-details
+                                filled
+                                solo
+                            ></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                            <v-subheader class="px-0">Gender</v-subheader>
+                            <v-text-field
+                            v-model="formData.gender"
+                                name="Gender"
+                                ref="Gender"
+                                v-validate="'Gender'"
+                                data-vv-name="Gender"
+                                dense
+                                filled
+                                solo
+                                hide-details
+                            ></v-text-field>
+                        </v-flex>
+                         <v-flex xs12>
+                            <v-subheader class="px-0">Bio</v-subheader>
+                            <v-text-field
+                            v-model="formData.bio"
+                                name="Bio"
+                                ref="Bio"
+                                v-validate="'Bio'"
+                                
+                                data-vv-name="Bio"
                                 dense
                                 filled
                                 solo
@@ -59,7 +85,6 @@
                                 v-model="formData.mobile"
                                 ref="Mobile Number"
                                 v-validate="'required'"
-                                :error-messages="errors.collect('Mobile Number')"
                                 data-vv-name="Mobile Number"
                                 dense
                                 filled
@@ -73,26 +98,11 @@
                                 v-model="formData.username"
                                 ref="Username"
                                 v-validate="'required'"
-                                :error-messages="errors.collect('Username')"
                                 data-vv-name="Username"
                                 dense
                                 filled
                                 solo
                                 hide-details
-                            ></v-text-field>
-                        </v-flex>
-                        <v-flex xs12>
-                            <v-subheader class="px-0">Email</v-subheader>
-                            <v-text-field
-                                v-model="formData.email"
-                                ref="email"
-                                v-validate="'required|email'"
-                                :error-messages="errors.collect('Email')"
-                                data-vv-name="Email"
-                                dense
-                                hide-details
-                                filled
-                                solo
                             ></v-text-field>
                         </v-flex>
                         <v-flex xs12>
@@ -103,7 +113,6 @@
                                     v-model="formData.password"
                                     ref="password"
                                     v-validate="'required'"
-                                    :error-messages="errors.collect('Password')"
                                     data-vv-name="Password"
                                     dense
                                     style="width: 200px"

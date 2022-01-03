@@ -33,7 +33,7 @@
                     class="mx-auto purple "
                     max-width="344"
                     outlined 
-                    color="info"
+                    color="primary"
                     dark
                 >
                     <v-list-item three-line>
@@ -61,7 +61,7 @@
                     class="mx-auto purple "
                     max-width="344"
                     outlined 
-                    color="info"
+                    color="primary"
                     dark
                 >
                     <v-list-item three-line>
@@ -84,9 +84,50 @@
                     </v-card-actions>
                 </v-card>
             </v-flex>
-            <v-container>
-                <v-col>
-                    <vue-chart type="bar" :data="chartData"></vue-chart>
+            <v-container style="width: 100%; display: flex;">
+                <v-col style="width: 50%; border-style: solid;border-color: #FF5722">
+                    <v-toolbar-items>
+                        <v-btn
+                            icon
+                            @click="decrementItem()" 
+                        >
+                            <v-icon 
+                                color="green"
+                            >mdi-minus</v-icon>
+                        </v-btn>
+                        <span class="year" readonly min="0.00">{{yearItem}}</span>
+                        <v-btn
+                            icon
+                            @click="incrementItem()"
+                        >
+                            <v-icon 
+                                color="green"
+                            >mdi-plus</v-icon>
+                        </v-btn>
+                    </v-toolbar-items>
+                    <vue-chart type="bar" :data="chartItem"></vue-chart>
+                </v-col>
+                <v-col style="width: 50%; border-style: solid; border-color: #FF5722">
+                    <v-toolbar-items>
+                        <v-btn
+                            icon
+                            @click="decrementSold()" 
+                        >
+                            <v-icon 
+                                color="green"
+                            >mdi-minus</v-icon>
+                        </v-btn>
+                        <span class="year" readonly min="0.00">{{yearSold}}</span>
+                        <v-btn
+                            icon
+                            @click="incrementSold()"
+                        >
+                            <v-icon 
+                                color="green"
+                            >mdi-plus</v-icon>
+                        </v-btn>
+                    </v-toolbar-items>
+                    <vue-chart type="bar" :data="chartSold"></vue-chart>
                 </v-col>
             </v-container>
         </v-layout>
@@ -98,8 +139,20 @@ export default {
     data: () => ({
         clients: [],
         items: [],
+        yearItem: new Date().getFullYear(),
+        yearSold: new Date().getFullYear(),
         sold:[],
-        chartData: {
+        chartItem: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Item',
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    backgroundColor: '#FF5722',
+                },
+            ],
+        },
+        chartSold: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
                 {
@@ -111,6 +164,30 @@ export default {
         },
     }),
     methods: {
+        incrementItem() {
+            this.yearItem++;
+            // this.getMonthlySalesReport()
+        },
+        decrementItem() {
+            if (this.yearItem === 1) {
+                alert("Negative year not allowed");
+            } else {
+                this.yearItem--;
+                // this.getMonthlySalesReport()
+            }
+        },
+        incrementSold() {
+            this.yearSold++;
+            // this.getMonthlySalesReport()
+        },
+        decrementSold() {
+            if (this.yearSold === 1) {
+                alert("Negative year not allowed");
+            } else {
+                this.yearSold--;
+                // this.getMonthlySalesReport()
+            }
+        },
         get_clients(){
             axios.get('/client', {})
             .then(response => {
@@ -140,3 +217,10 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.v-application .primary {
+    background-color: #FF5722 !important;
+    border-color: #FF5722!important;
+}
+</style>
