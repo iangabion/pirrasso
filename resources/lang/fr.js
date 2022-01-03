@@ -1,5 +1,11 @@
 export default {
 
+    // required: {
+    //     fields: {
+    //         MAIL_ENCRYPTION: "dwadwa123123000000001"
+    //     }
+    // },
+
     okay: "Ok",
     cancel: "Annuler",
     setting: "Paramètre",

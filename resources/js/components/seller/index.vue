@@ -78,6 +78,7 @@ export default {
     data() {
         return {
             dialog:false,
+             dialog2:false,
             itemsPerPage: null,
             current_page: 1,
             pageCount: 0,
