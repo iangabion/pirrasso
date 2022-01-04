@@ -83,7 +83,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-         <v-dialog
+         <!-- <v-dialog
             v-model="dialog"
             persistent
             max-width="600px"
@@ -91,72 +91,74 @@
            
             <v-card>
               <v-form
-    ref="form"
-    v-model="valid"
-    lazy-validation
-  >
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
-      required
-    ></v-text-field>
+                  ref="form"
+                  v-model="valid"
+                  lazy-validation
+                >
+                  <v-text-field
+                    v-model="formData.mail_mailer"
+    
+                    :rules="mailerRules"
+                    label="Mail Mailer"
+                    required
+                  ></v-text-field>
 
-    <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field>
+                  <v-text-field
+                    v-model="formData.mail_host"                  
+                    :rules="hostRules"
+                    label="Mail Host"
+                    required
+                  ></v-text-field>
 
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
-      required
-    ></v-select>
+                  <v-text-field
+                    v-model="formData.mail_port"                  
+                    :rules="portRules"
+                    label="Mail Port"
+                    required
+                  ></v-text-field>
 
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
+                  <v-text-field
+                    v-model="formData.mail_username"                  
+                    :rules="usernameRules"
+                    label="Mail Username"
+                    required
+                  ></v-text-field>
 
-    <v-btn
-      :disabled="!valid"
-      color="success"
-      class="mr-4"
-      @click="validate"
-    >
-      Validate
-    </v-btn>
+                  <v-text-field
+                    v-model="formData.mail_password"                  
+                    :rules="passwordRules"
+                    label="Mail Password"
+                    required
+                  ></v-text-field>
 
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="reset"
-    >
-      Reset Form
-    </v-btn>
+                   <v-text-field
+                    v-model="formData.mail_encryption"                  
+                    :rules="encryptionRules"
+                    label="Mail Encryption"
+                    required
+                  ></v-text-field>
 
-    <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
-    </v-btn>
-  </v-form>
+                  
+
+                  <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    class="mr-4"
+                    @click="validate"
+                  >
+                   SAVE
+                  </v-btn>
+
+                
+                </v-form>
             </v-card>
-          </v-dialog>
-        <!-- <addDialog
-            :dialog="dialog2"
-            @close="dialog2 = false; selected_item_id=0"
+          </v-dialog> -->
+        <addDialog
+            :dialog="dialog"
+            @close="dialog = false; selected_item_id=0"
             @search="search"
             :id="selected_item_id"
-        ></addDialog> -->
+        ></addDialog>
       </v-container>
     </div>
   </div>
@@ -165,25 +167,49 @@
 
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
+// import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
 export default {
-   mixins: [validationMixin],
-
-    validations: {
-      name: { required, maxLength: maxLength(10) },
-      email: { required, email },
-      select: { required },
-      checkbox: {
-        checked (val) {
-          return val
-        },
-      },
-    },
+  
     
     components : {
         addDialog
     },
   data() {
     return {
+
+      // valid: true,
+    
+      // mailerRules: [
+      //   v => !!v || 'Mail Mailer is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+
+      //  hostRules: [
+      //   v => !!v || 'Mail Host is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+
+      //  portRules: [
+      //   v => !!v || 'Mail Port is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+      
+      //  usernameRules: [
+      //   v => !!v || 'Mail Username is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+
+      //  passwordRules: [
+      //   v => !!v || 'Mail Password is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+
+      //  encryptionRules: [
+      //   v => !!v || 'Mail Encryption is required',
+      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      // ],
+      
+      
      formData:{
                 id:'',
                 mail_mailer:'',
@@ -228,41 +254,8 @@ export default {
       ]
     },
      
-      mailErrors () {
-        const errors = []
-        if (!this.$v.mail_mailer.$dirty) return errors
-        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
-        !this.$v.mail_mailer.required && errors.push('Mail Mailer is required.')
-        return errors
-      },
-       hostErrors () {
-        const errors = []
-        if (!this.$v.mail_host.$dirty) return errors
-        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
-        !this.$v.mail_host.required && errors.push('Mail Host is required.')
-        return errors
-      },
-       portErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Mail Port is required.')
-        return errors
-      },
-       usernameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Mail Username is required.')
-        return errors
-      },
-       encryptionErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Mail Encryption is required.')
-        return errors
-      },
+     
+    
      
   },
   mounted() {
@@ -270,9 +263,38 @@ export default {
   },
   methods: {
 
-    submit () {
-        this.$v.$touch()
-      },
+    // validate () {
+    //     this.loading = true
+    //     let payload = this.formData
+    //     if(!this.$refs.form.validate()) return;
+    //     this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
+    //                 if(result) {
+    //                     let dis = this ;
+    //                     let id = this.formData.id;
+    //                     if(id != 0) {
+    //                         UpdateSmtp(id, payload ).then(function (response) {
+    //                         dis.clearformData()
+    //                         dis.$emit('search')
+    //                         dis.$emit('close')
+    //                         dis.loading = false
+    //                         alert('Successfully Updated');
+    //                     })
+    //                     }else{
+    //                         CreateSmtp(payload).then((data)=> {
+    //                             console.log(data)
+    //                             this.clearformData()
+    //                             this.$emit('search')
+    //                             this.$emit('close')
+    //                             this.loading = false
+    //                             alert('Successfully Created');
+    //                         }).catch((error)=> {
+    //                             console.log(error)
+    //                         });
+    //                     }
+    //                 }
+    //             });
+
+    //   },
     changeStatus(id){
       SetDefault(id).then(response => {
         this.search();
