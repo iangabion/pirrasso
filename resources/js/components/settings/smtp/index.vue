@@ -91,74 +91,7 @@
            
             <v-card>
               <form>
-                <v-text-field
-                  v-model="formData.mail_mailer"
-                  :error-messages="mailerErrors"
-                  :counter="10"
-                  label="Mail Mailer"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-
-                 <!-- <v-text-field
-                  v-model="formData.mail_host"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Mail Host"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-
-                 <v-text-field
-                  v-model="formData.mail_port"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Mail Port"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-
-                 <v-text-field
-                  v-model="formData.mail_username"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Mail Username"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-
-                 <v-text-field
-                  v-model="formData.mail_password"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Mail Password"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-
-                 <v-text-field
-                  v-model="formData.mail_encryption"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Mail Encryption"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field> -->
-                
-
-                <v-btn
-                  class="mr-4"
-                  @click="submit"
-                >
-                  submit
-                </v-btn>
-             
+               
               </form>
             </v-card>
           </v-dialog>
@@ -241,32 +174,7 @@ export default {
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
     },
-     checkboxErrors () {
-        const errors = []
-        if (!this.$v.checkbox.$dirty) return errors
-        !this.$v.checkbox.checked && errors.push('You must agree to continue!')
-        return errors
-      },
-      selectErrors () {
-        const errors = []
-        if (!this.$v.select.$dirty) return errors
-        !this.$v.select.required && errors.push('Item is required')
-        return errors
-      },
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
+  
   },
   mounted() {
     this.search();
