@@ -92,39 +92,65 @@
             <v-card>
               <form>
                 <v-text-field
-                  v-model="name"
-                  :error-messages="nameErrors"
+                  v-model="formData.mail_mailer"
+                  :error-messages="mailerErrors"
                   :counter="10"
-                  label="Name"
+                  label="Mail Mailer"
                   required
                   @input="$v.name.$touch()"
                   @blur="$v.name.$touch()"
                 ></v-text-field>
-                <v-text-field
-                  v-model="email"
-                  :error-messages="emailErrors"
-                  label="E-mail"
+
+                 <!-- <v-text-field
+                  v-model="formData.mail_host"
+                  :error-messages="nameErrors"
+                  :counter="10"
+                  label="Mail Host"
                   required
-                  @input="$v.email.$touch()"
-                  @blur="$v.email.$touch()"
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
                 ></v-text-field>
-                <v-select
-                  v-model="select"
-                  :items="items"
-                  :error-messages="selectErrors"
-                  label="Item"
+
+                 <v-text-field
+                  v-model="formData.mail_port"
+                  :error-messages="nameErrors"
+                  :counter="10"
+                  label="Mail Port"
                   required
-                  @change="$v.select.$touch()"
-                  @blur="$v.select.$touch()"
-                ></v-select>
-                <v-checkbox
-                  v-model="checkbox"
-                  :error-messages="checkboxErrors"
-                  label="Do you agree?"
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+                ></v-text-field>
+
+                 <v-text-field
+                  v-model="formData.mail_username"
+                  :error-messages="nameErrors"
+                  :counter="10"
+                  label="Mail Username"
                   required
-                  @change="$v.checkbox.$touch()"
-                  @blur="$v.checkbox.$touch()"
-                ></v-checkbox>
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+                ></v-text-field>
+
+                 <v-text-field
+                  v-model="formData.mail_password"
+                  :error-messages="nameErrors"
+                  :counter="10"
+                  label="Mail Password"
+                  required
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+                ></v-text-field>
+
+                 <v-text-field
+                  v-model="formData.mail_encryption"
+                  :error-messages="nameErrors"
+                  :counter="10"
+                  label="Mail Encryption"
+                  required
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+                ></v-text-field> -->
+                
 
                 <v-btn
                   class="mr-4"
@@ -147,6 +173,7 @@
   </div>
 </template>
 <script>
+import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
 import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
 import addDialog from './includes/dialog.vue'
@@ -171,15 +198,16 @@ export default {
   data() {
     return {
       name: '',
-      email: '',
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-       checkbox: false,
+      formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            },
+    
       dialog: false,
       form: {
         search: '',
