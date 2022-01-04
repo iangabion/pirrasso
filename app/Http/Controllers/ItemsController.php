@@ -42,15 +42,13 @@ class ItemsController extends Controller
         // $average = $starcountsum/$this->reviews()->count();
         // return $average; 
 
-        $starcountsum = Items::join('product_reviews', 'items.id', '=', 'product_reviews.items_id')
-                            ->groupBy('items_id')
-                            ->selectRaw('avg(rating) as sumrate, items_id')
-                            // ->where('product_reviews.items_id', $request->id)
-                            ->get();
+        // $starcountsum = Items::join('product_reviews', 'items.id', '=', 'product_reviews.items_id')
+        //                     ->groupBy('items_id')
+        //                     ->selectRaw('avg(rating) as sumrate, items_id')
+        //                     // ->where('product_reviews.items_id', $request->id)
+        //                     ->get();
 
-        // $starcountsum = Items::with('reviews')->groupBy('id')
-        //                ->selectRaw('sum(rating) as sumrate')
-        //                ->get();
+        $starcountsum = Items::with('reviews')->get();
         // $starcountsum = $this->all_items();
         // return $starcountsum->with($this->all_items());
         return $starcountsum;
