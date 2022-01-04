@@ -90,50 +90,65 @@
           >
            
             <v-card>
-              <form>
-                <v-text-field
-                  v-model="name"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Name"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-                <v-text-field
-                  v-model="email"
-                  :error-messages="emailErrors"
-                  label="E-mail"
-                  required
-                  @input="$v.email.$touch()"
-                  @blur="$v.email.$touch()"
-                ></v-text-field>
-                <v-select
-                  v-model="select"
-                  :items="items"
-                  :error-messages="selectErrors"
-                  label="Item"
-                  required
-                  @change="$v.select.$touch()"
-                  @blur="$v.select.$touch()"
-                ></v-select>
-                <v-checkbox
-                  v-model="checkbox"
-                  :error-messages="checkboxErrors"
-                  label="Do you agree?"
-                  required
-                  @change="$v.checkbox.$touch()"
-                  @blur="$v.checkbox.$touch()"
-                ></v-checkbox>
+              <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="name"
+      :counter="10"
+      :rules="nameRules"
+      label="Name"
+      required
+    ></v-text-field>
 
-                <v-btn
-                  class="mr-4"
-                  @click="submit"
-                >
-                  submit
-                </v-btn>
-             
-              </form>
+    <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
+
+    <v-select
+      v-model="select"
+      :items="items"
+      :rules="[v => !!v || 'Item is required']"
+      label="Item"
+      required
+    ></v-select>
+
+    <v-checkbox
+      v-model="checkbox"
+      :rules="[v => !!v || 'You must agree to continue!']"
+      label="Do you agree?"
+      required
+    ></v-checkbox>
+
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="validate"
+    >
+      Validate
+    </v-btn>
+
+    <v-btn
+      color="error"
+      class="mr-4"
+      @click="reset"
+    >
+      Reset Form
+    </v-btn>
+
+    <v-btn
+      color="warning"
+      @click="resetValidation"
+    >
+      Reset Validation
+    </v-btn>
+  </v-form>
             </v-card>
           </v-dialog>
         <!-- <addDialog
@@ -147,8 +162,7 @@
   </div>
 </template>
 <script>
-import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
+
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
 export default {
@@ -170,16 +184,15 @@ export default {
     },
   data() {
     return {
-      name: '',
-      email: '',
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-       checkbox: false,
+     formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            },
       dialog: false,
       form: {
         search: '',
@@ -200,6 +213,7 @@ export default {
       // ],
     }
   },
+ 
   computed: {
     headers(){
       return [
@@ -213,32 +227,43 @@ export default {
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
     },
-     checkboxErrors () {
+     
+      mailErrors () {
         const errors = []
-        if (!this.$v.checkbox.$dirty) return errors
-        !this.$v.checkbox.checked && errors.push('You must agree to continue!')
+        if (!this.$v.mail_mailer.$dirty) return errors
+        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
+        !this.$v.mail_mailer.required && errors.push('Mail Mailer is required.')
         return errors
       },
-      selectErrors () {
+       hostErrors () {
         const errors = []
-        if (!this.$v.select.$dirty) return errors
-        !this.$v.select.required && errors.push('Item is required')
+        if (!this.$v.mail_host.$dirty) return errors
+        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
+        !this.$v.mail_host.required && errors.push('Mail Host is required.')
         return errors
       },
-      nameErrors () {
+       portErrors () {
         const errors = []
         if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
+        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
+        !this.$v.name.required && errors.push('Mail Port is required.')
         return errors
       },
-      emailErrors () {
+       usernameErrors () {
         const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
+        if (!this.$v.name.$dirty) return errors
+        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
+        !this.$v.name.required && errors.push('Mail Username is required.')
         return errors
       },
+       encryptionErrors () {
+        const errors = []
+        if (!this.$v.name.$dirty) return errors
+        // !this.$v.name.maxLength && errors.push('hahah must be at most 10 characters long')
+        !this.$v.name.required && errors.push('Mail Encryption is required.')
+        return errors
+      },
+     
   },
   mounted() {
     this.search();
