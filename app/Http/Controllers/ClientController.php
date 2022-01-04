@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth ;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
+use App\User;
 
 class ClientController extends Controller
 {
@@ -49,12 +50,15 @@ class ClientController extends Controller
     {
 
         $client = new Client();
-        $client->first_name =  $request->input('first_name');
-        $client->last_name =  $request->input('last_name');
+        $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
+        
 
 
         if($request->profile_pic){
@@ -128,8 +132,7 @@ class ClientController extends Controller
         $client = Client::where('social_id',$request->id)->first();
         if(!$client){
             $client = New Client();
-            $client->first_name = $request->first_name;
-            $client->last_name = $request->last_name;
+            $client->full_name = $request->full_name;
             $client->social_id = $request->id;
             $client->is_verified = 1;
             $client->account_type = 'facebook';
@@ -238,8 +241,10 @@ class ClientController extends Controller
     {
         $id = Auth::user()->id ;
         $updateData = $request->validate([
-            'first_name' => 'nullable',
-            'last_name' => 'nullable',
+            'full_name' => 'nullable',
+            'gender' => 'nullable',
+            'birthday' => 'nullable',
+            'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,'.$id,
             'mobile' => 'nullable',
             'username' => 'nullable|unique:clients,username,'.$id,
@@ -249,9 +254,11 @@ class ClientController extends Controller
 
         if($updateData) {
         $client = Client::findorfail($id);
-        $client->first_name =  $request->input('first_name');
-        $client->last_name =  $request->input('last_name');
+        $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
@@ -304,5 +311,12 @@ class ClientController extends Controller
         return ItemResource::collection($favorites->items_fav);
     }
 
+    public function change_number(Request $request){
+        $user = Client::find(Auth::id());
+        $user->mobile = '63' + $request->input('new');
+        $user->save();
 
+        return $user;
+        
+    }
 }

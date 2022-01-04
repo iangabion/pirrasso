@@ -16,7 +16,6 @@
                                     dense
                                     filled
                                     solo
-                                    hide-details
                                     v-validate="'required'"
                                     :error-messages="errors.collect('MAIL_MAILER')"
                                     data-vv-name="MAIL_MAILER"
@@ -34,7 +33,6 @@
                                     dense
                                     filled
                                     solo
-                                    hide-details
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
@@ -49,7 +47,6 @@
                                     dense
                                     filled
                                     solo
-                                    hide-details
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
@@ -63,7 +60,6 @@
                                     dense
                                     filled
                                     solo
-                                    hide-details
                                 ></v-text-field>
                             </v-flex>
                             <v-flex xs12>
@@ -75,7 +71,6 @@
                                     :error-messages="errors.collect('MAIL_PASSWORD')"
                                     data-vv-name="MAIL_PASSWORD"
                                     dense
-                                    hide-details
                                     filled
                                     solo
                                 ></v-text-field>
@@ -176,12 +171,12 @@ export default {
                         })
                         }else{
                             CreateSmtp(payload).then((data)=> {
-                            console.log(data)
-                            this.clearformData()
-                            this.$emit('search')
-                            this.$emit('close')
-                            this.loading = false
-                            alert('Successfully Created');
+                                console.log(data)
+                                this.clearformData()
+                                this.$emit('search')
+                                this.$emit('close')
+                                this.loading = false
+                                alert('Successfully Created');
                             }).catch((error)=> {
                                 console.log(error)
                             });

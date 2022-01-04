@@ -20,10 +20,9 @@
                                                 <v-text-field
                                                     type="text"
                                                     v-model="statuses.name"
-                                                    v-validate="'required'"
-                                                    :error-messages="errors.collect('Status Name')"
+                                                   :rules="required"
                                                     data-vv-name="Status Name"
-                                                    label="Status Name" required>
+                                                    :label="$t('settings.status.status_name')" required>
                                                 </v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -82,6 +81,9 @@
                                 </v-list>
                             </v-menu>
                         </template>
+                        <template v-slot:no-data>
+                        {{$t('settings.smtp.no_data_found')}}
+                        </template>
                     </v-data-table>
                 </v-flex>
             </v-layout>
@@ -96,6 +98,7 @@
         data: () => ({
             default_footer:true,
             status: [],
+            required: [],
             max_height: '100px',
             statuses : {
                 name: '',

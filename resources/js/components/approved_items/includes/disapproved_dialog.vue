@@ -46,7 +46,7 @@
                     @click.prevent="sendMail()"
                      @click="progress_circular = true"
                 >
-                    {{$t('approved_items.disapproved_dialog.send')}}
+                    {{$t('send')}}
                 </v-btn>
                 <v-btn
                     color="error"
@@ -54,7 +54,7 @@
                     width="70px"
                     @click="$emit('close')"
                 >
-                    {{$t('approved_items.disapproved_dialog.cancel')}}
+                    {{$t('cancel')}}
                 </v-btn>
             </v-card-actions>
         </v-card>

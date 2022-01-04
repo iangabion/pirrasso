@@ -13,15 +13,22 @@
                     dense
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
+                    :value="prefill"
                 />
             </div>
-            <v-btn>
+            <v-btn
+                @click="addSeller()"
+            >
                 <v-icon>
                     mdi-database-plus
                 </v-icon>
                 Add
             </v-btn>
         </v-toolbar>
+        <AddSeller
+            :dialog="dialog"
+             @close="dialog=false"
+        ></AddSeller>
         <v-container grid-list-xs>
             <v-layout row wrap>
                 <v-flex xs12>
@@ -29,7 +36,6 @@
                         <v-data-table
                             :headers="headers"
                             :items="clients"
-
                         >
                             <template v-slot:item.fullname="{ item }">
                                 {{item.first_name}} {{item.last_name}}
@@ -49,18 +55,30 @@
                                     mdi-delete
                                 </v-icon>
                             </template>
+                           <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
+                            </template>
                         </v-data-table>
                     </v-card>
                 </v-flex>
             </v-layout>
+            <AddSeller
+                :dialog="dialog2"
+            ></AddSeller>
         </v-container>
     </div>
 </template>
 <script>
+import AddSeller from './add_seller.vue'
 import { GetAllClients, DeleteClient, FetchAllClient } from "@api/client.api";
 export default {
+    components :{
+        AddSeller
+    },
     data() {
         return {
+            dialog:false,
+             dialog2:false,
             itemsPerPage: null,
             current_page: 1,
             pageCount: 0,
@@ -86,6 +104,9 @@ export default {
         }
     },
     computed : {
+         prefill(){
+            return this.form.search = this.$route.query.item;
+        }
         // filteredClient(){
         //     if(this.search){
         //         return this.clients.filter(client => {
@@ -173,7 +194,12 @@ export default {
                     })
                 }
             })
-        }
+        },
+        addSeller(){
+            this.$nextTick(() => {
+                this.dialog = true
+            })
+        },
     },
     // created() {
     //     this.indexSeller()
@@ -202,4 +228,12 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+tbody tr:nth-of-type(odd) {
+   background-color: rgba(0, 0, 0, .05);
+ }
+
+
+
 </style>

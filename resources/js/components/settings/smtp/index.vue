@@ -15,7 +15,7 @@
           append-icon="mdi-magnify" class=" mx-4"
         />
       </div>
-      <v-btn @click="dialog2 = true" >
+      <v-btn @click="dialog = true" >
         <v-icon class="add_smtp">
           mdi-database-plus
         </v-icon>
@@ -83,26 +83,65 @@
             </v-card>
           </v-flex>
         </v-layout>
-        <addDialog
+         <v-dialog
+            v-model="dialog"
+            persistent
+            max-width="600px"
+          >
+           
+            <v-card>
+              <form>
+               
+              </form>
+            </v-card>
+          </v-dialog>
+        <!-- <addDialog
             :dialog="dialog2"
             @close="dialog2 = false; selected_item_id=0"
             @search="search"
             :id="selected_item_id"
-        ></addDialog>
+        ></addDialog> -->
       </v-container>
     </div>
   </div>
 </template>
 <script>
+import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
+import { validationMixin } from 'vuelidate'
+  import { required, maxLength, email } from 'vuelidate/lib/validators'
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
 export default {
+   mixins: [validationMixin],
+
+    validations: {
+      name: { required, maxLength: maxLength(10) },
+      email: { required, email },
+      select: { required },
+      checkbox: {
+        checked (val) {
+          return val
+        },
+      },
+    },
+    
     components : {
         addDialog
     },
   data() {
     return {
-      dialog2: false,
+      name: '',
+      formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            },
+    
+      dialog: false,
       form: {
         search: '',
       },
@@ -134,12 +173,17 @@ export default {
         { text: this.$t('settings.smtp.default'), align: 'start', value: 'status_on', width: '10%'},
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
-    }
+    },
+  
   },
   mounted() {
     this.search();
   },
   methods: {
+
+    submit () {
+        this.$v.$touch()
+      },
     changeStatus(id){
       SetDefault(id).then(response => {
         this.search();

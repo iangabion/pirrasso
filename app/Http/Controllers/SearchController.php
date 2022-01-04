@@ -55,6 +55,54 @@ class SearchController extends Controller
         // return ItemResource::collection($item);
     }
 
+    public function global_search_item(Request $request)
+    {
+//
+        $item = Items::where('is_approved', !2);
+        if($request->input('searchkey')!=''){
+            $keyword = $request->input('searchkey');
+            $item->where(function($query) use($keyword){
+                $query->where('title', 'LIKE', "%$keyword%");
+            });
+        }
+        // where('title', $request->searchkey);
+        return $item->get();
+//
+    }
+
+    public function global_search_client(Request $request)
+    {
+//
+        $client = Client::where('is_verified', 0);
+        if($request->input('searchkey')!=''){
+            $keyword = $request->input('searchkey');
+            $client->where(function($query) use($keyword){
+                $query->where('first_name', 'LIKE', "%$keyword%")
+                    ->orWhere('last_name', 'LIKE', "%$keyword%");
+            });
+        }
+        // where('title', $request->searchkey);
+        return $client->get();
+//
+    }
+
+    public function global_search(Request $request){
+        // return "yes yes yo";
+        $keyword = $request->input('key');
+
+        $item= Items::where('is_approved', !2);
+        $item->where(function($query) use($keyword){
+            $query->where('title', 'LIKE', "%$keyword%");
+        });
+        
+        $result = $item->get();
+        return $result;
+        // if($result!=null){
+        //     return 1;
+        // }else{
+        //     return 2;
+        // }
+    }
     
 
     /**

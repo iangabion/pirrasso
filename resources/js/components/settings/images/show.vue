@@ -4,6 +4,9 @@
             <v-toolbar-title class="px-4">{{$t('settings.images.apps_images')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
+
+        <v-container grid-list-xs >
+        <!-- <v-layout row wrap> -->
         <v-card>
             <v-row no-gutters>
                 <v-card width="50%" align="center" elevation=0>
@@ -14,7 +17,7 @@
                             max-width="400"
                             min-width="400"
                             contain=""
-                            src="images/app_images/123.jpeg"
+                            src="images/app_images/logo.jpeg"
                         >
                         </v-img >
                         <v-card-subtitle align="center" class ="mt-0 pt-0">
@@ -40,8 +43,7 @@
                                 small-chips
                                 accept="image/*"
                                 label="Change Logo"
-                                v-validate="'image'"
-                                :error-messages="errors.collect('Logo')"
+                                :rules="image"
                                 data-vv-name="Logo"
                                 @change="onFileChange('cat', $event)"
                                 >
@@ -56,6 +58,8 @@
                 </v-card>
             </v-row>
         </v-card>
+        <!-- </v-layout> -->
+        </v-container>
     </div>
 </template>
 
@@ -65,7 +69,9 @@ export default {
         logo:{
             image:'',
             id:'',
-        }     
+           
+        },     
+         image: [],
     }),
     methods:{
 

@@ -22,7 +22,6 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
-
                         >
                             <template v-slot:item.created_at="{ item }">
                                 <span>
@@ -85,16 +84,30 @@
                                     <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
                             </template>
+                             <template v-slot:no-data>
+                            {{$t('settings.smtp.no_data_found')}}
+                            </template>
                         </v-data-table>
                     </v-card>
                 </v-flex>
             </v-layout>
         </v-container>
+        <v-dialog       
+            v-model="progress_circular"
+            max-width="100"
+            persistent
+        >
+            <v-card>
+                <v-card-text class="text-xs-center pt-1">
+                    <v-progress-circular :size="50" indeterminate class="primary--text"/>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 <script>
 import disapprovedDialog from './includes/disapproved_dialog.vue'
-import { GetToApprovedItems, ApprovedItem } from "@api/item.api";
+import { GetToApprovedItems, ApprovedItem, ApproveMail } from "@api/item.api";
 import productInfo from './includes/productInfo.vue'
 export default {
     components : {
@@ -106,6 +119,9 @@ export default {
             items:[],
             dialog:false,
             selected_item:{},
+            selected_data:{},
+            progress_circular : false,
+            drawer: false,
             // headers: [
             //     { text: 'Item Name',width:'20%', value: 'title' },
             //     { text: 'Category', value: 'category.name', width:'20%' },
@@ -148,9 +164,26 @@ export default {
             })
         },
         approved(item){
-            ApprovedItem(item.id).then(() => {
-                this.build()
-                alert('item approved!')
+            this.progress_circular = true;
+            let payload = this.item;
+            ApproveMail(item).then((response) => {
+                this.progress_circular = false;
+                ApprovedItem(item.id).then(() => {
+                    this.build()
+                    alert('Message Sent Successfull');
+                    this.approved_sms(item)
+                }).catch((error)=>{
+                    console.log(error)
+                })
+            });
+        },
+        approved_sms(item){
+             let payload = {
+                number: item.client.mobile,
+                id: item.id
+            }
+            axios.post('api/sms_sender/', payload).then((response)=>{
+                console.log(response.data , 'chan')
             })
         },
         open_info(item){
@@ -164,3 +197,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>
+
+

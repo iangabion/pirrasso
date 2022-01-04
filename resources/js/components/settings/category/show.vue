@@ -120,6 +120,9 @@
                                             </v-list>
                                         </v-menu>
                                     </template>
+                                    <template v-slot:no-data>
+                                    {{$t('settings.smtp.no_data_found')}}
+                                    </template>
                         </v-data-table>
                         <v-pagination
                             v-model="page"
@@ -235,6 +238,9 @@
                                                 :src="item.icon"
                                                 >
                                             </v-img>
+                                        </template>
+                                        <template v-slot:no-data>
+                                        {{$t('settings.smtp.no_data_found')}}
                                         </template>
                                     </v-data-table>
                                     <v-pagination
@@ -476,9 +482,6 @@ export default {
 
                 axios.get('category', {})
 			    .then(response => {
-                    // let category = response.data.filter(chan_filter=>
-                    //     chan_filter.id != 2
-                    // )
                     this.categories = response.data;
                     console.log(response.data, 'chan here category data here');
                     this.data_loaded = true;
