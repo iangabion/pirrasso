@@ -13,6 +13,7 @@
                     dense
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
+                    :value="prefill"
                 />
             </div>
             <v-btn @click="dialog2 = true" class="d-none">
@@ -437,6 +438,7 @@ export default {
                 // this.categories_witho = response.data.filter(chan_filter=>
                 //     chan_filter.id !=2
                 // )
+                this.search_item(key)
                 this.get_items(this.categories[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -532,6 +534,12 @@ export default {
             if(val){
                 this.search_item(val)
             }
+        }
+    },
+    computed:{
+        prefill(){
+            // alert(this.$route.query.item, 'hey hey')
+            return this.form.search = this.$route.query.item;
         }
     }
 }

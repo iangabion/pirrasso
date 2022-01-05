@@ -13,6 +13,7 @@
                     dense
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
+                    :value="prefill"
                 />
             </div>
             <v-btn
@@ -92,7 +93,7 @@ export default {
             },
             searchQuery: null,
             headers: [
-                    { text: 'Full Name',width:'20%', value: 'fullname' },
+                    { text: 'Full Name',width:'20%', value: 'full_name' },
                     { text: 'Mobile', value: 'mobile', width:'20%' },
                     { text: 'Total Items', value: 'total_items', width:'10%' },
                     { text: 'Username',align: 'start',sortable: false,value: 'username', width:'20%'},
@@ -103,6 +104,9 @@ export default {
         }
     },
     computed : {
+         prefill(){
+            return this.form.search = this.$route.query.item;
+        }
         // filteredClient(){
         //     if(this.search){
         //         return this.clients.filter(client => {

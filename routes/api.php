@@ -67,8 +67,12 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-//search api
+//global search
 Route::post('search', 'ItemController@search');
+Route::post('global_search_item','SearchController@global_search_item');
+Route::post('global_search_client','SearchController@global_search_client');
+Route::post('global_search', 'SearchController@global_search');
+
 
 // get all items
 Route::get('items' ,'ItemsController@index');
@@ -123,8 +127,10 @@ Route::get('get_number', 'ClientController@get_number');
 Route::post('sms_sender', 'SMSController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
 Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::get('sendMessage', 'SMSController@sendMessage');
+// Route::get('sendMessage', 'SMSController@sendMessage');
 
+
+Route::post('add_rating','ProductReviewController@store');
 Route::put('update_review/{id}','ProductReviewController@update_review');
 Route::delete('delete_review/{id}','ProductReviewController@destroy');
 Route::get('getStarRating', 'ItemsController@getStarRating');
@@ -132,6 +138,13 @@ Route::get('getStarRating', 'ItemsController@getStarRating');
 //add drafts
 Route::post('save_draft','ItemsController@storeDraft');
 Route::get('getDrafts','ItemsController@getDrafts');
-Route::get('editDrafts','ItemsController@editDrafts');
-Route::delete('deleteDraft','ItemsController@deleteDrafts');
+Route::post('editDrafts','ItemsController@editDrafts');
+Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
 
+
+//promotions
+
+Route::get('indexPromotion','PromotionController@index');
+Route::post('save_promotion','PromotionController@store');
+Route::post('edit_promotion/{id}','PromotionController@update');
+Route::delete('delete_promotion/{id}','PromotionController@destroy');
