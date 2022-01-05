@@ -98,6 +98,7 @@ export default {
   }),
   methods : {
     global_search(key){
+      if(key.length >= 3){
       axios.post('api/global_search_item/', {searchkey:key}).then((response)=>{
         console.log(response.data, "global item")
         this.global_item = response.data
@@ -118,6 +119,7 @@ export default {
             console.log(this.merge,"merge chan")
           })
       })
+      }
     },
     langChanged(lang){
              localStorage.Lang=lang;

@@ -30,7 +30,7 @@
                 <v-layout row wrap>
 <!-- here -->
                     <v-flex xs2>
-                    <v-list color="primary" dark dense 
+                    <v-list color="deep-orange darken-2" dark dense 
                         min-height="80vh" class="mx-auto">
                         <template v-for="item in categories">
                             <v-row v-if="item.heading" :key="item.heading" align="center">
@@ -568,7 +568,7 @@ export default {
         /* background-color: white; */
 
         /* color: rgb(171, 193, 224) !important; */
-        color:rgb(240, 53, 53);
+        color:black;
         width: auto;
     }
     .hide{
