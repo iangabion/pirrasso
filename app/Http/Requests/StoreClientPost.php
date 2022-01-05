@@ -25,11 +25,13 @@ class StoreClientPost extends FormRequest
     {
         return [
             //
-            'first_name' => 'nullable',
-            'last_name' => 'nullable',
+            'full_name' => 'nullable',
+            'birthday' => 'nullable',
+            'bio' => 'nullable',
+            'gender' => 'nullable',
             'email' => 'nullable|email|unique:clients,email',
             'mobile' => 'nullable|min:8',
-            'username' => 'nullabe|unique:clients,username',
+            'username' => 'nullable|unique:clients,username',
             'password' => 'required|min:4',
         ];
     }
