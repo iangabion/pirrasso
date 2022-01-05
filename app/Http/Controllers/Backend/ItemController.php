@@ -147,4 +147,12 @@ class ItemController extends Controller
         $smtp_delete->delete();
         return response()->json($smtp_delete);
     }
+
+    public function stock_count()
+    {
+        $stock = Items::sum('stock');
+        $sold = Items::sum('is_sold');
+        $result = $stock-$sold;
+        return $result;
+    }
 }

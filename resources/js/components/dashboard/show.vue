@@ -17,14 +17,14 @@
                         <v-list-item-avatar
                             tile
                             size="80"
-                                color="white"
+                            color="white"
                         >
                         <v-icon size="60" color="primary">mdi-account-group</v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn text>view</v-btn>
-                        <v-btn text>button</v-btn>
+                        <v-btn text href="/sellers">view</v-btn>
+                        <!-- <v-btn text>button</v-btn> -->
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -45,14 +45,42 @@
                         <v-list-item-avatar
                             tile
                             size="80"
-                                color="white"
+                            color="white"
                         >
-                        <v-icon size="60" color="primary">mdi-history</v-icon>
+                        <v-icon size="60" color="primary">mdi-shopping </v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn text>view</v-btn>
-                        <v-btn text>button</v-btn>
+                        <v-btn text href="/items">view</v-btn>
+                        <!-- <v-btn text>button</v-btn> -->
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+            <v-flex xs3>
+                <v-card
+                    class="mx-auto purple "
+                    max-width="344"
+                    outlined 
+                    color="primary"
+                    dark
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Stock</div>
+                            <v-list-item-title class="headline mb-1">{{this.stock}}</v-list-item-title>
+                            <v-list-item-subtitle>Stock Items</v-list-item-subtitle>
+                        </v-list-item-content>
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="white"
+                        >
+                        <v-icon size="60" color="primary">mdi-poll</v-icon>
+                        </v-list-item-avatar>
+                    </v-list-item>
+                    <v-card-actions >
+                        <v-btn text style="visibility: hidden;">view</v-btn>
+                        <v-btn text style="visibility: hidden;">button</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -73,14 +101,14 @@
                         <v-list-item-avatar
                             tile
                             size="80"
-                                color="white"
+                            color="white"
                         >
-                        <v-icon size="60" color="primary">mdi-history</v-icon>
+                        <v-icon size="60" color="primary">mdi-cart</v-icon>
                         </v-list-item-avatar>
                     </v-list-item>
                     <v-card-actions >
-                        <v-btn text>view</v-btn>
-                        <v-btn text>button</v-btn>
+                        <v-btn text style="visibility: hidden;">view</v-btn>
+                        <v-btn text style="visibility: hidden;">button</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -134,11 +162,13 @@
     </v-container>
 </template>
 <script>
+import { getStock } from "@api/item.api";
 export default {
     name:'home',
     data: () => ({
         clients: [],
         items: [],
+        stock: 0,
         yearItem: new Date().getFullYear(),
         yearSold: new Date().getFullYear(),
         sold:[],
@@ -163,6 +193,9 @@ export default {
             ],
         },
     }),
+    async mounted() {
+        await this.stock_count();
+    },
     methods: {
         incrementItem() {
             this.yearItem++;
@@ -208,7 +241,13 @@ export default {
                 this.sold = response.data;
                 console.log(this.sold , 'sold')
             });
-        }
+        },
+        stock_count() {
+            getStock().then(({data}) => {
+                this.stock = data
+                console.log('sad',this.stock)
+            })
+        },
     },
     created: function () {
         this.get_clients()

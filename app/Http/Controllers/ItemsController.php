@@ -507,9 +507,4 @@ class ItemsController extends Controller
         $item->delete();
         return 'deleted' ;
     }
-
-
-  
-
-    
 }
