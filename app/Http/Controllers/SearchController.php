@@ -58,7 +58,7 @@ class SearchController extends Controller
     public function global_search_item(Request $request)
     {
 //
-        $item = Items::where('is_approved', !2);
+        $item = Items::where('is_approved', 1);
         if($request->input('searchkey')!=''){
             $keyword = $request->input('searchkey');
             $item->where(function($query) use($keyword){
@@ -73,12 +73,11 @@ class SearchController extends Controller
     public function global_search_client(Request $request)
     {
 //
-        $client = Client::where('is_verified', 0);
+        $client = Client::where('is_verified', 1);
         if($request->input('searchkey')!=''){
             $keyword = $request->input('searchkey');
             $client->where(function($query) use($keyword){
-                $query->where('first_name', 'LIKE', "%$keyword%")
-                    ->orWhere('last_name', 'LIKE', "%$keyword%");
+                $query->where('full_name', 'LIKE', "%$keyword%");
             });
         }
         // where('title', $request->searchkey);
@@ -90,7 +89,7 @@ class SearchController extends Controller
         // return "yes yes yo";
         $keyword = $request->input('key');
 
-        $item= Items::where('is_approved', !2);
+        $item= Items::where('is_approved', 1);
         $item->where(function($query) use($keyword){
             $query->where('title', 'LIKE', "%$keyword%");
         });
