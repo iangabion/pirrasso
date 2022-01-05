@@ -90,67 +90,9 @@
           >
            
             <v-card>
-              <v-form
-                  ref="form"
-                  v-model="valid"
-                  lazy-validation
-                >
-                  <v-text-field
-                    v-model="formData.mail_mailer"
-    
-                    :rules="mailerRules"
-                    label="Mail Mailer"
-                    required
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="formData.mail_host"                  
-                    :rules="hostRules"
-                    label="Mail Host"
-                    required
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="formData.mail_port"                  
-                    :rules="portRules"
-                    label="Mail Port"
-                    required
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="formData.mail_username"                  
-                    :rules="usernameRules"
-                    label="Mail Username"
-                    required
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="formData.mail_password"                  
-                    :rules="passwordRules"
-                    label="Mail Password"
-                    required
-                  ></v-text-field>
-
-                   <v-text-field
-                    v-model="formData.mail_encryption"                  
-                    :rules="encryptionRules"
-                    label="Mail Encryption"
-                    required
-                  ></v-text-field>
-
-                  
-
-                  <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    class="mr-4"
-                    @click="validate"
-                  >
-                   SAVE
-                  </v-btn>
-
-                
-                </v-form>
+              <form>
+               
+              </form>
             </v-card>
           </v-dialog> -->
         <addDialog
@@ -164,7 +106,6 @@
   </div>
 </template>
 <script>
-
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
 // import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
@@ -176,41 +117,8 @@ export default {
     },
   data() {
     return {
-
-      // valid: true,
-    
-      // mailerRules: [
-      //   v => !!v || 'Mail Mailer is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-
-      //  hostRules: [
-      //   v => !!v || 'Mail Host is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-
-      //  portRules: [
-      //   v => !!v || 'Mail Port is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-      
-      //  usernameRules: [
-      //   v => !!v || 'Mail Username is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-
-      //  passwordRules: [
-      //   v => !!v || 'Mail Password is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-
-      //  encryptionRules: [
-      //   v => !!v || 'Mail Encryption is required',
-      //   // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      // ],
-      
-      
-     formData:{
+      name: '',
+      formData:{
                 id:'',
                 mail_mailer:'',
                 mail_host:'',
@@ -219,6 +127,7 @@ export default {
                 mail_password:'',
                 mail_encryption:'',
             },
+    
       dialog: false,
       form: {
         search: '',
@@ -253,10 +162,7 @@ export default {
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
     },
-     
-     
-    
-     
+  
   },
   mounted() {
     this.search();

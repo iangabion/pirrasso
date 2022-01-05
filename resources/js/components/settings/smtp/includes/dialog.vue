@@ -222,7 +222,7 @@
                         small
                         width="70px"
                         @click="$emit('close')"
-                        @click.prevent= 'clearformData()'
+                        @click.prevent= "clearformData"
                     >
                         {{$t('cancel')}}
                     </v-btn>
@@ -336,54 +336,21 @@ export default {
                         }
                     }
                 })
+                
+            },
 
+        edit(id) {
+            ShowSmtp(id, {}).then(response => {
+                console.log(response.data, 'test')
+                this.formData.id = response.data.id;
+                this.formData.mail_mailer = response.data.mail_mailer;
+                this.formData.mail_host= response.data.mail_host;
+                this.formData.mail_port= response.data.mail_port;
+                this.formData.mail_username= response.data.mail_username;
+                this.formData.mail_password= response.data.mail_password;
+                this.formData.mail_encryption= response.data.mail_encryption;
+            });
         },
-        // create() {
-        //     this.loading = true
-        //     let payload = this.formData
-        //     this.$validator.validateAll().then(result => {
-        //         if (result){
-        //         this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
-        //             if(result) {
-        //                 let dis = this ;
-        //                 let id = this.formData.id;
-        //                 if(id != 0) {
-        //                     UpdateSmtp(id, payload ).then(function (response) {
-        //                     dis.clearformData()
-        //                     dis.$emit('search')
-        //                     dis.$emit('close')
-        //                     dis.loading = false
-        //                     alert('Successfully Updated');
-        //                 })
-        //                 }else{
-        //                     CreateSmtp(payload).then((data)=> {
-        //                         console.log(data)
-        //                         this.clearformData()
-        //                         this.$emit('search')
-        //                         this.$emit('close')
-        //                         this.loading = false
-        //                         alert('Successfully Created');
-        //                     }).catch((error)=> {
-        //                         console.log(error)
-        //                     });
-        //                 }
-        //             }
-        //         })
-        //         }
-        //     })
-        // },
-        // edit(id) {
-        //     ShowSmtp(id, {}).then(response => {
-        //         console.log(response.data, 'test')
-        //         this.formData.id = response.data.id;
-        //         this.formData.mail_mailer = response.data.mail_mailer;
-        //         this.formData.mail_host= response.data.mail_host;
-        //         this.formData.mail_port= response.data.mail_port;
-        //         this.formData.mail_username= response.data.mail_username;
-        //         this.formData.mail_password= response.data.mail_password;
-        //         this.formData.mail_encryption= response.data.mail_encryption;
-        //     });
-        // },
 
         clearformData() {
             this.formData.mail_mailer ='',
@@ -393,9 +360,16 @@ export default {
             this.formData.mail_password= '',
             this.formData.mail_encryption= '',
             this.formData.id= ''
-            this.$validator.reset();
+            this.$refs.form.reset();
+
+           
         },
-    }
+
+        },
+       
+
+        
+    
 }
 </script>
 <style scoped>

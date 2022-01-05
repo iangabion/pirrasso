@@ -117,59 +117,137 @@ class ItemsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    // {
+    //     // return $request->images ;
+    //     $validatedData = $request->validate([
+    //         'title' => 'required',
+    //         'price' => 'required',
+    //         'description' => 'nullable',
+    //         'location' => 'nullable',
+    //         'latitude' => 'nullable|numeric',
+    //         'longitude' => 'nullable|numeric',
+    //         'stock' => 'required',
+    //         'status_id' => 'required',
+    //         'category_id' => 'nullable',
+    //         'subcategory_id' => 'nullable',
+    //         'images' => 'nullable',
+    //         'show_number' => 'nullable',
+    //         'apartment' => 'nullable',
+    //         'vehicles' => 'nullable',
+
+    //          // added Fields
+    //          'is_urgent' => 'nullable',
+    //          'is_displayed' => 'nullable',
+
+    //     ]);
+    //     if($validatedData) {
+    //         $item = new Items();
+    //         $item->title =  $request->input('title');
+    //         $item->price =  $request->input('price');
+    //         $item->description =  $request->input('description');
+    //         $item->location =  $request->input('location');
+    //         $item->latitude =  $request->input('latitude');
+    //         $item->longitude =  $request->input('longitude');
+    //         $item->stock =  $request->input('stock');
+    //         $item->show_number =  $request->input('show_number');
+    //         $item->status_id =  $request->input('status_id');
+    //         $item->category_id =  $request->input('category_id');
+    //         $item->subcategory_id =  $request->input('subcategory_id');
+    //         $item->client_id = Auth::user()->id;
+    //         $item->save();
+
+
+    //         $photo = new Photos();
+    //         $image = $request->input('images');  // your base64 encoded
+    //         list($type, $image) = explode(';', $image);
+    //         list(, $image)      = explode(',', $image);
+    //         $data = base64_decode($image);
+    //         $imageName = $photo->filename. time() . '_subcat.jpeg';
+    //         file_put_contents(public_path() . '/' . 'images/' . $imageName, $data);
+    //         $photo->filename = $imageName ;
+    //         $photo->save();
+
+    //         // added Fields
+
+
+
+    //         if($item ) {
+    //             if($request->input('vehicles')){
+    //                 $this->add_vehicles($item ,  $request->input('vehicles'));
+    //             }
+    //             if($request->input('apartment')){
+    //                 $this->add_apartments($item ,  $request->input('apartment'));
+    //             }
+    //         }
+    //         // return new ItemResource($item);
+    //         return "success";
+    //     }
+    // }
+
+// old up
+// new down
+
     {
-        // return $request->images ;
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'stock' => 'required',
-            'status_id' => 'required',
-            'category_id' => 'nullable',
-            'subcategory_id' => 'nullable',
-            'images' => 'nullable',
-            'show_number' => 'nullable',
-            'apartment' => 'nullable',
-            'vehicles' => 'nullable',
+        // $validatedData = $request->validate([
+        //             'title' => 'required',
+        //             'price' => 'required',
+        //             'description' => 'nullable',
+        //             'location' => 'nullable',
+        //             'latitude' => 'nullable|numeric',
+        //             'longitude' => 'nullable|numeric',
+        //             'stock' => 'required',
+        //             'status_id' => 'required',
+        //             'category_id' => 'nullable',
+        //             'subcategory_id' => 'nullable',
+        //             'images' => 'nullable',
+        //             'show_number' => 'nullable',
+        //             'apartment' => 'nullable',
+        //             'vehicles' => 'nullable',
+        //              // added Fields
+        //              'is_urgent' => 'nullable',
+        //              'is_displayed' => 'nullable',
+        //         ]);
 
-             // added Fields
-             'is_urgent' => 'nullable',
-             'is_displayed' => 'nullable',
+             $item = new Items();
+                $item->title =  $request->input('title');
+                $item->price =  $request->input('price');
+                $item->description =  $request->input('description');
+                $item->location =  $request->input('location');
+                $item->latitude =  $request->input('latitude');
+                $item->longitude =  $request->input('longitude');
+                $item->stock =  $request->input('stock');
+                $item->show_number =  $request->input('show_number');
+                $item->status_id =  $request->input('status_id');
+                $item->category_id =  $request->input('category_id');
+                $item->subcategory_id =  $request->input('subcategory_id');
+                $item->client_id = Auth::user()->id;
+                $item->save();
+            
+                $photo = new Photos();
+                $photo->items_id = $item->id;
+                //
+                    if($request->input('images')){
+                      $image = $request->input('images');  // your base64 encoded
+                        list($type, $image) = explode(';', $image);
+                        list(, $image)      = explode(',', $image);
+                        $data = base64_decode($image);
+                        $imageName = time() . '.jpeg';
+                        file_put_contents(public_path() . '/' . 'images/' . $imageName, $data);
+                        $photo->filename = $imageName ;
+                    };
+                $photo->imageable_id = 0;
+                $item->photos()->save($photo);
 
-        ]);
-        if($validatedData) {
-            $item = new Items();
-            $item->title =  $request->input('title');
-            $item->price =  $request->input('price');
-            $item->description =  $request->input('description');
-            $item->location =  $request->input('location');
-            $item->latitude =  $request->input('latitude');
-            $item->longitude =  $request->input('longitude');
-            $item->stock =  $request->input('stock');
-            $item->show_number =  $request->input('show_number');
-            $item->status_id =  $request->input('status_id');
-            $item->category_id =  $request->input('category_id');
-            $item->subcategory_id =  $request->input('subcategory_id');
-            $item->client_id = Auth::user()->id;
-
-            // added Fields
-
-
-
-            $item->save();
-            if($item ) {
-                if($request->input('vehicles')){
-                    $this->add_vehicles($item ,  $request->input('vehicles'));
+                if($item ) {
+                                if($request->input('vehicles')){
+                                    $this->add_vehicles($item ,  $request->input('vehicles'));
+                                }
+                                if($request->input('apartment')){
+                                    $this->add_apartments($item ,  $request->input('apartment'));
+                                }
                 }
-                if($request->input('apartment')){
-                    $this->add_apartments($item ,  $request->input('apartment'));
-                }
-            }
+            // return "success";
             return new ItemResource($item);
-        }
     }
 
     public function add_photos(Request $request){

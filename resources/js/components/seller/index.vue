@@ -13,6 +13,7 @@
                     dense
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
+                    :value="prefill"
                 />
             </div>
             <v-btn
@@ -103,6 +104,9 @@ export default {
         }
     },
     computed : {
+         prefill(){
+            return this.form.search = this.$route.query.item;
+        }
         // filteredClient(){
         //     if(this.search){
         //         return this.clients.filter(client => {
