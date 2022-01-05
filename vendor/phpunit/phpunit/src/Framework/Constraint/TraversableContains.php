@@ -9,41 +9,20 @@
  */
 namespace PHPUnit\Framework\Constraint;
 
-use function is_array;
-use function is_object;
-use function is_string;
-use function sprintf;
-use function strpos;
-use SplObjectStorage;
-
 /**
  * Constraint that asserts that the Traversable it is applied to contains
  * a given value.
- *
- * @deprecated Use TraversableContainsEqual or TraversableContainsIdentical instead
  */
-final class TraversableContains extends Constraint
+abstract class TraversableContains extends Constraint
 {
-    /**
-     * @var bool
-     */
-    private $checkForObjectIdentity;
-
-    /**
-     * @var bool
-     */
-    private $checkForNonObjectIdentity;
-
     /**
      * @var mixed
      */
     private $value;
 
-    public function __construct($value, bool $checkForObjectIdentity = true, bool $checkForNonObjectIdentity = false)
+    public function __construct($value)
     {
-        $this->checkForObjectIdentity    = $checkForObjectIdentity;
-        $this->checkForNonObjectIdentity = $checkForNonObjectIdentity;
-        $this->value                     = $value;
+        $this->value = $value;
     }
 
     /**
@@ -53,54 +32,11 @@ final class TraversableContains extends Constraint
      */
     public function toString(): string
     {
-        if (is_string($this->value) && strpos($this->value, "\n") !== false) {
-            return 'contains "' . $this->value . '"';
-        }
-
         return 'contains ' . $this->exporter()->export($this->value);
     }
 
     /**
-     * Evaluates the constraint for parameter $other. Returns true if the
-     * constraint is met, false otherwise.
-     *
-     * @param mixed $other value or object to evaluate
-     */
-    protected function matches($other): bool
-    {
-        if ($other instanceof SplObjectStorage) {
-            return $other->contains($this->value);
-        }
-
-        if (is_object($this->value)) {
-            foreach ($other as $element) {
-                if ($this->checkForObjectIdentity && $element === $this->value) {
-                    return true;
-                }
-
-                /* @noinspection TypeUnsafeComparisonInspection */
-                if (!$this->checkForObjectIdentity && $element == $this->value) {
-                    return true;
-                }
-            }
-        } else {
-            foreach ($other as $element) {
-                if ($this->checkForNonObjectIdentity && $element === $this->value) {
-                    return true;
-                }
-
-                /* @noinspection TypeUnsafeComparisonInspection */
-                if (!$this->checkForNonObjectIdentity && $element == $this->value) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Returns the description of the failure.
+     * Returns the description of the failure
      *
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
@@ -111,10 +47,15 @@ final class TraversableContains extends Constraint
      */
     protected function failureDescription($other): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s',
-            is_array($other) ? 'an array' : 'a traversable',
+            \is_array($other) ? 'an array' : 'a traversable',
             $this->toString()
         );
+    }
+
+    protected function value()
+    {
+        return $this->value;
     }
 }

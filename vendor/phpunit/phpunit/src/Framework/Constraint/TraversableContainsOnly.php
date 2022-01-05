@@ -44,7 +44,7 @@ final class TraversableContainsOnly extends Constraint
     }
 
     /**
-     * Evaluates the constraint for parameter $other.
+     * Evaluates the constraint for parameter $other
      *
      * If $returnResult is set to false (the default), an exception is thrown
      * in case of a failure. null is returned otherwise.
@@ -53,10 +53,12 @@ final class TraversableContainsOnly extends Constraint
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @param mixed|\Traversable $other
+     *
      * @throws ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false)
+    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
         $success = true;
 
@@ -75,6 +77,8 @@ final class TraversableContainsOnly extends Constraint
         if (!$success) {
             $this->fail($other, $description);
         }
+
+        return null;
     }
 
     /**

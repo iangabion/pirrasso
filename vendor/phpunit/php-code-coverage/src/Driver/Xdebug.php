@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * This file is part of the php-code-coverage package.
+ * This file is part of phpunit/php-code-coverage.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -14,8 +14,6 @@ use SebastianBergmann\CodeCoverage\RuntimeException;
 
 /**
  * Driver for Xdebug's code coverage functionality.
- *
- * @codeCoverageIgnore
  */
 final class Xdebug implements Driver
 {
@@ -38,19 +36,8 @@ final class Xdebug implements Driver
             throw new RuntimeException('This driver requires Xdebug');
         }
 
-        if (\version_compare(\phpversion('xdebug'), '3', '>=')) {
-            $mode = \getenv('XDEBUG_MODE');
-
-            if ($mode === false) {
-                $mode = \ini_get('xdebug.mode');
-            }
-
-            if ($mode === false ||
-                !\in_array('coverage', \explode(',', $mode), true)) {
-                throw new RuntimeException('XDEBUG_MODE=coverage or xdebug.mode=coverage has to be set');
-            }
-        } elseif (!\ini_get('xdebug.coverage_enable')) {
-            throw new RuntimeException('xdebug.coverage_enable=On has to be set');
+        if (!\ini_get('xdebug.coverage_enable')) {
+            throw new RuntimeException('xdebug.coverage_enable=On has to be set in php.ini');
         }
 
         if ($filter === null) {

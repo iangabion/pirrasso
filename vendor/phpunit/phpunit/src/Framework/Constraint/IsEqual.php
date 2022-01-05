@@ -9,10 +9,6 @@
  */
 namespace PHPUnit\Framework\Constraint;
 
-use function is_string;
-use function sprintf;
-use function strpos;
-use function trim;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Comparator\Factory as ComparatorFactory;
@@ -48,7 +44,7 @@ final class IsEqual extends Constraint
      */
     private $ignoreCase;
 
-    public function __construct($value, float $delta = 0.0, int $maxDepth = 10, bool $canonicalize = false, bool $ignoreCase = false)
+    public function __construct($value, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false)
     {
         $this->value        = $value;
         $this->delta        = $delta;
@@ -57,7 +53,7 @@ final class IsEqual extends Constraint
     }
 
     /**
-     * Evaluates the constraint for parameter $other.
+     * Evaluates the constraint for parameter $other
      *
      * If $returnResult is set to false (the default), an exception is thrown
      * in case of a failure. null is returned otherwise.
@@ -67,8 +63,10 @@ final class IsEqual extends Constraint
      * failure.
      *
      * @throws ExpectationFailedException
+     *
+     * @return bool
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false)
+    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
         // If $this->value and $other are identical, they are also equal.
         // This is the most common path and will allow us to skip
@@ -98,7 +96,7 @@ final class IsEqual extends Constraint
             }
 
             throw new ExpectationFailedException(
-                trim($description . "\n" . $f->getMessage()),
+                \trim($description . "\n" . $f->getMessage()),
                 $f
             );
         }
@@ -115,25 +113,25 @@ final class IsEqual extends Constraint
     {
         $delta = '';
 
-        if (is_string($this->value)) {
-            if (strpos($this->value, "\n") !== false) {
+        if (\is_string($this->value)) {
+            if (\strpos($this->value, "\n") !== false) {
                 return 'is equal to <text>';
             }
 
-            return sprintf(
+            return \sprintf(
                 "is equal to '%s'",
                 $this->value
             );
         }
 
         if ($this->delta != 0) {
-            $delta = sprintf(
+            $delta = \sprintf(
                 ' with delta <%F>',
                 $this->delta
             );
         }
 
-        return sprintf(
+        return \sprintf(
             'is equal to %s%s',
             $this->exporter()->export($this->value),
             $delta

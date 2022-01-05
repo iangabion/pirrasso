@@ -2,35 +2,29 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [7.0.15] - 2021-07-26
+## [8.0.2] - 2020-05-23
 
-### Changed
+### Fixed
 
-* Bumped required version of php-token-stream
+* [#750](https://github.com/sebastianbergmann/php-code-coverage/pull/750): Inconsistent handling of namespaces
+* [#751](https://github.com/sebastianbergmann/php-code-coverage/pull/751): Dead code is not highlighted correctly
+* [#753](https://github.com/sebastianbergmann/php-code-coverage/issues/753): Do not use `$_SERVER['REQUEST_TIME']` because the test(ed) code might unset it
 
-## [7.0.14] - 2020-12-02
+## [8.0.1] - 2020-02-19
 
-### Changed
+### Fixed
 
-* [#837](https://github.com/sebastianbergmann/php-code-coverage/issues/837): Allow version 4 of php-token-stream
+* [#731](https://github.com/sebastianbergmann/php-code-coverage/pull/731): Confusing footer in the HTML report
 
-## [7.0.13] - 2020-11-30
+## [8.0.0] - 2020-02-07
 
-### Changed
+### Fixed
 
-* Changed PHP version constraint in `composer.json` from `^7.2` to `>=7.2` to allow installation of this version of this library on PHP 8. However, this version of this library does not work on PHP 8. PHPUnit 8.5, which uses this version of this library, does not call into this library and instead shows a message that code coverage functionality is not available for PHPUnit 8.5 on PHP 8.
+* [#721](https://github.com/sebastianbergmann/php-code-coverage/pull/721): Workaround for PHP bug [#79191](https://bugs.php.net/bug.php?id=79191)
 
-## [7.0.12] - 2020-11-27
+### Removed
 
-### Added
-
-* [#834](https://github.com/sebastianbergmann/php-code-coverage/issues/834): Support `XDEBUG_MODE` environment variable
-
-## [7.0.11] - 2020-11-27
-
-### Added
-
-* Support for Xdebug 3
+* This component is no longer supported on PHP 7.2
 
 ## [7.0.10] - 2019-11-20
 
@@ -100,7 +94,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Added
 
-* Implemented [#663](https://github.com/sebastianbergmann/php-code-coverage/pull/663): Support for PCOV
+* [#663](https://github.com/sebastianbergmann/php-code-coverage/pull/663): Support for PCOV
 
 ### Fixed
 
@@ -142,11 +136,9 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Class names are now abbreviated (unqualified name shown, fully qualified name shown on hover) in the file view of the HTML report
 * Update HTML report to Bootstrap 4
 
-[7.0.15]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.14...7.0.15
-[7.0.14]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.13...7.0.14
-[7.0.13]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.12...7.0.13
-[7.0.12]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.11...7.0.12
-[7.0.11]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.10...7.0.11
+[8.0.2]: https://github.com/sebastianbergmann/php-code-coverage/compare/8.0.1...8.0.2
+[8.0.1]: https://github.com/sebastianbergmann/php-code-coverage/compare/8.0.0...8.0.1
+[8.0.0]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.10...8.0.0
 [7.0.10]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.9...7.0.10
 [7.0.9]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.8...7.0.9
 [7.0.8]: https://github.com/sebastianbergmann/php-code-coverage/compare/7.0.7...7.0.8

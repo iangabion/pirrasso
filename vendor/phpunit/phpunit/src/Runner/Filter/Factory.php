@@ -9,12 +9,10 @@
  */
 namespace PHPUnit\Runner\Filter;
 
-use function sprintf;
 use FilterIterator;
 use InvalidArgumentException;
 use Iterator;
 use PHPUnit\Framework\TestSuite;
-use RecursiveFilterIterator;
 use ReflectionClass;
 
 /**
@@ -23,18 +21,20 @@ use ReflectionClass;
 final class Factory
 {
     /**
-     * @var array
+     * @psalm-var array<int,array{0: \ReflectionClass, 1: array|string}>
      */
     private $filters = [];
 
     /**
+     * @param array|string $args
+     *
      * @throws InvalidArgumentException
      */
     public function addFilter(ReflectionClass $filter, $args): void
     {
-        if (!$filter->isSubclassOf(RecursiveFilterIterator::class)) {
+        if (!$filter->isSubclassOf(\RecursiveFilterIterator::class)) {
             throw new InvalidArgumentException(
-                sprintf(
+                \sprintf(
                     'Class "%s" does not extend RecursiveFilterIterator',
                     $filter->name
                 )
@@ -50,6 +50,8 @@ final class Factory
             [$class, $args] = $filter;
             $iterator       = $class->newInstance($iterator, $args, $suite);
         }
+
+        \assert($iterator instanceof FilterIterator);
 
         return $iterator;
     }
