@@ -195,6 +195,7 @@ export default {
     }),
     async mounted() {
         await this.stock_count();
+        await this.get_monthlyitem();
     },
     methods: {
         incrementItem() {
@@ -248,6 +249,14 @@ export default {
                 console.log('sad',this.stock)
             })
         },
+
+        get_monthlyitem() {
+            
+            console.log("monthly");
+            axios.get('/month_item').then((data) => {
+                console.log(data,"monthly");
+            })
+        }
     },
     created: function () {
         this.get_clients()

@@ -155,4 +155,27 @@ class ItemController extends Controller
         $result = $stock-$sold;
         return $result;
     }
+    public function getMonthlyItem()
+    {
+        $items = Items::select('id', 'created_at')
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });
+        
+        $itemmcount = [];
+        $itemArr = [];
+        
+        foreach ($items as $key => $value) {
+            $itemmcount[(int)$key] = count($value);
+        }
+        
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($itemmcount[$i])){
+                $itemArr[$i] = $itemmcount[$i];    
+            }else{
+                $itemArr[$i] = 0;    
+            }
+        }
+    }
 }
