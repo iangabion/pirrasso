@@ -138,6 +138,13 @@ Route::get('getStarRating', 'ItemsController@getStarRating');
 //add drafts
 Route::post('save_draft','ItemsController@storeDraft');
 Route::get('getDrafts','ItemsController@getDrafts');
-Route::get('editDrafts','ItemsController@editDrafts');
+Route::post('editDrafts','ItemsController@editDrafts');
 Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
 
+
+//promotions
+
+Route::get('indexPromotion','PromotionController@index');
+Route::post('save_promotion','PromotionController@store');
+Route::post('edit_promotion/{id}','PromotionController@update');
+Route::delete('delete_promotion/{id}','PromotionController@destroy');

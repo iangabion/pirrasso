@@ -22,7 +22,7 @@ class Client extends Authenticatable
     // scopes
     public function scopeNameSearch($query , $searchTerm)
     {
-        return $query->where('first_name', 'like', "%" . $searchTerm . "%");
+        return $query->where('full_name', 'like', "%" . $searchTerm . "%");
     }
 
 

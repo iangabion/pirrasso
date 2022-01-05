@@ -83,7 +83,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-         <v-dialog
+         <!-- <v-dialog
             v-model="dialog"
             persistent
             max-width="600px"
@@ -91,79 +91,26 @@
            
             <v-card>
               <form>
-                <v-text-field
-                  v-model="name"
-                  :error-messages="nameErrors"
-                  :counter="10"
-                  label="Name"
-                  required
-                  @input="$v.name.$touch()"
-                  @blur="$v.name.$touch()"
-                ></v-text-field>
-                <v-text-field
-                  v-model="email"
-                  :error-messages="emailErrors"
-                  label="E-mail"
-                  required
-                  @input="$v.email.$touch()"
-                  @blur="$v.email.$touch()"
-                ></v-text-field>
-                <v-select
-                  v-model="select"
-                  :items="items"
-                  :error-messages="selectErrors"
-                  label="Item"
-                  required
-                  @change="$v.select.$touch()"
-                  @blur="$v.select.$touch()"
-                ></v-select>
-                <v-checkbox
-                  v-model="checkbox"
-                  :error-messages="checkboxErrors"
-                  label="Do you agree?"
-                  required
-                  @change="$v.checkbox.$touch()"
-                  @blur="$v.checkbox.$touch()"
-                ></v-checkbox>
-
-                <v-btn
-                  class="mr-4"
-                  @click="submit"
-                >
-                  submit
-                </v-btn>
-             
+               
               </form>
             </v-card>
-          </v-dialog>
-        <!-- <addDialog
-            :dialog="dialog2"
-            @close="dialog2 = false; selected_item_id=0"
+          </v-dialog> -->
+        <addDialog
+            :dialog="dialog"
+            @close="dialog = false; selected_item_id=0"
             @search="search"
             :id="selected_item_id"
-        ></addDialog> -->
+        ></addDialog>
       </v-container>
     </div>
   </div>
 </template>
 <script>
-import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
+// import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
 export default {
-   mixins: [validationMixin],
-
-    validations: {
-      name: { required, maxLength: maxLength(10) },
-      email: { required, email },
-      select: { required },
-      checkbox: {
-        checked (val) {
-          return val
-        },
-      },
-    },
+  
     
     components : {
         addDialog
@@ -171,15 +118,16 @@ export default {
   data() {
     return {
       name: '',
-      email: '',
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-       checkbox: false,
+      formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            },
+    
       dialog: false,
       form: {
         search: '',
@@ -200,6 +148,7 @@ export default {
       // ],
     }
   },
+ 
   computed: {
     headers(){
       return [
@@ -213,41 +162,45 @@ export default {
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
     },
-     checkboxErrors () {
-        const errors = []
-        if (!this.$v.checkbox.$dirty) return errors
-        !this.$v.checkbox.checked && errors.push('You must agree to continue!')
-        return errors
-      },
-      selectErrors () {
-        const errors = []
-        if (!this.$v.select.$dirty) return errors
-        !this.$v.select.required && errors.push('Item is required')
-        return errors
-      },
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
+  
   },
   mounted() {
     this.search();
   },
   methods: {
 
-    submit () {
-        this.$v.$touch()
-      },
+    // validate () {
+    //     this.loading = true
+    //     let payload = this.formData
+    //     if(!this.$refs.form.validate()) return;
+    //     this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
+    //                 if(result) {
+    //                     let dis = this ;
+    //                     let id = this.formData.id;
+    //                     if(id != 0) {
+    //                         UpdateSmtp(id, payload ).then(function (response) {
+    //                         dis.clearformData()
+    //                         dis.$emit('search')
+    //                         dis.$emit('close')
+    //                         dis.loading = false
+    //                         alert('Successfully Updated');
+    //                     })
+    //                     }else{
+    //                         CreateSmtp(payload).then((data)=> {
+    //                             console.log(data)
+    //                             this.clearformData()
+    //                             this.$emit('search')
+    //                             this.$emit('close')
+    //                             this.loading = false
+    //                             alert('Successfully Created');
+    //                         }).catch((error)=> {
+    //                             console.log(error)
+    //                         });
+    //                     }
+    //                 }
+    //             });
+
+    //   },
     changeStatus(id){
       SetDefault(id).then(response => {
         this.search();
