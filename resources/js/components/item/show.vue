@@ -538,8 +538,7 @@ export default {
     },
     computed:{
         prefill(){
-            // alert(this.$route.query.item, 'hey hey')
-            return this.form.search = this.$route.query.item;
+                return this.form.search = this.$route.query.item;
         }
     }
 }
