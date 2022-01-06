@@ -38,9 +38,7 @@
               <v-list-item
                    class="tile" 
                 >
-                <v-list-item-content
-               
-                >
+                <v-list-item-content>
                   <v-list-item-title >
                     {{ item.text }}
                   </v-list-item-title>
