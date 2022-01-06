@@ -74,6 +74,9 @@ Route::middleware('auth:web')->group(function () {
         Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
         Route::post('approved_items/approve', 'EmailNoticeController@approveEmail')->name('approve');
         
+        //dashboard
+        Route::get('stock_count', 'ItemController@stock_count');
+        Route::post('month_item','ItemController@getMonthlyItem');
 
         Route::post('client/search', 'ClientController@searchClient');
 
@@ -86,6 +89,7 @@ Route::middleware('auth:web')->group(function () {
 
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
+
 
     });
 });

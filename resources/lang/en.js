@@ -133,7 +133,7 @@ export default {
             mail_mailer: "Mail Mailer",
             mail_host: "Mail Host",
             mail_port: "Mail Port",
-            mail_username: "Mail Port",
+            mail_username: "Mail Username",
             mail_password: "Mail Password",
             mail_encryption: "Mail Encryption",
             default: "Default",
