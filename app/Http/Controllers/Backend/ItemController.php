@@ -147,4 +147,38 @@ class ItemController extends Controller
         $smtp_delete->delete();
         return response()->json($smtp_delete);
     }
+
+    public function stock_count()
+    {
+        $stock = Items::sum('stock');
+        $sold = Items::sum('is_sold');
+        $result = $stock-$sold;
+        return $result;
+    }
+    public function getMonthlyItem(Request $request)
+    {
+        $y = Carbon::createFromFormat('Y', $request->date)->format('Y');
+        $dates = [];
+        for($i=1; $i<=12; $i++){
+            $dates[] = [
+                [
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-1')->toDateString(),
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->toDateString()
+                ],
+                [
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->toDateString(),
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->endOfMonth()->addDays(1)->toDateString()
+                ],
+            ];
+        };
+        $results= [];
+        foreach ($dates as $key => $date) {
+            $results[] = [
+                Items::whereBetween('created_at',$date[0])->count(),
+                Items::whereBetween('created_at',$date[1])->count(),
+                Items::whereBetween('created_at',[$date[0][0],$date[1][1]])->count(),
+            ];  
+        }
+        return $results;
+    }
 }

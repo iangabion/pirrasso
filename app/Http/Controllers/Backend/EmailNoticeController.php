@@ -17,8 +17,12 @@ class EmailNoticeController extends Controller
             'category_title'            => $request->category['name'],
             'client_email'              =>  $request->client['email'],
             'client_account_created'    =>  $request->client['created_at'],
+<<<<<<< HEAD
             'client_first_name'         =>  $request->client['full_name'],
             // 'client_last_name'          =>  $request->client['last_name'],
+=======
+            'client_full_name'         =>  $request->client['full_name'],
+>>>>>>> 941981a0b5c56d69d4c1de0179dee6ec2006bbfe
             'client_mobile'             =>  $request->client['mobile'],
             'client_username'           =>  $request->client['username'],
             'reason'                    =>  $request->reason,
@@ -39,8 +43,12 @@ class EmailNoticeController extends Controller
             'category_title'            => $request->category['name'],
             'client_email'              =>  $request->client['email'],
             'client_account_created'    =>  $request->client['created_at'],
+<<<<<<< HEAD
             'client_first_name'         =>  $request->client['full_name'],
             // 'client_last_name'          =>  $request->client['last_name'],
+=======
+            'client_full_name'         =>  $request->client['full_name'],
+>>>>>>> 941981a0b5c56d69d4c1de0179dee6ec2006bbfe
             'client_mobile'             =>  $request->client['mobile'],
             'client_username'           =>  $request->client['username'],
             'item_title'                =>  $request->title,
