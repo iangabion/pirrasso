@@ -1,119 +1,121 @@
 <template>
     <v-container >
         <v-layout row wrap>
-            <v-flex xs3>
-                <v-card
-                    class="mx-auto purple "
-                    max-width="344"
-                    outlined color="primary"
-                    dark
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">sellers</div>
-                            <v-list-item-title class="headline mb-1">{{clients.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Sellers</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-avatar
-                            tile
-                            size="80"
-                            color="white"
-                        >
-                        <v-icon size="60" color="primary">mdi-account-group</v-icon>
-                        </v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions >
-                        <v-btn text href="/sellers">view</v-btn>
-                        <!-- <v-btn text>button</v-btn> -->
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-flex xs3>
-                <v-card
-                    class="mx-auto purple "
-                    max-width="344"
-                    outlined 
-                    color="primary"
-                    dark
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">items</div>
-                            <v-list-item-title class="headline mb-1">{{items.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Items on sell</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-avatar
-                            tile
-                            size="80"
-                            color="white"
-                        >
-                        <v-icon size="60" color="primary">mdi-shopping </v-icon>
-                        </v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions >
-                        <v-btn text href="/items">view</v-btn>
-                        <!-- <v-btn text>button</v-btn> -->
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-flex xs3>
-                <v-card
-                    class="mx-auto purple "
-                    max-width="344"
-                    outlined 
-                    color="primary"
-                    dark
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Stock</div>
-                            <v-list-item-title class="headline mb-1">{{this.stock}}</v-list-item-title>
-                            <v-list-item-subtitle>Stock Items</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-avatar
-                            tile
-                            size="80"
-                            color="white"
-                        >
-                        <v-icon size="60" color="primary">mdi-poll</v-icon>
-                        </v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions >
-                        <v-btn text style="visibility: hidden;">view</v-btn>
-                        <v-btn text style="visibility: hidden;">button</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-flex xs3>
-                <v-card
-                    class="mx-auto purple "
-                    max-width="344"
-                    outlined 
-                    color="primary"
-                    dark
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">sold</div>
-                            <v-list-item-title class="headline mb-1">{{sold.length}}</v-list-item-title>
-                            <v-list-item-subtitle>Sold Items</v-list-item-subtitle>
-                        </v-list-item-content>
-                        <v-list-item-avatar
-                            tile
-                            size="80"
-                            color="white"
-                        >
-                        <v-icon size="60" color="primary">mdi-cart</v-icon>
-                        </v-list-item-avatar>
-                    </v-list-item>
-                    <v-card-actions >
-                        <v-btn text style="visibility: hidden;">view</v-btn>
-                        <v-btn text style="visibility: hidden;">button</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
-            <v-container style="width: 100%; display: flex;">
-                <v-col style="width: 50%; border-style: solid;border-color: #FF5722">
+            <div style="width:100%; display:flex; justify-content: space-between">
+                <v-flex xs3>
+                    <v-card
+                        class="mx-auto purple "
+                        max-width="380"
+                        outlined color="primary"
+                        dark
+                    >
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <div class="overline mb-4">sellers</div>
+                                <v-list-item-title class="headline mb-1">{{clients.length}}</v-list-item-title>
+                                <v-list-item-subtitle>Sellers</v-list-item-subtitle>
+                            </v-list-item-content>
+                            <!-- <v-list-item-avatar
+                                tile
+                                size="80"
+                                color="white"
+                            > -->
+                            <v-icon size="60" color="white">mdi-account-group</v-icon>
+                            <!-- </v-list-item-avatar> -->
+                        </v-list-item>
+                        <v-card-actions >
+                            <v-btn text href="/sellers">view</v-btn>
+                            <!-- <v-btn text>button</v-btn> -->
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+                <v-flex xs3>
+                    <v-card
+                        class="mx-auto purple "
+                        max-width="380"
+                        outlined 
+                        color="primary"
+                        dark
+                    >
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <div class="overline mb-4">items</div>
+                                <v-list-item-title class="headline mb-1">{{items.length}}</v-list-item-title>
+                                <v-list-item-subtitle>Items on sell</v-list-item-subtitle>
+                            </v-list-item-content>
+                            <!-- <v-list-item-avatar
+                                tile
+                                size="80"
+                                color="white"
+                            > -->
+                            <v-icon size="60" color="white">mdi-shopping </v-icon>
+                            <!-- </v-list-item-avatar> -->
+                        </v-list-item>
+                        <v-card-actions >
+                            <v-btn text href="/items">view</v-btn>
+                            <!-- <v-btn text>button</v-btn> -->
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+                <v-flex xs3>
+                    <v-card
+                        class="mx-auto purple "
+                        max-width="380"
+                        outlined 
+                        color="primary"
+                        dark
+                    >
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <div class="overline mb-4">Stock</div>
+                                <v-list-item-title class="headline mb-1">{{this.stock}}</v-list-item-title>
+                                <v-list-item-subtitle>Stock Items</v-list-item-subtitle>
+                            </v-list-item-content>
+                            <!-- <v-list-item-avatar
+                                tile
+                                size="80"
+                                color="white"
+                            > -->
+                            <v-icon size="60" color="white">mdi-poll</v-icon>
+                            <!-- </v-list-item-avatar> -->
+                        </v-list-item>
+                        <v-card-actions >
+                            <v-btn text style="visibility: hidden;">view</v-btn>
+                            <v-btn text style="visibility: hidden;">button</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+                <v-flex xs3>
+                    <v-card
+                        class="mx-auto purple "
+                        max-width="380"
+                        outlined 
+                        color="primary"
+                        dark
+                    >
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <div class="overline mb-4">sold</div>
+                                <v-list-item-title class="headline mb-1">{{sold.length}}</v-list-item-title>
+                                <v-list-item-subtitle>Sold Items</v-list-item-subtitle>
+                            </v-list-item-content>
+                            <!-- <v-list-item-avatar
+                                tile
+                                size="80"
+                                color="white"
+                            > -->
+                            <v-icon size="60" color="white">mdi-cart</v-icon>
+                            <!-- </v-list-item-avatar> -->
+                        </v-list-item>
+                        <v-card-actions >
+                            <v-btn text style="visibility: hidden;">view</v-btn>
+                            <v-btn text style="visibility: hidden;">button</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+            </div>
+            <v-container style="width: 100%; display: flex;" >
+                <v-col style="width: 45%; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
                     <v-toolbar dense outlined flat fixed-toolbar>
                         <v-toolbar-items>
                             <v-btn
@@ -137,7 +139,7 @@
                     </v-toolbar>
                     <vue-chart type="bar" :data="chartItem" v-if="is_loaded"></vue-chart>
                 </v-col>
-                <v-col style="width: 50%; border-style: solid; border-color: #FF5722">
+                <v-col style="width: 45%; border-style: solid; border-color: #FF5722; margin:auto" >
                     <v-toolbar-items>
                         <v-btn
                             icon
@@ -181,17 +183,17 @@ export default {
                 {
                     label: '15-days Purchases',
                     data: [0,0,0,0,12,0,0,0,0,0,0,0],
-                    backgroundColor: '#008B8B',
+                    backgroundColor: '#FFB8A2',
                 },
                 {
                     label: '15-days Sales',
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    backgroundColor: '#B8860B',
+                    backgroundColor: '#FF7E55',
                 },
                 {
                     label: '15-days Profit',
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    backgroundColor: '#FFD700',
+                    backgroundColor: '#FF5722',
                 },
             ],
         },
@@ -210,7 +212,6 @@ export default {
         console.log("sadsss")
         await this.stock_count();
         await this.getMonthlyItemYear()
-        // this.is_loaded = true;
     },
     created() {
         console.log('created')

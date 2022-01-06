@@ -3928,7 +3928,7 @@ html.overflow-y-hidden {
   font-family: "Roboto", sans-serif !important;
 }
 .v-application .overline {
-  font-size: 0.75rem !important;
+  font-size: 16px !important;
   font-weight: 500;
   letter-spacing: 0.1666666667em !important;
   line-height: 2rem;
@@ -30906,5 +30906,19 @@ tbody tr:nth-of-type(odd) {
 
 tbody tr:nth-of-type(even) {
   background-color: #fafafa;
+}
+
+.v-list-group.tile > div:first-child {
+  border-radius: 4px;
+}
+
+.v-list-group.tile > div:first-child:hover {
+  background: #FF5722 !important;
+  color: #fff;
+}
+
+.v-list-group.tile > div:first-child:hover i,
+.v-list-group.tile > div:first-child:hover .v-list-item__content {
+  color: #fff;
 }
 
