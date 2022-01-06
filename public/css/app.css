@@ -30908,3 +30908,17 @@ tbody tr:nth-of-type(even) {
   background-color: #fafafa;
 }
 
+.v-list-group.tile > div:first-child {
+  border-radius: 4px;
+}
+
+.v-list-group.tile > div:first-child:hover {
+  background: #FF5722 !important;
+  color: #fff;
+}
+
+.v-list-group.tile > div:first-child:hover i,
+.v-list-group.tile > div:first-child:hover .v-list-item__content {
+  color: #fff;
+}
+
