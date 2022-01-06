@@ -248,7 +248,7 @@ class ClientController extends Controller
             'email' => 'nullable|email|unique:clients,email,'.$id,
             'mobile' => 'nullable',
             'username' => 'nullable|unique:clients,username,'.$id,
-            'password' => 'nullable',
+           
             'profile_pic' => 'nullable'
         ]);
 
@@ -261,7 +261,7 @@ class ClientController extends Controller
         $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
-        $client->password = Hash::make($request->input('password'));
+   
 
 
         if($request->profile_pic){
