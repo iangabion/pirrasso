@@ -277,7 +277,6 @@ export default {
         get_monthlyitem(payload) {
             getMonthlyItemReport(payload).then(({data}) => {
                 // console.log("month", data)
-                //1st 15-days Purchases
                 this.chartItem.datasets[0].data[0] = data[0][0]
                 this.chartItem.datasets[0].data[1] = data[1][0]
                 this.chartItem.datasets[0].data[2] = data[2][0]
@@ -290,7 +289,7 @@ export default {
                 this.chartItem.datasets[0].data[9] = data[9][0]
                 this.chartItem.datasets[0].data[10] = data[10][0]
                 this.chartItem.datasets[0].data[11] = data[11][0]
-                //2nd 15-days Purchases
+                
                 this.chartItem.datasets[1].data[0] = data[0][1]
                 this.chartItem.datasets[1].data[1] = data[1][1]
                 this.chartItem.datasets[1].data[2] = data[2][1]
@@ -303,7 +302,7 @@ export default {
                 this.chartItem.datasets[1].data[9] = data[9][1]
                 this.chartItem.datasets[1].data[10] = data[10][1]
                 this.chartItem.datasets[1].data[11] = data[11][1]
-                //Monthly Purchases
+                
                 this.chartItem.datasets[2].data[0] = data[0][2]
                 this.chartItem.datasets[2].data[1] = data[1][2]
                 this.chartItem.datasets[2].data[2] = data[2][2]
