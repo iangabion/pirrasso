@@ -149,11 +149,14 @@
   margin: 5px;
   border-radius: 4px;
 }
+ .v-list-item__title{
+   font-size: 16px;
+ }
 
 a.tile:hover,
 .v-list-item.v-list-item--link.theme--light:hover {
   background: #FF5722 !important;
-  color: #fff !important;
+  color: #fff !important; 
 }
 
 a.tile:hover i,
@@ -174,10 +177,14 @@ a.tile:hover i,
   background: #FF5722;
 }
 
+
 /* .tile:active {
   background: orange;
 } */
-
+.v-list-item--inactive {
+  background: #FF5722;
+  color: #fff;
+}
 .v-list-item--active {
   background: #FF5722;
   color: #fff;
@@ -190,4 +197,6 @@ a.tile:hover i,
 .v-list-item--link:before:hover {
   background-color: #FF5722 !important;
 }
+
+
 </style>

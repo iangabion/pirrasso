@@ -1,7 +1,7 @@
 <template>
-            <select v-model="lang" class="custom-select" @change="handleChange($event)">
-                <option value="en"><h4 class="custom-select">English</h4></option>
-                <option value="fr">France</option>
+            <select v-model="lang" class="ss" @change="handleChange($event)">
+                <option value="en" class="ss">English</option>
+                <option value="fr" class="ss">France</option>
             </select>
 
 
@@ -23,10 +23,16 @@ export default {
             window.location.reload();
         }
     }
+    
 }
+
+
 </script>
 <style scoped>
-.custom-select{
-    background-color: #fff;
+.ss {
+   color: rgb(133, 133, 131);
+    
 }
+
+
 </style>

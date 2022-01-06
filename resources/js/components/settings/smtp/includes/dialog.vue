@@ -163,7 +163,7 @@
                             solo
                             v-model="formData.mail_port"                  
                             :rules="portRules"
-              
+                            type="number"
                             required
                         ></v-text-field>
                 </v-flex>
