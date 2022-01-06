@@ -274,7 +274,6 @@ export default {
                 // console.log('sad',this.stock)
             })
         },
-
         get_monthlyitem(payload) {
             getMonthlyItemReport(payload).then(({data}) => {
                 // console.log("month", data)
