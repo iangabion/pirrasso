@@ -401,7 +401,6 @@ class ItemsController extends Controller
 
 
     }
-
     public function search(Request $request){
         $items = Items::query();
         if($request->input('searchkey') != ""){
@@ -507,9 +506,4 @@ class ItemsController extends Controller
         $item->delete();
         return 'deleted' ;
     }
-
-
-  
-
-    
 }

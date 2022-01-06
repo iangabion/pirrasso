@@ -261,7 +261,7 @@ class ClientController extends Controller
         $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
-   
+    
 
 
         if($request->profile_pic){
