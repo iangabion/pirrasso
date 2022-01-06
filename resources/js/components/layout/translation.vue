@@ -1,6 +1,6 @@
 <template>
             <select v-model="lang" class="custom-select" @change="handleChange($event)">
-                <option value="en">English</option>
+                <option value="en"><h4 class="custom-select">English</h4></option>
                 <option value="fr">France</option>
             </select>
 
@@ -25,3 +25,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.custom-select{
+    background-color: #fff;
+}
+</style>
