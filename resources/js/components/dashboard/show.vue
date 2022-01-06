@@ -258,25 +258,21 @@ export default {
             axios.get('/item', {})
             .then(response => {
                 this.items = response.data;
-                // console.log(this.items,"item")
             });
         },
         get_sold(){
             axios.get('/sold_count', {})
             .then(response => {
                 this.sold = response.data;
-                // console.log(this.sold , 'sold')
             });
         },
         stock_count() {
             getStock().then(({data}) => {
                 this.stock = data
-                // console.log('sad',this.stock)
             })
         },
         get_monthlyitem(payload) {
             getMonthlyItemReport(payload).then(({data}) => {
-                // console.log("month", data)
                 this.chartItem.datasets[0].data[0] = data[0][0]
                 this.chartItem.datasets[0].data[1] = data[1][0]
                 this.chartItem.datasets[0].data[2] = data[2][0]
