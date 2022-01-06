@@ -3928,7 +3928,7 @@ html.overflow-y-hidden {
   font-family: "Roboto", sans-serif !important;
 }
 .v-application .overline {
-  font-size: 16px !important;
+  font-size: 0.75rem !important;
   font-weight: 500;
   letter-spacing: 0.1666666667em !important;
   line-height: 2rem;
