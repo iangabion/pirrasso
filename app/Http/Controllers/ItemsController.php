@@ -89,6 +89,7 @@ class ItemsController extends Controller
         $sold->seller_id =  $request->input('seller_id');
         $sold->item_id =  $request->input('item_id');
         $sold->buyer_id =  $request->input('buyer_id');
+        $sold->quantity =  $request->input('quantity');
         $sold->save();
         return $sold;
     }
