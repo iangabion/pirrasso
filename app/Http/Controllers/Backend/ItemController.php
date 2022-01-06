@@ -155,27 +155,30 @@ class ItemController extends Controller
         $result = $stock-$sold;
         return $result;
     }
-    public function getMonthlyItem()
+    public function getMonthlyItem(Request $request)
     {
-        $items = Items::select('id', 'created_at')
-        ->get()
-        ->groupBy(function($date) {
-            return Carbon::parse($date->created_at)->format('m');
-        });
-        
-        $itemmcount = [];
-        $itemArr = [];
-        
-        foreach ($items as $key => $value) {
-            $itemmcount[(int)$key] = count($value);
+        $y = Carbon::createFromFormat('Y', $request->date)->format('Y');
+        $dates = [];
+        for($i=1; $i<=12; $i++){
+            $dates[] = [
+                [
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-1')->toDateString(),
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->toDateString()
+                ],
+                [
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->toDateString(),
+                    Carbon::createFromFormat('Y-m-d', $y.'-'.$i.'-16')->endOfMonth()->addDays(1)->toDateString()
+                ],
+            ];
+        };
+        $results= [];
+        foreach ($dates as $key => $date) {
+            $results[] = [
+                Items::whereBetween('created_at',$date[0])->count(),
+                Items::whereBetween('created_at',$date[1])->count(),
+                Items::whereBetween('created_at',[$date[0][0],$date[1][1]])->count(),
+            ];  
         }
-        
-        for($i = 1; $i <= 12; $i++){
-            if(!empty($itemmcount[$i])){
-                $itemArr[$i] = $itemmcount[$i];    
-            }else{
-                $itemArr[$i] = 0;    
-            }
-        }
+        return $results;
     }
 }

@@ -114,26 +114,28 @@
             </v-flex>
             <v-container style="width: 100%; display: flex;">
                 <v-col style="width: 50%; border-style: solid;border-color: #FF5722">
-                    <v-toolbar-items>
-                        <v-btn
-                            icon
-                            @click="decrementItem()" 
-                        >
-                            <v-icon 
-                                color="green"
-                            >mdi-minus</v-icon>
-                        </v-btn>
-                        <span class="year" readonly min="0.00">{{yearItem}}</span>
-                        <v-btn
-                            icon
-                            @click="incrementItem()"
-                        >
-                            <v-icon 
-                                color="green"
-                            >mdi-plus</v-icon>
-                        </v-btn>
-                    </v-toolbar-items>
-                    <vue-chart type="bar" :data="chartItem"></vue-chart>
+                    <v-toolbar dense outlined flat fixed-toolbar>
+                        <v-toolbar-items>
+                            <v-btn
+                                icon
+                                @click="decrementItem()" 
+                            >
+                                <v-icon 
+                                    color="green"
+                                >mdi-minus</v-icon>
+                            </v-btn>
+                            <span class="year" readonly min="0.00">{{yearItem}}</span>
+                            <v-btn
+                                icon
+                                @click="incrementItem()"
+                            >
+                                <v-icon 
+                                    color="green"
+                                >mdi-plus</v-icon>
+                            </v-btn>
+                        </v-toolbar-items>
+                    </v-toolbar>
+                    <vue-chart type="bar" :data="chartItem" v-if="is_loaded"></vue-chart>
                 </v-col>
                 <v-col style="width: 50%; border-style: solid; border-color: #FF5722">
                     <v-toolbar-items>
@@ -162,13 +164,14 @@
     </v-container>
 </template>
 <script>
-import { getStock } from "@api/item.api";
+import { getStock, getMonthlyItemReport } from "@api/item.api";
 export default {
     name:'home',
     data: () => ({
         clients: [],
         items: [],
         stock: 0,
+        is_loaded: false,
         yearItem: new Date().getFullYear(),
         yearSold: new Date().getFullYear(),
         sold:[],
@@ -176,9 +179,19 @@ export default {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [
                 {
-                    label: 'Item',
+                    label: '15-days Purchases',
+                    data: [0,0,0,0,12,0,0,0,0,0,0,0],
+                    backgroundColor: '#008B8B',
+                },
+                {
+                    label: '15-days Sales',
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    backgroundColor: '#FF5722',
+                    backgroundColor: '#B8860B',
+                },
+                {
+                    label: '15-days Profit',
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    backgroundColor: '#FFD700',
                 },
             ],
         },
@@ -194,20 +207,31 @@ export default {
         },
     }),
     async mounted() {
+        console.log("sadsss")
         await this.stock_count();
-        await this.get_monthlyitem();
+        await this.getMonthlyItemYear()
+        // this.is_loaded = true;
+    },
+    created() {
+        console.log('created')
+        this.is_loaded = false;
+        let payload = {
+            date: this.yearItem
+        }
+        console.log("payload", payload)
+        this.get_monthlyitem(payload)
     },
     methods: {
         incrementItem() {
             this.yearItem++;
-            // this.getMonthlySalesReport()
+            this.getMonthlyItemYear()
         },
         decrementItem() {
             if (this.yearItem === 1) {
                 alert("Negative year not allowed");
             } else {
                 this.yearItem--;
-                // this.getMonthlySalesReport()
+                this.getMonthlyItemYear()
             }
         },
         incrementSold() {
@@ -226,37 +250,89 @@ export default {
             axios.get('/client', {})
             .then(response => {
                 this.clients = response.data;
-                console.log(this.clients)
+                // console.log(this.clients)
             });
         },
         get_items(){
             axios.get('/item', {})
             .then(response => {
                 this.items = response.data;
-                console.log(this.items,"item")
+                // console.log(this.items,"item")
             });
         },
         get_sold(){
             axios.get('/sold_count', {})
             .then(response => {
                 this.sold = response.data;
-                console.log(this.sold , 'sold')
+                // console.log(this.sold , 'sold')
             });
         },
         stock_count() {
             getStock().then(({data}) => {
                 this.stock = data
-                console.log('sad',this.stock)
+                // console.log('sad',this.stock)
             })
         },
 
-        get_monthlyitem() {
-            
-            console.log("monthly");
-            axios.get('/month_item').then((data) => {
-                console.log(data,"monthly");
+        get_monthlyitem(payload) {
+            getMonthlyItemReport(payload).then(({data}) => {
+                // console.log("month", data)
+                //1st 15-days Purchases
+                this.chartItem.datasets[0].data[0] = data[0][0]
+                this.chartItem.datasets[0].data[1] = data[1][0]
+                this.chartItem.datasets[0].data[2] = data[2][0]
+                this.chartItem.datasets[0].data[3] = data[3][0]
+                this.chartItem.datasets[0].data[4] = data[4][0]
+                this.chartItem.datasets[0].data[5] = data[5][0]
+                this.chartItem.datasets[0].data[6] = data[6][0]
+                this.chartItem.datasets[0].data[7] = data[7][0]
+                this.chartItem.datasets[0].data[8] = data[8][0]
+                this.chartItem.datasets[0].data[9] = data[9][0]
+                this.chartItem.datasets[0].data[10] = data[10][0]
+                this.chartItem.datasets[0].data[11] = data[11][0]
+                //2nd 15-days Purchases
+                this.chartItem.datasets[1].data[0] = data[0][1]
+                this.chartItem.datasets[1].data[1] = data[1][1]
+                this.chartItem.datasets[1].data[2] = data[2][1]
+                this.chartItem.datasets[1].data[3] = data[3][1]
+                this.chartItem.datasets[1].data[4] = data[4][1]
+                this.chartItem.datasets[1].data[5] = data[5][1]
+                this.chartItem.datasets[1].data[6] = data[6][1]
+                this.chartItem.datasets[1].data[7] = data[7][1]
+                this.chartItem.datasets[1].data[8] = data[8][1]
+                this.chartItem.datasets[1].data[9] = data[9][1]
+                this.chartItem.datasets[1].data[10] = data[10][1]
+                this.chartItem.datasets[1].data[11] = data[11][1]
+                //Monthly Purchases
+                this.chartItem.datasets[2].data[0] = data[0][2]
+                this.chartItem.datasets[2].data[1] = data[1][2]
+                this.chartItem.datasets[2].data[2] = data[2][2]
+                this.chartItem.datasets[2].data[3] = data[3][2]
+                this.chartItem.datasets[2].data[4] = data[4][2]
+                this.chartItem.datasets[2].data[5] = data[5][2]
+                this.chartItem.datasets[2].data[6] = data[6][2]
+                this.chartItem.datasets[2].data[7] = data[7][2]
+                this.chartItem.datasets[2].data[8] = data[8][2]
+                this.chartItem.datasets[2].data[9] = data[9][2]
+                this.chartItem.datasets[2].data[10] = data[10][2]
+                this.chartItem.datasets[2].data[11] = data[11][2]
+                this.is_loaded = true
             })
-        }
+        },
+        async getMonthlyItemYear() {
+            this.is_loaded = false
+            if (this.timer) {
+                clearTimeout(this.timer);
+                this.timer = null;
+            }
+            this.timer = setTimeout(() => { 
+                let payload = {
+                    date: this.yearItem,
+                }
+                console.log(payload,"request")
+                this.get_monthlyitem(payload)
+            }, 800);
+        },
     },
     created: function () {
         this.get_clients()
