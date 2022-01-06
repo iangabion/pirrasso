@@ -30,9 +30,23 @@ thead .v-data-table__checkbox>.v-icon {
 }
 
 tbody tr:nth-of-type(odd) {
-    background-color:#fcd2c6;
+    background-color: #fcd2c6;
 }
 
 tbody tr:nth-of-type(even) {
-    background-color: rgb(250 ,250, 250);
+    background-color: rgb(250, 250, 250);
+}
+
+.v-list-group.tile>div:first-child {
+    border-radius: 4px;
+}
+
+.v-list-group.tile>div:first-child:hover {
+    background: #FF5722 !important;
+    color: #fff;
+}
+
+.v-list-group.tile>div:first-child:hover i,
+.v-list-group.tile>div:first-child:hover .v-list-item__content {
+    color: #fff;
 }

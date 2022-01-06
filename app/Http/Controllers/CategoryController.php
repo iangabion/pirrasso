@@ -36,7 +36,7 @@ class CategoryController extends Controller
     }
 
     public function get_all(){
-        $items = Items::orderBy('created_at', 'desc')->get();
+        $items = Items::where('is_approved', 1)->orderBy('created_at', 'desc')->get();
         return  ItemResource::collection($items) ;
     }
 
