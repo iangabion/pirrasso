@@ -94,30 +94,40 @@ export default {
     global_item:[],
     global_client:[],
     merge:[],
-    result:''
+    result:'',
+    loading: false,
   }),
   methods : {
     global_search(key){
-      axios.post('api/global_search_item/', {searchkey:key}).then((response)=>{
-        console.log(response.data, "global item")
-        this.global_item = response.data
-          axios.post('api/global_search_client/', {searchkey:key}).then((response)=>{
-            console.log(response.data, "global client")
-            // this.global_client = response.data
-            response.data.forEach(v => {
-              let title = v.full_name
-              let wan = {
-                ...v,
-                title,
-                items: v.items,
-              }
-              this.global_client.push(wan)
-            });
-            this.merge = this.global_item.concat(this.global_client)
+      // if(key.length >= 3){
+        this.loading= true
+        if(this.timer){
+          clearTimeout(this.timer);
+          this.timer = null;
+        }
+        this.timer = setTimeout(()=>{
+          axios.post('api/global_search_item/', {searchkey:key}).then((response)=>{
+            console.log(response.data, "global item")
+            this.global_item = response.data
+              axios.post('api/global_search_client/', {searchkey:key}).then((response)=>{
+                console.log(response.data, "global client")
+                // this.global_client = response.data
+                response.data.forEach(v => {
+                  let title = v.full_name
+                  let wan = {
+                    ...v,
+                    title,
+                    items: v.items,
+                  }
+                  this.global_client.push(wan)
+                });
+                this.merge = this.global_item.concat(this.global_client)
 
-            console.log(this.merge,"merge chan")
+                console.log(this.merge,"merge chan")
+              })
           })
-      })
+        }, 1000)
+      // }
     },
     langChanged(lang){
              localStorage.Lang=lang;
