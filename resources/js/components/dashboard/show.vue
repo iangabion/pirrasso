@@ -172,6 +172,7 @@ export default {
     data: () => ({
         clients: [],
         items: [],
+        
         stock: 0,
         is_loaded: false,
         yearItem: new Date().getFullYear(),
