@@ -63,6 +63,13 @@ Route::middleware('auth:api')->group(function () {
     Route::post('change_status' ,'ItemsController@changeStatus');
 
 	Route::post('add_review','ProductReviewController@store');
+	
+	//add drafts
+	Route::get('getDrafts','ItemsController@getDrafts');
+	Route::post('editDraft/{id}','ItemsController@editDraft');
+	Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
+	Route::post('save_draft','ItemsController@storeDraft');
+
 
 
 });
@@ -136,7 +143,6 @@ Route::delete('delete_review/{id}','ProductReviewController@destroy');
 Route::get('getStarRating', 'ItemsController@getStarRating');
 
 //add drafts
-Route::post('save_draft','ItemsController@storeDraft');
 Route::get('getDrafts','ItemsController@getDrafts');
 Route::post('editDrafts','ItemsController@editDrafts');
 Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
