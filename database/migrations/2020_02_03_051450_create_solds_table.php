@@ -18,6 +18,7 @@ class CreateSoldsTable extends Migration
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('buyer_id');
+            $table->integer('quantity')->nullable();
             $table->timestamps();
             $table->foreign('seller_id')->references('id')
                 ->on('clients')->onDelete('cascade');
