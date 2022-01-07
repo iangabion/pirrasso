@@ -415,36 +415,47 @@ class ItemsController extends Controller
 
     public function storeDraft(Request $request)
     {
-        // return $request->images ;
-     
-            $item = new Items();
-            $item->title =  $request->input('title');
-            $item->price =  $request->input('price');
-            $item->description =  $request->input('description');
-            $item->location =  $request->input('location');
-            $item->latitude =  $request->input('latitude');
-            $item->longitude =  $request->input('longitude');
-            $item->stock =  $request->input('stock');
-            $item->show_number =  $request->input('show_number');
-            $item->status_id =  2;
-            $item->category_id =  $request->input('category_id');
-            $item->subcategory_id =  $request->input('subcategory_id');
-            $item->client_id = Auth::user()->id;
+        $item = new Items();
+        $item->title =  $request->input('title');
+        $item->price =  $request->input('price');
+        $item->description =  $request->input('description');
+        $item->location =  $request->input('location');
+        $item->latitude =  $request->input('latitude');
+        $item->longitude =  $request->input('longitude');
+        $item->stock =  $request->input('stock');
+        $item->show_number =  $request->input('show_number');
+        $item->status_id =  $request->input('status_id');
+        $item->category_id =  $request->input('category_id');
+        $item->subcategory_id =  $request->input('subcategory_id');
+        $item->is_approved = 2;
+        $item->client_id = Auth::user()['id'];
+        $item->save();
+    
+        $photo = new Photos();
+        $photo->items_id = $item->id;
+        //
+            if($request->input('images')){
+              $image = $request->input('images');  // your base64 encoded
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
+                $data = base64_decode($image);
+                $imageName = time() . '.jpeg';
+                file_put_contents(public_path() . '/' . 'images/' . $imageName, $data);
+                $photo->filename = $imageName ;
+            };
+        $photo->imageable_id = 0;
+        $item->photos()->save($photo);
 
-            // added Fields
-
-
-
-            $item->save();
-            if($item ) {
-                if($request->input('vehicles')){
-                    $this->add_vehicles($item ,  $request->input('vehicles'));
-                }
-                if($request->input('apartment')){
-                    $this->add_apartments($item ,  $request->input('apartment'));
-                }
-            }
-            return new ItemResource($item);
+        if($item ) {
+                        if($request->input('vehicles')){
+                            $this->add_vehicles($item ,  $request->input('vehicles'));
+                        }
+                        if($request->input('apartment')){
+                            $this->add_apartments($item ,  $request->input('apartment'));
+                        }
+        }
+    // return "success";
+    return new ItemResource($item);
         }
 
         public function getDrafts(){
