@@ -132,7 +132,7 @@
                             circle
                         ></v-pagination>
                 </v-flex>
-                 <v-dialog
+                <v-dialog
                     v-model="subcat_dialog"
                     max-width="1000"
                     >
@@ -336,9 +336,8 @@ export default {
             },
             headers2(){
                 return [
-                     {text:this.$t('settings.category.icons'), value: 'icon', width: '20%'},
-                      {text:this.$t('settings.category.name'), value: 'name', width: '20%'},
-                      {text:this.$t('settings.category.action'), value: 'action', width: '20%'},
+                      {text:this.$t('settings.category.name'), value: 'name', width: '40%'},
+                      {text:this.$t('settings.category.action'), value: 'actions', align:'left'},
                 ]
 
             }

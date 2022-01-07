@@ -137,7 +137,14 @@ export default {
             default: "Valeur par défaut",
             are_you_sure_want_to_delete_this_record: "Etes-vous sûr de vouloir supprimer cet enregistrement?",
             are_you_sure_you_want_to_save: "Etes-vous sûr de vouloir enregistrer ?",
-            credentials: "Références"
+            credentials: "Références",
+
+            mail_mailer_is_required: "L'adresse mail de l'expéditeur est requis",
+            mail_host_is_required: "L'hôte du mail est requis",
+            mail_port_is_required: "Le port du mail est requis",
+            mail_username_is_required: "Le nom d'utilisateur du mail est requis",
+            mail_password_is_required: "Le mot de passe du mail est requis",
+            mail_encryption_is_required: "Le cryptage du mail est requis",
         },
         status: {
             item_status: "Statut de l'article",
