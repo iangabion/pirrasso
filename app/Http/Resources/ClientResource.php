@@ -18,10 +18,11 @@ class ClientResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id'=> $this->id,
-            'first name'=> $this->first_name,
-            'last name'=> $this->last_name,
             'full_name' =>$this->full_name,
             'mobile'=> $this->mobile,
+            'bio'=> $this->bio,
+            'birthday'=> $this->birthday,
+            'gender'=> $this->gender,
             'email'=> $this->email,
             'username'=> $this->username,
             'social_id'=> $this->social_id,

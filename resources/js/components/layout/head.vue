@@ -185,5 +185,8 @@ export default {
     width: 120px;
    
   }
+  /* .hidden-sm-and-down{
+       color: rgb(133, 133, 131);
+  } */
 
 </style>
