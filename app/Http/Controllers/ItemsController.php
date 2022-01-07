@@ -415,9 +415,25 @@ class ItemsController extends Controller
 
     public function storeDraft(Request $request)
     {
-        // return $request->images ;
      
-            $item = new Items();
+        $validatedData = $request->validate([
+          
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+            'latitude' => 'numeric',
+            'longitude' => 'numeric',
+            'stock' => 'required',
+            'status_id' => 'required',
+            'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
+            'images' => 'nullable',
+            'show_number' => 'nullable',
+        ]);
+
+        if($validatedData) {
+            $item = new Items;
             $item->title =  $request->input('title');
             $item->price =  $request->input('price');
             $item->description =  $request->input('description');
@@ -426,14 +442,10 @@ class ItemsController extends Controller
             $item->longitude =  $request->input('longitude');
             $item->stock =  $request->input('stock');
             $item->show_number =  $request->input('show_number');
-            $item->status_id =  2;
+            $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
             $item->client_id = Auth::user()->id;
-
-            // added Fields
-
-
 
             $item->save();
             if($item ) {
@@ -446,17 +458,20 @@ class ItemsController extends Controller
             }
             return new ItemResource($item);
         }
+    }
 
-        public function getDrafts(){
-            return Items::where('client_id', Auth::id())
-                ->where('status_id', 2)
-                ->get();
-        }
+    public function getDrafts(){
+        return Items::where('client_id', Auth::id())
+            ->where('status_id', 2)
+            ->get();
+    }
 
-        public function editDraft(Request $request)
+    public function editDraft(Request $request, $id)
     {
+      
+     
         $validatedData = $request->validate([
-            'id' => 'required',
+      
             'title' => 'required',
             'price' => 'required',
             'description' => 'required',
@@ -484,19 +499,21 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
+            $item->is_approved =  2;
             $item->client_id = Auth::user()->id;
 
             $item->save();
-            if($item ) {
-                if($request->input('vehicles')){
-                    $this->add_vehicles($item ,  $request->input('vehicles'));
-                }
-                if($request->input('apartment')){
-                    $this->add_apartments($item ,  $request->input('apartment'));
-                }
-            }
+            // if($item ) {
+            //     if($request->input('vehicles')){
+            //         $this->add_vehicles($item ,  $request->input('vehicles'));
+            //     }
+            //     if($request->input('apartment')){
+            //         $this->add_apartments($item ,  $request->input('apartment'));
+            //     }
+            // }
             return new ItemResource($item);
         }
+     
     }
 
     public function deleteDrafts($id)
