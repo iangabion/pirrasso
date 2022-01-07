@@ -246,32 +246,32 @@ export default {
              valid: true,
     
       mailerRules: [
-        v => !!v || 'Mail Mailer is required',
+        v => !!v || this.$t('settings.smtp.mail_mailer_is_required'),
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
 
        hostRules: [
-        v => !!v || 'Mail Host is required',
+        v => !!v || this.$t('settings.smtp.mail_host_is_required'),
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
 
        portRules: [
-        v => !!v || 'Mail Port is required',
+        v => !!v || this.$t('settings.smtp.mail_port_is_required'),
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       
        usernameRules: [
-        v => !!v || 'Mail Username is required',
+        v => !!v || this.$t('settings.smtp.mail_username_is_required'),
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
 
        passwordRules: [
-        v => !!v || 'Mail Password is required',
+        v => !!v || this.$t('settings.smtp.mail_password_is_required'),,
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
 
        encryptionRules: [
-        v => !!v || 'Mail Encryption is required',
+        v => !!v || this.$t('settings.smtp.mail_encryption_is_required'),,
         // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       

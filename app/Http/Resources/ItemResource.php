@@ -46,6 +46,9 @@ class ItemResource extends JsonResource
             'is_active' => $this->is_active,
             'variation'=> $this->variation,
 
+            'created_at'=> $this->created_at,
+            'updated_at'=> $this->updated_at,
+
             // 'rating'=>$this->rating,
             // 'review_description' => $this->review_description,
 
