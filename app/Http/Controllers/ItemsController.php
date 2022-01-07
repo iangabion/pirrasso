@@ -427,8 +427,7 @@ class ItemsController extends Controller
         $item->status_id =  $request->input('status_id');
         $item->category_id =  $request->input('category_id');
         $item->subcategory_id =  $request->input('subcategory_id');
-        $item->is_approved = 2;
-        $item->client_id = Auth::user()['id'];
+        $item->client_id = Auth::user()->id;
         $item->save();
     
         $photo = new Photos();
@@ -456,7 +455,7 @@ class ItemsController extends Controller
         }
     // return "success";
     return new ItemResource($item);
-        }
+    }
 
         public function getDrafts(){
             return Items::where('client_id', Auth::id())
