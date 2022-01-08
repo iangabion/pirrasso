@@ -168,6 +168,7 @@ export default {
             let payload = this.item;
             ApproveMail(item).then((response) => {
                     console.log(response)
+
                 this.progress_circular = false;
                 ApprovedItem(item.id).then( response => {
                     this.build()
