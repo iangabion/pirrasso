@@ -17,6 +17,7 @@ class CreatePromotionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('link');
+            $table->string('ads_pic');
             $table->timestamps();
         });
     }
