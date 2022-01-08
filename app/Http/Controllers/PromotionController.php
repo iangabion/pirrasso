@@ -16,6 +16,7 @@ class PromotionController extends Controller
         $ads = new Promotion;
         $ads->title = $request->title;
         $ads->link = $request->link;
+        $ads->client_id = $request->client_id;
         if($request->ads_pic){
             $image = $request->ads_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
@@ -35,6 +36,7 @@ class PromotionController extends Controller
         $ads = Promotion::find($id);
         $ads->title = $request->title;
         $ads->link = $request->link;
+        $ads->client_id = $request->client_id;
         if($request->ads_pic){
             $image = $request->ads_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
