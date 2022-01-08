@@ -37,8 +37,8 @@ class PromotionController extends Controller
         $ads->link = $request->link;
         if($request->ads_pic){
             $image = $request->ads_pic;  // your base64 encoded
-            // list($type, $image) = explode(';', $image);
-            // list(, $image)      = explode(',', $image);
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
             $data = base64_decode($image);
             $imageName = date("YmdHis"). '.' . 'jpeg';
             file_put_contents(public_path() . '/' . 'images/promotion/' . $imageName, $data);
