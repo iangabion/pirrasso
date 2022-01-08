@@ -17,7 +17,10 @@ class CreatePromotionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('link');
-            $table->string('ads_pic');
+            $table->string('image');
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->foreign('client_id')->references('id')
+                ->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
