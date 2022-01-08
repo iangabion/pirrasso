@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Promotion extends Model
 {
     //
-    protected $fillable = ['promotion_title', 'promotion_link' ];
+    protected $fillable = ['promotion_title', 'promotion_link', 'image' ];
     
     // protected $guarded = [];
 
-    public function getFilenameAttribute($value){
+    public function getImageAttribute($value){
         return $value != null ?  asset('images/promotion/'. $value) : asset('images/default.png') ;
     }
 

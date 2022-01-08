@@ -9,7 +9,8 @@ class PromotionController extends Controller
 {
     //
     public function index(){
-        return Promotion::get();
+        $q = Promotion::get();
+        return $q;
     }
 
     public function store(Request $request){
