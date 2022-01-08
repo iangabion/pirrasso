@@ -27,7 +27,8 @@ class ClientController extends Controller
     {
         //
         $clients = Client::paginate(10);
-        return  ClientResource::collection($clients) ;
+        // return  ClientResource::collection($clients) ;
+        return $clients;
     }
 
     /**

@@ -18,7 +18,7 @@ class ClientResource extends JsonResource
         // return parent::toArray($request);
         return [
             'id'=> $this->id,
-            'full_name' =>$this->full_name,
+            'full_name'=> $this->full_name,
             'mobile'=> $this->mobile,
             'bio'=> $this->bio,
             'birthday'=> $this->birthday,
