@@ -394,6 +394,7 @@ class ItemsController extends Controller
 
                 $photo->filename = $imageName ;
                 $photo->items_id = $item->id ;
+                $photo->imageable_id = 0;
                 $photo->save();
             }
             }
