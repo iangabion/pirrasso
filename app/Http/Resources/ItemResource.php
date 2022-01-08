@@ -8,6 +8,7 @@ use App\Http\Resources\ClientResource ;
 // use Illuminate\Support\Facades\Auth;
 use App\Apartment ;
 use App\Vehicle ;
+use App\Photos;
 
 class ItemResource extends JsonResource
 {
@@ -23,6 +24,7 @@ class ItemResource extends JsonResource
 
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
+        $photos = Photos::where('items_id', $this->id)->pluck('filename')->first();
         return [
             'id'=> $this->id,
             'title'=> $this->title,
@@ -38,7 +40,8 @@ class ItemResource extends JsonResource
             'show_number' => $this->show_number,
             'published at' => $this->created_at ,
             'owner' => new ClientResource($this->client),
-            'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' ,
+            // 'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' ,
+            'images' => $photos,
             'apartment_filter' => $apartment ,
             'vehicles_filter' => $vehicle ,
             'is_urgent' => $this->is_urgent,
