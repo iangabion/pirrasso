@@ -1,5 +1,11 @@
 export default {
 
+    // required: {
+    //     fields: {
+    //         MAIL_ENCRYPTION: "dwadwa1231231"
+    //     }
+    // },
+
 
     okay: "Okay",
     cancel: "Cancel",
@@ -127,13 +133,21 @@ export default {
             mail_mailer: "Mail Mailer",
             mail_host: "Mail Host",
             mail_port: "Mail Port",
-            mail_username: "Mail Port",
+            mail_username: "Mail Username",
             mail_password: "Mail Password",
             mail_encryption: "Mail Encryption",
             default: "Default",
             are_you_sure_want_to_delete_this_record: "Are you sure you want to delete this Record?",
             are_you_sure_you_want_to_save: "Are you sure you want to save?",
-            credentials: "Credentials"
+            credentials: "Credentials",
+            mail_mailer_is_required: "Mail Mailer is Required",
+            mail_host_is_required: "Mail Host is Required",
+            mail_port_is_required: "Mail Port is Required",
+            mail_username_is_required: "Mail Username is Required",
+            mail_password_is_required: "Mail Password is Required",
+            mail_encryption_is_required: "Mail Encryption is Required",
+
+
         },
         status: {
             item_status: "Item Status",
@@ -150,5 +164,8 @@ export default {
         }
 
     },
+
+
+
 
 }

@@ -14,7 +14,7 @@ class AddImageableIdToPhotosTable extends Migration
     public function up()
     {
         Schema::table('photos', function($table) {
-             $table->integer('imageable_id')->unsigned()->after('filename');
+             $table->integer('imageable_id')->unsigned()->after('filename')->nullable();
             $table->string('imageable_type')->after('imageable_id')->nullable();
         });
     }

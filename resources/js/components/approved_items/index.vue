@@ -167,10 +167,12 @@ export default {
             this.progress_circular = true;
             let payload = this.item;
             ApproveMail(item).then((response) => {
+                    console.log(response)
+
                 this.progress_circular = false;
-                ApprovedItem(item.id).then(() => {
+                ApprovedItem(item.id).then( response => {
                     this.build()
-                    alert('Message Sent Successfull');
+                    alert('Message Sent Successful');
                     this.approved_sms(item)
                 }).catch((error)=>{
                     console.log(error)

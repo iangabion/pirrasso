@@ -42,15 +42,13 @@ class ItemsController extends Controller
         // $average = $starcountsum/$this->reviews()->count();
         // return $average; 
 
-        $starcountsum = Items::join('product_reviews', 'items.id', '=', 'product_reviews.items_id')
-                            ->groupBy('items_id')
-                            ->selectRaw('avg(rating) as sumrate, items_id')
-                            // ->where('product_reviews.items_id', $request->id)
-                            ->get();
+        // $starcountsum = Items::join('product_reviews', 'items.id', '=', 'product_reviews.items_id')
+        //                     ->groupBy('items_id')
+        //                     ->selectRaw('avg(rating) as sumrate, items_id')
+        //                     // ->where('product_reviews.items_id', $request->id)
+        //                     ->get();
 
-        // $starcountsum = Items::with('reviews')->groupBy('id')
-        //                ->selectRaw('sum(rating) as sumrate')
-        //                ->get();
+        $starcountsum = Items::with('reviews')->get();
         // $starcountsum = $this->all_items();
         // return $starcountsum->with($this->all_items());
         return $starcountsum;
@@ -89,8 +87,9 @@ class ItemsController extends Controller
 
         $sold = new Sold();
         $sold->seller_id =  $request->input('seller_id');
-        $sold->item_id =  $request->input('item_id');
+        $sold->item_id =  $request->input('item_id');   
         $sold->buyer_id =  $request->input('buyer_id');
+        $sold->quantity =  $request->input('quantity');
         $sold->save();
         return $sold;
     }
@@ -395,6 +394,7 @@ class ItemsController extends Controller
 
                 $photo->filename = $imageName ;
                 $photo->items_id = $item->id ;
+                $photo->imageable_id = 0;
                 $photo->save();
             }
             }
@@ -402,7 +402,6 @@ class ItemsController extends Controller
 
 
     }
-
     public function search(Request $request){
         $items = Items::query();
         if($request->input('searchkey') != ""){
@@ -415,5 +414,114 @@ class ItemsController extends Controller
         return $items->get();
     }
 
-    
+    public function storeDraft(Request $request)
+    {
+     
+        $validatedData = $request->validate([
+          
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+            'latitude' => 'numeric',
+            'longitude' => 'numeric',
+            'stock' => 'required',
+            'status_id' => 'required',
+            'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
+            'images' => 'nullable',
+            'show_number' => 'nullable',
+        ]);
+
+        if($validatedData) {
+            $item = new Items;
+            $item->title =  $request->input('title');
+            $item->price =  $request->input('price');
+            $item->description =  $request->input('description');
+            $item->location =  $request->input('location');
+            $item->latitude =  $request->input('latitude');
+            $item->longitude =  $request->input('longitude');
+            $item->stock =  $request->input('stock');
+            $item->show_number =  $request->input('show_number');
+            $item->status_id =  $request->input('status_id');
+            $item->category_id =  $request->input('category_id');
+            $item->subcategory_id =  $request->input('subcategory_id');
+            $item->client_id = Auth::user()->id;
+
+            $item->save();
+            if($item ) {
+                if($request->input('vehicles')){
+                    $this->add_vehicles($item ,  $request->input('vehicles'));
+                }
+                if($request->input('apartment')){
+                    $this->add_apartments($item ,  $request->input('apartment'));
+                }
+            }
+            return new ItemResource($item);
+        }
+    }
+
+    public function getDrafts(){
+        return Items::where('client_id', Auth::id())
+            ->where('status_id', 2)
+            ->get();
+    }
+
+    public function editDraft(Request $request, $id)
+    {
+      
+     
+        $validatedData = $request->validate([
+      
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+            'latitude' => 'numeric',
+            'longitude' => 'numeric',
+            'stock' => 'required',
+            'status_id' => 'required',
+            'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
+            'images' => 'nullable',
+            'show_number' => 'nullable',
+        ]);
+
+        if($validatedData) {
+            $item = Items::findorfail($request->id);
+            $item->title =  $request->input('title');
+            $item->price =  $request->input('price');
+            $item->description =  $request->input('description');
+            $item->location =  $request->input('location');
+            $item->latitude =  $request->input('latitude');
+            $item->longitude =  $request->input('longitude');
+            $item->stock =  $request->input('stock');
+            $item->show_number =  $request->input('show_number');
+            $item->status_id =  $request->input('status_id');
+            $item->category_id =  $request->input('category_id');
+            $item->subcategory_id =  $request->input('subcategory_id');
+            $item->is_approved =  2;
+            $item->client_id = Auth::user()->id;
+
+            $item->save();
+            // if($item ) {
+            //     if($request->input('vehicles')){
+            //         $this->add_vehicles($item ,  $request->input('vehicles'));
+            //     }
+            //     if($request->input('apartment')){
+            //         $this->add_apartments($item ,  $request->input('apartment'));
+            //     }
+            // }
+            return new ItemResource($item);
+        }
+     
+    }
+
+    public function deleteDrafts($id)
+    {
+        //
+        $item = Items::findorfail($id);
+        $item->delete();
+        return 'deleted' ;
+    }
 }

@@ -21,19 +21,23 @@
       >
         <span class="hidden-sm-and-down">Bon Plan</span>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
+        v-model="form.search"
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      />
-        
+      /> -->
+      <v-autocomplete v-model="select" prepend-inner-icon="mdi-magnify" :items="this.merge" flat hide-details label="Search" solo-inverted
+        :search-input.sync="form.search" item-text="title" append-icon="" @change="redirect">
+      </v-autocomplete>
+
       <v-spacer />
 
      
-     
+    
     <v-spacer></v-spacer>
     <app-header></app-header>
 
@@ -75,12 +79,56 @@
 </template>
 <script>
 import Translation from './translation.vue'
+
 export default {
     
-     components:{
-        'app-header' : Translation
-     },
+  components:{
+    'app-header' : Translation,
+  },
+  data: () => ({
+    select:'',
+    form:{
+      search:'',
+    },
+    item:'',
+    global_item:[],
+    global_client:[],
+    merge:[],
+    result:'',
+    loading: false,
+  }),
   methods : {
+    global_search(key){
+      // if(key.length >= 3){
+        this.loading= true
+        if(this.timer){
+          clearTimeout(this.timer);
+          this.timer = null;
+        }
+        this.timer = setTimeout(()=>{
+          axios.post('api/global_search_item/', {searchkey:key}).then((response)=>{
+            console.log(response.data, "global item")
+            this.global_item = response.data
+              axios.post('api/global_search_client/', {searchkey:key}).then((response)=>{
+                console.log(response.data, "global client")
+                // this.global_client = response.data
+                response.data.forEach(v => {
+                  let title = v.full_name
+                  let wan = {
+                    ...v,
+                    title,
+                    items: v.items,
+                  }
+                  this.global_client.push(wan)
+                });
+                this.merge = this.global_item.concat(this.global_client)
+
+                console.log(this.merge,"merge chan")
+              })
+          })
+        }, 1000)
+      // }
+    },
     langChanged(lang){
              localStorage.Lang=lang;
              this.$vuetify.lang.current = lang
@@ -99,6 +147,30 @@ export default {
           self.$router.push('/login');
           location.reload();
       });
+    },
+    redirect(select){
+        // this.prefill = 42
+        // alert(select, "hey hey")
+      let payload = { key:select}
+      axios.post('api/global_search/', payload).then((response)=>{
+        console.log(response.data, 'redirect result')
+        if(response.data==''){
+          this.$router.push({path:`/sellers`, query:{ item: select }})
+        }else{
+          this.$router.push({path:`/items`, query:{ item: select }})
+        }
+      })
+    }
+  },
+  // mounted(){
+  //   this.global_search()
+  // }
+  watch:{
+    "form.search":{
+      handler(val){
+       val && val !== this.select && this.global_search(val)
+        // this.global_search(val)
+      }
     }
   }
 }
@@ -113,5 +185,8 @@ export default {
     width: 120px;
    
   }
+  /* .hidden-sm-and-down{
+       color: rgb(133, 133, 131);
+  } */
 
 </style>

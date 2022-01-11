@@ -15,7 +15,7 @@
           append-icon="mdi-magnify" class=" mx-4"
         />
       </div>
-      <v-btn @click="dialog2 = true" >
+      <v-btn @click="dialog = true" >
         <v-icon class="add_smtp">
           mdi-database-plus
         </v-icon>
@@ -83,9 +83,21 @@
             </v-card>
           </v-flex>
         </v-layout>
+         <!-- <v-dialog
+            v-model="dialog"
+            persistent
+            max-width="600px"
+          >
+           
+            <v-card>
+              <form>
+               
+              </form>
+            </v-card>
+          </v-dialog> -->
         <addDialog
-            :dialog="dialog2"
-            @close="dialog2 = false; selected_item_id=0"
+            :dialog="dialog"
+            @close="dialog = false; selected_item_id=0"
             @search="search"
             :id="selected_item_id"
         ></addDialog>
@@ -96,13 +108,27 @@
 <script>
 import addDialog from './includes/dialog.vue'
 import { SetDefault, DeleteSmtpData, GetAllSmtp } from "@api/smtp.api";
+// import { ShowSmtp, UpdateSmtp, CreateSmtp } from "@api/smtp.api";
 export default {
+  
+    
     components : {
         addDialog
     },
   data() {
     return {
-      dialog2: false,
+      name: '',
+      formData:{
+                id:'',
+                mail_mailer:'',
+                mail_host:'',
+                mail_port:'',
+                mail_username:'',
+                mail_password:'',
+                mail_encryption:'',
+            },
+    
+      dialog: false,
       form: {
         search: '',
       },
@@ -122,6 +148,7 @@ export default {
       // ],
     }
   },
+ 
   computed: {
     headers(){
       return [
@@ -134,12 +161,46 @@ export default {
         { text: this.$t('settings.smtp.default'), align: 'start', value: 'status_on', width: '10%'},
         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
       ]
-    }
+    },
+  
   },
   mounted() {
     this.search();
   },
   methods: {
+
+    // validate () {
+    //     this.loading = true
+    //     let payload = this.formData
+    //     if(!this.$refs.form.validate()) return;
+    //     this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
+    //                 if(result) {
+    //                     let dis = this ;
+    //                     let id = this.formData.id;
+    //                     if(id != 0) {
+    //                         UpdateSmtp(id, payload ).then(function (response) {
+    //                         dis.clearformData()
+    //                         dis.$emit('search')
+    //                         dis.$emit('close')
+    //                         dis.loading = false
+    //                         alert('Successfully Updated');
+    //                     })
+    //                     }else{
+    //                         CreateSmtp(payload).then((data)=> {
+    //                             console.log(data)
+    //                             this.clearformData()
+    //                             this.$emit('search')
+    //                             this.$emit('close')
+    //                             this.loading = false
+    //                             alert('Successfully Created');
+    //                         }).catch((error)=> {
+    //                             console.log(error)
+    //                         });
+    //                     }
+    //                 }
+    //             });
+
+    //   },
     changeStatus(id){
       SetDefault(id).then(response => {
         this.search();

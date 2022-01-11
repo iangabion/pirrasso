@@ -38,9 +38,7 @@
               <v-list-item
                    class="tile" 
                 >
-                <v-list-item-content
-               
-                >
+                <v-list-item-content>
                   <v-list-item-title >
                     {{ item.text }}
                   </v-list-item-title>
@@ -51,7 +49,6 @@
               v-for="(child, i) in item.children"
               :key="i"
               link :to="child.url"
-            
             >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
@@ -150,9 +147,19 @@
   margin: 5px;
   border-radius: 4px;
 }
+ .v-list-item__title{
+   font-size: 16px;
+ }
 
-a.tile:hover {
-  background: #FF5722;
+a.tile:hover,
+.v-list-item.v-list-item--link.theme--light:hover {
+  background: #FF5722 !important;
+  color: #fff !important; 
+}
+
+a.tile:hover i,
+.v-list-item.v-list-item--link.theme--light:hover i {
+  color: #fff !important;
 }
 
 .v-list-group.tile .v-list-item.v-list-group__header:hover {
@@ -168,12 +175,17 @@ a.tile:hover {
   background: #FF5722;
 }
 
+
 /* .tile:active {
   background: orange;
 } */
-
+.v-list-item--inactive {
+  background: #FF5722;
+  color: #fff;
+}
 .v-list-item--active {
   background: #FF5722;
+  color: #fff;
 }
 
 .v-list-group.tile > div:first-child:hover {
@@ -183,4 +195,6 @@ a.tile:hover {
 .v-list-item--link:before:hover {
   background-color: #FF5722 !important;
 }
+
+
 </style>

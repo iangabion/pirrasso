@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Client ;
 use Auth ;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -21,7 +22,7 @@ class ClientController extends Controller
         $clients = collect($clients)->map(function ($client) {
             return [
                 'id' => $client->id ,
-                'fullname' => $client->first_name .' '. $client->last_name,
+                'fullname' => $client->fullname,
                 'email'=>$client->email ,
                 'mobile'=>$client->mobile,
                 'username'=>$client->username ,
@@ -39,10 +40,12 @@ class ClientController extends Controller
         if ($request->searchkey != "") {
             $keyword = $request->searchkey;
             $client->where(function($query) use($keyword) {
-                $query  ->where('first_name', 'LIKE', "%$keyword%")
-                        ->orWhere('last_name', 'LIKE', "%$keyword%")
+                $query  
+                        ->where('full_name', 'LIKE', "%$keyword%")
                         ->orWhere('email', 'LIKE', "%$keyword%")
-                        ->orWhere('username', 'LIKE', "%$keyword%");
+                        ->orWhere('username', 'LIKE', "%$keyword%")
+                        // ->orWhere( DB::raw("concat(first_name,' ',last_name)"), 'LIKE', "%$keyword%")
+                        ;
             });
         }
         return $client->orderBy('created_at' , 'desc')->get();

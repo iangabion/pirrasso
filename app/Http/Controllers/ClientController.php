@@ -27,7 +27,8 @@ class ClientController extends Controller
     {
         //
         $clients = Client::paginate(10);
-        return  ClientResource::collection($clients) ;
+        // return  ClientResource::collection($clients) ;
+        return $clients;
     }
 
     /**
@@ -50,13 +51,16 @@ class ClientController extends Controller
     {
 
         $client = new Client();
-        $client->first_name =  $request->input('first_name');
-        $client->last_name =  $request->input('last_name');
+        $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
         
+
 
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
@@ -129,8 +133,7 @@ class ClientController extends Controller
         $client = Client::where('social_id',$request->id)->first();
         if(!$client){
             $client = New Client();
-            $client->first_name = $request->first_name;
-            $client->last_name = $request->last_name;
+            $client->full_name = $request->full_name;
             $client->social_id = $request->id;
             $client->is_verified = 1;
             $client->account_type = 'facebook';
@@ -239,23 +242,27 @@ class ClientController extends Controller
     {
         $id = Auth::user()->id ;
         $updateData = $request->validate([
-            'first_name' => 'nullable',
-            'last_name' => 'nullable',
+            'full_name' => 'nullable',
+            'gender' => 'nullable',
+            'birthday' => 'nullable',
+            'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,'.$id,
             'mobile' => 'nullable',
             'username' => 'nullable|unique:clients,username,'.$id,
-            'password' => 'nullable',
+           
             'profile_pic' => 'nullable'
         ]);
 
         if($updateData) {
         $client = Client::findorfail($id);
-        $client->first_name =  $request->input('first_name');
-        $client->last_name =  $request->input('last_name');
+        $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
-        $client->password = Hash::make($request->input('password'));
+    
 
 
         if($request->profile_pic){

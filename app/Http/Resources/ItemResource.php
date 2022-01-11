@@ -8,6 +8,8 @@ use App\Http\Resources\ClientResource ;
 // use Illuminate\Support\Facades\Auth;
 use App\Apartment ;
 use App\Vehicle ;
+use App\Photos;
+use App\Sold;
 
 class ItemResource extends JsonResource
 {
@@ -23,6 +25,8 @@ class ItemResource extends JsonResource
 
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
+        $photos = Photos::where('items_id', $this->id)->pluck('filename')->first();
+        $solds = Sold::where('item_id', $this->id)->first();
         return [
             'id'=> $this->id,
             'title'=> $this->title,
@@ -37,14 +41,19 @@ class ItemResource extends JsonResource
             'subcategory' =>  isset($this->subcategory->name) ? $this->subcategory->name : '' ,
             'show_number' => $this->show_number,
             'published at' => $this->created_at ,
+            'solds'=> $solds,
             'owner' => new ClientResource($this->client),
-            'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' ,
+            // 'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' ,
+            'images' => $photos,
             'apartment_filter' => $apartment ,
             'vehicles_filter' => $vehicle ,
             'is_urgent' => $this->is_urgent,
             'is_displayed' => $this->is_displayed,
             'is_active' => $this->is_active,
             'variation'=> $this->variation,
+
+            'created_at'=> $this->created_at,
+            'updated_at'=> $this->updated_at,
 
             // 'rating'=>$this->rating,
             // 'review_description' => $this->review_description,

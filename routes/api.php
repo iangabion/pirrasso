@@ -63,12 +63,23 @@ Route::middleware('auth:api')->group(function () {
     Route::post('change_status' ,'ItemsController@changeStatus');
 
 	Route::post('add_review','ProductReviewController@store');
+	
+	//add drafts
+	Route::get('getDrafts','ItemsController@getDrafts');
+	Route::post('editDraft/{id}','ItemsController@editDraft');
+	Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
+	Route::post('save_draft','ItemsController@storeDraft');
 
 
+	
 });
 
-//search api
+//global search
 Route::post('search', 'ItemController@search');
+Route::post('global_search_item','SearchController@global_search_item');
+Route::post('global_search_client','SearchController@global_search_client');
+Route::post('global_search', 'SearchController@global_search');
+
 
 // get all items
 Route::get('items' ,'ItemsController@index');
@@ -119,12 +130,28 @@ Route::get('get_allPhoto', 'PhotosController@get_allPhoto');
 Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
-Route::get('get_number', 'ClientController@get_number'); 
+Route::get('get_admin', 'SmsController@get_admin'); 
 Route::post('sms_sender', 'SMSController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
 Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::get('sendMessage', 'SMSController@sendMessage');
+Route::post('enable_disable', 'SMSController@enable_disable');
+// Route::get('sendMessage', 'SMSController@sendMessage');
 
+
+Route::post('add_rating','ProductReviewController@store');
 Route::put('update_review/{id}','ProductReviewController@update_review');
 Route::delete('delete_review/{id}','ProductReviewController@destroy');
 Route::get('getStarRating', 'ItemsController@getStarRating');
+
+//add drafts
+Route::get('getDrafts','ItemsController@getDrafts');
+Route::post('editDrafts','ItemsController@editDrafts');
+Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
+
+
+//promotions
+
+Route::get('indexPromotion','PromotionController@index');
+Route::post('save_promotion','PromotionController@store');
+Route::post('edit_promotion/{id}','PromotionController@update');
+Route::delete('delete_promotion/{id}','PromotionController@destroy');

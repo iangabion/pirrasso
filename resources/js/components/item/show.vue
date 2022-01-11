@@ -13,6 +13,7 @@
                     dense
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
+                    :value="prefill"
                 />
             </div>
             <v-btn @click="dialog2 = true" class="d-none">
@@ -29,7 +30,7 @@
                 <v-layout row wrap>
 <!-- here -->
                     <v-flex xs2>
-                    <v-list color="primary" dark dense 
+                    <v-list color="deep-orange darken-2" dark dense 
                         min-height="80vh" class="mx-auto">
                         <template v-for="item in categories">
                             <v-row v-if="item.heading" :key="item.heading" align="center">
@@ -103,8 +104,9 @@
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                     ></v-img>
+                                                    <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>
                                                     <v-list-item-content class="text-capitalize">
                                                         <v-list-item-title class="py-1 font-weight-bold" >  {{items.title}}</v-list-item-title>
@@ -437,6 +439,7 @@ export default {
                 // this.categories_witho = response.data.filter(chan_filter=>
                 //     chan_filter.id !=2
                 // )
+                this.search_item(key)
                 this.get_items(this.categories[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -533,6 +536,11 @@ export default {
                 this.search_item(val)
             }
         }
+    },
+    computed:{
+        prefill(){
+                return this.form.search = this.$route.query.item;
+        }
     }
 }
 </script>
@@ -560,7 +568,7 @@ export default {
         /* background-color: white; */
 
         /* color: rgb(171, 193, 224) !important; */
-        color:rgb(240, 53, 53);
+        color:black;
         width: auto;
     }
     .hide{

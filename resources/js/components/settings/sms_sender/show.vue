@@ -6,14 +6,7 @@
         </v-toolbar>
         <v-container class="mt-4">
             <v-card no-gutter>
-                <!-- <v-row>
-                    <v-btn @click="send_sms" color="success ml-8 mt-5">
-                        save
-                    </v-btn>
-                    <v-btn class="grey lighten-2 ml-10 mt-5">
-                        export settings
-                    </v-btn>
-                </v-row> -->
+              
                 <div class="background_circle ml-5 mt-5 mr-5">
                     <v-icon small class="pt-1 pl-1 pb-1" color="primary">
                         mdi-alert-circle
@@ -30,12 +23,14 @@
                         <v-card-title class="background_sms">Twilio Account Settings</v-card-title>
                            <v-simple-table class="flex" justify-center>
                                 <tbody>
-                                    <!-- <tr>
+                                    <tr>
                                         <th> Twilio SMS Enabled</th>
                                         <td> 
-                                            <v-select :items="items"></v-select>
+                                            <v-select @change="enable_disable" dense v-model="sms1" return-object
+                                            :items="on_off">
+                                            </v-select>
                                         </td>
-                                    </tr> -->
+                                    </tr>
                                     <tr>
                                         <th> Twilio Phone Number</th>
                                         <td>+16203191424</td>
@@ -52,7 +47,7 @@
                                         <th>Country Code</th>
                                         <td>
                                             <!-- :hint="`${select.nation}`" -->
-                                            <v-select v-model="select" :items="country" item-text="nation" item-value="number"
+                                            <v-select dense v-model="select" :items="country" item-text="nation" item-value="number"
                                                 persistent-hint return-object prepend-icon="mdi-map">
                                             </v-select>    
                                         </td>
@@ -76,14 +71,18 @@
                 <v-card-text>
                     <v-container fluid>
                         <v-subheader class="px-0">Enter a number to Test</v-subheader>
-                        <v-text-field
-                            v-model="new_num"
-                            prefix="+"
-                            dense
-                            filled
-                            solo
+                        <v-combobox
+                        dense filled solo
+                        :items="country_code"
+                        item-text="code"
+                        v-model="select2"
+                        :hint="`${select2.nation}`"
+                        item-value="nation"
+                        return-object
+                        outlined
+                        :search-input.sync="new_num"
                         >
-                        </v-text-field>
+                        </v-combobox>
                     </v-container>
                 </v-card-text>
                 <v-divider></v-divider>
@@ -93,7 +92,7 @@
                         color="primary"
                         small
                         width="70px"
-                        @click="send_sms_test"
+                        @click="send_sms_test()"
                     >
                         Submit
                     </v-btn>
@@ -103,7 +102,6 @@
                         width="70px"
                         @click="dialog= false"
                     >
-                    <!-- @click.prevent= 'clearformData()' -->
                         Close
                     </v-btn>
                 </v-card-actions>
@@ -119,17 +117,18 @@ export default {
     data(){
         return{
             dialog: false,
+            select2:{code:'+33', nation:'France, +33'},
             new_num:'',
+            sms1:'',
             sms:'',
-            // headers: [
-            //     {text: , }
-            // ]
-            items:['No','Yes'],
+            on_off:['Off','On'],
+            on_off1:'',
             country:[
                 {nation: 'France, +33', number:'+33', icon:'mdi-alert-circle'},
                 {nation: 'Philippines, +63', number:'+63', icon:'mdi-alert-circle'},
             ],
-            select: {nation:'France, +33', number:'+33', icon:'mdi-alert-circle'}
+            select: {nation:'France, +33', number:'+33', icon:'mdi-alert-circle'},
+            country_code:[{ code:'+63', nation:'Philippines, +63'},{code:'+33', nation:'France, +33'}],
         }
     },
     methods:{
@@ -147,27 +146,53 @@ export default {
             }
         },
         test(){
-            this.dialog = true
+            if(this.sms[0].switch==1){
+                this.dialog = true
+            }else{
+                alert("Twilio is currently Disabled.")
+            }
         },
         send_sms_test(){
-            let payload = { new:this.new_num}
-            axios.post('api/send_sms_test/', payload).then((response)=>{
-                console.log(response)
+                let payload = { new:this.new_num}
+                axios.post('api/send_sms_test/', payload).then((response)=>{
+                    console.log(response)
+                })
+        },
+        get_admin(){
+            axios.get('api/get_admin/').then((response)=>{
+                this.sms = response.data
+                console.log(this.sms, "sms owner")
+                if(this.sms[0].switch==1){
+                    this.sms1 = 'On'
+                }else{
+                    this.sms1 = 'Off'
+                }
+                console.log(this.sms1, "sms owner")
+            }).catch((errors)=>{
+                console.log(errors)
             })
+        },
+        enable_disable(){
+            console.log(this.sms1 , "hey")
+            if(this.sms1=='On'){
+                alert("SMS Enabled")
+                let payload= { switch:1 }
+                axios.post('api/enable_disable/', payload).then((response)=>{
+                    console.log(response.data)
+                })
+            }else{
+                alert("Twilio Disabled")
+                let payload= { switch:0 }
+                axios.post('api/enable_disable/', payload).then((response)=>{
+                    console.log(response.data)
+                })
+            }
+            this.get_admin()
         }
-
-        // get_number(){
-        //     axios.get('api/get_number/').then((response)=>{
-        //         this.sms = response.data
-        //         console.log(this.sms, "sms owner")
-        //     }).catch((errors)=>{
-        //         console.log(errors)
-        //     })
-        // }
     },
-    // mounted(){
-    //     this.get_number()
-    // }
+    mounted(){
+        this.get_admin()
+    }
 }
 </script>
 
