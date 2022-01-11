@@ -247,7 +247,6 @@ class ItemsController extends Controller
                                     $this->add_apartments($item ,  $request->input('apartment'));
                                 }
                 }
-            // return "success";
             return new ItemResource($item);
     }
 
