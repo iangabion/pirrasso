@@ -233,7 +233,7 @@ class ItemsController extends Controller
                         list(, $image)      = explode(',', $image);
                         $data = base64_decode($image);
                         $imageName = time() . '.jpeg';
-                        file_put_contents(public_path() . '/' . 'images/' . $imageName, $data);
+                        file_put_contents(public_path() . '/' . 'images/items/' . $imageName, $data);
                         $photo->filename = $imageName ;
                     };
                 $photo->imageable_id = 0;
@@ -256,7 +256,7 @@ class ItemsController extends Controller
         if($request->input('images')){
             $this->process_images($request->images ,$item);
         }
-        return new PhotoResource($item) ;
+        return new $item;
     }
 
     public function add_apartments($item , $data){
