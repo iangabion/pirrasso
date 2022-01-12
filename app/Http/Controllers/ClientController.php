@@ -277,7 +277,7 @@ class ClientController extends Controller
         }
         $client->save();
         $accessToken = $client->createToken('authtoken')->accessToken ;
-        return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+        return response(['user' => $client , 'access_token' => $accessToken]);
         }
     }
 

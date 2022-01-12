@@ -26,6 +26,16 @@ class MessageController extends Controller
         return 'success';
     }
 
+    // public function countUnread($id){
+    //     $message = Message::findOrFail($id)->messages()->get();
+        
+    //     return $message;
+    // }
+
+    public function count(){
+        return Message::where('is_read', 1)->count();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
