@@ -26,6 +26,8 @@ class MessageController extends Controller
         return 'success';
     }
 
+   
+
     /**
      * Show the form for creating a new resource.
      *

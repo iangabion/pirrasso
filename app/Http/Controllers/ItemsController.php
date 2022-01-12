@@ -265,7 +265,6 @@ class ItemsController extends Controller
                                     $this->add_apartments($item ,  $request->input('apartment'));
                                 }
                 }
-            // return "success";
             return new ItemResource($item);
     }
 
@@ -274,7 +273,7 @@ class ItemsController extends Controller
         if($request->input('images')){
             $this->process_images($request->images ,$item);
         }
-        return new PhotoResource($item) ;
+        return new $item;
     }
 
     public function add_apartments($item , $data){
@@ -481,7 +480,7 @@ class ItemsController extends Controller
 
     public function getDrafts(){
         return Items::where('client_id', Auth::id())
-            ->where('status_id', 2)
+            ->where('is_approved', 2)
             ->get();
     }
 

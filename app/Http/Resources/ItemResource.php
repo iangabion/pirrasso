@@ -25,7 +25,7 @@ class ItemResource extends JsonResource
 
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
-        $photos = Photos::where('items_id', $this->id)->pluck('filename')->first();
+        $photos = Photos::where('items_id', $this->id)->pluck('filename');
         $solds = Sold::where('item_id', $this->id)->first();
         return [
             'id'=> $this->id,
