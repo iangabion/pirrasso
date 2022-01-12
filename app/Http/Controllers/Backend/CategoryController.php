@@ -94,11 +94,11 @@ class CategoryController extends Controller
                 'position'=> 0,
                 'icon' => $imageName
             ]);
-            $photo = Photos::create([
-                'imageable_id' => $category->id,
-                'imageable_type' => 'App\Category',
-                'filename' => $imageName
-            ]);
+            // $photo = Photos::create([
+            //     'imageable_id' => $category->id,
+            //     'imageable_type' => 'App\Category',
+            //     'filename' => $imageName
+            // ]);
 
             return $category;
     }
