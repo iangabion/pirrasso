@@ -462,7 +462,7 @@ class ItemsController extends Controller
 
     public function getDrafts(){
         return Items::where('client_id', Auth::id())
-            ->where('status_id', 2)
+            ->where('is_approved', 2)
             ->get();
     }
 

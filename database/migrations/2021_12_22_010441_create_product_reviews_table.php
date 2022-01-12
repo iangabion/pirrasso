@@ -29,6 +29,7 @@ class CreateProductReviewsTable extends Migration
                 ->on('items')->onDelete('cascade');
             $table->string('rating');
             $table->string('review_description')->nullable();
+            $table->string('is_read');
             $table->timestamps();
         });
     }

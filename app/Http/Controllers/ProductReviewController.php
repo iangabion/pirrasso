@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProductReview;
+use Illuminate\Support\Facades\Auth;
 
 class ProductReviewController extends Controller
 {
@@ -17,6 +18,7 @@ class ProductReviewController extends Controller
         $review->seller_id = $request->seller_id;
         $review->items_id = $request->items_id;
         $review->rating = $request->rating;
+        $review->is_read = 0;
         $review->review_description = $request->review_description;
         
         $review->save();
@@ -52,6 +54,19 @@ class ProductReviewController extends Controller
         $review->delete();
         return response()->json("Record deleted");
     }
+
+    public function getUnread(){
+        $review = ProductReview::where('seller_id', Auth::id())
+                    ->where('is_read',0)
+                    ->count();
+        return $review;
+    }
+
+    public function updateRead(){
+        return ProductReview::where('seller_id',Auth::id())
+                 ->update(['is_read'=>1]);
+    }
+    
 
     
 }
