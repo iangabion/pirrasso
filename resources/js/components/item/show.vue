@@ -104,8 +104,9 @@
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                     ></v-img>
+                                                    <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>
                                                     <v-list-item-content class="text-capitalize">
                                                         <v-list-item-title class="py-1 font-weight-bold" >  {{items.title}}</v-list-item-title>
