@@ -411,9 +411,15 @@ class ItemsController extends Controller
     }
 
     public function process_images($images , $item){
-        if($images ){
+        // if($images ){
+        //     $i=0;
+        //     foreach($images as $img) {
+//
+        $image_chan[] = $images;
+        if($image_chan){
             $i=0;
-            foreach($images as $img) {
+            foreach($image_chan as $img) {
+//
                 if($img !=null){
                 $photo = new Photos();
                 $i +=1;
