@@ -15,7 +15,7 @@ class CreateProductReviewsTable extends Migration
     {
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('solds_id');
+            $table->unsignedBigInteger('solds_id')->nullable();
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('items_id');
             $table->unsignedBigInteger('buyer_id');
@@ -29,6 +29,7 @@ class CreateProductReviewsTable extends Migration
                 ->on('items')->onDelete('cascade');
             $table->string('rating');
             $table->string('review_description')->nullable();
+            $table->string('is_read');
             $table->timestamps();
         });
     }

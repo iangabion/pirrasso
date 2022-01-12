@@ -150,7 +150,7 @@
                                                             <v-flex xs12>
                                                                 <p class="subheading pa-0 font-weight-bold">{{$t('settings.category.add_subcategory')}}</p>
                                                             </v-flex>
-                                                            <v-flex xs12>
+                                                            <!-- <v-flex xs12>
                                                                 <div class="preview mx-auto" >
                                                                     <v-img
                                                                         max-height="200"
@@ -161,16 +161,16 @@
                                                                     >
                                                                     </v-img>
                                                                 </div>
-                                                            </v-flex>
+                                                            </v-flex> -->
                                                             <v-flex xs12>
-                                                                <v-file-input small-chips
+                                                                <!-- <v-file-input small-chips
                                                                     accept="image/*"
                                                                     label="Icon"
                                                                     @change="onFileChange('subcat',$event)"
                                                                     v-validate="'image'"
                                                                     :error-messages="errors.collect('Icon')"
                                                                     data-vv-name="Icon">
-                                                                </v-file-input>
+                                                                </v-file-input> -->
                                                                 <v-text-field
                                                                     type="text"
                                                                     v-model="subcat.name"
