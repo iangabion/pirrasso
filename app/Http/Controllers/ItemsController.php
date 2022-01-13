@@ -425,15 +425,27 @@ class ItemsController extends Controller
         }
     }
 
-    public function getDrafts(){
-        // dd(Auth::id()); 
-        $drafts= Items::where('is_approved', 2)
-            ->where('client_id', Auth::id())
-            ->get();
+    // public function getDrafts(){
+    //     // dd(Auth::id()); 
+    //     $drafts= Items::where('is_approved', 2)
+    //         ->where('client_id', Auth::id())
+    //         ->get();
 
-            return $drafts;
+    //         return $drafts;
       
+    // }
+
+    public function getDrafts()
+    {
+        //
+        $items = Items::where('stock','>',0)
+            ->where('client_id', Auth::id())
+            ->where('is_approved', 2 )
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+        return  ItemResource::collection($items) ;
     }
+
 
     public function editDraft(Request $request, $id)
     {
