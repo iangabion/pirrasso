@@ -153,7 +153,6 @@ class ItemsController extends Controller
                 $item->status_id =  $request->input('status_id');
                 $item->category_id =  $request->input('category_id');
                 $item->subcategory_id =  $request->input('subcategory_id');
-                $item->is_approved = 0;
                 $item->client_id = Auth::user()->id;
 
                 $item->save();
@@ -410,6 +409,7 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
+            $item->is_approved = 2;
             $item->client_id = Auth::user()->id;
 
             $item->save();
@@ -426,11 +426,13 @@ class ItemsController extends Controller
     }
 
     public function getDrafts(){
+        // dd(Auth::id()); 
         $drafts= Items::where('is_approved', 2)
             ->where('client_id', Auth::id())
             ->get();
 
             return $drafts;
+      
     }
 
     public function editDraft(Request $request, $id)
@@ -466,7 +468,7 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
-            $item->is_approved =  2;
+            $item->is_approved = 2;
             $item->client_id = Auth::user()->id;
 
             $item->save();
