@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:api')->group(function () {
+
 	Route::post('logout' ,'ClientController@logout');
 	// clients part
 	Route::get('clients' ,'ClientController@index');
@@ -66,7 +67,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('add_review','ProductReviewController@store');
 	
 	//add drafts
-	Route::get('getDrafts','ItemsController@getDrafts');
+	Route::get('getDrafts/{client_id}','ItemsController@getDrafts');
 	Route::post('editDraft/{id}','ItemsController@editDraft');
 	Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
 	Route::post('save_draft','ItemsController@storeDraft');
@@ -76,6 +77,9 @@ Route::middleware('auth:api')->group(function () {
 	Route::put('readReview','ProductReviewController@updateRead');
 
 	Route::get('count', 'MessageController@count');
+
+
+
 
 	
 });
@@ -163,6 +167,9 @@ Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
 
 
-Route::get('countUnread','MessageController@countUnread');
+
+
+
+
 
 
