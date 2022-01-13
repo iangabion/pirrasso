@@ -43,6 +43,7 @@ class ItemResource extends JsonResource
             'published at' => $this->created_at ,
             'solds'=> $solds,
             'owner' => new ClientResource($this->client),
+            'is_draft' => $this->is_approved,
             // 'images' =>isset($this->photos) ? PhotoResource::collection($this->photos) : '' ,
             'images' => $photos,
             'apartment_filter' => $apartment ,

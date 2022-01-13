@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\MessageResource ;
 use App\Http\Resources\PhotoResource ;
 use App\Client ;
-
+use App\Message;
 
 class SessionResource extends JsonResource
 {
@@ -21,7 +21,9 @@ class SessionResource extends JsonResource
         // return parent::toArray($request);
 
         $buyer = Client::with('fcm_tokens')->findorfail($this->buyer_id); 
-        $seller = Client::with('fcm_tokens')->findorfail($this->seller_id); 
+        $seller = Client::with('fcm_tokens')->findorfail($this->seller_id);
+        $message = Message::where('session_id', $this->id )->where('is_read', 0)->get();
+        // $message = Message::where('session_id', $this->id )->pluck('message');
 
         return [
             'session_id'=> $this->id,
@@ -31,7 +33,8 @@ class SessionResource extends JsonResource
             'item_price' => $this->item->price,
             'users' => [$buyer , $seller],
             'photo' =>isset($this->item->photos[0]) ? new PhotoResource($this->item->photos[0]) : '' , 
-            'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
+            // 'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
+            'messages' => count($message),
             'buyer_id' => $buyer->id ,
             'seller_id' => $seller->id ,
             'buyer_social_profile' => $buyer->social_profile ,
