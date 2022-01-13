@@ -10,6 +10,8 @@ use App\Apartment ;
 use App\Vehicle ;
 use App\Photos;
 use App\Sold;
+use App\Client;
+use Illuminate\Support\Facades\Auth;
 
 class ItemResource extends JsonResource
 {
@@ -22,7 +24,7 @@ class ItemResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-
+        // $client = Client::where('client_id', Auth::id()); 
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
         $photos = Photos::where('items_id', $this->id)->pluck('filename');
@@ -52,6 +54,7 @@ class ItemResource extends JsonResource
             'is_displayed' => $this->is_displayed,
             'is_active' => $this->is_active,
             'variation'=> $this->variation,
+           
 
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth ;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
-use App\User;
+use App\Items;
 
 class ClientController extends Controller
 {
@@ -320,4 +320,5 @@ class ClientController extends Controller
         return $user;
         
     }
+
 }

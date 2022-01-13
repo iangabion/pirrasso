@@ -425,9 +425,12 @@ class ItemsController extends Controller
     }
 
     public function getDrafts(){
-        return Items::where('client_id', Auth::id())
-            ->where('is_approved', 2)
+      
+        $drafts= Items::where('is_approved', 2)
+            ->where('client_id', Auth::id())
             ->get();
+
+            return $drafts;
     }
 
     public function editDraft(Request $request, $id)
