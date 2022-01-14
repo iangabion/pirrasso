@@ -262,6 +262,7 @@ class ClientController extends Controller
         $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
+        $client->is_verified =  $request->input('is_verified');
     
 
 
@@ -275,7 +276,9 @@ class ClientController extends Controller
 
             $client->image = $imageName ;
         }
+        $client->verification_code = $this->generateRandomNumber();
         $client->save();
+        $this->sendVerificationCode($client);
         $accessToken = $client->createToken('authtoken')->accessToken ;
         return response(['user' => $client , 'access_token' => $accessToken]);
         }
