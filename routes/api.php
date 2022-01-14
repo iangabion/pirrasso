@@ -44,7 +44,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('messages/read/{id}' ,'MessageController@readMessage');
 
 	// retrieve messages
-	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
 	Route::get('user_messages' ,'SessionController@get_user_messages');
 	Route::get('user_messages/{id}' ,'SessionController@get_indi_messages');
 	Route::get('count_messages/{id}' ,'SessionController@count_item_messages');
@@ -83,6 +82,9 @@ Route::middleware('auth:api')->group(function () {
 
 	
 });
+
+Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
+
 
 //global search
 Route::post('search', 'ItemController@search');
