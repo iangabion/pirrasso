@@ -264,8 +264,6 @@ class ClientController extends Controller
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
     
-
-
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
