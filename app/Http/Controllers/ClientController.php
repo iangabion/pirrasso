@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth ;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
-use App\User;
+use App\Items;
 
 class ClientController extends Controller
 {
@@ -262,9 +262,9 @@ class ClientController extends Controller
         $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
+        $client->password = Hash::make($request->input('password'));
+        $client->is_verified =  $request->input('is_verified');
     
-
-
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
             list($type, $image) = explode(';', $image);
@@ -275,9 +275,11 @@ class ClientController extends Controller
 
             $client->image = $imageName ;
         }
+        $client->verification_code = $this->generateRandomNumber();
         $client->save();
+        $this->sendVerificationCode($client);
         $accessToken = $client->createToken('authtoken')->accessToken ;
-        return response(['user' => new ClientResource($client) , 'access_token' => $accessToken]);
+        return response(['user' => $client , 'access_token' => $accessToken]);
         }
     }
 
@@ -320,4 +322,5 @@ class ClientController extends Controller
         return $user;
         
     }
+
 }

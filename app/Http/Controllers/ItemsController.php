@@ -26,12 +26,12 @@ class ItemsController extends Controller
     public function index()
     {
         //
-        $items = Items::where('stock','>',0)->orderBy('created_at', 'desc')->paginate(8);
+        $items = Items::where('stock','>',0)->where('is_approved', 1 && 0 )->orderBy('created_at', 'desc')->paginate(8);
         return  ItemResource::collection($items) ;
     }
 
     public function all_items(){
-        $items = Items::with('reviews')->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
+        $items = Items::with('reviews')->where('is_approved', 1 && 0 )->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
         return $items;
         return  ItemResource::collection($items) ;
     }
@@ -409,6 +409,7 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
+            $item->is_approved = 2;
             $item->client_id = Auth::user()->id;
 
             $item->save();
@@ -424,11 +425,27 @@ class ItemsController extends Controller
         }
     }
 
-    public function getDrafts(){
-        return Items::where('client_id', Auth::id())
-            ->where('is_approved', 2)
-            ->get();
+    // public function getDrafts(){
+    //     // dd(Auth::id()); 
+    //     $drafts= Items::where('is_approved', 2)
+    //         ->where('client_id', Auth::id())
+    //         ->get();
+
+    //         return $drafts;
+      
+    // }
+
+    public function getDrafts()
+    {
+        //
+        $items = Items::where('stock','>',0)
+            ->where('client_id', Auth::id())
+            ->where('is_approved', 2 )
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+        return  ItemResource::collection($items) ;
     }
+
 
     public function editDraft(Request $request, $id)
     {
@@ -463,7 +480,7 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
-            $item->is_approved =  2;
+            $item->is_approved = 2;
             $item->client_id = Auth::user()->id;
 
             $item->save();

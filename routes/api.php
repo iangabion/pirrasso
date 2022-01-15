@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::middleware('auth:api')->group(function () {
+
 	Route::post('logout' ,'ClientController@logout');
 	// clients part
 	Route::get('clients' ,'ClientController@index');
@@ -43,9 +44,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('messages/read/{id}' ,'MessageController@readMessage');
 
 	// retrieve messages
-	Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
 	Route::get('user_messages' ,'SessionController@get_user_messages');
 	Route::get('user_messages/{id}' ,'SessionController@get_indi_messages');
+	Route::get('count_messages/{id}' ,'SessionController@count_item_messages');
 
 	// add to favorites
 	Route::get('add_favorite/{id}' ,'ClientController@favorites');
@@ -71,8 +72,19 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('save_draft','ItemsController@storeDraft');
 
 
+	Route::get('unreadReview','ProductReviewController@getUnread');
+	Route::put('readReview','ProductReviewController@updateRead');
+
+	Route::get('count', 'MessageController@count');
+
+
+
+
 	
 });
+
+Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
+
 
 //global search
 Route::post('search', 'ItemController@search');
@@ -144,9 +156,9 @@ Route::delete('delete_review/{id}','ProductReviewController@destroy');
 Route::get('getStarRating', 'ItemsController@getStarRating');
 
 //add drafts
-Route::get('getDrafts','ItemsController@getDrafts');
-Route::post('editDrafts','ItemsController@editDrafts');
-Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
+
+// Route::post('editDrafts','ItemsController@editDrafts');
+// Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
 
 
 //promotions
@@ -155,3 +167,11 @@ Route::get('indexPromotion','PromotionController@index');
 Route::post('save_promotion','PromotionController@store');
 Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
+
+
+
+
+
+
+
+

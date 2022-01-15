@@ -85,6 +85,12 @@ class SessionController extends Controller
             }
     }
 
+    // public function count_item_messages($id)
+    // {
+    //     $session = Session::where('item_id', $id)->get();
+    //     return $session->where('is_read',0)->count() ;
+    // }
+
     public function manage_message($sessions_id , $messages){
         $message = new Message();
         $message->session_id = $sessions_id ;

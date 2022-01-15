@@ -23,7 +23,8 @@ class SessionResource extends JsonResource
 
         $buyer = Client::with('fcm_tokens')->findorfail($this->buyer_id); 
         $seller = Client::with('fcm_tokens')->findorfail($this->seller_id);
-        $message = Message::where('session_id', $this->id )->where('is_read', 0)->get();
+        $message = Message::where('session_id', $this->id )->where('is_read', 0)->get('message');
+        $message = Message::where('session_id', $this->id )->get();
         $product_review = ProductReview::where('seller_id', $this->seller_id)->where('is_read', 0)->get();
 
         return [
@@ -36,8 +37,10 @@ class SessionResource extends JsonResource
             'photo' =>isset($this->item->photos[0]) ? new PhotoResource($this->item->photos[0]) : '' , 
             // 'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
             'product_review' => count($product_review),
+            'product_review_content' => $product_review,
             'messages' => count($message),
-            'notification' => count($message) +count($product_review),
+            'messages_content' => $message,
+            'notification' => count($message) + count($product_review),
             'buyer_id' => $buyer->id ,
             'seller_id' => $seller->id ,
             'buyer_social_profile' => $buyer->social_profile ,
