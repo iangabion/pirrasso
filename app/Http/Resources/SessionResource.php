@@ -24,7 +24,6 @@ class SessionResource extends JsonResource
         $buyer = Client::with('fcm_tokens')->findorfail($this->buyer_id); 
         $seller = Client::with('fcm_tokens')->findorfail($this->seller_id);
         $message = Message::where('session_id', $this->id )->where('is_read', 0)->get();
-        $message = Message::where('session_id', $this->id )->pluck('message');
         $product_review = ProductReview::where('seller_id', $this->seller_id)->where('is_read', 0)->get();
 
         return [
