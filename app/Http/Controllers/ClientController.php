@@ -111,13 +111,13 @@ class ClientController extends Controller
         return response(['message'=> 'verification code sent']);
     }
 
-    public function generateRandomNumber($length = 8) {
+    public function generateRandomNumber($length = 6) {
 
     $random = "";
     srand((double) microtime() * 1000000);
 
     $data = "123456123456789071234567890890";
-    $data .= "aBCdefghijklmn123opq45rs67tuv89wxyz"; // if you need alphabatic also
+    // $data .= "aBCdefghijklmn123opq45rs67tuv89wxyz"; // if you need alphabatic also
 
     for ($i = 0; $i < $length; $i++) {
             $random .= substr($data, (rand() % (strlen($data))), 1);
@@ -262,11 +262,8 @@ class ClientController extends Controller
         $client->bio = $request->input('bio');
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
-<<<<<<< HEAD
         $client->password = Hash::make($request->input('password'));
-=======
-        $client->is_verified =  $request->input('is_verified');
->>>>>>> 9c6ffd31ef1daeeeff7ced605709d51621ee099c
+        $client->is_verified =  1;
     
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded

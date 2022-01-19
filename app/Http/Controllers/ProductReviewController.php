@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProductReview;
+use App\Http\Resources\ProductReviewResource;
 use Illuminate\Support\Facades\Auth;
 
 class ProductReviewController extends Controller
@@ -59,7 +60,7 @@ class ProductReviewController extends Controller
         $review = ProductReview::where('seller_id', Auth::id())
                     ->where('is_read',0)
                     ->count();
-        return $review;
+        return ProductReviewResource::collection($review); 
     }
 
     public function updateRead(){

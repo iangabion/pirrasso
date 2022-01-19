@@ -9,7 +9,7 @@ use App\Items ;
 use App\Client;
 use Auth ;
 use App\Http\Resources\SessionResource;
-
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class SessionController extends Controller
 {
@@ -47,6 +47,12 @@ class SessionController extends Controller
     public function get_item_messages($id)
     {
         $session = Session::where('item_id', $id)->get();
+        return SessionResource::collection($session) ;
+    }
+
+    public function get_item_messages2()
+    {
+        $session = Session::where('client_id', Auth::user()->id)->get();
         return SessionResource::collection($session) ;
     }
 

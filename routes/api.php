@@ -48,6 +48,11 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('user_messages/{id}' ,'SessionController@get_indi_messages');
 	Route::get('count_messages/{id}' ,'SessionController@count_item_messages');
 
+	// reviews
+	Route::post('add_review','ProductReviewController@store');
+	Route::get('unreadReview','ProductReviewController@getUnread');
+	Route::put('readReview','ProductReviewController@updateRead');
+
 	// add to favorites
 	Route::get('add_favorite/{id}' ,'ClientController@favorites');
 	// remove favorites
@@ -63,20 +68,19 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('change_status' ,'ItemsController@changeStatus');
 
-	Route::post('add_review','ProductReviewController@store');
 	
 	//add drafts
 	Route::get('getDrafts','ItemsController@getDrafts');
 	Route::post('editDraft/{id}','ItemsController@editDraft');
 	Route::delete('deleteDraft/{id}','ItemsController@deleteDrafts');
 	Route::post('save_draft','ItemsController@storeDraft');
-
-
-	Route::get('unreadReview','ProductReviewController@getUnread');
-	Route::put('readReview','ProductReviewController@updateRead');
+	
+	
 
 	Route::get('count', 'MessageController@count');
 
+
+	// Route::get('item_messages2' ,'SessionController@get_item_messages2');
 
 
 
@@ -167,6 +171,8 @@ Route::get('indexPromotion','PromotionController@index');
 Route::post('save_promotion','PromotionController@store');
 Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
+
+
 
 
 
