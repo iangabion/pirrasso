@@ -111,7 +111,7 @@ class ClientController extends Controller
         return response(['message'=> 'verification code sent']);
     }
 
-    public function generateRandomNumber($length = 8) {
+    public function generateRandomNumber($length = 6) {
 
     $random = "";
     srand((double) microtime() * 1000000);
