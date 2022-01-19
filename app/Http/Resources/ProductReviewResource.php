@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\ProductReview;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductReviewResource extends JsonResource
@@ -14,6 +15,8 @@ class ProductReviewResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        // $count = ProductReview::where('is_read', 0)->count();
         return [
             'id'=> $this->id,
             'solds_id'=> $this->solds_id,
@@ -23,6 +26,7 @@ class ProductReviewResource extends JsonResource
             'rating'=> $this->rating,
             'review_description'=> $this->review_description,
             'is_read'=> $this->is_read,
+            // 'unread_messages'=> $count
             
         ];
     }

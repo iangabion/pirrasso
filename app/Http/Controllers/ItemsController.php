@@ -36,25 +36,7 @@ class ItemsController extends Controller
         return  ItemResource::collection($items) ;
     }
 
-    public function getStarRating(Request $request) {
-        // return round($this->rating()->avg('rating'),1);
-        // $starcountsum = Items::with('reviews')->sum('product_reviews.rating');
-        // $average = $starcountsum/$this->reviews()->count();
-        // return $average; 
-
-        // $starcountsum = Items::join('product_reviews', 'items.id', '=', 'product_reviews.items_id')
-        //                     ->groupBy('items_id')
-        //                     ->selectRaw('avg(rating) as sumrate, items_id')
-        //                     // ->where('product_reviews.items_id', $request->id)
-        //                     ->get();
-
-        $starcountsum = Items::with('reviews')->get();
-        // $starcountsum = $this->all_items();
-        // return $starcountsum->with($this->all_items());
-        return $starcountsum;
-
-        // Items::with('reviews')->where('id',$id)->selectRaw('SUM(rating)/COUNT(items_id) AS avg_rating')->first()->avg_rating();
-    }
+  
 
     /**
      * Show the form for creating a new resource.
