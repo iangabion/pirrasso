@@ -420,8 +420,7 @@ class ItemsController extends Controller
     public function getDrafts()
     {
         //
-        $items = Items::where('stock','>',0)
-            ->where('client_id', Auth::id())
+        $items = Items::where('client_id', Auth::id())
             ->where('is_approved', 2 )
             ->orderBy('created_at', 'desc')
             ->paginate(8);
