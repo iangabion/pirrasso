@@ -78,6 +78,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('count', 'MessageController@count');
 
 
+	Route::get('item_messages2' ,'SessionController@get_item_messages2');
+
 
 
 	
