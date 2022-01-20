@@ -63,8 +63,8 @@ class ProductReviewController extends Controller
         return ProductReviewResource::collection($review); 
     }
 
-    public function updateRead(){
-        return ProductReview::where('seller_id',Auth::id())
+    public function updateRead($id){
+        return ProductReview::where('items_id',$id)
                  ->update(['is_read'=>1]);
     }
     

@@ -59,8 +59,9 @@ class SessionController extends Controller
     public function get_user_messages() 
     {
         $id = Auth::user()->id ;
-        $session = Session::where('seller_id', $id)->orWhere('buyer_id' , $id)->get();
+        $session = Session::with('messages')->where('seller_id', $id)->orWhere('buyer_id' , $id)->get();
         return SessionResource::collection($session) ;
+        // return $session ;
     }
     public function store(Request $request)
     {
@@ -91,11 +92,11 @@ class SessionController extends Controller
             }
     }
 
-    // public function count_item_messages($id)
-    // {
-    //     $session = Session::where('item_id', $id)->get();
-    //     return $session->where('is_read',0)->count() ;
-    // }
+    public function count_item_messages($id)
+    {
+        $session = Session::where('item_id', $id)->get();
+        return $session->where('is_read',0)->count() ;
+    }
 
     public function manage_message($sessions_id , $messages){
         $message = new Message();
