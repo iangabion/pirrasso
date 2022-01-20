@@ -137,6 +137,7 @@ class ClientController extends Controller
             $client->social_id = $request->id;
             $client->is_verified = 1;
             $client->account_type = 'facebook';
+            $client->image = $request->image;
             $client->save();
         }
         if($client->social_profile()->count()){
