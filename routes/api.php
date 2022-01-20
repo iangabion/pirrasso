@@ -51,7 +51,7 @@ Route::middleware('auth:api')->group(function () {
 	// reviews
 	Route::post('add_review','ProductReviewController@store');
 	Route::get('unreadReview','ProductReviewController@getUnread');
-	Route::put('readReview','ProductReviewController@updateRead');
+	Route::put('readReview/{id}','ProductReviewController@updateRead');
 
 	// add to favorites
 	Route::get('add_favorite/{id}' ,'ClientController@favorites');

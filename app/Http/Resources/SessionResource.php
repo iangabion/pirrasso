@@ -41,7 +41,7 @@ class SessionResource extends JsonResource
             // 'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
             // 'product_review' => $product_review,
             'messages' => count($message),
-            'messages_content' => $message,
+            'messages_content' => $message2,
             // 'notification' => count($message) + count($product_review),
             'buyer_id' => $buyer->id,
             'seller_id' => $seller->id ,
