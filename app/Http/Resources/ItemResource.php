@@ -38,7 +38,7 @@ class ItemResource extends JsonResource
             'location'=> $this->location,
             'latitude'=> $this->latitude,
             'longitude'=> $this->longitude,
-            'status'=> $this->status->name,
+            'status'=> $this->status['name'],
             'category' => $this->category,
             'subcategory' =>  isset($this->subcategory->name) ? $this->subcategory->name : '' ,
             'show_number' => $this->show_number,
