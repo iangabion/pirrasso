@@ -104,7 +104,7 @@
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images[0] ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                     ></v-img>
                                                     <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>
@@ -410,6 +410,7 @@ export default {
                                 axios.post('/api/searchchan', payload, {}).then((data) => {
                                 this.categor = data.data
                                 this.categories_item = this.categor.data
+                                // console.log(this.categories)
 
                                 this.loading=false
                                 this.selected_category=''
@@ -452,6 +453,7 @@ export default {
                 this.data_loaded=false
                 axios.get('/api/get_all_items').then(response =>{
                     this.categories_item = response.data.data
+                    console.log(this.categories_item, "hey hey")
                     this.highlight(id)
                     this.data_loaded=true
                     this.loading=false

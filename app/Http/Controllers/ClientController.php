@@ -263,7 +263,7 @@ class ClientController extends Controller
         $client->mobile =  $request->input('mobile');
         $client->username =  $request->input('username');
         $client->password = Hash::make($request->input('password'));
-        $client->is_verified =  $request->input('is_verified');
+        $client->is_verified =  1;
     
         if($request->profile_pic){
             $image = $request->profile_pic;  // your base64 encoded
