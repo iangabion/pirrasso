@@ -63,6 +63,8 @@ class SessionController extends Controller
         return SessionResource::collection($session) ;
         // return $session ;
     }
+
+
     public function store(Request $request)
     {
         //

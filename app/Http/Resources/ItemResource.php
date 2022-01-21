@@ -28,7 +28,7 @@ class ItemResource extends JsonResource
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
         $photos = Photos::where('items_id', $this->id)->pluck('filename');
-        $solds = Sold::where('item_id', $this->id)->pluck('created_at');
+        $solds = Sold::where('item_id', $this->id)->get();
         return [
             'id'=> $this->id,
             'title'=> $this->title,
@@ -38,7 +38,7 @@ class ItemResource extends JsonResource
             'location'=> $this->location,
             'latitude'=> $this->latitude,
             'longitude'=> $this->longitude,
-            'status'=> $this->status['name'],
+            'status'=> $this->status ? $this->status->name : '',
             'category' => $this->category,
             'subcategory' =>  isset($this->subcategory->name) ? $this->subcategory->name : '' ,
             'show_number' => $this->show_number,
@@ -54,8 +54,6 @@ class ItemResource extends JsonResource
             'is_displayed' => $this->is_displayed,
             'is_active' => $this->is_active,
             'variation'=> $this->variation,
-           
-
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
 

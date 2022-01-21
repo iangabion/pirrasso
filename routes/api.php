@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group(function () {
 	//send message
 	Route::post('send_message' ,'SessionController@store');
     Route::get('messages/read/{id}' ,'MessageController@readMessage');
+	Route::delete('delete_message/{id}','MessageController@deleteMessage');
 
 	// retrieve messages
 	Route::get('user_messages' ,'SessionController@get_user_messages');
