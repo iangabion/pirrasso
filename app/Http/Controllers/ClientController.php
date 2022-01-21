@@ -111,13 +111,13 @@ class ClientController extends Controller
         return response(['message'=> 'verification code sent']);
     }
 
-    public function generateRandomNumber($length = 8) {
+    public function generateRandomNumber($length = 6) {
 
     $random = "";
     srand((double) microtime() * 1000000);
 
     $data = "123456123456789071234567890890";
-    $data .= "aBCdefghijklmn123opq45rs67tuv89wxyz"; // if you need alphabatic also
+    // $data .= "aBCdefghijklmn123opq45rs67tuv89wxyz"; // if you need alphabatic also
 
     for ($i = 0; $i < $length; $i++) {
             $random .= substr($data, (rand() % (strlen($data))), 1);
@@ -137,6 +137,7 @@ class ClientController extends Controller
             $client->social_id = $request->id;
             $client->is_verified = 1;
             $client->account_type = 'facebook';
+            $client->image = $request->image;
             $client->save();
         }
         if($client->social_profile()->count()){

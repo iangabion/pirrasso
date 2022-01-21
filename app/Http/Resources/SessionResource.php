@@ -23,10 +23,13 @@ class SessionResource extends JsonResource
 
         $buyer = Client::with('fcm_tokens')->findorfail($this->buyer_id); 
         $seller = Client::with('fcm_tokens')->findorfail($this->seller_id);
-        $message = Message::where('session_id', $this->id )->where('is_read', 0)->get('message');
-        $message = Message::where('session_id', $this->id )->get();
-        $product_review = ProductReview::where('seller_id', $this->seller_id)->where('is_read', 0)->get();
+        $message = Message::where('session_id', $this->id )->where('is_read', 0)->get();
+        $message2 = Message::where('session_id', $this->id )->get();
+        // $product_review = ProductReview::get();
 
+        // $message1 = Message::where('session_id', $this->id )->orderBy('created_at')->get();
+        // $product_review1 = ProductReview::where('seller_id', $this->seller_id)->where('is_read', 0)->orderBy('created_at')->get();
+     
         return [
             'session_id'=> $this->id,
             'session_name'=> $this->sessions_name,
@@ -36,12 +39,11 @@ class SessionResource extends JsonResource
             'users' => [$buyer , $seller],
             'photo' =>isset($this->item->photos[0]) ? new PhotoResource($this->item->photos[0]) : '' , 
             // 'messages' => $this->messages ? MessageResource::collection($this->messages) : ''  ,
-            'product_review' => count($product_review),
-            'product_review_content' => $product_review,
+            // 'product_review' => $product_review,
             'messages' => count($message),
-            'messages_content' => $message,
-            'notification' => count($message) + count($product_review),
-            'buyer_id' => $buyer->id ,
+            'messages_content' => $message2,
+            // 'notification' => count($message) + count($product_review),
+            'buyer_id' => $buyer->id,
             'seller_id' => $seller->id ,
             'buyer_social_profile' => $buyer->social_profile ,
             'seller_social_profile' => $seller->social_profile ,
