@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Client;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Auth ;
 
@@ -16,9 +17,12 @@ class ClientResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        // $client = Client::first('full_name');
         return [
             'id'=> $this->id,
+            // 'full_name'=> $client,
             'full_name'=> $this->full_name,
+
             'mobile'=> $this->mobile,
             'bio'=> $this->bio,
             'birthday'=> $this->birthday,

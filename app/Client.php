@@ -65,9 +65,9 @@ class Client extends Authenticatable
             return asset('images/user_profile/'. $value);
         }
     }
-    public function getFullnameAttribute($value){
-        return ucwords($this->first_name .' '. $this->last_name) ;
-    }
+    // public function getFullnameAttribute($value){
+    //     return ucwords($this->first_name .' '. $this->last_name) ;
+    // }
 
     public function getTotalItemsAttribute(){
         return count($this->items);
