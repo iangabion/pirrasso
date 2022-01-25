@@ -26,6 +26,12 @@ class MessageController extends Controller
         return 'success';
     }
 
+
+    public function deleteMessage($id){
+        $message = Session::findOrFail($id)->messages()->delete();
+        return 'success';
+    }
+
     // public function countUnread($id){
     //     $message = Message::findOrFail($id)->messages()->get();
         
