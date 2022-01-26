@@ -18,14 +18,28 @@
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
-                margin: 1% 10% 2%;
+                margin: 1% 10%;
+                margin-top: 0;
             }
+            /* body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 1% 10%;
+                margin-top: 0;
+            } */
+            /* html{
+                background: 636b6f;
+            } */
 
             .full-height {
                 height: 100vh;
             }
 
             .flex-center {
+                
                 align-items: center;
                 display: flex;
                 justify-content: center;
@@ -46,7 +60,27 @@
             }
 
             .title {
-                font-size: 60px;
+                font-size: 50px;
+                color: white;
+                background: black;
+                font-family: 'arial black'
+            }
+            h3, h4 {
+                color: black;
+                font-family: 'arial black'
+            }
+            h5{
+                display: flex;
+                justify-content: center;
+                color:black;
+                padding: 2%;
+                font-family: 'arial black'
+            }
+            .footer{
+                height: 60px;
+                background: #f4f6f7;
+                /* background: #636b6f; */
+
             }
 
             .links > a {
@@ -72,8 +106,6 @@
         </div>
         <br>
         <div>
-            {{-- <p>Your privacy is important to us. It is Studio Seizh's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, <a href="https://bonplan-backoffice.studioseizh.com/privacy-policy">https://studioseizh.com/privacy-policy</a>, and other sites we own and operate. </p>
-            <p>This policy is effective as of 28 April 2021 and was last updated on 28 April 2021. </p> --}}
             <h3>Terms And Conditions</h3>
             <br>
             <p>These terms and conditions (“Agreement”) set forth the general terms and conditions of your use of the “Bon Plan” mobile application 
@@ -110,12 +142,6 @@
                 objectionable. You also grant us the license to use, reproduce, adapt, modify, publish or distribute the Content created by you or stored in your user 
                 account for commercial, marketing or any similar purpose. </p>
             <br>
-            {{-- <ul>
-            <li>Name</li>
-            <li>Email</li>
-            <li>Phone/mobile number</li>
-            <li>Home/mailing address</li>
-            </ul> --}}
             <h4>Adult Content</h4>
             <br>
             <p>Please be aware that there may be certain adult or mature content available in the Mobile Application. Where there is mature or adult content, individuals 
@@ -129,18 +155,6 @@
             <p>We perform regular backups of the Content and will do our best to ensure completeness and accuracy of these backups. In the event of the hardware failure or 
                 data loss we will restore backups automatically to minimize the impact and downtime. </p>
             <br>
-            {{-- <ul>
-            <li>Use a mobile device or web browser to access our content</li>
-            <li>Contact us via email, social media, or on any similar technologies</li>
-            <li>When you mention us on social media</li>
-            </ul>
-            <p>We may collect, hold, use, and disclose information for the following purposes, and personal information will not be further processed in a manner that is incompatible with these purposes: </p>
-            <p>We may collect, hold, use, and disclose information for the following purposes, and personal information will not be further processed in a manner that is incompatible with these purposes: </p>
-            <ul>
-            <li>to contact and communicate with you</li>
-            <li>for internal record keeping and administrative purposes</li>
-            </ul>
-            <p>Please be aware that we may combine information we collect about you with general information or research data we receive from other trusted sources. </p> --}}
             <h4>Links to other resources</h4>
             <br>
             <p>Although the Mobile Application and Services may link to other resources (such as websites, mobile applications, etc.), we are not, directly or indirectly, 
@@ -163,7 +177,7 @@
                  the security features of the Mobile Application and Services, third party products and services, or the Internet. We reserve the right to terminate your use 
                  of the Mobile Application and Services for violating any of the prohibited uses.</p>
             <br>
-            <h3>Limitation of liability</h3>
+            <h4>Limitation of liability</h4>
             <br>
             <p>To the fullest extent permitted by applicable law, in no event will the Operator, its affiliates, directors, officers, employees, agents, suppliers or 
                 licensors be liable to any person for any indirect, incidental, special, punitive, cover or consequential damages (including, without limitation, damages 
@@ -175,14 +189,14 @@
                 period prior to the first event or occurrence giving rise to such liability. The limitations and exclusions also apply if this remedy does not fully 
                 compensate you for any losses or fails of its essential purpose.</p>
             <br>
-            <h3>Indemnification</h3>
+            <h4>Indemnification</h4>
             <br>
             <p>You agree to indemnify and hold the Operator and its affiliates, directors, officers, employees, agents, suppliers and licensors harmless from and against 
                 any liabilities, losses, damages or costs, including reasonable attorneys’ fees, incurred in connection with or arising from any third party allegations, 
                 claims, actions, disputes, or demands asserted against any of them as a result of or relating to your Content, your use of the Mobile Application and 
                 Services or any willful misconduct on your part.</p>
             <br>
-            <h3>Dispute resolution</h3>
+            <h4>Dispute resolution</h4>
             <br>
             <p>The formation, interpretation, and performance of this Agreement and any disputes arising out of it shall be governed by the substantive and procedural 
                 laws of France without regard to its rules on conflicts or choice of law and, to the extent applicable, the laws of France. The exclusive jurisdiction and 
@@ -190,7 +204,7 @@
                 courts. You hereby waive any right to a jury trial in any proceeding arising out of or related to this Agreement. The United Nations Convention on Contracts 
                 for the International Sale of Goods does not apply to this Agreement.</p>
             <br>
-            <h3>Changes and amendments</h3>
+            <h4>Changes and amendments</h4>
             <br>
             <p>We reserve the right to modify this Agreement or its terms related to the Mobile Application and Services at any time at our discretion. When we do, we will 
                 post a notification in the Mobile Application. We may also provide notice to you in other ways at our discretion, such as through the contact information 
@@ -199,35 +213,22 @@
                 of the Mobile Application and Services after the effective date of the revised Agreement (or such other act specified at that time) will constitute your 
                 consent to those changes.</p>
             <br>
-            <h3>Acceptance of these terms</h3>
+            <h4>Acceptance of these terms</h4>
             <br>
             <p>You acknowledge that you have read this Agreement and agree to all its terms and conditions. By accessing and using the Mobile Application and Services you 
                 agree to be bound by this Agreement. If you do not agree to abide by the terms of this Agreement, you are not authorized to access or use the Mobile 
                 Application and Services. This terms and conditions policy was created with the help of the terms and conditions generator at
                  https://www.websitepolicies.com/terms-and-conditions-generator</p>
             <br>
-            <h3>Contacting Us</h3>
-            <br>
+            <h4>Contact Us</h4>
             <p>If you have any questions, concerns, or complaints regarding this Agreement, we encourage you to contact us using the details below:</p>
             <br>
             <p>ohm.conception@gmail.com</p>
             <p>143 avenue de keradennec 29000 quimper, france</p>
-
             <br>
-            <br>
-            {{-- <br>
-            <h3>Use of Cookies</h3>
-            <br>
-            <p>We use &ldquo;cookies&rdquo; to collect information about you and your activity across our site. A cookie is a small piece of data that our website stores on your computer, and accesses each time you visit, so we can understand how you use our site. This helps us serve you content based on preferences you have specified. </p>
-            <h3>Limits of Our Policy</h3>
-            <p>Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and policies of those sites, and cannot accept responsibility or liability for their respective privacy practices. </p>
-            <h3>Changes to This Policy</h3>
-            <p>At our discretion, we may change our privacy policy to reflect updates to our business processes, current acceptable practices, or legislative or regulatory changes. If we decide to change this privacy policy, we will post the changes here at the same link by which you are accessing this privacy policy. </p>
-            <p>If required by law, we will get your permission or give you the opportunity to opt in to or opt out of, as applicable, any new uses of your personal information. </p>
-            <h3>Contact Us</h3>
-            <p>For any questions or concerns regarding your privacy, you may contact us using the following details: </p>
-            <p>Ohm Conception<br />
-        ohm.conception@gmail.com </p> --}}
+        </div>
+        <div class = footer>
+            <h5>All Rights Reserved 2021-2022</h5>
         </div>
     </body>
 </html>
