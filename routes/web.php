@@ -42,6 +42,9 @@ Route::get('sendMessage', 'SMSController@sendMessage');
 Route::get('/privacy-policy', function () {
     return view('privacy');
 });
+Route::get('/terms&condition', function () {
+    return view('terms&condition');
+});
 Route::middleware('auth:web')->group(function () {
     Route::namespace('Backend')->group(function () {
 
