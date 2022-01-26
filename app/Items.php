@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Http\Resources\ProductReviewResource;
 class Items extends Model
 {
     //
@@ -64,8 +64,7 @@ class Items extends Model
     //     'average-rating'
     // ];
 
-    
-
+   
 
     //mutator
     public function getCreatedatAttribute($value) {
