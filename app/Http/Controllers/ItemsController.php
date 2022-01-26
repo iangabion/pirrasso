@@ -31,9 +31,9 @@ class ItemsController extends Controller
     }
 
     public function all_items(){
-        $items = Items::with('reviews')->where('is_approved', 1 && 0 )->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
-        return $items;
+        $items = Items::where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
         return  ItemResource::collection($items) ;
+        // return $items;
     }
 
   

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/app.css')  }}">
-        <title>Obrero</title>
+        <title>Bon Plan Terms and Condition</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -119,7 +119,6 @@
                 Mobile Application and Services.</p>
             <br>
             <h4>Accounts And Membership</h4>
-            <br>
             <p>You must be at least 16 years of age to use the Mobile Application and Services. By using the Mobile Application and Services and by agreeing 
                 to this Agreement you warrant and represent that you are at least 16 years of age.</p><br>
             <p>If you create an account in the Mobile Application, you are responsible for maintaining the security of your account and you are fully responsible 
@@ -132,7 +131,6 @@
                 address to prevent further registration.</p>
             <br>
             <h4>User content</h4>
-            <br>
             <p>We do not own any data, information or material (collectively, “Content”) that you submit in the Mobile Application in the course of using the Service. 
                 You shall have sole responsibility for the accuracy, quality, integrity, legality, reliability, appropriateness, and intellectual property ownership 
                 or right to use of all submitted Content. We may monitor and review the Content in the Mobile Application submitted or created using our Services by you. 
@@ -143,7 +141,6 @@
                 account for commercial, marketing or any similar purpose. </p>
             <br>
             <h4>Adult Content</h4>
-            <br>
             <p>Please be aware that there may be certain adult or mature content available in the Mobile Application. Where there is mature or adult content, individuals 
                 who are less than 18 years of age or are not permitted to access such content under the laws of any applicable jurisdiction may not access such content. If 
                 we learn that anyone under the age of 18 seeks to conduct a transaction through the Services, we will require verified parental consent, in accordance with 
@@ -151,12 +148,10 @@
                 18 under any circumstances.</p>
             <br>
             <h4>Backups</h4>
-            <br>
             <p>We perform regular backups of the Content and will do our best to ensure completeness and accuracy of these backups. In the event of the hardware failure or 
                 data loss we will restore backups automatically to minimize the impact and downtime. </p>
             <br>
             <h4>Links to other resources</h4>
-            <br>
             <p>Although the Mobile Application and Services may link to other resources (such as websites, mobile applications, etc.), we are not, directly or indirectly, 
                 implying any approval, association, sponsorship, endorsement, or affiliation with any linked resource, unless specifically stated herein. Some of the links 
                 in the Mobile Application may be “affiliate links”. This means if you click on the link and purchase an item, the Operator will receive an affiliate 
@@ -166,7 +161,6 @@
                 off-site resources is at your own risk.</p>
             <br>
             <h4>Prohibited Uses</h4>
-            <br>
             <p>In addition to other terms as set forth in the Agreement, you are prohibited from using the Mobile Application and Services or Content: (a) for any unlawful 
                 purpose; (b) to solicit others to perform or participate in any unlawful acts; (c) to violate any international, federal, provincial or state regulations, 
                 rules, laws, or local ordinances; (d) to infringe upon or violate our intellectual property rights or the intellectual property rights of others; (e) to 
@@ -178,7 +172,6 @@
                  of the Mobile Application and Services for violating any of the prohibited uses.</p>
             <br>
             <h4>Limitation of liability</h4>
-            <br>
             <p>To the fullest extent permitted by applicable law, in no event will the Operator, its affiliates, directors, officers, employees, agents, suppliers or 
                 licensors be liable to any person for any indirect, incidental, special, punitive, cover or consequential damages (including, without limitation, damages 
                 for lost profits, revenue, sales, goodwill, use of content, impact on business, business interruption, loss of anticipated savings, loss of business 
@@ -190,14 +183,12 @@
                 compensate you for any losses or fails of its essential purpose.</p>
             <br>
             <h4>Indemnification</h4>
-            <br>
             <p>You agree to indemnify and hold the Operator and its affiliates, directors, officers, employees, agents, suppliers and licensors harmless from and against 
                 any liabilities, losses, damages or costs, including reasonable attorneys’ fees, incurred in connection with or arising from any third party allegations, 
                 claims, actions, disputes, or demands asserted against any of them as a result of or relating to your Content, your use of the Mobile Application and 
                 Services or any willful misconduct on your part.</p>
             <br>
             <h4>Dispute resolution</h4>
-            <br>
             <p>The formation, interpretation, and performance of this Agreement and any disputes arising out of it shall be governed by the substantive and procedural 
                 laws of France without regard to its rules on conflicts or choice of law and, to the extent applicable, the laws of France. The exclusive jurisdiction and 
                 venue for actions related to the subject matter hereof shall be the courts located in France, and you hereby submit to the personal jurisdiction of such 
@@ -205,7 +196,6 @@
                 for the International Sale of Goods does not apply to this Agreement.</p>
             <br>
             <h4>Changes and amendments</h4>
-            <br>
             <p>We reserve the right to modify this Agreement or its terms related to the Mobile Application and Services at any time at our discretion. When we do, we will 
                 post a notification in the Mobile Application. We may also provide notice to you in other ways at our discretion, such as through the contact information 
                 you have provided.</p>
@@ -214,7 +204,6 @@
                 consent to those changes.</p>
             <br>
             <h4>Acceptance of these terms</h4>
-            <br>
             <p>You acknowledge that you have read this Agreement and agree to all its terms and conditions. By accessing and using the Mobile Application and Services you 
                 agree to be bound by this Agreement. If you do not agree to abide by the terms of this Agreement, you are not authorized to access or use the Mobile 
                 Application and Services. This terms and conditions policy was created with the help of the terms and conditions generator at

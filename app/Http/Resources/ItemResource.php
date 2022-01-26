@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PhotoResource ;
 use App\Http\Resources\ClientResource ;
+use App\Http\Resources\ProductReviewResource;
 // use Illuminate\Support\Facades\Auth;
 use App\Apartment ;
 use App\Vehicle ;
@@ -56,6 +57,7 @@ class ItemResource extends JsonResource
             'variation'=> $this->variation,
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
+            'reviews'=>  $this->reviews,
 
             // 'rating'=>$this->rating,
             // 'review_description' => $this->review_description,
