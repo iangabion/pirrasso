@@ -27,12 +27,17 @@ class ItemsController extends Controller
     {
         //
         $items = Items::where('stock','>',0)->where('is_approved', 1 && 0 )->orderBy('created_at', 'desc')->paginate(8);
+        
         return  ItemResource::collection($items) ;
     }
 
     public function all_items(){
+        // $items = Items::with('reviews')->where('is_approved', 1 && 0 )->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
+        // // return $items;
+        // return  ItemResource::collection($items) ;
+
         $items = Items::with('reviews')->where('is_approved', 1 && 0 )->where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
-        return $items;
+        // return $items;
         return  ItemResource::collection($items) ;
     }
 

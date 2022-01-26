@@ -15,4 +15,10 @@ class ProductReview extends Model
     public function item(){
         return $this->belongsTo(Items::class);
     }
+    
+    public function buyer(){
+        return $this->hasMany(Client::class);
+    }
+
+
 }
