@@ -35,7 +35,7 @@ class SmsController extends Controller
         if ($switch==1){
             $items = Items::where('id', $request->input('id') )->get('title');
             $receiverNumber = '+' . $request->input('number');
-            $message = "This is testing from Qonvex.com. Your " . $items . " item has been Approved!";
+            $message = "This is a message from BonPlan. Your " . $items . " item has been Approved.";
             try {
                 $account_sid = 'ACfb0e0ca8f0786a4b8c937db4eb8d8daa';
                 $auth_token = 'e70d8db712c8e1b6abb13e50255a4eaf';
