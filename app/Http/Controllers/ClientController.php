@@ -278,9 +278,9 @@ class ClientController extends Controller
         }
         $client->verification_code = $this->generateRandomNumber();
         $client->save();
-        $this->sendVerificationCode($client);
-        $accessToken = $client->createToken('authtoken')->accessToken ;
-        return response(['user' => $client , 'access_token' => $accessToken]);
+        // $this->sendVerificationCode($client);
+        // $accessToken = $client->createToken('authtoken')->accessToken ;
+        // return response(['user' => $client , 'access_token' => $accessToken]);
         }
     }
 
