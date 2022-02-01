@@ -281,6 +281,7 @@ class ClientController extends Controller
         // $this->sendVerificationCode($client);
         // $accessToken = $client->createToken('authtoken')->accessToken ;
         // return response(['user' => $client , 'access_token' => $accessToken]);
+        return response(['user' => $client]);
         }
     }
 
