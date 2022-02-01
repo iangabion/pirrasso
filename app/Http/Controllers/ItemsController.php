@@ -26,12 +26,13 @@ class ItemsController extends Controller
     public function index()
     {
         //
-        $items = Items::where('stock','>',0)->where('is_approved', 1 && 0 )->orderBy('created_at', 'desc')->paginate(8);
+        $items = Items::where('stock','>',0)->where('is_approved','<', 2 )->orderBy('created_at', 'desc')->paginate(8);
+        
         return  ItemResource::collection($items) ;
     }
 
     public function all_items(){
-        $items = Items::where('stock','>',0)->orderBy('items.created_at', 'desc')->get();
+        $items = Items::with('reviews')->where('stock','>',0)->where('is_approved','<', 2 )->orderBy('items.created_at', 'desc')->get();
         return  ItemResource::collection($items) ;
         // return $items;
     }

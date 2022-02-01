@@ -21,4 +21,8 @@ class ProductReview extends Model
         return $use;
 
     }
+
+    // public function buyer(){
+    //     return $this->belongsTo(Client::class);
+    // }
 }

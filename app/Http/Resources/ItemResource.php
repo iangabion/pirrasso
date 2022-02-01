@@ -11,6 +11,7 @@ use App\Apartment ;
 use App\Vehicle ;
 use App\Photos;
 use App\Sold;
+use App\ProductReview;
 use App\Client;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,9 @@ class ItemResource extends JsonResource
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
         $photos = Photos::where('items_id', $this->id)->pluck('filename');
         $solds = Sold::where('item_id', $this->id)->get();
+        // $reviews = ProductReview::where('items_id', $this->id)->get();
+        // $reviews = Client::join('product_reviews','clients.id','=','product_reviews.buyer_id')->where('')->get();
+        // $reviews2 = ProductReviewResource::collection($reviews);
         return [
             'id'=> $this->id,
             'title'=> $this->title,
