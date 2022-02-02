@@ -173,9 +173,7 @@ Route::post('save_promotion','PromotionController@store');
 Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
 
-
-//photo
-Route::post('delete_photo/{Id}','PhotosController@delete_photo');
+Route::delete('delete_photo/{id}','PhotosController@delete_photo');
 
 
 
