@@ -29,7 +29,7 @@ class ItemResource extends JsonResource
         // $client = Client::where('client_id', Auth::id()); 
         $apartment = Apartment::where('item_id' , $this->id)->first();
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
-        $photos = Photos::where('items_id', $this->id)->pluck('filename');
+        $photos = Photos::where('items_id', $this->id)->get();
         $solds = Sold::where('item_id', $this->id)->get();
         // $reviews = ProductReview::where('items_id', $this->id)->get();
         // $reviews = Client::join('product_reviews','clients.id','=','product_reviews.buyer_id')->where('')->get();
