@@ -114,4 +114,19 @@ class PhotosController extends Controller
         }
 
     }
+
+    public function delete_photo($Id){
+
+        $file = Photos::where('id', $Id);
+        $file_1 = $file->pluck('filename')->first();
+        $file_2 = parse_url($file_1);
+        $file_2['sections'] = explode('/', $file_2['path']);
+        $last = end($file_2['sections']);
+
+        \File::delete('images/items/'. $last);
+
+        return $file->delete();
+
+
+    }
 }
