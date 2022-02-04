@@ -15,14 +15,14 @@ class ProductReview extends Model
     public function item(){
         return $this->belongsTo(Items::class);
     }
-    public function getBuyerIdAttribute($value){
-        // return Client::findOrFail($value);
-        $use = Client::find($value)->where('id', $value)->pluck('full_name')->first();
-        return $use;
+    // public function getBuyerIdAttribute($value){
+    //     // return Client::findOrFail($value);
+    //     $use = Client::find($value)->where('id', $value)->pluck('full_name')->first();
+    //     return $use;
 
-    }
-
-    // public function buyer(){
-    //     return $this->belongsTo(Client::class);
     // }
+
+    public function buyer(){
+        return $this->belongsTo(Client::class);
+    }
 }
