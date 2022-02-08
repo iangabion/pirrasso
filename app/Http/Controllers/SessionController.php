@@ -79,12 +79,14 @@ class SessionController extends Controller
                     'seller_id' => 'required',
                     'item_id' => 'required',
                     'message' => 'required',
-                    'session_id' => 'nullable'
+                    'session_id' => 'nullable',
+                    'session_status' => 'nullable'
                 ]);
                 $session = new Session() ;
                 $session->seller_id = $request->input('seller_id') ;
                 $session->item_id = $request->input('item_id') ;
                 $session->buyer_id = Auth::user()->id ;
+                $session->session_status = $request->input('session_status') ;
                 $session->sessions_name = $request->input('seller_id') . '_' . $request->input('item_id') . '_' . $request->input('buyer_id') ;
 
                 if($session->save()){
