@@ -26,7 +26,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('logout' ,'ClientController@logout');
 	// clients part
 	Route::get('clients' ,'ClientController@index');
-	Route::post('update_profile' ,'ClientController@update_profile');
 	Route::get('view_profile' ,'ClientController@show');
 
 	// items part
@@ -134,6 +133,9 @@ Route::post('resend_code' ,'ClientController@resendVerificationCode');
 Route::post('forgot-password/send-email' ,'ForgotPasswordController@checkEmail');
 Route::post('reset-password' ,'ForgotPasswordController@checkToken');
 Route::get('test_code' ,'ClientController@sendVerificationCode');
+
+Route::post('update_profile' ,'ClientController@update_profile');
+
 
 
 // search items
