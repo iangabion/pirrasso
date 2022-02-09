@@ -7,7 +7,7 @@ use App\Http\Resources\ProductReviewResource;
 class Items extends Model
 {
     //
-    protected $fillable = ['title', 'price', 'stock', 'is_sold', 'client_id', 'category_id', 'status_id',
+    protected $fillable = ['title', 'price', 'stock', 'total_purchase' , 'is_sold', 'client_id', 'category_id', 'status_id',
         'subcategory_id', 'description', 'location'];
     // protected $guarded = [];
     // scopes
