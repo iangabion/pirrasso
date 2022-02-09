@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group(function () {
 	// clients part
 	Route::get('clients' ,'ClientController@index');
 	Route::get('view_profile' ,'ClientController@show');
-
+	Route::post('update_profile' ,'ClientController@update_profile');
 	// items part
 	Route::post('add_items' ,'ItemsController@store');
 	Route::post('add_photos' ,'ItemsController@add_photos');
@@ -134,7 +134,7 @@ Route::post('forgot-password/send-email' ,'ForgotPasswordController@checkEmail')
 Route::post('reset-password' ,'ForgotPasswordController@checkToken');
 Route::get('test_code' ,'ClientController@sendVerificationCode');
 
-Route::post('update_profile' ,'ClientController@update_profile');
+
 
 
 
@@ -153,7 +153,7 @@ Route::get('get_admin', 'SmsController@get_admin');
 Route::post('sms_sender', 'SMSController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
 Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::post('enable_disable', 'SMSController@enable_disable');
+Route::post('enable_disable', 'SMSController@enable_disable'); 
 // Route::get('sendMessage', 'SMSController@sendMessage');
 
 
