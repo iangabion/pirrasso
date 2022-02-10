@@ -55,6 +55,6 @@ class ForgotPasswordController extends Controller
         $this->reset_password($valid,$request->password);
         $client  = Client::where('email',$request->email)->first();
         $accessToken = $client->createToken('authToken')->accessToken;
-        return response(['user' => new ClientResource($client), 'accessToken' => $accessToken]);
+        return response(['user' => new ClientResource($client),  'accessToken' => $accessToken],200);
     }
 }
