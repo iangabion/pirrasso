@@ -54,6 +54,7 @@ class ForgotPasswordController extends Controller
         if($timediff > 15) return response("expired token",401);
         $this->reset_password($valid,$request->password);
         $client  = Client::where('email',$request->email)->first();
-        return response(['user' => new ClientResource($client)],200);
+        $accessToken = $client->createToken('authToken')->accessToken;
+        return response(['user' => new ClientResource($client), 'accessToken' => $accessToken]);
     }
 }
