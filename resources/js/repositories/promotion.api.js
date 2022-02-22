@@ -1,0 +1,1 @@
+export const getPromotion = () => axios.get('indexPromotion')

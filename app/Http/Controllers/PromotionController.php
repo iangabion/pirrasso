@@ -9,7 +9,7 @@ class PromotionController extends Controller
 {
     //
     public function index(){
-        $q = Promotion::get();
+        $q = Promotion::where('is_approved', 1)->get();
         return $q;
     }
 

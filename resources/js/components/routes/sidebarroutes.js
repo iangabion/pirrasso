@@ -8,6 +8,7 @@ import show_item from '../item/show'
 import index_seller from '../seller/index'
 import approved_items from '../approved_items/index'
 import test from '../test/test.vue'
+import promotions from '../settings/promotions/index'
 export default [{
         path: '/categories',
         component: show_category,
@@ -70,5 +71,11 @@ export default [{
         path: '/test',
         component: test,
         name: 'test'
-    }
+    },
+    {
+        path: '/promotions',
+        component: promotions,
+        name: 'promotions',
+
+    },
 ]
