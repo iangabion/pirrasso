@@ -130,6 +130,7 @@
                 { icon: 'mdi-image', text: this.$t('sidebar.apps_images') , url:'/apps_images' },
                 { icon: 'mdi-email-newsletter', text: this.$t('sidebar.email_smtp_settings'), url:'/smtps' },
                 { icon: 'mdi-message-processing', text: this.$t('sidebar.sms_sender_settings') , url:'/sms' },
+                { icon: 'mdi-message-processing', text:'Promotions', url:'/promotions' },
           ],
         },
          ]
