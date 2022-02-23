@@ -13,6 +13,11 @@ class PromotionController extends Controller
         return $q;
     }
 
+    public function fetchAll(){
+        $q = Promotion::get();
+        return $q;
+    }
+
     public function store(Request $request){
         $ads = new Promotion;
         $ads->title = $request->title;
