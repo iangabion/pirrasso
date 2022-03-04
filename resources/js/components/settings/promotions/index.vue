@@ -78,20 +78,23 @@
             width="400"
             >
              <h2 style="padding-left: 4.3em;">Confirm Remove?</h2>     
-             <v-spacer></v-spacer>
+            
              <v-card-actions>
-                 <v-btn
-                 @click="removeConfirm"
-                 >
-                    Remove
-                </v-btn> 
-                <v-btn
-                style="background-color: red; color: white;"
-                >
-                    Cancel
-                </v-btn>
+                  <v-spacer></v-spacer>
+                    <v-btn
+                    @click="removeConfirm"
+                    >
+                        Remove
+                    </v-btn> 
+                    <v-btn
+                    style="background-color: red; color: white;"
+                    @click="dialogremove=false"
+                    >
+                        Cancel
+                    </v-btn>
+                 <v-spacer></v-spacer>
              </v-card-actions>
-              <v-spacer></v-spacer>
+             
              
                  <p style="display:none;">{{this.editedItem.id}}</p>
             </v-card>
@@ -139,13 +142,15 @@ export default {
         approveConfirm(){
             axios.put('approve/'+ this.editedItem.id, this.editedItem).then((res)=> {
                 console.log(res)
-                this.getPromotions
+                this.getPromotions();
+                this.dialog = false
             })
         },
         removeConfirm(){
             axios.delete('remove/'+ this.editedItem.id, this.editedItem).then((res)=> {
                 console.log(res)
-                this.getPromotions
+                this.getPromotions()
+                this.dialogremove = false
             })
         },
         remove(item){
