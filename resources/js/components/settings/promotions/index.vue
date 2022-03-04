@@ -58,6 +58,7 @@
                      Approve
                 </v-btn> 
                 <v-btn
+                @click="dialog=false"
                 style="background-color: red; color: white;"
                 >
                     Cancel
