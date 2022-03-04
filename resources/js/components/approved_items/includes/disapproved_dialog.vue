@@ -100,7 +100,7 @@ export default {
             this.$emit('closedisapproved');
         },
         sendMail() {
-            alert('click');
+            alert('Proceed');
             this.progress_circular = true;
             DisapproveMail (this.payload).then((response) => {
                 this.progress_circular = false;

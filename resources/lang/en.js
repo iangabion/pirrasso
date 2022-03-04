@@ -14,8 +14,8 @@ export default {
     sidebar: {
         dashboard: "Dashboard",
         items: "Items",
-        sellers: "Sellers",
-        approved_items: "Approved Items",
+        sellers: "Users",
+        approved_items: "Pending Items",
         item_categories: "Item Categories",
         item_status: "Item Status",
         apps_images: "Apps Images",

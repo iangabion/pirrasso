@@ -13,8 +13,8 @@ export default {
     sidebar: {
         dashboard: "Tableau de bord",
         items: "Articles",
-        sellers: "Vendeurs",
-        approved_items: "Approuverd Articles",
+        sellers: "Utilisateur",
+        approved_items: "Articles en attente.",
         item_categories: "Catégories d'articles",
         item_status: "Statut de l'article",
         apps_images: "Images de l'applicationlication",

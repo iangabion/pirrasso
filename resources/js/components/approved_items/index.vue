@@ -3,6 +3,11 @@
         <v-toolbar>
             <v-toolbar-title class="px-4 text-capitalize">{{$t('approved_items.to_be_approved_items')}}</v-toolbar-title>
             <v-spacer></v-spacer>
+
+        
+
+
+            
         </v-toolbar>
         <disapprovedDialog
             :dialog="dialog"
@@ -22,6 +27,7 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
+                          
                         >
                             <template v-slot:item.created_at="{ item }">
                                 <span>
@@ -82,16 +88,33 @@
                                         </v-btn>
                                     </template>
                                     <span>{{$t('approved_items.disapproved')}}</span>
-                                </v-tooltip>
+                                </v-tooltip> 
+                                 <v-simple-checkbox
+                                    v-model="item.pending"
+                                   :label="item.id"
+                                   :value="item.id"
+                                   
+                                   @click="checked(item)"
+                                  ></v-simple-checkbox>
+                                    
                             </template>
                              <template v-slot:no-data>
                             {{$t('settings.smtp.no_data_found')}}
                             </template>
                         </v-data-table>
+                        <v-card-actions>
+                        <v-btn
+                             @click="updatechecked()"
+                        >
+                            approve
+                        </v-btn>
+                        </v-card-actions>
+                     
                     </v-card>
                 </v-flex>
             </v-layout>
         </v-container>
+        
         <v-dialog       
             v-model="progress_circular"
             max-width="100"
@@ -116,9 +139,15 @@ export default {
     },
     data(){
         return{
+            item:{
+                pending: ''
+            },
+           
+            checkbox1: true,
             items:[],
             dialog:false,
-            selected_item:{},
+            selected_item:[],
+         
             selected_data:{},
             progress_circular : false,
             drawer: false,
@@ -146,7 +175,19 @@ export default {
             ]
         }
     },
+     watch: {
+        // "item.pending": function () {
+        //     if (this.item.pending==false) this.clearBox()
+        // }
+
+        
+    },
     methods:{
+     
+         flush() {
+             this.selected_item.splice(0);
+        },
+       
         build(){
             GetToApprovedItems().then(({data}) => {
                 console.log(data, 'test')
@@ -163,6 +204,13 @@ export default {
                 this.dialog = true
             })
         },
+
+        checked(item){
+            this.selected_item.push(item.id);
+            console.log(this.selected_item.id)
+        },
+
+
         approved(item){
             this.progress_circular = true;
             let payload = this.item;
@@ -193,10 +241,20 @@ export default {
             this.selected_data = item
             console.log(item , 'sad')
         },
+
+        updatechecked(){
+            axios.post('bulkapprove', this.selected_item).then(res=>{
+                console.log(res)
+                this.flush();
+                 this.build();
+              
+            })
+        }
     },
     created(){
         this.build();
-    }
+    },
+    
 }
 </script>
 <style scoped>
