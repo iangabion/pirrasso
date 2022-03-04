@@ -17,30 +17,37 @@
             </div>
             
         </v-toolbar>
-        <div>
-            <v-data-table
-                :headers="headers"
-                :items="promotions"
-              
-                hide-default-footer
-                class="elevation-1"
-            >
-            <template v-slot:item.actions="{ item }">
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="approve(item)"
-                >
-                    mdi-check-bold
-                </v-icon>
-                <v-icon
-                    small
-                   @click="remove(item)"
-                >
-                    mdi-delete
-                </v-icon>
-                </template>
-            </v-data-table>
+        <v-container grid-list-xs>
+            <v-layout row wrap>
+                <v-flex xs12>
+                    <v-card>
+                        <v-data-table
+                            :headers="headers"
+                            :items="promotions"
+                        
+                            hide-default-footer
+                            class="elevation-1"
+                        >
+                        <template v-slot:item.actions="{ item }">
+                            <v-icon
+                                small
+                                class="mr-2"
+                                @click="approve(item)"
+                            >
+                                mdi-check-bold
+                            </v-icon>
+                            <v-icon
+                                small
+                            @click="remove(item)"
+                            >
+                                mdi-delete
+                            </v-icon>
+                            </template>
+                        </v-data-table>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
             <v-dialog
             v-model="dialog"
               width="400"

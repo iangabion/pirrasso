@@ -376,9 +376,7 @@ export default {
 
     }),
 
-    mounted(){
-        this.search_item(key);
-    },
+   
 
     methods: {
         search_item(key){
