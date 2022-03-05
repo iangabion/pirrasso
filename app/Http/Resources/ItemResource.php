@@ -58,6 +58,7 @@ class ItemResource extends JsonResource
             'is_urgent' => $this->is_urgent,
             'is_displayed' => $this->is_displayed,
             'is_active' => $this->is_active,
+            'is_approved'=> $this->is_approved,
             'variation'=> $this->variation,
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,

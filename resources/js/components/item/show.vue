@@ -375,6 +375,9 @@ export default {
         }
 
     }),
+
+   
+
     methods: {
         search_item(key){
                 this.loading=true

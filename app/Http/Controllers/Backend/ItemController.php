@@ -141,6 +141,12 @@ class ItemController extends Controller
                         ->update(['is_approved' => 1]);
     }
 
+    public function bulkApprove(Request $request) {
+  
+        return Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+
+    }
+
     public function deleteApprovedItem($id)
     {
         $smtp_delete= Items::find($id);

@@ -97,6 +97,7 @@ Route::middleware('auth:web')->group(function () {
         Route::put('approve/{id}','PromotionController@approve');
         Route::delete('remove/{id}','PromotionController@remove');
        
+        Route::post('bulkapprove', 'ItemController@bulkApprove');
 
     });
 });

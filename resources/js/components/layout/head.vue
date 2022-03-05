@@ -106,10 +106,10 @@ export default {
           this.timer = null;
         }
         this.timer = setTimeout(()=>{
-          axios.post('api/global_search_item/', {searchkey:key}).then((response)=>{
+          axios.post('api/global_search_item', {searchkey:key}).then((response)=>{
             console.log(response.data, "global item")
             this.global_item = response.data
-              axios.post('api/global_search_client/', {searchkey:key}).then((response)=>{
+              axios.post('api/global_search_client', {searchkey:key}).then((response)=>{
                 console.log(response.data, "global client")
                 // this.global_client = response.data
                 response.data.forEach(v => {
