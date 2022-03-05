@@ -24,7 +24,7 @@ class SearchController extends Controller
     public function searchchan(Request $request)
     {
 
-        $item = Items::whereHas('subcategory', function($q) use($request){
+        $item = Items::where('is_approved', 1)->whereHas('subcategory', function($q) use($request){
             if($request->input('subcat_category')!=''){
                 $q->where('id', $request->input('subcat_category'));
             }
@@ -44,7 +44,7 @@ class SearchController extends Controller
         else
         if($request->input('searchkey')===$request->input('subcat_category'))
         {
-            $item = Items::whereHas('subcategory', function ($q) use($request){
+            $item = Items::where('is_approved',1)->whereHas('subcategory', function ($q) use($request){
                 $q->where('id', $request->input('subcat_category'));
             });
         }
