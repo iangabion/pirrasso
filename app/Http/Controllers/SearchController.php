@@ -28,10 +28,7 @@ class SearchController extends Controller
             if($request->input('subcat_category')!=''){
                 $q->where('id', $request->input('subcat_category'));
             }
-            // else if($request->input('searchkey')===$request->input('subcat_category'))
-            // {
-            //     $q->where('id', $request->input('subcat_category'));
-            // }
+            
         });
         If ($request->input('searchkey') != ''){
             $keyword = $request->input('searchkey');
