@@ -29,6 +29,21 @@
                             :items="items"
                           
                         >
+                              <template v-slot:item.checkbox="{ item }">
+                                <span>
+                                    <v-tooltip>
+                                    <template v-slot:activator="{ on }">
+                                        <v-checkbox  
+                                            type="checkbox"
+                                            v-on="on"
+                                            v-model="test"                                             
+                                            :value="item.id"                                           
+                                        ></v-checkbox>
+                                    </template>
+                                </v-tooltip>
+                                </span>
+                            </template>
+
                             <template v-slot:item.created_at="{ item }">
                                 <span>
                                     {{$defaultDate(item.created_at) }}
@@ -88,26 +103,32 @@
                                         </v-btn>
                                     </template>
                                     <span>{{$t('approved_items.disapproved')}}</span>
-                                </v-tooltip> 
-                                 <v-simple-checkbox
-                                    v-model="item.pending"
-                                   :label="item.id"
-                                   :value="item.id"
-                                   
-                                   @click="checked(item)"
-                                  ></v-simple-checkbox>
-                                    
+                                </v-tooltip>
+                                <!-- <v-tooltip>
+                                    <template v-slot:activator="{ on }">
+                                        <v-checkbox  
+                                            type="checkbox"
+                                            v-on="on"
+                                            v-model="test"                                             
+                                            :value="item.id"                                           
+                                        ></v-checkbox>
+                                    </template>
+                                </v-tooltip> -->
                             </template>
                              <template v-slot:no-data>
                             {{$t('settings.smtp.no_data_found')}}
                             </template>
                         </v-data-table>
                         <v-card-actions>
-                        <v-btn
-                             @click="updatechecked()"
-                        >
-                            approve
-                        </v-btn>
+                            <v-spacer></v-spacer>
+                                <v-btn
+                                    @click="updatechecked()"
+                                   style="background-color: green!important;color:white!important;"
+                                   elevation="3"
+                                     
+                                >
+                                 approve marked
+                                </v-btn>
                         </v-card-actions>
                      
                     </v-card>
@@ -139,9 +160,8 @@ export default {
     },
     data(){
         return{
-            item:{
-                pending: ''
-            },
+           
+            test:[],
            
             checkbox1: true,
             items:[],
@@ -166,27 +186,29 @@ export default {
     computed: {
         headers(){
             return [
+                { text: ' ', value: 'checkbox', sortable: false, width:'5%',align: 'center'},
                 { text: this.$t('approved_items.item_name'),width:'20%', value: 'title' },
                 { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
                 { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
                 { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
                 { text: this.$t('approved_items.added_on'), value: 'created_at', width:'10%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'20%' ,align: 'center'},
+                { text: 'Actions', value: 'actions', sortable: false, width:'80%',align: 'center'},
+            
             ]
         }
     },
-     watch: {
-        // "item.pending": function () {
-        //     if (this.item.pending==false) this.clearBox()
-        // }
-
-        
-    },
+    //  watch: {
+    //     "item.pending": function () {
+    //         if (this.item.pending==false) {
+    //             this.selected_item.push(item);
+    //         }
+    //     }
+    // },
     methods:{
      
-         flush() {
-             this.selected_item.splice(0);
-        },
+        //  flush() {
+        //      this.selected_item.splice(0);
+        // },
        
         build(){
             GetToApprovedItems().then(({data}) => {
@@ -205,10 +227,10 @@ export default {
             })
         },
 
-        checked(item){
-            this.selected_item.push(item.id);
-            console.log(this.selected_item.id)
-        },
+        // checked(item){
+        //     this.selected_item.push(item.id);
+        //     console.log(this.selected_item.id)
+        // },
 
 
         approved(item){
@@ -243,9 +265,9 @@ export default {
         },
 
         updatechecked(){
-            axios.post('bulkapprove', this.selected_item).then(res=>{
+            // console.log(this.test)
+            axios.post('bulkapprove', this.test).then(res=>{
                 console.log(res)
-                this.flush();
                  this.build();
               
             })
