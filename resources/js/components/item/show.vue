@@ -76,8 +76,8 @@
                     </v-flex>
 <!-- divide -->
                 <v-flex xs10>
-                <v-card min-height="80vh" class="ma-2">
-                    <v-container>
+                <v-card min-height="80vh" max-height="20vh" class="ma-2 scroll">
+                    <v-container >
 <!-- start -->
                             <v-layout row wrap>
                                 <!-- <v-card> -->
@@ -89,7 +89,9 @@
                                     <v-flex xs12 v-else>
                                         <v-layout row wrap v-if="categories_item.length">
                                             <v-flex  xs12 sm2  v-for="(items,index) in categories_item" :key="items.id" >
-                                                <v-card>
+                                                <v-card
+                                              
+                                                >
                                                     <v-list-item>
                                                     <v-list-item-avatar color="grey">
                                                         <v-img class="pa-2"
@@ -427,7 +429,7 @@ export default {
         },
 
         get_categories() {
-            axios.get('/api/categories', {})
+            axios.get('/api/categories')
 
             .then(response => {
                 this.categories = response.data;
@@ -437,13 +439,7 @@ export default {
                     subcategories: 0
                 }
                 this.categories.unshift(payload)
-                // this.categories_with = response.data.filter(chan_filter=>
-                //     chan_filter.id==2
-                // );
-                // this.categories_witho = response.data.filter(chan_filter=>
-                //     chan_filter.id !=2
-                // )
-                this.search_item(key)
+                // this.search_item(key)
                 this.get_items(this.categories[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -491,7 +487,7 @@ export default {
         activate(){
             // axios.put('/subcategories/'+id, this.subcat )
             // return
-            axios.put('activate/',this.payload).then(res=> {
+            axios.put('activate',this.payload).then(res=> {
                 console.log(res, 'activate')
                   this.get_categories()
                   this.dialogActivate = false
@@ -500,7 +496,7 @@ export default {
         deactivate(){
               console.log(this.payload, 'test')
             // return
-            axios.put('deactivate/',this.payload).then(res=> {
+            axios.put('deactivate',this.payload).then(res=> {
                 console.log(res, 'deactivate')
                   this.get_categories()
                   this.dialogDeActivate = false
@@ -523,7 +519,6 @@ export default {
             this.editedIndex = this.categories_item.indexOf(items)
             this.payload = JSON.parse(JSON.stringify(items))
             this.dialogDeActivate = true
-
         }
     },
     created() {
@@ -578,5 +573,9 @@ export default {
     }
     .hide{
         display: none;
+    }
+
+    .scroll {
+         overflow-y: scroll
     }
 </style>
