@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Client ;
+use App\User;
 use Auth ;
 use Illuminate\Support\Facades\DB;
 
@@ -172,5 +173,26 @@ class ClientController extends Controller
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function get_profile(){
+        return Auth::user();
+    }
+
+    public function edit_admin(Request $request, $id){
+
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:clients,email',
+            'password' => 'required|min:8'
+        ]);
+
+        $admin = User::find($id);
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->input('password'));
+        $admin->save();
+        return $admin;
     }
 }
