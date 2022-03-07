@@ -54,6 +54,8 @@ Route::middleware('auth:web')->group(function () {
 
 
         Route::get('/logout' , 'ClientController@out');
+        Route::get('user_profile', 'ClientController@get_profile');
+        Route::post('edit_admin/{id}','ClientController@edit_admin');
 
         Route::get('getweekly' ,'ItemController@getweekly');
         // Route::get('expirationDate', 'ItemController@expirationDate');
@@ -98,6 +100,7 @@ Route::middleware('auth:web')->group(function () {
         Route::delete('remove/{id}','PromotionController@remove');
        
         Route::post('bulkapprove', 'ItemController@bulkApprove');
+       
 
     });
 });
