@@ -143,7 +143,8 @@ class ItemController extends Controller
 
     public function bulkApprove(Request $request) {
   
-        return Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+        $items = Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+        return $items;
 
     }
 

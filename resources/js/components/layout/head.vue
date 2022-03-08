@@ -57,6 +57,7 @@
                     <v-list-item class="dd">
                       <v-btn
                       text
+                      @click="dialog=true"
                       >
                        <span>Edit Profile</span>
                       </v-btn>
@@ -75,17 +76,126 @@
       <!-- <v-btn icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn> -->
+      <v-dialog
+        v-model="dialog"
+        persistent
+        width="25%"
+        max-height="100%"
+      >
+      <v-card height="100%">
+        <v-card-title>
+          Edit Admin Profile
+        </v-card-title>
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+          class="padding"
+        >
+          <v-flex xs12>
+            <v-subheader class="px0">Name</v-subheader>
+            <v-text-field
+              dense
+              filled
+              solo
+              v-model="user.name"
+              :rules="nameRules"
+              required
+            >
+
+            </v-text-field>
+          </v-flex>
+          <v-flex
+          xs12
+          >
+            <v-subheader class="px-0">Email</v-subheader>
+            <v-text-field 
+            dense
+            filled
+            solo
+            v-model="user.email"
+            :rules="emailRules"
+            required>
+            </v-text-field>
+          </v-flex>
+          <v-flex xs12>
+                <v-subheader>Password</v-subheader>
+                <v-text-field
+                    dense
+                    filled
+                    solo
+                    v-model="user.password"
+                    :type="showPassword ? 'text' : 'password'"
+                    required
+                    :rules="passRules"
+                    label="Password"
+                    :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="showPassword = !showPassword"
+                  ></v-text-field>
+                 
+          </v-flex>
+           <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+          color="primary"
+          dense
+          elevation="3"
+          @click="edit_profile()"
+          >
+            Submit
+          </v-btn>
+           <v-btn
+          color="error"
+          dense
+          elevation="3"
+          @click="dialog=false"
+          >
+            Cancel
+          </v-btn>
+           <v-spacer></v-spacer>
+        </v-card-actions>
+          
+
+        </v-form>
+
+       
+      </v-card>
+
+
+
+      </v-dialog>
     </v-app-bar>
 </template>
 <script>
 import Translation from './translation.vue'
-
+import { validationMixin } from "vuelidate";
+import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 export default {
-    
+    mixins: [validationMixin],
+    validations: {
+    password: { required, minLength: minLength(6) },
+    confirmPassword: { sameAsPassword: sameAs("formData.password") }
+  },
   components:{
     'app-header' : Translation,
   },
   data: () => ({
+
+    valid: true,
+     nameRules: [
+        v => !!v || "Name is Required",
+        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      emailRules: [
+        v => !!v ||"E-mail is Required",
+        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      passRules: [
+        v => !!v || "Password is Required",
+        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+    dialog: false,
+    user:[],
     select:'',
     form:{
       search:'',
@@ -96,6 +206,13 @@ export default {
     merge:[],
     result:'',
     loading: false,
+    formData: {
+      name: '',
+      email:'',
+      password:'',
+      confirmPassword: ''
+    },
+    showPassword: false
   }),
   methods : {
     global_search(key){
@@ -160,11 +277,35 @@ export default {
           this.$router.push({path:`/items`, query:{ item: select }})
         }
       })
+    },
+    get_adminProfile(){
+      axios.get('user_profile').then(res=>{
+        this.user = res.data
+        console.log(res)
+      })
+    },
+    edit_profile(){
+      axios.post('edit_admin/' + this.user.id, this.user).then(res=>{
+        this.user = res.data
+        console.log(res)
+        this.dialog = false
+      })
     }
   },
-  // mounted(){
-  //   this.global_search()
-  // }
+  mounted(){
+    this.get_adminProfile()
+  },
+  computed:{
+    passwordErrors() {
+      const errors = [];
+      if (!this.$v.password.$dirty) return errors;
+      !this.$v.password.minLength &&
+        errors.push("Password must be at least 6 characters long");
+      !this.$v.password.required && errors.push("Password is required");
+      return errors;
+    },
+  
+  },
   watch:{
     "form.search":{
       handler(val){
@@ -181,12 +322,24 @@ export default {
     display:flex;
     flex-direction:column;
     align-items:left;
-    height: 120px;
+    height: 65px;
     width: 120px;
    
   }
   /* .hidden-sm-and-down{
        color: rgb(133, 133, 131);
   } */
+
+  .v-subheader{
+    height: 20px !important;
+    margin-bottom: 1px;
+    margin-top: 7px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.padding {
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
 </style>
