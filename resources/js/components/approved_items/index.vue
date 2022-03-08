@@ -27,7 +27,7 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
-                          
+                            row-height="2px"
                         >
                               <template v-slot:item.checkbox="{ item }">
                                 <span>
@@ -50,7 +50,7 @@
                                 </span>
                             </template>
                             <template v-slot:item.actions="{ item }">
-                                <v-tooltip bottom>
+                                <!-- <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
                                         <v-btn
                                             class="mr-2"
@@ -67,40 +67,48 @@
                                         </v-btn>
                                     </template>
                                     <span>view</span>
-                                </v-tooltip>
+                                </v-tooltip> -->
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn
-                                            class="mr-2"
+                                        <!-- <v-btn
+                                            class="mr-1"
                                             fab
                                             dark
                                             v-on="on"
-                                            small
-                                            @click="approved(item)"
+                                            icon
+                                           
                                             color="primary"
-                                        >
-                                            <v-icon dark small>
-                                                mdi-check
+                                        > -->
+                                            <v-icon dark small
+                                            v-on="on"
+                                             @click="approved(item)"
+                                             color="green"
+                                            >
+                                                mdi-check-circle
                                             </v-icon>
-                                        </v-btn>
+                                        <!-- </v-btn> -->
                                     </template>
                                     <span>{{$t('approved_items.approve')}}</span>
                                 </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn
-                                            class="mr-2"
+                                        <!-- <v-btn
+                                            class="mr-1"
                                             fab
                                             dark
                                             v-on="on"
-                                            small
+                                            icon
                                             color="error"
-                                            @click="disapproved(item)"
-                                        >
-                                            <v-icon dark small>
-                                                mdi-close
+                                           
+                                        > -->
+                                            <v-icon dark small
+                                            v-on="on"
+                                             @click="disapproved(item)"
+                                             color="error"
+                                            >
+                                                mdi-close-circle
                                             </v-icon>
-                                        </v-btn>
+                                        <!-- </v-btn> -->
                                     </template>
                                     <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
@@ -186,13 +194,17 @@ export default {
     computed: {
         headers(){
             return [
-                { text: ' ', value: 'checkbox', sortable: false, width:'5%',align: 'center'},
-                { text: this.$t('approved_items.item_name'),width:'20%', value: 'title' },
-                { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
-                { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
-                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'10%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'80%',align: 'center'},
+                { text: ' ', value: 'checkbox', sortable: false, width:'5%', height:'2%', align: 'center'},
+                { text: 'Image',width:'15%', value: 'title' },
+                { text: this.$t('approved_items.item_name'), width:'15%', value: 'title' },
+                { text: this.$t('approved_items.category'), value: 'category.name', width:'10%' },
+                { text: this.$t('approved_items.price'), sortable:false, value: 'price', width:'5%' },
+                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'10%'},
+                { text: 'Latitude', value: 'latitude', width:'10%' },
+                { text: 'Longitude', value: 'longitude', width:'10%' },
+                { text: 'Location', value: 'location', width:'20%' },
+                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'20%' },
+                { text: 'Actions', value: 'actions', sortable: false, width:'20%',align: 'center'},
             
             ]
         }
@@ -269,8 +281,13 @@ export default {
             axios.post('bulkapprove', this.test).then(res=>{
                 console.log(res)
                  this.build();
+                 this.test=[];
               
             })
+        },
+
+        bulksend(){
+
         }
     },
     created(){

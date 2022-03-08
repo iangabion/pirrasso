@@ -29,7 +29,7 @@ export default {
         item_name: "Item Name",
         category: "Category",
         price: "Price",
-        seller_username: "Seller Username",
+        seller_username: "Username",
         added_on: "Added On",
 
         disapproved_dialog: {

@@ -99,14 +99,14 @@
                                                         ></v-img>
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
-                                                        <v-list-item-title >{{items.owner.username}}</v-list-item-title>
+                                                        <v-list-item-title >{{items.owner.username ? items.owner.username : items.owner.email}}</v-list-item-title>
                                                         <!-- <v-list-item-subtitle>10 minutes ago</v-list-item-subtitle> -->
                                                     </v-list-item-content>
                                                     </v-list-item>
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images.filename ? items.images.filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images[0] ? items.images[0]: 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                     ></v-img>
                                                     <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>

@@ -28,7 +28,7 @@ export default {
         item_name: "Nom d'article",
         category: "Catégorie",
         price: "Prix",
-        seller_username: "Nom d'utilisateur du vendeur",
+        seller_username: "Nom d'utilisateur",
         added_on: "Ajouté le",
 
         disapproved_dialog: {
