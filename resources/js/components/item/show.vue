@@ -106,7 +106,7 @@
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images[0] ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images.filename ? items.images.filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                     ></v-img>
                                                     <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>
