@@ -153,7 +153,8 @@ Route::get('get_admin', 'SmsController@get_admin');
 Route::post('sms_sender', 'SMSController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
 Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::post('enable_disable', 'SMSController@enable_disable');
+Route::post('enable_disable', 'App\Http\Controllers\SMSController@enable_disable');
+
 
 
 

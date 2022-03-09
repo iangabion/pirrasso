@@ -54,7 +54,7 @@
                                             <v-img
                                                 max-height="150"
                                                 max-width="250"
-                                                :src="item.photos[0].filename ? item.photos[0].filename : 'images/items/default.png'"
+                                                :src="item.photos[0].filename ? item.photos[0].filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
                                             ></v-img>
                                         </v-avatar>
                                   
