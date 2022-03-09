@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Items ;
@@ -133,7 +134,9 @@ class ItemController extends Controller
     }
 
     public function getToApprovedItems(){
-        return Items::with('category','client')->where('is_approved', 0)->get();
+        $items = Items::with('category','client','photos')->where('is_approved', 0)->get();
+        // return ItemResource::collection($items);
+        return $items;
     }
 
     public function approvedItem($id){

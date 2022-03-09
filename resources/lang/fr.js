@@ -22,7 +22,7 @@ export default {
         sms_sender_settings: "Paramètres de l'expéditeur de SMS",
     },
     approved_items: {
-        to_be_approved_items: "A approuver Articles",
+        to_be_approved_items: "Articles en attente",
         approve: "Approuver",
         disapproved: "Désapprouver",
         item_name: "Nom d'article",

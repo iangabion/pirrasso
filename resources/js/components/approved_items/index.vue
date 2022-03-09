@@ -28,6 +28,7 @@
                             :headers="headers"
                             :items="items"
                             row-height="2px"
+                            
                         >
                               <template v-slot:item.checkbox="{ item }">
                                 <span>
@@ -42,6 +43,21 @@
                                     </template>
                                 </v-tooltip>
                                 </span>
+                            </template>
+                            <template v-slot:item.image="{ item }">
+                               
+                                        <v-avatar
+                                            tile
+                                            size="100px"
+                                            class="my-2"
+                                        >
+                                            <v-img
+                                                max-height="150"
+                                                max-width="250"
+                                                :src="item.photos[0].filename ? item.photos[0].filename : 'images/items/default.png'"
+                                            ></v-img>
+                                        </v-avatar>
+                                  
                             </template>
 
                             <template v-slot:item.created_at="{ item }">
@@ -137,14 +153,14 @@
                                 >
                                  approve marked
                                 </v-btn>
-                                <v-btn
+                                <!-- <v-btn
                                     @click="view_id()"
                                    style="background-color: green!important;color:white!important;"
                                    elevation="3"
                                      
                                 >
                                  view
-                                </v-btn>
+                                </v-btn> -->
 
                                 
                         </v-card-actions>
@@ -205,7 +221,7 @@ export default {
         headers(){
             return [
                 { text: ' ', value: 'checkbox', sortable: false, width:'5%', height:'2%', align: 'center'},
-                { text: 'Image',width:'15%', value: 'title' },
+                { text: 'Image',width:'10%', value: 'image' },
                 { text: this.$t('approved_items.item_name'), width:'15%', value: 'title' },
                 { text: this.$t('approved_items.category'), value: 'category.name', width:'10%' },
                 { text: this.$t('approved_items.price'), sortable:false, value: 'price', width:'5%' },

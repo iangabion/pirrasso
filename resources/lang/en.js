@@ -23,7 +23,7 @@ export default {
         sms_sender_settings: "SMS Sender Settings",
     },
     approved_items: {
-        to_be_approved_items: "To be approved Items",
+        to_be_approved_items: "Pending Items",
         approve: "Approve",
         disapproved: "Disapprove",
         item_name: "Item Name",
