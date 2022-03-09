@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Items ;
 use App\Sold ;
+use App\TwilioSwitch;
 
 class ItemController extends Controller
 {
@@ -146,7 +147,27 @@ class ItemController extends Controller
         $items = Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
         return $items;
 
+        // return Items::get('client_id');
+
     }
+
+    public function bulksend(Request $request){
+        // $switch = TwilioSwitch::find(1)->pluck('switch')->first();
+      
+            $items = Items::with('client')->whereIn('id', $request->all())->get(['client_id']);
+
+            // $item = $items->get(['client.mobile']);
+            return $items;
+        
+    
+    }
+
+    // public function bulkApprove(Request $request) {
+  
+    //     $items = Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+    //     return $items;
+
+    // }
 
     public function deleteApprovedItem($id)
     {

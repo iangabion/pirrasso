@@ -137,6 +137,16 @@
                                 >
                                  approve marked
                                 </v-btn>
+                                <v-btn
+                                    @click="view_id()"
+                                   style="background-color: green!important;color:white!important;"
+                                   elevation="3"
+                                     
+                                >
+                                 view
+                                </v-btn>
+
+                                
                         </v-card-actions>
                      
                     </v-card>
@@ -199,7 +209,8 @@ export default {
                 { text: this.$t('approved_items.item_name'), width:'15%', value: 'title' },
                 { text: this.$t('approved_items.category'), value: 'category.name', width:'10%' },
                 { text: this.$t('approved_items.price'), sortable:false, value: 'price', width:'5%' },
-                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'10%'},
+                { text: this.$t('approved_items.seller_username'),align: 'center',sortable: false,value: 'client.username', width:'10%'},
+                { text: 'Description', value: 'description', width:'40%', align: 'center' },
                 { text: 'Latitude', value: 'latitude', width:'10%' },
                 { text: 'Longitude', value: 'longitude', width:'10%' },
                 { text: 'Location', value: 'location', width:'20%' },
@@ -286,8 +297,12 @@ export default {
             })
         },
 
-        bulksend(){
-
+        view_id(){
+            axios.post('bulksend', this.test).then(res=>{
+                console.log(res)
+                
+              
+            })
         }
     },
     created(){
