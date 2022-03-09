@@ -56,6 +56,7 @@ class ItemResource extends JsonResource
             'apartment_filter' => $apartment ,
             'vehicles_filter' => $vehicle ,
             'is_urgent' => $this->is_urgent,
+            'total_purchase' => $this->total_purchase,
             'is_displayed' => $this->is_displayed,
             'is_active' => $this->is_active,
             'is_approved'=> $this->is_approved,

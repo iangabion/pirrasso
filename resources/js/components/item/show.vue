@@ -88,7 +88,7 @@
                                     </v-flex>
                                     <v-flex xs12 v-else>
                                         <v-layout row wrap v-if="categories_item.length">
-                                            <v-flex  xs12 sm2  v-for="(items,index) in categories_item" :key="items.id" >
+                                            <v-flex  xs8 sm3  v-for="(items,index) in categories_item" :key="items.id" >
                                                 <v-card
                                               
                                                 >
@@ -120,9 +120,87 @@
                                                     <v-list-item>
                                                     <v-list-item-content class="text-capitalize">
                                                         <v-list-item-title class="py-1 font-weight-bold" >  {{items.title}}</v-list-item-title>
-                                                        <v-list-item-subtitle > <v-icon>mdi-coin</v-icon> PHP {{items.price}}</v-list-item-subtitle>
-                                                        <v-list-item-subtitle class="py-1"> <v-icon>mdi-comment</v-icon> {{items.description}}</v-list-item-subtitle>
-                                                        <v-list-item-subtitle ><v-icon>mdi-star-box</v-icon> {{items.status}}</v-list-item-subtitle>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-grid-large</v-icon> 
+                                                                        {{items.category.name}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Category Type</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle > 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-cash-usd</v-icon> 
+                                                                        {{items.price}}
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Price</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle class="py-1"> 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-comment</v-icon> 
+                                                                        {{items.description}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Description</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle class="py-1"> 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-map-marker</v-icon>
+                                                                        <span class="location_font">{{items.location}}</span>
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Location</span>
+                                                         </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-star-box</v-icon> {{items.status}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Status</span>
+                                                        </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-calendar</v-icon> 
+                                                                      {{items.created_at}}
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Date Created</span>
+                                                        </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-cart-outline</v-icon> {{items.total_purchase}}</v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Total Purchased</span>
+                                                        </v-tooltip>
                                                         <v-list-item-subtitle >
                                                         <span v-if="(items.is_urgent)==1">
                                                             <v-icon>mdi-alert-octagon</v-icon>
@@ -159,9 +237,9 @@
                                                     <v-divider></v-divider>
                                                     <v-card-actions >
 
-                                                    <v-btn icon>
+                                                    <!-- <v-btn icon>
                                                         <v-icon @click="show(items , index)" color="primary">mdi-eye</v-icon>
-                                                    </v-btn>
+                                                    </v-btn> -->
                                                     <!-- <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="yellow">mdi mdi-coin</v-icon>
                                                     </v-btn> -->
@@ -280,7 +358,7 @@
                                                     </v-card>
                                                 </v-dialog>
 <!-- dia2 -->
-                                                    <v-dialog
+                                                    <!-- <v-dialog
                                                         v-model="dialogItem"
                                                         width="500px"
                                                     >
@@ -291,12 +369,12 @@
                                                                 <img
                                                                     class="image"
                                                                     :alt="payload.image"
-                                                                    :src="payload.image? payload.image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
+                                                                    :src="payload.images.filename? payload.images.filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
                                                                 >
                                                             </v-responsive>
                                                             <v-list-item>
                                                             <v-list-item-content class="text-capitalize">
-                                                                <v-list-item-title class="py-1 font-weight-bold" >  {{payload.title}}}</v-list-item-title>
+                                                                <v-list-item-title class="py-1 font-weight-bold" >  {{payload.title}}</v-list-item-title>
                                                                 <v-list-item-subtitle > <v-icon>mdi-coin</v-icon> PHP {{items.price}}</v-list-item-subtitle>
                                                                 <v-list-item-subtitle class="py-1"> <v-icon>mdi-comment</v-icon> {{items.description}}</v-list-item-subtitle>
                                                                 <v-list-item-subtitle ><span v-if="(items.is_urgent)==1"><v-icon>mdi-alert-octagon</v-icon> Urgent </span></v-list-item-subtitle>
@@ -306,7 +384,7 @@
 
 
                                                         </v-card>
-                                                    </v-dialog>                                   
+                                                    </v-dialog>                                    -->
 <!-- dia3 -->
                                             </v-flex>
                                         </v-layout>
@@ -585,5 +663,8 @@ export default {
 
     .scroll {
          overflow-y: scroll
+    }
+    .location_font {
+        font-size: 11px;
     }
 </style>
