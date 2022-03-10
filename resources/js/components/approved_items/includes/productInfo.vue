@@ -88,7 +88,7 @@
                     <v-carousel-item
                         v-for="(item,i) in item.photos"
                         :key="i"
-                        :src="item.link"
+                        :src="item.filename"
                         reverse-transition="fade-transition"
                         transition="fade-transition"
                     ></v-carousel-item>
@@ -96,7 +96,7 @@
                 <div
                     style="text-align: center;font-weight: bold;padding-top: 10px;"
                     class="text-capitalize"
-                > sample photo's </div>
+                > sample photos </div>
             </div>
         </v-navigation-drawer>
     </v-sheet>

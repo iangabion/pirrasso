@@ -53,6 +53,30 @@ class SmsController extends Controller
         }
        
     }
+
+    // public function sms_sender_bulk(Request $request){
+    //     $switch = TwilioSwitch::find(1)->pluck('switch')->first();
+    //     if ($switch==1){
+    //         $items = Items::whereIn('client_id', $request->all() )->get('title');
+    //         $receiverNumber = '+' . $request->input('number');
+    //         $message = "This is a message from BonPlan. Your " . $items . " item has been Approved.";
+    //         try {
+    //             $account_sid = 'ACfb0e0ca8f0786a4b8c937db4eb8d8daa';
+    //             $auth_token = 'e70d8db712c8e1b6abb13e50255a4eaf';
+    //             $twilio_number = '+16203191424';
+    //             $client = new Client($account_sid, $auth_token);
+    //             $client->messages->create($receiverNumber, [
+    //                 'from' => $twilio_number, 
+    //                 'body' => $message]);
+    //             return('SMS Sent Successfully.');
+    //         } catch (Exception $e) {
+    //             dd("Error: ". $e->getMessage());
+    //         }
+    //     }else{
+    //         return "sms is currently disabled";
+    //     }
+       
+    // }
     public function send_sms_test(Request $request){
         // $user = Auth::user();
         // $admin = User::find($user)->first();

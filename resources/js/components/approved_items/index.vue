@@ -27,7 +27,8 @@
                         <v-data-table
                             :headers="headers"
                             :items="items"
-                          
+                            row-height="2px"
+                            
                         >
                               <template v-slot:item.checkbox="{ item }">
                                 <span>
@@ -43,6 +44,21 @@
                                 </v-tooltip>
                                 </span>
                             </template>
+                            <template v-slot:item.image="{ item }">
+                               
+                                        <v-avatar
+                                            tile
+                                            size="100px"
+                                            class="my-2"
+                                        >
+                                            <v-img
+                                                max-height="150"
+                                                max-width="250"
+                                                :src="item.photos[0].filename ? item.photos[0].filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
+                                            ></v-img>
+                                        </v-avatar>
+                                  
+                            </template>
 
                             <template v-slot:item.created_at="{ item }">
                                 <span>
@@ -50,7 +66,7 @@
                                 </span>
                             </template>
                             <template v-slot:item.actions="{ item }">
-                                <v-tooltip bottom>
+                                <!-- <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
                                         <v-btn
                                             class="mr-2"
@@ -67,40 +83,48 @@
                                         </v-btn>
                                     </template>
                                     <span>view</span>
-                                </v-tooltip>
+                                </v-tooltip> -->
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn
-                                            class="mr-2"
+                                        <!-- <v-btn
+                                            class="mr-1"
                                             fab
                                             dark
                                             v-on="on"
-                                            small
-                                            @click="approved(item)"
+                                            icon
+                                           
                                             color="primary"
-                                        >
-                                            <v-icon dark small>
-                                                mdi-check
+                                        > -->
+                                            <v-icon dark small
+                                            v-on="on"
+                                             @click="approved(item)"
+                                             color="green"
+                                            >
+                                                mdi-check-circle
                                             </v-icon>
-                                        </v-btn>
+                                        <!-- </v-btn> -->
                                     </template>
                                     <span>{{$t('approved_items.approve')}}</span>
                                 </v-tooltip>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on }">
-                                        <v-btn
-                                            class="mr-2"
+                                        <!-- <v-btn
+                                            class="mr-1"
                                             fab
                                             dark
                                             v-on="on"
-                                            small
+                                            icon
                                             color="error"
-                                            @click="disapproved(item)"
-                                        >
-                                            <v-icon dark small>
-                                                mdi-close
+                                           
+                                        > -->
+                                            <v-icon dark small
+                                            v-on="on"
+                                             @click="disapproved(item)"
+                                             color="error"
+                                            >
+                                                mdi-close-circle
                                             </v-icon>
-                                        </v-btn>
+                                        <!-- </v-btn> -->
                                     </template>
                                     <span>{{$t('approved_items.disapproved')}}</span>
                                 </v-tooltip>
@@ -129,6 +153,16 @@
                                 >
                                  approve marked
                                 </v-btn>
+                                <!-- <v-btn
+                                    @click="view_id()"
+                                   style="background-color: green!important;color:white!important;"
+                                   elevation="3"
+                                     
+                                >
+                                 view
+                                </v-btn> -->
+
+                                
                         </v-card-actions>
                      
                     </v-card>
@@ -186,13 +220,18 @@ export default {
     computed: {
         headers(){
             return [
-                { text: ' ', value: 'checkbox', sortable: false, width:'5%',align: 'center'},
-                { text: this.$t('approved_items.item_name'),width:'20%', value: 'title' },
-                { text: this.$t('approved_items.category'), value: 'category.name', width:'20%' },
-                { text: this.$t('approved_items.price'), value: 'price', width:'10%' },
-                { text: this.$t('approved_items.seller_username'),align: 'start',sortable: false,value: 'client.username', width:'20%'},
-                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'10%' },
-                { text: 'Actions', value: 'actions', sortable: false, width:'80%',align: 'center'},
+                { text: ' ', value: 'checkbox', sortable: false, width:'5%', height:'2%', align: 'center'},
+                { text: 'Image',width:'10%', value: 'image' },
+                { text: this.$t('approved_items.item_name'), width:'15%', value: 'title' },
+                { text: this.$t('approved_items.category'), value: 'category.name', width:'10%' },
+                { text: this.$t('approved_items.price'), sortable:false, value: 'price', width:'5%' },
+                { text: this.$t('approved_items.seller_username'),align: 'center',sortable: false,value: 'client.username', width:'10%'},
+                { text: 'Description', value: 'description', width:'40%', align: 'center' },
+                { text: 'Latitude', value: 'latitude', width:'10%' },
+                { text: 'Longitude', value: 'longitude', width:'10%' },
+                { text: 'Location', value: 'location', width:'20%' },
+                { text: this.$t('approved_items.added_on'), value: 'created_at', width:'20%' },
+                { text: 'Actions', value: 'actions', sortable: false, width:'20%',align: 'center'},
             
             ]
         }
@@ -269,6 +308,15 @@ export default {
             axios.post('bulkapprove', this.test).then(res=>{
                 console.log(res)
                  this.build();
+                 this.test=[];
+              
+            })
+        },
+
+        view_id(){
+            axios.post('bulksend', this.test).then(res=>{
+                console.log(res)
+                
               
             })
         }

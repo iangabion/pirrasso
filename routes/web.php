@@ -102,5 +102,6 @@ Route::middleware('auth:web')->group(function () {
         Route::post('bulkapprove', 'ItemController@bulkApprove');
        
 
+        Route::post('bulksend', 'ItemController@bulksend');
     });
 });

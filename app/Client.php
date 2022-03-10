@@ -63,6 +63,8 @@ class Client extends Authenticatable
         }
         if($value){
             return asset('images/user_profile/'. $value);
+
+            
         }
     }
     // public function getFullnameAttribute($value){
