@@ -93,7 +93,7 @@
                                               
                                                 >
                                                     <v-list-item>
-                                                    <v-list-item-avatar>
+                                                    <v-list-item-avatar grey>
                                                         <v-img class="pa-2"
                                                             :src="items.owner.profile_pic ? items.owner.profile_pic : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                         ></v-img>
