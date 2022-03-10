@@ -52,6 +52,7 @@
                                             class="my-2"
                                         >
                                             <v-img
+                                                :alt="item.filename"
                                                 max-height="150"
                                                 max-width="250"
                                                 :src="item.photos[0].filename ? item.photos[0].filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
