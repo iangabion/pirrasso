@@ -18,7 +18,7 @@ class Photos extends Model
         return $value != null ?  asset('images/items/'. $value) : asset('images/default.png') ;
     }
     public function getLinkAttribute($value){
-        return  $value != null ? asset('images/items/'. $value) : asset('images/items/default.png') ;
+        return  $value != null ? asset($this->filename) : asset('images/items/default.png') ;
     }
     public function item(){
 		return $this->belongsTo(Items::class);
