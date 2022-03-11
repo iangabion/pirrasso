@@ -106,7 +106,7 @@
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images[0].filename ? items.images[0].filename : 'images/default.png' "
+                                                    :src="items.images.length ? items.images[0].filename : 'images/default.png' "
                                                     ></v-img>
 
                                                    

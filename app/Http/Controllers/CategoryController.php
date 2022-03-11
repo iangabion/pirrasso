@@ -40,6 +40,11 @@ class CategoryController extends Controller
         return  ItemResource::collection($items) ;
     }
 
+    public function get_all_unapproved(){
+        $items = Items::where('is_approved', 0)->orderBy('created_at', 'desc')->get();
+        return  ItemResource::collection($items) ;
+    }
+
     public function statuses(){
         $status = Status::orderBy('name')->get();
         return StatusResource::collection($status) ;

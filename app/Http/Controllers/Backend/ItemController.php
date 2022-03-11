@@ -154,6 +154,15 @@ class ItemController extends Controller
 
     }
 
+    public function bulkDelete(Request $request) {
+        // dd('delete');
+        $items = Items::whereIn('id', $request->all());
+        return $items->delete();
+
+        // return Items::get('client_id');
+
+    }
+
     public function bulksend(Request $request){
         // $switch = TwilioSwitch::find(1)->pluck('switch')->first();
       

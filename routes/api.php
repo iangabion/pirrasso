@@ -109,6 +109,7 @@ Route::get('categories' ,'CategoryController@index');
 Route::get('category_items/{id}' ,'CategoryController@category_items');
 Route::get('get_items/{id}' ,'CategoryController@get_items');
 Route::get('get_all_items' ,'CategoryController@get_all');
+Route::get('get_all_items_unapproved' ,'CategoryController@get_all_unapproved');
 Route::post('get_category/{id}','CategoryController@get_category');
 
 
@@ -125,6 +126,7 @@ Route::get('getAll', 'CategoryController@getAll');
 
 // login and register
 Route::post('register' ,'ClientController@store');
+Route::post('register_mobile' ,'ClientController@register_mobile');
 Route::post('login' ,'ClientController@login');
 Route::post('loginfacebook' ,'ClientController@facebookLogin');
 Route::post('loginapple' ,'ClientController@appleLogin');
@@ -153,7 +155,7 @@ Route::get('get_admin', 'SmsController@get_admin');
 Route::post('sms_sender', 'SMSController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
 Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::post('enable_disable', 'App\Http\Controllers\SMSController@enable_disable');
+Route::post('enable_disable', 'SMSController@enable_disable');
 
 
 
