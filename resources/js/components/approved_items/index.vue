@@ -254,7 +254,7 @@
                                                      <v-btn icon @click="approve(items, index)">
                                                         <v-icon color="green">mdi-check-circle</v-icon>
                                                     </v-btn>
-                                                    <v-btn icon @click="destroy(items , index)">
+                                                    <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="error">mdi-delete</v-icon>
                                                     </v-btn>
                                                   
@@ -321,6 +321,16 @@
                         </v-btn>
                     </v-card-actions>
             </v-card>
+            <!-- <v-dialog
+            v-model="dialog"
+
+            >
+                <v-card>
+                    {{items.id}}
+                    {{items.owner.fullname}}
+                    {{items.title}}
+                </v-card>
+            </v-dialog> -->
             </v-container>
         </div>
 <!-- here -->
@@ -335,7 +345,7 @@ export default {
       
     // },
     data: () => ({
-        
+        dialog:true,
         dialogActivate: false,
         dialogDeActivate: false,
         dialogItem:false,
@@ -476,19 +486,19 @@ export default {
             return id === this.isgrey
         },
 
-        destroy(items ) {
-            // this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
-            //     if(result) {
+        destroy(id, index ) {
+            this.$root.$confirm('Are you sure you want to delete ?').then((result) => {
+                if(result) {
 
-            //         // console.log(id, index)
-            //         axios.delete('/item/'+id, {})
-            //         .then(response => {
-            //             this.categories_item.splice(index,1)
-            //             alert('Success')
-            //         });
-            //     }
-            // });
-            console.log(items.owner.mobile, items.id,  "test yey")
+                    // console.log(id, index)
+                    axios.delete('/item/'+id, {})
+                    .then(response => {
+                        this.categories_item.splice(index,1)
+                        alert('Item Removed')
+                    });
+                }
+            });
+            // console.log(items.owner.mobile, items.id,  "test yey")
         },
 
         approve(items, index) {
