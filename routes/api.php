@@ -142,6 +142,7 @@ Route::get('test_code' ,'ClientController@sendVerificationCode');
 
 // search items
 Route::post('searchchan' ,'SearchController@searchchan');
+Route::post('searchchan2' ,'SearchController@searchchan2');
 Route::get('search/{item?}' ,'SearchController@index');
 
 //API Settings Apps Images

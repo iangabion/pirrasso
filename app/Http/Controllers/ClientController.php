@@ -334,8 +334,10 @@ class ClientController extends Controller
         $user->is_verified = 1;
         $user->password = Hash::make($request->input('password'));
         $user->save();
+        $accessToken = $user->createToken('authtoken')->accessToken ;
+        return response(['user' => new ClientResource($user) , 'access_token' => $accessToken]);
 
-        return $user;
+    
     }
 
 }

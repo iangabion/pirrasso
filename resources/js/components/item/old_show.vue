@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <v-toolbar elevation="0">
+        <v-toolbar elevation="0" style="display:none">
             <v-col cols="12" sm="6" lg="8">
                 <v-text-field
                     flat
@@ -15,6 +15,7 @@
                     v-model="form.search"
                     :items='categories_item'
                     clearable
+                   
                 />
             </v-col>
         </v-toolbar>
