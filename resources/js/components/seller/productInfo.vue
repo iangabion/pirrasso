@@ -10,10 +10,10 @@
         >
             <v-list-item>
                 <v-list-item-avatar>
-                <v-img
-                   :src="items.owner.profile_pic ? items.owner.profile_pic : 'https://images.unsplash.com/photo-1528148343865-51218c4a13e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'"
+                <!-- <v-img
+                    src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 >
-                </v-img>
+                </v-img> -->
                 </v-list-item-avatar>
 
                 <v-list-item-content>
