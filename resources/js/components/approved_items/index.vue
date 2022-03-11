@@ -14,6 +14,7 @@
                     single-line
                     append-icon="mdi-magnify" class=" mx-4"
                     :value="prefill"
+                     style="display:none"
                 />
             </div>
             <v-btn @click="dialog2 = true" class="d-none">

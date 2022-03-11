@@ -69,7 +69,7 @@
                             <v-hover v-slot="{ hover }">
                                 <v-card>
                                     <v-img
-                                        :src="item.photos[0] ? item.photos[0].link :  'https://images.unsplash.com/photo-1528148343865-51218c4a13e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'"
+                                        :src="item.photos.length ? item.photos[0].filename :  'https://images.unsplash.com/photo-1528148343865-51218c4a13e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'"
                                         class="white--text align-end"
                                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                                         height="100px"
