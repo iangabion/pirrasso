@@ -62,7 +62,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('getdaily', 'ItemController@getdaily');
         Route::get('items/getToApprovedItems', 'ItemController@getToApprovedItems');
         Route::delete('items/disapproved/{id}','ItemController@deleteApprovedItem');
-        Route::get('items/approve_item/{id}', 'ItemController@approvedItem');
+        Route::put('items/approve_item/{id}', 'ItemController@approvedItem');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
@@ -100,8 +100,7 @@ Route::middleware('auth:web')->group(function () {
         Route::delete('remove/{id}','PromotionController@remove');
        
         Route::post('bulkapprove', 'ItemController@bulkApprove');
-       
-
+        Route::post('bulkdelete', 'ItemController@bulkDelete');
         Route::post('bulksend', 'ItemController@bulksend');
     });
 });

@@ -325,4 +325,17 @@ class ClientController extends Controller
         
     }
 
+    public function register_mobile(Request $request){
+        $user = new Client();
+
+        $user->mobile = $request->mobile;
+        $user->email = "NewUser$request->mobile";
+        $user->username = $request->username;
+        $user->is_verified = 1;
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return $user;
+    }
+
 }

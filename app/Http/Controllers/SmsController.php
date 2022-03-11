@@ -33,7 +33,7 @@ class SmsController extends Controller
     public function sms_sender(Request $request){
         $switch = TwilioSwitch::find(1)->pluck('switch')->first();
         if ($switch==1){
-            $items = Items::where('id', $request->input('id') )->get('title');
+            $items = Items::where('id', $request->input('id') )->pluck('title');
             $receiverNumber = '+' . $request->input('number');
             $message = "This is a message from BonPlan. Your " . $items . " item has been Approved.";
             try {
