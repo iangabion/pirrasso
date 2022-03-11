@@ -426,7 +426,7 @@ export default {
                             // if(key===null){
                             //         this.get_categories()
                             // }else{
-                                axios.post('/api/searchchan', payload, {}).then((data) => {
+                                axios.post('/api/searchchan2', payload, {}).then((data) => {
                                 this.categor = data.data
                                 this.categories_item = this.categor.data
                                 // console.log(this.categories)
