@@ -161,7 +161,14 @@ export default {
             !payload ? this.$emit('collapse-drawer', payload) : ''
         },
         deleteItem(){
-            console.log(this.item)
+
+            axios.delete('/item/'+this.item.id, this.item.id).then(res=> {
+                console.log(res)
+                alert('Item Deleted Successfully');
+                this.$emit('close');
+            })
+          
+            
         }
     },
     created(){

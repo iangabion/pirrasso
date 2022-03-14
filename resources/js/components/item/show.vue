@@ -31,7 +31,7 @@
 <!-- here -->
                     <v-flex xs2>
                     <v-list color="deep-orange darken-2" dark dense 
-                        min-height="80vh" class="mx-auto">
+                         width="270" max-height="77vh" min-height="77vh" class="mx-auto scroll2">
                         <template v-for="item in categories">
                             <v-row v-if="item.heading" :key="item.heading" align="center">
                             </v-row>
@@ -76,7 +76,7 @@
                     </v-flex>
 <!-- divide -->
                 <v-flex xs10>
-                <v-card min-height="80vh" max-height="20vh" class="ma-2 scroll">
+                <v-card min-height="77vh" max-height="77vh" class="ma-2 scroll">
                     <v-container >
 <!-- start -->
                             <v-layout row wrap>
@@ -662,7 +662,14 @@ export default {
     }
 
     .scroll {
-         overflow-y: scroll
+        overflow-y: scroll;
+        
+        overflow-x: hidden;
+    }
+     .scroll2 {
+        overflow-y: scroll hidden thin;
+        
+        overflow-x: hidden;
     }
     .location_font {
         font-size: 11px;

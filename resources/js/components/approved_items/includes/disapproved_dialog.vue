@@ -108,7 +108,7 @@ export default {
                     console.log(response.data)
                     this.loading = false
                     this.$emit('closedisapproved');
-                    alert('Message Sent Successfull');
+                    alert('Message Sent Successful');
                 })
             }).catch((errors) => {
                 console.log(errors)

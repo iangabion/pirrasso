@@ -31,6 +31,7 @@
                         <sellerItems
                             v-if="client.items ? client.items.length : ''"
                             :items="client.items ? client.items : []"
+                            @reload="getClientInfo()"
                         />
                         <v-card
                             height="680px"

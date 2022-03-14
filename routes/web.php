@@ -102,5 +102,8 @@ Route::middleware('auth:web')->group(function () {
         Route::post('bulkapprove', 'ItemController@bulkApprove');
         Route::post('bulkdelete', 'ItemController@bulkDelete');
         Route::post('bulksend', 'ItemController@bulksend');
+
+
+        Route::post('destroy_items/{id}','ItemController@destroy');
     });
 });

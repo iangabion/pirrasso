@@ -2,9 +2,11 @@
     <div>
 
         <productInfo
+            v-if="drawer"
             :drawer="drawer"
             :item="selected_item"
             @collapse-drawer="drawer = !drawer"
+            @close="close()"
         />
         <v-card
             height="680px"
@@ -128,6 +130,11 @@ export default {
         }
     },
     methods: {
+        close(){
+            this.drawer = false
+            // this.open_info(item);
+            this.$emit('reload');
+        },
         open_info(item){
             this.drawer = true
             this.selected_item = item
