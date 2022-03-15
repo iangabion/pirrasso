@@ -268,21 +268,19 @@
                                                     <!-- <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="yellow">mdi mdi-coin</v-icon>
                                                     </v-btn> -->
-                                                     <v-btn icon @click="approve(items, index)">
-                                                        <v-icon color="green">mdi-check-circle</v-icon>
-                                                    </v-btn>
                                                     <!-- <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="error">mdi-delete</v-icon>
                                                     </v-btn> -->
+                                                     <v-btn icon @click="approve(items, index)">
+                                                        <v-icon color="green">mdi-check-circle</v-icon>
+                                                    </v-btn>
                                                     <v-btn icon @click="disapproved(items)">
                                                         <v-icon color="error">mdi-delete</v-icon>
                                                     </v-btn>
-                                                                                                 
                                                     <v-checkbox  
                                                         type="checkbox"
                                                         v-model="test"                                             
                                                         :value="items.id"
-                                                                                           
                                                     ></v-checkbox>
                                                   
 
