@@ -19,7 +19,7 @@
                             <v-text-field
                                 dense
                                 label="Send To"
-                                :value="item.client ? item.client.email : 'test@test.com'"
+                                :value="item.owner ? item.owner.email : 'test@test.com'"
                                 outlined
                                 disabled
                             ></v-text-field>
@@ -58,17 +58,7 @@
                 </v-btn>
             </v-card-actions>
         </v-card>
-        <v-dialog       
-            v-model="progress_circular"
-            max-width="100"
-            persistent
-        >
-            <v-card>
-                <v-card-text class="text-xs-center pt-1">
-                    <v-progress-circular :size="50" indeterminate class="primary--text"/>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
+       
     </v-dialog>
 </template>
 <script>
@@ -77,7 +67,8 @@ export default {
     data(){
         return {
             payload: {
-                reason: ''
+                reason: '',
+                email: ''
             },
             interval: {},
             value: 0,
@@ -100,15 +91,14 @@ export default {
             this.$emit('closedisapproved');
         },
         sendMail() {
-            alert('Proceed');
-            this.progress_circular = true;
+
             DisapproveMail (this.payload).then((response) => {
                 this.progress_circular = false;
                 RemoveDisapproveItem(this.payload.id).then((response) => {
                     console.log(response.data)
                     this.loading = false
                     this.$emit('closedisapproved');
-                    alert('Message Sent Successfull');
+                    alert('Message Sent Successful');
                 })
             }).catch((errors) => {
                 console.log(errors)

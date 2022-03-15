@@ -24,12 +24,12 @@
                     Add Setting
             </v-btn>
         </v-toolbar>
-        <!-- <disapprovedDialog
+        <disapprovedDialog
             :dialog="dialog"
             @closedisapproved="disapproved_close"
             :item="selected_item"
             @close="dialog=false"
-        ></disapprovedDialog> -->
+        ></disapprovedDialog>
 <!-- here -->
         <div>
             <v-container grid-list-xs>
@@ -110,13 +110,29 @@
                                                         <v-list-item-title >{{items.owner.username ? items.owner.username : items.owner.email}}</v-list-item-title>
                                                     </v-list-item-content>
                                                     </v-list-item>
-                                                    <v-img class="pa-2"
+                                                    <!-- <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
                                                     :src="items.images.length ? items.images[0].filename : 'images/default.png' "
-                                                    ></v-img>
+                                                    ></v-img> -->
+                                                    <div class="pa-4">
+                                                        <v-carousel
+                                                            height="300"
+                                                            interval="5000"
+                                                            cycle
+                                                            hide-delimiters
+                                                            show-arrows-on-hover
+                                                        >
+                                                            <v-carousel-item
+                                                                v-for="(item,i) in items.images"
+                                                                :key="i"
+                                                                :src="item.filename ? item.filename : 'images/default.png'"
+                                                                reverse-transition="fade-transition"
+                                                                transition="fade-transition"
+                                                            ></v-carousel-item>
+                                                        </v-carousel>
 
-                                                   
+                                                    </div>
                                                     <!-- <v-img
                                                         lazy-src="https://picsum.photos/id/11/10/6"
                                                         max-height="150"
@@ -252,24 +268,23 @@
                                                     <!-- <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="yellow">mdi mdi-coin</v-icon>
                                                     </v-btn> -->
+                                                    <!-- <v-btn icon @click="destroy(items.id , index)">
+                                                        <v-icon color="error">mdi-delete</v-icon>
+                                                    </v-btn> -->
                                                      <v-btn icon @click="approve(items, index)">
                                                         <v-icon color="green">mdi-check-circle</v-icon>
                                                     </v-btn>
-                                                    <v-btn icon @click="destroy(items.id , index)">
+                                                    <v-btn icon @click="disapproved(items)">
                                                         <v-icon color="error">mdi-delete</v-icon>
                                                     </v-btn>
-                                                  
                                                     <v-checkbox  
                                                         type="checkbox"
                                                         v-model="test"                                             
                                                         :value="items.id"
-                                                                                           
                                                     ></v-checkbox>
                                                   
 
-                                                     <!-- <v-btn icon @click="disapproved(items.id)">
-                                                        <v-icon color="error">mdi-delete</v-icon>
-                                                    </v-btn> -->
+                                                     
                                                    
 
 
@@ -307,6 +322,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
+                        style="color:white"
                         color="green"
                         @click="updatechecked()"
                         >
@@ -315,6 +331,7 @@
 
                        
                         <v-btn
+                        style="color:white"
                         color="red"
                         @click="deletechecked()"
                         >
@@ -322,31 +339,101 @@
                         </v-btn>
                     </v-card-actions>
             </v-card>
-            <!-- <v-dialog
-            v-model="dialog"
+            
+            <v-dialog
+            v-model="dialogreason"
+            width="500"
 
             >
+                <!-- <v-card>
+                    {{payload.id}}
+                    {{payload.owner.full_name}}
+                    {{payload.owner.email}}
+                    {{payload.title}}
+                </v-card> -->
                 <v-card>
-                    {{items.id}}
-                    {{items.owner.fullname}}
-                    {{items.title}}
+                    <v-card-title class="text-h5 grey lighten-2">
+                        {{$t('approved_items.disapproved_dialog.disapprovement_notice')}}
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container fluid>
+                            <v-row>
+                                <v-flex xs12>
+                                    <v-textarea
+                                        label="Reason For Disapprovement"
+                                        solo
+                                        v-model="payload.reason"
+                                        filled
+                                    ></v-textarea>
+                                </v-flex>
+                                <v-flex xs12>
+                                    <v-text-field
+                                        dense
+                                        label="Send To"
+                                        :value="payload.owner ? payload.owner.email : 'test@test.com'"
+                                        outlined
+                                        disabled
+                                    ></v-text-field>
+                                </v-flex>
+                                <v-flex xs12>
+                                    <v-text-field
+                                        dense
+                                        disabled
+                                        :value="payload.title"
+                                        label="Item Name"
+                                        outlined
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-row>
+                        </v-container>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="primary"
+                            small
+                            width="70px"
+                            @click.prevent="sendMail()"
+                            @click="progress_circular = true"
+                        >
+                            {{$t('send')}}
+                        </v-btn>
+                        <v-btn
+                            color="error"
+                            small
+                            width="70px"
+                            @click="dialogreason=false"
+                        >
+                            {{$t('cancel')}}
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
-            </v-dialog> -->
+            </v-dialog>
             </v-container>
         </div>
 <!-- here -->
+            <!-- <dialog-reason
+                v-if="reasondialog"
+                :dialog="reasondialog"
+                @close="reasondialog=false"
+            >
+            </dialog-reason> -->
     </div>
 </template>
 <script>
-import { GetToApprovedItems, ApprovedItem, ApproveMail } from "@api/item.api";
-// import disapprovedDialog from './includes/disapproved_dialog.vue'
+import { GetToApprovedItems, ApprovedItem, ApproveMail, DisapproveMail, RemoveDisapproveItem } from "@api/item.api";
+import disapprovedDialog from './includes/disapproved_dialog.vue'
+
 export default {
-    //  components : {
-    //     disapprovedDialog,
+     components : {
+       disapprovedDialog,
       
-    // },
+    },
     data: () => ({
-        dialog:true,
+        dialog:false,
+        dialogreason:false,
+        selected_item: {},
         dialogActivate: false,
         dialogDeActivate: false,
         dialogItem:false,
@@ -388,14 +475,47 @@ export default {
             title: '',
             price: '',
             description: '',
-            status:''
+            status:'',
+            reason: '',
+            email: '',
         }
 
     }),
+    
 
    
 
     methods: {
+        sendMail() {
+            // alert(this.payload);
+            // console.log(this.payload)
+        
+            // DisapproveMail (this.payload).then((response) => {
+            //    console.log(response.data)
+                RemoveDisapproveItem(this.payload.id).then((response) => {
+                    console.log(response.data)
+                    this.get_items(this.categories[0].id)
+                    this.sendMail2();
+                   
+                })
+            // }).catch((errors) => {
+            //     console.log(errors)
+            // });
+        },
+
+        sendMail2(){
+            DisapproveMail (this.payload).then((res) => {
+                console.log(res.data)
+                 this.dialogreason = false;
+                  alert('Message Sent Successful');
+            })
+        },
+
+        open_reason(items){
+            this.dialogreason = true
+            this.selected_item = items
+
+        },
         search_item(key){
                 this.loading=true
                 if(this.timer){
@@ -590,6 +710,10 @@ export default {
               
             })
         },
+         disapproved_close() {
+            this.dialog = false
+             this.get_items(this.categories[0].id)
+        },
 
         deletechecked(){
             // console.log(this.test)
@@ -601,6 +725,17 @@ export default {
                 console.log(res)
            
               
+            })
+        },
+
+        disapproved(items){
+            this.payload = JSON.parse(JSON.stringify(items))
+            this.dialogreason = true
+        },
+        disapproved(items){
+            this.selected_item = items
+            this.$nextTick(() => {
+                this.dialog = true
             })
         },
 
@@ -621,7 +756,8 @@ export default {
             if(val){
                 this.search_item(val)
             }
-        }
+        },
+       
     },
     computed:{
         prefill(){

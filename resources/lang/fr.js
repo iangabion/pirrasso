@@ -70,7 +70,7 @@ export default {
             sold: "Vendu",
             category: "Catégorie",
             date_published: "Date de publication",
-            sample_photo: "Echantillon de Photo",
+            sample_photo: "Photo du produit",
             delete_item: "Supprimer Article"
         },
         sellerinfo: {

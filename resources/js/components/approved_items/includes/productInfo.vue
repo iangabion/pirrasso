@@ -96,7 +96,7 @@
                 <div
                     style="text-align: center;font-weight: bold;padding-top: 10px;"
                     class="text-capitalize"
-                > sample photos </div>
+                > sample photo </div>
             </div>
         </v-navigation-drawer>
     </v-sheet>
