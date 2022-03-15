@@ -84,7 +84,7 @@ export default {
             item_details: "Détails Article",
             items: "Articles",
             sold: "Vendu",
-            cart: "Panier"
+            cart: "Favoris"
         },
         show: {
             seller_info: "Info du vendeur",

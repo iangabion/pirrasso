@@ -153,10 +153,10 @@ Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
 Route::get('get_admin', 'SmsController@get_admin'); 
-Route::post('sms_sender', 'SMSController@sms_sender');
+Route::post('sms_sender', 'SmsController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
-Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::post('enable_disable', 'SMSController@enable_disable');
+Route::post('send_sms_test', 'SmsController@send_sms_test');
+Route::post('enable_disable', 'SmsController@enable_disable');
 
 
 

@@ -108,5 +108,8 @@ Route::middleware('auth:web')->group(function () {
 
 
         Route::post('destroy_items/{id}','ItemController@destroy');
+
+        // favorites
+        Route::get('get_user_favorites','ClientController@get_user_favorites');
     });
 });

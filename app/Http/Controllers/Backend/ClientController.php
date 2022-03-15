@@ -49,7 +49,7 @@ class ClientController extends Controller
                         ;
             });
         }
-        return $client->orderBy('created_at' , 'desc')->get();
+        return $client->orderBy('created_at' , 'desc')->with('items_fav')->get();
     }
 
 
@@ -113,14 +113,16 @@ class ClientController extends Controller
      */
     public function showClient($id)
     {
+    
         $client = Client::with('items.photos','items.category')->find($id);
         return $client->paginate(10);
     }
 
     public function show($id)
     {
-        $client = Client::with('items.photos','items.category')->find($id);
+        $client = Client::with('items.photos','items.category')->with('items_fav.photos')->find($id);
         return $client;
+        // dd('lo9oadwd');
     }
 
     // public function show(Request $request){
