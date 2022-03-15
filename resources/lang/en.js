@@ -85,7 +85,7 @@ export default {
             item_details: "Item Details",
             items: "Items",
             sold: "Sold",
-            cart: "Cart"
+            cart: "Favorites"
         },
         show: {
             seller_info: "Seller Info",

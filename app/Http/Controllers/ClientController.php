@@ -316,6 +316,13 @@ class ClientController extends Controller
         return ItemResource::collection($favorites->items_fav);
     }
 
+    public function get_user_favorites($user_id)
+    {
+        $favorites = Client::findorfail($user_id);
+        return ItemResource::collection($favorites->items_fav);
+    }
+
+
     public function change_number(Request $request){
         $user = Client::find(Auth::id());
         $user->mobile = '63' + $request->input('new');
