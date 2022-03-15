@@ -13,23 +13,25 @@ class EmailNoticeController extends Controller
     public function disapprovementEmail(Request $request)
     {
         $data = array(
-            // 'category_id'               => $request->category['id'],
-            // 'category_title'            => $request->category['name'],
-            'client_email'              =>  $request->input('owner.email'),
-            // 'client_account_created'    =>  $request->created_at,
-            // 'client_full_name'         =>  $request->owner['full_name'],
-            // 'client_mobile'             =>  $request->owner['mobile'],
-            // 'client_username'           =>  $request->owner['username'],
+            'category_id'               => $request->category['id'],
+            'category_title'            => $request->category['name'],
+            // 'client_email'              =>  $request->owner['email'],
+            'client_account_created'    =>  $request->client['created_at'],
+            'client_full_name'         =>  $request->client['full_name'],
+            'client_mobile'             =>  $request->client['mobile'],
+            'client_username'           =>  $request->client['username'],
             'reason'                    =>  $request->reason,
             'item_title'                =>  $request->title,
-            // 'item_description'          => $request->description,
-            // 'item_location'             => $request->location,
-            // 'item_created'              => $request->created_at,
-            // 'item_price'                => $request->price,
+            'item_description'          => $request->description,
+            'item_location'             => $request->location,
+            'item_created'              => $request->created_at,
+            'item_price'                => $request->price,
+            'client_email'              =>  $request->owner['email'],
+
         );
 
         
-        Mail::to($request->client['email'])->send(new DisapprovementNotice($data));
+        Mail::to($request->owner['email'])->send(new DisapprovementNotice($data));
         return back()->with('success', 'Thanks for contacting us!');
     }
 

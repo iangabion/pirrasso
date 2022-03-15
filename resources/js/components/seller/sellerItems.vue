@@ -26,14 +26,16 @@
                     :color="check_active('items') ? 'error' : 'primary'"
                     small
                     class=" my-2 ml-2"
+                    style="display: none"
                 >
                     <v-icon
                         left
                         class="mr-3"
+                        
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.items')}}
                 </v-btn>
-                <v-btn
+                <!-- <v-btn
                     @click="change_active('sold')"
                     :outlined="!check_active('sold')"
                     :color="check_active('sold') ? 'error' : 'primary'"
@@ -58,7 +60,7 @@
                         class="mr-3"
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.cart')}}
-                </v-btn>
+                </v-btn> -->
             </v-toolbar>
             <v-divider></v-divider>
             <div v-if="category_selected === 'items'">

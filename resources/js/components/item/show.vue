@@ -236,6 +236,7 @@
                                                     </v-list-item>
                                                     <v-divider></v-divider>
                                                     <v-card-actions >
+                                                        <v-spacer></v-spacer>
 
                                                     <!-- <v-btn icon>
                                                         <v-icon @click="show(items , index)" color="primary">mdi-eye</v-icon>

@@ -7,7 +7,7 @@
             <!-- src="https://cdn.vuetifyjs.com/images/lists/ali.png" -->
             <v-img
             :src="client.image"
-            height="300px"
+            height="372px"
             dark
             >
             </v-img>
@@ -75,20 +75,9 @@
             </v-list-item>
 
 
-            <v-divider inset></v-divider>
+          
 
-            <v-list-item>
-                <v-list-item-icon>
-                <v-icon color="indigo">
-                    mdi-map-marker
-                </v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                <v-list-item-title>1400 Main Street</v-list-item-title>
-                <v-list-item-subtitle>Orlando, FL 79938</v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
+           
             </v-list>
         </v-card>
     </div>

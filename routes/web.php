@@ -79,7 +79,12 @@ Route::middleware('auth:web')->group(function () {
         Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
         Route::post('approved_items/approve', 'EmailNoticeController@approveEmail')->name('approve');
         
+        // promotions
         Route::get('indexPromotion','PromotionController@index');
+        Route::get('pendingPromotion','PromotionController@pendingPromo');
+        Route::put('approve/{id}','PromotionController@approve');
+        Route::delete('remove/{id}','PromotionController@remove');
+
         //dashboard
         Route::get('stock_count', 'ItemController@stock_count');
         Route::post('month_item','ItemController@getMonthlyItem');
@@ -96,8 +101,6 @@ Route::middleware('auth:web')->group(function () {
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
 
-        Route::put('approve/{id}','PromotionController@approve');
-        Route::delete('remove/{id}','PromotionController@remove');
        
         Route::post('bulkapprove', 'ItemController@bulkApprove');
         Route::post('bulkdelete', 'ItemController@bulkDelete');

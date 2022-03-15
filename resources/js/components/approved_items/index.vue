@@ -24,12 +24,12 @@
                     Add Setting
             </v-btn>
         </v-toolbar>
-        <!-- <disapprovedDialog
+        <disapprovedDialog
             :dialog="dialog"
             @closedisapproved="disapproved_close"
             :item="selected_item"
             @close="dialog=false"
-        ></disapprovedDialog> -->
+        ></disapprovedDialog>
 <!-- here -->
         <div>
             <v-container grid-list-xs>
@@ -324,6 +324,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
+                        style="color:white"
                         color="green"
                         @click="updatechecked()"
                         >
@@ -332,6 +333,7 @@
 
                        
                         <v-btn
+                        style="color:white"
                         color="red"
                         @click="deletechecked()"
                         >
@@ -423,13 +425,15 @@
 </template>
 <script>
 import { GetToApprovedItems, ApprovedItem, ApproveMail, DisapproveMail, RemoveDisapproveItem } from "@api/item.api";
-// import reasondialog from './includes/disapproved_dialog.vue'
+import disapprovedDialog from './includes/disapproved_dialog.vue'
+
 export default {
-    //  components : {
-    //     name: reasondialog,
+     components : {
+       disapprovedDialog,
       
-    // },
+    },
     data: () => ({
+        dialog:false,
         dialogreason:false,
         selected_item: {},
         dialogActivate: false,
@@ -708,6 +712,10 @@ export default {
               
             })
         },
+         disapproved_close() {
+            this.dialog = false
+             this.get_items(this.categories[0].id)
+        },
 
         deletechecked(){
             // console.log(this.test)
@@ -725,7 +733,13 @@ export default {
         disapproved(items){
             this.payload = JSON.parse(JSON.stringify(items))
             this.dialogreason = true
-        }
+        },
+        disapproved(items){
+            this.selected_item = items
+            this.$nextTick(() => {
+                this.dialog = true
+            })
+        },
 
     
 

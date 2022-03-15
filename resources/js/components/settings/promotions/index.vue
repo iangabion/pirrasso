@@ -3,51 +3,171 @@
        <v-toolbar>
             <v-toolbar-title class="px-4">Promotions</v-toolbar-title>
             <v-spacer></v-spacer>
-            <div class="search1">
-                <v-text-field
-                hide-details
-                placeholder="Search"
-               
-                filled
-                rounded
-                dense
-                single-line
-                append-icon="mdi-magnify" class=" mx-4"
-                />
-            </div>
+          
             
         </v-toolbar>
-        <v-container grid-list-xs>
-            <v-layout row wrap>
-                <v-flex xs12>
-                    <v-card>
-                        <v-data-table
-                            :headers="headers"
-                            :items="promotions"
-                        
-                            hide-default-footer
-                            class="elevation-1"
-                        >
-                        <template v-slot:item.actions="{ item }">
-                            <v-icon
-                                small
-                                class="mr-2"
-                                @click="approve(item)"
-                            >
-                                mdi-check-bold
-                            </v-icon>
-                            <v-icon
-                                small
-                            @click="remove(item)"
-                            >
-                                mdi-delete
-                            </v-icon>
-                            </template>
-                        </v-data-table>
-                    </v-card>
-                </v-flex>
-            </v-layout>
-        </v-container>
+        <v-stepper v-model="e1"
+           
+            max-height="500"
+        >
+            <v-stepper-items>
+                 <v-stepper-content step="1">
+                    
+                     
+
+                        <v-container grid-list-xs >
+                            <v-layout row wrap>
+                                <v-flex xs12 >
+                                    <v-card>
+                                        <v-data-table
+                                            :headers="headers"
+                                            :items="pendingPromo"
+                                            max-height="70vh"
+                                            hide-default-footer
+                                            class="elevation-1 scroll"
+                                        
+                                        >
+                                        <template v-slot:top>
+                                        <v-toolbar
+                                            flat
+                                        >
+                                            <v-toolbar-title>Pending Promotions</v-toolbar-title>
+                                            <v-divider
+                                            class="mx-4"
+                                            inset
+                                            vertical
+                                            ></v-divider>
+                                            <v-spacer></v-spacer>
+                                            <v-btn
+                                            color="primary"
+                                            @click="e1 = 2"
+                                            
+                                            >
+                                            Approved Promotions
+                                            </v-btn>
+                                        </v-toolbar>
+                                        </template>
+                                        <template v-slot:item.actions="{ item }">
+                                            <v-icon
+                                                small
+                                                class="mr-2"
+                                                @click="approve(item)"
+                                            >
+                                            mdi-check-bold
+                                            </v-icon>
+                                            <v-icon
+                                                small
+                                            @click="remove(item)"
+                                            >
+                                                mdi-delete
+                                            </v-icon>
+                                            </template>
+                                            <template v-slot:item.image="{ item }">
+                                                <v-avatar
+                                                    tile
+                                                    size="100px"
+                                                    class="my-2"
+                                                >
+                                                    <v-img
+                                                        :alt="item.image"
+                                                        max-height="150"
+                                                        max-width="250"
+                                                        :src="item.image.length ? item.image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
+                                                    ></v-img>
+                                                </v-avatar>
+                                            </template>
+                                        </v-data-table>
+                                        
+                                        
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                           
+
+                        </v-container>
+
+                    
+                       
+
+                   
+                 </v-stepper-content>
+                <v-stepper-content step="2">
+                    
+                     <v-container grid-list-xs>
+                        <v-layout row wrap>
+                            <v-flex xs12>
+                                <v-card>
+                                    <v-data-table
+                                        :headers="headersApproved"
+                                        :items="promotions"
+                                        max-height="70vh"
+                                        hide-default-footer
+                                        class="elevation-1 scroll"
+                                    >
+                                       
+                                     <template v-slot:top>
+                                     <v-toolbar
+                                            flat
+                                        >
+                                            <v-toolbar-title>Approved Promotions</v-toolbar-title>
+                                            <v-divider
+                                            class="mx-4"
+                                            inset
+                                            vertical
+                                            ></v-divider>
+                                            <v-spacer></v-spacer>
+                                            <v-btn
+                                            color="primary"
+                                            @click="e1 = 1"
+                                            
+                                            >
+                                            Pending Promotions
+                                            </v-btn>
+                                        </v-toolbar>
+                                        </template>
+                                    <template v-slot:item.actions="{ item }">
+                                        <v-icon
+                                            small
+                                            class="mr-2"
+                                            @click="approve(item)"
+                                        >
+                                            mdi-check-bold
+                                        </v-icon>
+                                        <v-icon
+                                            small
+                                        @click="remove(item)"
+                                        >
+                                            mdi-delete
+                                        </v-icon>
+                                        </template>
+                                        <template v-slot:item.image="{ item }">
+                                                <v-avatar
+                                                    tile
+                                                    size="100px"
+                                                    class="my-2"
+                                                >
+                                                    <v-img
+                                                        :alt="item.image"
+                                                        max-height="150"
+                                                        max-width="250"
+                                                        :src="item.image.length ? item.image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
+                                                    ></v-img>
+                                                </v-avatar>
+                                            </template>
+                                    </v-data-table>
+                                   
+                                </v-card>
+                            </v-flex>
+                        </v-layout>
+                       
+                          
+                            
+                          
+                    </v-container>
+                     
+                </v-stepper-content>
+            </v-stepper-items>
+        </v-stepper>
             <v-dialog
             v-model="dialog"
               width="400"
@@ -55,23 +175,23 @@
             <v-card
             width="400"
             >
-            <h2 style="padding-left: 4.3em;">Confirm Approve?</h2>             
+                <h2 style="padding-left: 4.3em;">Confirm Approve?</h2>             
               
-             <v-card-actions>
-                 <v-spacer></v-spacer>
-                 <v-btn
-                 @click="approveConfirm"
-                 >
-                     Approve
-                </v-btn> 
-                <v-btn
-                @click="dialog=false"
-                style="background-color: red; color: white;"
-                >
-                    Cancel
-                </v-btn>
-                <v-spacer></v-spacer>
-             </v-card-actions>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                    @click="approveConfirm"
+                    >
+                        Approve
+                    </v-btn> 
+                    <v-btn
+                    @click="dialog=false"
+                    style="background-color: red; color: white;"
+                    >
+                        Cancel
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                </v-card-actions>
             
              
                 <p style="display:none;">{{this.editedItem.id}}</p>
@@ -116,8 +236,16 @@
 export default {
     data(){
         return {
+            e1: 1,
             headers:[
+                     { text: '', align: 'start', value: 'image', width: '10%'},
+                    { text: 'Title', align: 'start', value: 'title', width: '10%'},
+                    { text: 'Link', align: 'start', value: 'link', width: '15%'},
+                    { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            ],
+            headersApproved:[
              
+                     { text: '', align: 'start', value: 'image', width: '10%'},
                     { text: 'Title', align: 'start', value: 'title', width: '10%'},
                     { text: 'Link', align: 'start', value: 'link', width: '15%'},
                     { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
@@ -128,7 +256,8 @@ export default {
                 id: '',
             },
             dialog:false,
-            dialogremove:false
+            dialogremove:false,
+            pendingPromo: [],
         }
     },
 
@@ -166,8 +295,20 @@ export default {
             this.editedItem = Object.assign({}, item)
             this.dialogremove = true
         },
+        getApprovedPromotion(){
+            axios.get('pendingPromotion').then(res =>{
+                this.pendingPromo = res.data 
+                console.log(res)
+            } )
+        }
 
 
     }
 }
 </script>
+<style scoped>
+.scroll {
+        overflow-y: scroll hidden;
+        
+    }
+</style>
