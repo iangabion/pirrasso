@@ -131,6 +131,8 @@
                                                 class="item-style"
                                             >
                                                 {{item.title}}
+
+                                                
                                             </div>
                                         </v-card>
                                     </v-hover>
