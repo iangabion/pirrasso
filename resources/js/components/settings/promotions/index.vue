@@ -257,7 +257,7 @@ export default {
 
     mounted(){
         this.getPromotions();
-        this.getApprovedPromotion();
+        this.getPendingPromotion();
     },
     methods: {
         getPromotions(){
@@ -294,7 +294,7 @@ export default {
             this.editedItem = Object.assign({}, item)
             this.dialogremove = true
         },
-        getApprovedPromotion(){
+        getPendingPromotion(){
             axios.get('pendingPromotion').then(res =>{
                 this.pendingPromo = res.data 
                 console.log(res)
