@@ -31,13 +31,9 @@
                         <sellerItems
                             v-if="client.items ? client.items.length : ''"
                             :items="client.items ? client.items : []"
+                            :items_fav="client.items_fav ? client.items_fav : []"
                             @reload="getClientInfo()"
                         />
-                        <!-- <sellerFavs
-                            v-if="client.items_fav ? client.items_fav.length : ''"
-                            :items="client.items_fav ? client.items_fav : []"
-                            @reload="getClientInfo()"
-                        /> -->
                        
                         <v-card
                             height="680px"
@@ -58,7 +54,7 @@ import { GetClient } from "@api/client.api";
 import sellerInfo from "./sellerInfo";
 import emptyItem from "@/components/error/emptyItems"
 import sellerItems from "./sellerItems";
-import sellerFavs from "./sellerItems";
+import sellerFavs from "./sellerFavs";
 
 export default {
     components: {
