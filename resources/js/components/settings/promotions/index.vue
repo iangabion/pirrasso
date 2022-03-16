@@ -22,7 +22,6 @@
                                         <v-data-table
                                             :headers="headers"
                                             :items="pendingPromo"
-                                            max-height="70vh"
                                             hide-default-footer
                                             class="elevation-1 scroll"
                                         
@@ -100,7 +99,7 @@
                                     <v-data-table
                                         :headers="headersApproved"
                                         :items="promotions"
-                                        max-height="70vh"
+                                       
                                         hide-default-footer
                                         class="elevation-1 scroll"
                                     >
@@ -251,18 +250,20 @@ export default {
                     { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
             ],
             promotions: [],
+
             editedIndex: -1,
             editedItem: {
                 id: '',
             },
             dialog:false,
             dialogremove:false,
-            pendingPromo: [],
+            pendingPromo: []
         }
     },
 
     mounted(){
         this.getPromotions();
+        this.getApprovedPromotion();
     },
     methods: {
         getPromotions(){

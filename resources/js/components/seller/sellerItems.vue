@@ -21,21 +21,6 @@
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn
-                    @click="e1 = 1"
-                    :outlined="!check_active('items')"
-                    :color="check_active('items') ? 'error' : 'primary'"
-                    small
-                    class=" my-2 ml-2"
-                   
-                >
-                    <v-icon
-                        left
-                        class="mr-3"
-                        
-                    > mdi-cart</v-icon>
-                    {{$t('seller.selleritems.items')}}
-                </v-btn>
-                <!-- <v-btn
                     @click="change_active('items')"
                     :outlined="!check_active('items')"
                     :color="check_active('items') ? 'error' : 'primary'"
@@ -49,7 +34,7 @@
                         
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.items')}}
-                </v-btn> -->
+                </v-btn>
                 <!-- <v-btn
                     @click="change_active('sold')"
                     :outlined="!check_active('sold')"
@@ -63,7 +48,22 @@
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.sold')}}
                 </v-btn> -->
-                <v-btn
+                <!-- <v-btn
+                    @click="e1 = 1"
+                    :outlined="!check_active('items')"
+                    :color="check_active('items') ? 'error' : 'primary'"
+                    small
+                    class=" my-2 ml-2"
+                   
+                >
+                    <v-icon
+                        left
+                        class="mr-3"
+                        
+                    > mdi-cart</v-icon>
+                    {{$t('seller.selleritems.items')}}
+                </v-btn> -->
+                <!-- <v-btn
                     @click="e1 = 2"
                     :outlined="!check_active('items_fav')"
                     :color="check_active('items_fav') ? 'error' : 'primary'"
@@ -75,8 +75,8 @@
                         class="mr-3"
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.cart')}}
-                </v-btn>
-                <!-- <v-btn
+                </v-btn> -->
+                <v-btn
                     @click="change_active('items_fav')"
                     :outlined="!check_active('items_fav')"
                     :color="check_active('items_fav') ? 'error' : 'primary'"
@@ -88,13 +88,13 @@
                         class="mr-3"
                     > mdi-heart</v-icon>
                     {{$t('seller.selleritems.cart')}}
-                </v-btn> -->
+                </v-btn>
             </v-toolbar>
             <v-divider></v-divider>
-            <!-- <div v-if="category_selected === 'items'"> -->
-            <v-stepper v-model="e1">
-                <v-stepper-items>
-                    <v-stepper-content step="1">
+            <div v-if="category_selected === 'items'">
+            <!-- <v-stepper v-model="e1"> -->
+                <!-- <v-stepper-items> -->
+                    <!-- <v-stepper-content step="1"> -->
                         <v-container>
                             <v-row>
                                 <v-col
@@ -139,10 +139,10 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                    </v-stepper-content>
-                <!-- </div> -->
-                        <!-- <div v-else> -->
-                    <v-stepper-content step="2">
+                    <!-- </v-stepper-content> -->
+                </div>
+                        <div v-else>
+                    <!-- <v-stepper-content step="2"> -->
                         <v-container>
                             <v-row>
                                 <v-col
@@ -185,10 +185,10 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                    </v-stepper-content>
-                        <!-- </div> -->
-                </v-stepper-items>
-            </v-stepper>
+                    <!-- </v-stepper-content> -->
+                        </div>
+                <!-- </v-stepper-items> -->
+            <!-- </v-stepper> -->
         </v-card>
     </div>
 </template>
