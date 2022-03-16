@@ -125,13 +125,7 @@
                                         </v-toolbar>
                                         </template>
                                     <template v-slot:item.actions="{ item }">
-                                        <v-icon
-                                            small
-                                            class="mr-2"
-                                            @click="approve(item)"
-                                        >
-                                            mdi-check-bold
-                                        </v-icon>
+                                        
                                         <v-icon
                                             small
                                         @click="remove(item)"
@@ -282,6 +276,8 @@ export default {
                 console.log(res)
                 this.getPromotions();
                 this.dialog = false
+                this.getPromotions();
+                this.getApprovedPromotion();
             })
         },
         removeConfirm(){
@@ -289,6 +285,8 @@ export default {
                 console.log(res)
                 this.getPromotions()
                 this.dialogremove = false
+                this.getPromotions();
+                this.getApprovedPromotion();
             })
         },
         remove(item){
@@ -300,6 +298,7 @@ export default {
             axios.get('pendingPromotion').then(res =>{
                 this.pendingPromo = res.data 
                 console.log(res)
+              
             } )
         }
 
