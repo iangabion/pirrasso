@@ -34,7 +34,7 @@ class Client extends Authenticatable
         return $this->hasMany(Session::class);
     }
     public function solds(){
-        return $this->hasMany(Sold::class);
+        return $this->hasMany(Sold::class, 'seller_id');
     }
     public function messages(){
         return $this->hasMany(Message::class);

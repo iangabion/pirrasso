@@ -32,6 +32,7 @@
                             v-if="client.items ? client.items.length : ''"
                             :items="client.items ? client.items : []"
                             :items_fav="client.items_fav ? client.items_fav : []"
+                            :solds="client.solds ? client.solds : []"
                             @reload="getClientInfo()"
                         />
                        
