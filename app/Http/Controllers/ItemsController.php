@@ -273,7 +273,6 @@ class ItemsController extends Controller
             'id' => 'required',
             'title' => 'required',
             'price' => 'required',
-            'description' => 'required',
             'location' => 'required',
             'latitude' => 'numeric',
             'longitude' => 'numeric',
@@ -381,7 +380,6 @@ class ItemsController extends Controller
           
             'title' => 'required',
             'price' => 'required',
-            'description' => 'required',
             'location' => 'required',
             'latitude' => 'numeric',
             'longitude' => 'numeric',

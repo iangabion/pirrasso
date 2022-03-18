@@ -49,7 +49,7 @@ class ClientController extends Controller
                         ;
             });
         }
-        return $client->orderBy('created_at' , 'desc')->with('items_fav')->get();
+        return $client->with('items_fav')->with('solds')->orderBy('created_at' , 'desc')->get();
     }
 
 
@@ -120,7 +120,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        $client = Client::with('items.photos','items.category')->with('items_fav.photos')->find($id);
+        $client = Client::with('items.photos','items.category')->with('items_fav.photos')->with('solds.item.photos', 'solds.buyers', 'solds.item.category')->find($id);
         return $client;
         // dd('lo9oadwd');
     }

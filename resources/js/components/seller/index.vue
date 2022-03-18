@@ -16,14 +16,14 @@
                     :value="prefill"
                 />
             </div>
-            <v-btn
+            <!-- <v-btn
                 @click="addSeller()"
             >
                 <v-icon>
                     mdi-database-plus
                 </v-icon>
                 Add
-            </v-btn>
+            </v-btn> -->
         </v-toolbar>
         <AddSeller
             :dialog="dialog"

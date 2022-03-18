@@ -50,7 +50,10 @@ class Items extends Model
         return $this->hasMany(Session::class);
     }
     public function solds(){
-        return $this->hasMany(Sold::class);
+        return $this->hasMany(Sold::class, 'item_id', 'seller_id');
+    }
+    public function solds_group(){
+        return $this->hasMany(Sold::class, 'item_id', 'seller_id');
     }
     public function reviews(){
         return $this->hasMany(ProductReview::class);

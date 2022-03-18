@@ -274,10 +274,10 @@ export default {
         approveConfirm(){
             axios.put('approve/'+ this.editedItem.id, this.editedItem).then((res)=> {
                 console.log(res)
-                this.getPromotions();
                 this.dialog = false
+                this.getPendingPromotion();
                 this.getPromotions();
-                this.getApprovedPromotion();
+                 
             })
         },
         removeConfirm(){
@@ -285,8 +285,8 @@ export default {
                 console.log(res)
                 this.getPromotions()
                 this.dialogremove = false
+               this.getPendingPromotion();
                 this.getPromotions();
-                this.getApprovedPromotion();
             })
         },
         remove(item){

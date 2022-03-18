@@ -24,4 +24,8 @@ class Photos extends Model
 		return $this->belongsTo(Items::class);
 	}
 
+    public function sold_item(){
+		return $this->belongsTo(Sold::class, 'items_id');
+	}
+
 }

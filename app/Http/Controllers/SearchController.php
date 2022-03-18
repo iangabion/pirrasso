@@ -101,7 +101,8 @@ class SearchController extends Controller
     public function global_search_client(Request $request)
     {
 //
-        $client = Client::where('is_verified', 1);
+        $client = Client::query();
+        // $client = Client::where('is_verified', 1);
         if($request->input('searchkey')!=''){
             $keyword = $request->input('searchkey');
             $client->where(function($query) use($keyword){
