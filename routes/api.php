@@ -82,6 +82,8 @@ Route::middleware('auth:api')->group(function () {
 
 	// Route::get('item_messages2' ,'SessionController@get_item_messages2');
 
+	Route::put('update_session', 'SessionController@update_session');
+
 
 
 	
@@ -184,6 +186,9 @@ Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
 
 Route::delete('delete_photo/{id}','PhotosController@delete_photo');
+
+Route::post('get_mobile', 'ClientController@get_mobile');
+
 
 
 

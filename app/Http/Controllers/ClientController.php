@@ -347,4 +347,24 @@ class ClientController extends Controller
     
     }
 
+    public function get_mobile(Request $request){
+        $loginData = $request->validate([
+            'email_mobile' => 'required',
+        ]);
+        if($loginData){
+            $client = Client::where('mobile',$request->email_mobile)->first();
+            if ( ($client != null)){
+                $accessToken = $client->createToken('authToken')->accessToken;
+                $client->save();
+                if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
+                    $client->fcm_tokens()->create([
+                        'token'=> $request->input('fcm_token')
+                    ]);
+                }
+                return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
+            }
+            return response(['message'=> 'invalid credentials']);
+        }
+    }
+
 }

@@ -64,16 +64,32 @@ class SessionController extends Controller
         // return $session ;
     }
 
+    public function update_session(){
+        $id = Auth::user()->id;
+        $session = Session::with('messages');
+        // ->where('seller_id', $id)->orWhere('buyer_id', $id)->
+
+        if($id == 'seller_id'){
+            $session->update(['seller_delete', 1]);
+            return 'success delete seller';
+        }elseif($id == 'buyer_id'){
+            $session->update(['buyer_delete', 1]);
+            return 'success delete buyer';
+        }
+    }
+
 
     public function store(Request $request)
     {
         //
-        
+        //  when the message is from seller 
             if($request->session_id) {
                 $session_available = Session::findorfail($request->session_id);
                 $this->manage_message($request->session_id , $request->message, $request->session_status);
                 return new SessionResource($session_available ) ;
             }
+
+
             else {
                 $messageData = $request->validate([
                     'seller_id' => 'required',
