@@ -31,7 +31,11 @@
                         <sellerItems
                             v-if="client.items ? client.items.length : ''"
                             :items="client.items ? client.items : []"
+                            :items_fav="client.items_fav ? client.items_fav : []"
+                            :solds="client.solds ? client.solds : []"
+                            @reload="getClientInfo()"
                         />
+                       
                         <v-card
                             height="680px"
                             style="overflow-y:scroll;"
@@ -40,6 +44,7 @@
                             <emptyItem/>
                         </v-card>
                     </v-col>
+                    
                 </v-row>
             </v-container>
         </div>
@@ -50,12 +55,14 @@ import { GetClient } from "@api/client.api";
 import sellerInfo from "./sellerInfo";
 import emptyItem from "@/components/error/emptyItems"
 import sellerItems from "./sellerItems";
+import sellerFavs from "./sellerFavs";
 
 export default {
     components: {
         sellerInfo,
         sellerItems,
-        emptyItem
+        emptyItem,
+        sellerFavs
     },
     data(){
         return {

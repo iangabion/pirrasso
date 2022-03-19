@@ -17,11 +17,15 @@ class Photos extends Model
     public function getFilenameAttribute($value){
         return $value != null ?  asset('images/items/'. $value) : asset('images/default.png') ;
     }
-    public function getLinkAttribute(){
-        return asset('images/items/'. $this->filename);
+    public function getLinkAttribute($value){
+        return  $value != null ? asset($this->filename) : asset('images/items/default.png') ;
     }
     public function item(){
 		return $this->belongsTo(Items::class);
+	}
+
+    public function sold_item(){
+		return $this->belongsTo(Sold::class, 'items_id');
 	}
 
 }

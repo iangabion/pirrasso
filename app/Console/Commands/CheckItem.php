@@ -42,8 +42,9 @@ class CheckItem extends Command
         
         // echo "test";
 
-       return Items::where( 'updated_at', '>=', Carbon::today()->subDays(60))
-                ->update(['is_expired'=> 1]);
+       return Items::where('stock' == 0)->where( 'updated_at', '>=', Carbon::today()->subDays(15))
+                // ->update(['is_expired'=> 1]);
+                ->delete();
                 
     }
 }

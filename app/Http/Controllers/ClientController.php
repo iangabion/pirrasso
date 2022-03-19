@@ -316,6 +316,13 @@ class ClientController extends Controller
         return ItemResource::collection($favorites->items_fav);
     }
 
+    public function get_user_favorites($user_id)
+    {
+        $favorites = Client::findorfail($user_id);
+        return ItemResource::collection($favorites->items_fav);
+    }
+
+
     public function change_number(Request $request){
         $user = Client::find(Auth::id());
         $user->mobile = '63' + $request->input('new');
@@ -323,6 +330,41 @@ class ClientController extends Controller
 
         return $user;
         
+    }
+
+    public function register_mobile(Request $request){
+        $user = new Client();
+
+        $user->mobile = $request->mobile;
+        $user->email = "NewUser$request->mobile";
+        $user->username = $request->username;
+        $user->is_verified = 1;
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        $accessToken = $user->createToken('authtoken')->accessToken ;
+        return response(['user' => new ClientResource($user) , 'access_token' => $accessToken]);
+
+    
+    }
+
+    public function get_mobile(Request $request){
+        $loginData = $request->validate([
+            'email_mobile' => 'required',
+        ]);
+        if($loginData){
+            $client = Client::where('mobile',$request->email_mobile)->first();
+            if ( ($client != null)){
+                $accessToken = $client->createToken('authToken')->accessToken;
+                $client->save();
+                if(!$client->fcm_tokens()->where('token',$request->input('fcm_token'))->exists()){
+                    $client->fcm_tokens()->create([
+                        'token'=> $request->input('fcm_token')
+                    ]);
+                }
+                return response(['user' => new ClientResource($client) , 'accessToken' => $accessToken ]);
+            }
+            return response(['message'=> 'invalid credentials']);
+        }
     }
 
 }

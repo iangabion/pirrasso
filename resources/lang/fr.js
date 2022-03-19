@@ -13,8 +13,8 @@ export default {
     sidebar: {
         dashboard: "Tableau de bord",
         items: "Articles",
-        sellers: "Vendeurs",
-        approved_items: "Approuverd Articles",
+        sellers: "Utilisateur",
+        approved_items: "Articles en attente.",
         item_categories: "Catégories d'articles",
         item_status: "Statut de l'article",
         apps_images: "Images de l'applicationlication",
@@ -22,13 +22,13 @@ export default {
         sms_sender_settings: "Paramètres de l'expéditeur de SMS",
     },
     approved_items: {
-        to_be_approved_items: "A approuver Articles",
+        to_be_approved_items: "Articles en attente",
         approve: "Approuver",
         disapproved: "Désapprouver",
         item_name: "Nom d'article",
         category: "Catégorie",
         price: "Prix",
-        seller_username: "Nom d'utilisateur du vendeur",
+        seller_username: "Nom d'utilisateur",
         added_on: "Ajouté le",
 
         disapproved_dialog: {
@@ -70,7 +70,7 @@ export default {
             sold: "Vendu",
             category: "Catégorie",
             date_published: "Date de publication",
-            sample_photo: "Echantillon de Photo",
+            sample_photo: "Photo du produit",
             delete_item: "Supprimer Article"
         },
         sellerinfo: {
@@ -84,7 +84,7 @@ export default {
             item_details: "Détails Article",
             items: "Articles",
             sold: "Vendu",
-            cart: "Panier"
+            cart: "Favoris"
         },
         show: {
             seller_info: "Info du vendeur",

@@ -64,31 +64,49 @@ class SessionController extends Controller
         // return $session ;
     }
 
+    public function update_session(){
+        $id = Auth::user()->id;
+        $session = Session::with('messages');
+        // ->where('seller_id', $id)->orWhere('buyer_id', $id)->
+
+        if($id == 'seller_id'){
+            $session->update(['seller_delete', 1]);
+            return 'success delete seller';
+        }elseif($id == 'buyer_id'){
+            $session->update(['buyer_delete', 1]);
+            return 'success delete buyer';
+        }
+    }
+
 
     public function store(Request $request)
     {
         //
-        
+        //  when the message is from seller 
             if($request->session_id) {
                 $session_available = Session::findorfail($request->session_id);
-                $this->manage_message($request->session_id , $request->message);
+                $this->manage_message($request->session_id , $request->message, $request->session_status);
                 return new SessionResource($session_available ) ;
             }
+
+
             else {
                 $messageData = $request->validate([
                     'seller_id' => 'required',
                     'item_id' => 'required',
                     'message' => 'required',
-                    'session_id' => 'nullable'
+                    'session_id' => 'nullable',
+                    'session_status' => 'nullable'
                 ]);
                 $session = new Session() ;
                 $session->seller_id = $request->input('seller_id') ;
                 $session->item_id = $request->input('item_id') ;
                 $session->buyer_id = Auth::user()->id ;
+                
                 $session->sessions_name = $request->input('seller_id') . '_' . $request->input('item_id') . '_' . $request->input('buyer_id') ;
 
                 if($session->save()){
-                    $this->manage_message($session->id , $request->message);
+                    $this->manage_message($session->id , $request->message, $request->session_status);
                 }
                 return  new SessionResource($session) ;
             }
@@ -100,11 +118,12 @@ class SessionController extends Controller
         return $session->where('is_read',0)->count() ;
     }
 
-    public function manage_message($sessions_id , $messages){
+    public function manage_message($sessions_id , $messages, $session_status){
         $message = new Message();
         $message->session_id = $sessions_id ;
         $message->user_id = Auth::user()->id ;
         $message->message = $messages ;
+        $message->session_status = $session_status;
         $message->save();
     }
 

@@ -7,7 +7,7 @@ use App\Http\Resources\ProductReviewResource;
 class Items extends Model
 {
     //
-    protected $fillable = ['title', 'price', 'stock', 'is_sold', 'client_id', 'category_id', 'status_id',
+    protected $fillable = ['title', 'price', 'stock', 'total_purchase' , 'is_sold', 'client_id', 'category_id', 'status_id',
         'subcategory_id', 'description', 'location'];
     // protected $guarded = [];
     // scopes
@@ -18,7 +18,7 @@ class Items extends Model
 
     // relations
     public function client(){
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
     public function clients_fav(){
@@ -50,7 +50,10 @@ class Items extends Model
         return $this->hasMany(Session::class);
     }
     public function solds(){
-        return $this->hasMany(Sold::class);
+        return $this->hasMany(Sold::class, 'item_id', 'seller_id');
+    }
+    public function solds_group(){
+        return $this->hasMany(Sold::class, 'item_id', 'seller_id');
     }
     public function reviews(){
         return $this->hasMany(ProductReview::class);

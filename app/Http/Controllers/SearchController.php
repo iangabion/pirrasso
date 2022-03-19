@@ -24,14 +24,11 @@ class SearchController extends Controller
     public function searchchan(Request $request)
     {
 
-        $item = Items::whereHas('subcategory', function($q) use($request){
+        $item = Items::where('is_approved', 1)->whereHas('subcategory', function($q) use($request){
             if($request->input('subcat_category')!=''){
                 $q->where('id', $request->input('subcat_category'));
             }
-            // else if($request->input('searchkey')===$request->input('subcat_category'))
-            // {
-            //     $q->where('id', $request->input('subcat_category'));
-            // }
+            
         });
         If ($request->input('searchkey') != ''){
             $keyword = $request->input('searchkey');
@@ -44,7 +41,38 @@ class SearchController extends Controller
         else
         if($request->input('searchkey')===$request->input('subcat_category'))
         {
-            $item = Items::whereHas('subcategory', function ($q) use($request){
+            $item = Items::where('is_approved',1)->whereHas('subcategory', function ($q) use($request){
+                $q->where('id', $request->input('subcat_category'));
+            });
+        }
+        ;
+        // $item->where(   )
+
+        return ItemResource::collection($item->get());
+        // return ItemResource::collection($item);
+    }
+
+    public function searchchan2(Request $request)
+    {
+
+        $item = Items::where('is_approved', 0)->whereHas('subcategory', function($q) use($request){
+            if($request->input('subcat_category')!=''){
+                $q->where('id', $request->input('subcat_category'));
+            }
+            
+        });
+        If ($request->input('searchkey') != ''){
+            $keyword = $request->input('searchkey');
+                $item->where(function($query)use($keyword){
+                        $query  ->where('title', 'LIKE', "%$keyword%")
+                                ->orWhere('description', 'LIKE', "%$keyword%")
+                                ;
+                });
+        }
+        else
+        if($request->input('searchkey')===$request->input('subcat_category'))
+        {
+            $item = Items::where('is_approved',1)->whereHas('subcategory', function ($q) use($request){
                 $q->where('id', $request->input('subcat_category'));
             });
         }
@@ -73,7 +101,8 @@ class SearchController extends Controller
     public function global_search_client(Request $request)
     {
 //
-        $client = Client::where('is_verified', 1);
+        $client = Client::query();
+        // $client = Client::where('is_verified', 1);
         if($request->input('searchkey')!=''){
             $keyword = $request->input('searchkey');
             $client->where(function($query) use($keyword){

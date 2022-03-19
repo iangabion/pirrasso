@@ -26,9 +26,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('logout' ,'ClientController@logout');
 	// clients part
 	Route::get('clients' ,'ClientController@index');
-	Route::post('update_profile' ,'ClientController@update_profile');
 	Route::get('view_profile' ,'ClientController@show');
-
+	Route::post('update_profile' ,'ClientController@update_profile');
 	// items part
 	Route::post('add_items' ,'ItemsController@store');
 	Route::post('add_photos' ,'ItemsController@add_photos');
@@ -83,6 +82,8 @@ Route::middleware('auth:api')->group(function () {
 
 	// Route::get('item_messages2' ,'SessionController@get_item_messages2');
 
+	Route::put('update_session', 'SessionController@update_session');
+
 
 
 	
@@ -110,6 +111,7 @@ Route::get('categories' ,'CategoryController@index');
 Route::get('category_items/{id}' ,'CategoryController@category_items');
 Route::get('get_items/{id}' ,'CategoryController@get_items');
 Route::get('get_all_items' ,'CategoryController@get_all');
+Route::get('get_all_items_unapproved' ,'CategoryController@get_all_unapproved');
 Route::post('get_category/{id}','CategoryController@get_category');
 
 
@@ -126,6 +128,7 @@ Route::get('getAll', 'CategoryController@getAll');
 
 // login and register
 Route::post('register' ,'ClientController@store');
+Route::post('register_mobile' ,'ClientController@register_mobile');
 Route::post('login' ,'ClientController@login');
 Route::post('loginfacebook' ,'ClientController@facebookLogin');
 Route::post('loginapple' ,'ClientController@appleLogin');
@@ -136,8 +139,12 @@ Route::post('reset-password' ,'ForgotPasswordController@checkToken');
 Route::get('test_code' ,'ClientController@sendVerificationCode');
 
 
+
+
+
 // search items
 Route::post('searchchan' ,'SearchController@searchchan');
+Route::post('searchchan2' ,'SearchController@searchchan2');
 Route::get('search/{item?}' ,'SearchController@index');
 
 //API Settings Apps Images
@@ -148,10 +155,14 @@ Route::post('add_photo4Logo', 'PhotosController@add_photo4Logo');
 
 //Sms api
 Route::get('get_admin', 'SmsController@get_admin'); 
-Route::post('sms_sender', 'SMSController@sms_sender');
+Route::post('sms_sender', 'SmsController@sms_sender');
 Route::put('change_number', 'ClientController@change_number');
-Route::post('send_sms_test', 'SMSController@send_sms_test');
-Route::post('enable_disable', 'SMSController@enable_disable');
+Route::post('send_sms_test', 'SmsController@send_sms_test');
+Route::post('enable_disable', 'SmsController@enable_disable');
+
+
+
+
 // Route::get('sendMessage', 'SMSController@sendMessage');
 
 
@@ -168,12 +179,17 @@ Route::get('getStarRating', 'ItemsController@getStarRating');
 
 //promotions
 
-Route::get('indexPromotion','PromotionController@index');
+// Route::get('indexPromotion','PromotionController@index');
+Route::get('fetchAllPromo','PromotionController@fetchAll');
 Route::post('save_promotion','PromotionController@store');
 Route::post('edit_promotion/{id}','PromotionController@update');
 Route::delete('delete_promotion/{id}','PromotionController@destroy');
 
 Route::delete('delete_photo/{id}','PhotosController@delete_photo');
+
+Route::post('get_mobile', 'ClientController@get_mobile');
+
+
 
 
 

@@ -140,7 +140,7 @@ export default {
                 let payload = {
                     new: this.new_num
                 }
-                axios.put('api/change_number/', payload, {} ).then((response)=>{
+                axios.put('api/change_number', payload, {} ).then((response)=>{
                     console.log(response.data);
                 })
             }
@@ -154,12 +154,12 @@ export default {
         },
         send_sms_test(){
                 let payload = { new:this.new_num}
-                axios.post('api/send_sms_test/', payload).then((response)=>{
+                axios.post('api/send_sms_test', payload).then((response)=>{
                     console.log(response)
                 })
         },
         get_admin(){
-            axios.get('api/get_admin/').then((response)=>{
+            axios.get('api/get_admin').then((response)=>{
                 this.sms = response.data
                 console.log(this.sms, "sms owner")
                 if(this.sms[0].switch==1){
@@ -177,13 +177,13 @@ export default {
             if(this.sms1=='On'){
                 alert("SMS Enabled")
                 let payload= { switch:1 }
-                axios.post('api/enable_disable/', payload).then((response)=>{
+                axios.post('api/enable_disable', payload).then((response)=>{
                     console.log(response.data)
                 })
             }else{
                 alert("Twilio Disabled")
                 let payload= { switch:0 }
-                axios.post('api/enable_disable/', payload).then((response)=>{
+                axios.post('api/enable_disable', payload).then((response)=>{
                     console.log(response.data)
                 })
             }

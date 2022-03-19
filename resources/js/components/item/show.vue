@@ -31,7 +31,7 @@
 <!-- here -->
                     <v-flex xs2>
                     <v-list color="deep-orange darken-2" dark dense 
-                        min-height="80vh" class="mx-auto">
+                         width="270" max-height="77vh" min-height="77vh" class="mx-auto scroll2">
                         <template v-for="item in categories">
                             <v-row v-if="item.heading" :key="item.heading" align="center">
                             </v-row>
@@ -76,8 +76,8 @@
                     </v-flex>
 <!-- divide -->
                 <v-flex xs10>
-                <v-card min-height="80vh" class="ma-2">
-                    <v-container>
+                <v-card min-height="77vh" max-height="77vh" class="ma-2 scroll">
+                    <v-container >
 <!-- start -->
                             <v-layout row wrap>
                                 <!-- <v-card> -->
@@ -88,31 +88,119 @@
                                     </v-flex>
                                     <v-flex xs12 v-else>
                                         <v-layout row wrap v-if="categories_item.length">
-                                            <v-flex  xs12 sm2  v-for="(items,index) in categories_item" :key="items.id" >
-                                                <v-card>
+                                            <v-flex  xs8 sm3  v-for="(items,index) in categories_item" :key="items.id" >
+                                                <v-card
+                                              
+                                                >
                                                     <v-list-item>
-                                                    <v-list-item-avatar color="grey">
+                                                    <v-list-item-avatar grey>
                                                         <v-img class="pa-2"
-                                                            :src="items.owner.profile_pic"
+                                                            :src="items.owner.profile_pic ? items.owner.profile_pic : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
                                                         ></v-img>
+                                                      
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
-                                                        <v-list-item-title >{{items.owner.username}}</v-list-item-title>
-                                                        <!-- <v-list-item-subtitle>10 minutes ago</v-list-item-subtitle> -->
+                                                        <v-list-item-title >{{items.owner.username ? items.owner.username : items.owner.email}}</v-list-item-title>
                                                     </v-list-item-content>
                                                     </v-list-item>
                                                     <v-img class="pa-2"
                                                     aspect-ratio="1.5"
                                                     contain
-                                                    :src="items.images[0] ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' "
+                                                    :src="items.images.length ? items.images[0].filename : 'images/default.png' "
                                                     ></v-img>
+
+                                                   
+                                                    <!-- <v-img
+                                                        lazy-src="https://picsum.photos/id/11/10/6"
+                                                        max-height="150"
+                                                        max-width="250"
+                                                        src="https://picsum.photos/id/11/500/300"
+                                                        ></v-img> -->
                                                     <!-- :src="items.images.length ? items.images[0].image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg' " -->
                                                     <v-list-item>
                                                     <v-list-item-content class="text-capitalize">
                                                         <v-list-item-title class="py-1 font-weight-bold" >  {{items.title}}</v-list-item-title>
-                                                        <v-list-item-subtitle > <v-icon>mdi-coin</v-icon> PHP {{items.price}}</v-list-item-subtitle>
-                                                        <v-list-item-subtitle class="py-1"> <v-icon>mdi-comment</v-icon> {{items.description}}</v-list-item-subtitle>
-                                                        <v-list-item-subtitle ><v-icon>mdi-star-box</v-icon> {{items.status}}</v-list-item-subtitle>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-grid-large</v-icon> 
+                                                                        {{items.category.name}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Category Type</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle > 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-cash-usd</v-icon> 
+                                                                        {{items.price}}
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Price</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle class="py-1"> 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-comment</v-icon> 
+                                                                        {{items.description}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Description</span>
+                                                         </v-tooltip>
+                                                         <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle class="py-1"> 
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-map-marker</v-icon>
+                                                                        <span class="location_font">{{items.location}}</span>
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Location</span>
+                                                         </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-star-box</v-icon> {{items.status}}
+                                                                </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Status</span>
+                                                        </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-calendar</v-icon> 
+                                                                      {{items.created_at}}
+                                                                    </v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Date Created</span>
+                                                        </v-tooltip>
+                                                        <v-tooltip left>
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-list-item-subtitle >
+                                                                    <v-icon
+                                                                        v-bind="attrs"
+                                                                        v-on="on"
+                                                                    >mdi-cart-outline</v-icon> {{items.total_purchase}}</v-list-item-subtitle>
+                                                            </template>
+                                                            <span>Total Purchased</span>
+                                                        </v-tooltip>
                                                         <v-list-item-subtitle >
                                                         <span v-if="(items.is_urgent)==1">
                                                             <v-icon>mdi-alert-octagon</v-icon>
@@ -148,13 +236,14 @@
                                                     </v-list-item>
                                                     <v-divider></v-divider>
                                                     <v-card-actions >
+                                                        <v-spacer></v-spacer>
 
-                                                    <v-btn icon>
+                                                    <!-- <v-btn icon>
                                                         <v-icon @click="show(items , index)" color="primary">mdi-eye</v-icon>
-                                                    </v-btn>
-                                                    <v-btn icon @click="destroy(items.id , index)">
+                                                    </v-btn> -->
+                                                    <!-- <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="yellow">mdi mdi-coin</v-icon>
-                                                    </v-btn>
+                                                    </v-btn> -->
                                                     <v-btn icon @click="destroy(items.id , index)">
                                                         <v-icon color="error">mdi-delete</v-icon>
                                                     </v-btn>
@@ -270,7 +359,7 @@
                                                     </v-card>
                                                 </v-dialog>
 <!-- dia2 -->
-                                                    <v-dialog
+                                                    <!-- <v-dialog
                                                         v-model="dialogItem"
                                                         width="500px"
                                                     >
@@ -281,12 +370,12 @@
                                                                 <img
                                                                     class="image"
                                                                     :alt="payload.image"
-                                                                    :src="payload.image? payload.image : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
+                                                                    :src="payload.images.filename? payload.images.filename : 'https://shyamsunderfoods.com/wp-content/uploads/2019/02/no-photo-6.jpg'"
                                                                 >
                                                             </v-responsive>
                                                             <v-list-item>
                                                             <v-list-item-content class="text-capitalize">
-                                                                <v-list-item-title class="py-1 font-weight-bold" >  {{payload.title}}}</v-list-item-title>
+                                                                <v-list-item-title class="py-1 font-weight-bold" >  {{payload.title}}</v-list-item-title>
                                                                 <v-list-item-subtitle > <v-icon>mdi-coin</v-icon> PHP {{items.price}}</v-list-item-subtitle>
                                                                 <v-list-item-subtitle class="py-1"> <v-icon>mdi-comment</v-icon> {{items.description}}</v-list-item-subtitle>
                                                                 <v-list-item-subtitle ><span v-if="(items.is_urgent)==1"><v-icon>mdi-alert-octagon</v-icon> Urgent </span></v-list-item-subtitle>
@@ -296,7 +385,7 @@
 
 
                                                         </v-card>
-                                                    </v-dialog>                                   
+                                                    </v-dialog>                                    -->
 <!-- dia3 -->
                                             </v-flex>
                                         </v-layout>
@@ -375,6 +464,9 @@ export default {
         }
 
     }),
+
+   
+
     methods: {
         search_item(key){
                 this.loading=true
@@ -424,7 +516,7 @@ export default {
         },
 
         get_categories() {
-            axios.get('/api/categories', {})
+            axios.get('/api/categories')
 
             .then(response => {
                 this.categories = response.data;
@@ -434,13 +526,7 @@ export default {
                     subcategories: 0
                 }
                 this.categories.unshift(payload)
-                // this.categories_with = response.data.filter(chan_filter=>
-                //     chan_filter.id==2
-                // );
-                // this.categories_witho = response.data.filter(chan_filter=>
-                //     chan_filter.id !=2
-                // )
-                this.search_item(key)
+                // this.search_item(key)
                 this.get_items(this.categories[0].id)
             }).catch((errors)=>{
                 console.log(errors)
@@ -488,7 +574,7 @@ export default {
         activate(){
             // axios.put('/subcategories/'+id, this.subcat )
             // return
-            axios.put('activate/',this.payload).then(res=> {
+            axios.put('activate',this.payload).then(res=> {
                 console.log(res, 'activate')
                   this.get_categories()
                   this.dialogActivate = false
@@ -497,7 +583,7 @@ export default {
         deactivate(){
               console.log(this.payload, 'test')
             // return
-            axios.put('deactivate/',this.payload).then(res=> {
+            axios.put('deactivate',this.payload).then(res=> {
                 console.log(res, 'deactivate')
                   this.get_categories()
                   this.dialogDeActivate = false
@@ -520,7 +606,6 @@ export default {
             this.editedIndex = this.categories_item.indexOf(items)
             this.payload = JSON.parse(JSON.stringify(items))
             this.dialogDeActivate = true
-
         }
     },
     created() {
@@ -575,5 +660,19 @@ export default {
     }
     .hide{
         display: none;
+    }
+
+    .scroll {
+        overflow-y: scroll;
+        
+        overflow-x: hidden;
+    }
+     .scroll2 {
+        overflow-y: scroll hidden thin;
+        
+        overflow-x: hidden;
+    }
+    .location_font {
+        font-size: 11px;
     }
 </style>

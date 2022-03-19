@@ -9,6 +9,15 @@ class PromotionController extends Controller
 {
     //
     public function index(){
+        $q = Promotion::where('is_approved', 1)->get();
+        return $q;
+    }
+    // public function pendingPromo(){
+    //     $q = Promotion::where('is_approved', 0)->get();
+    //     return $q;
+    // }
+
+    public function fetchAll(){
         $q = Promotion::get();
         return $q;
     }

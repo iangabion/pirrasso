@@ -118,6 +118,7 @@
            { icon: 'mdi-view-dashboard', text: this.$t('sidebar.dashboard') ,url:'/dashboard' },
             { icon: 'mdi-history', text: this.$t('sidebar.items') ,url:'/items' },
             { icon: 'mdi-account-group', text: this.$t('sidebar.sellers') ,url:'/sellers' },
+            { icon: 'mdi-message-processing', text:'Promotions', url:'/promotions' },
             { icon: 'mdi-check', text: this.$t('sidebar.approved_items'), url:'/approved_items' },
             {
               icon: 'mdi-settings',
@@ -130,6 +131,7 @@
                 { icon: 'mdi-image', text: this.$t('sidebar.apps_images') , url:'/apps_images' },
                 { icon: 'mdi-email-newsletter', text: this.$t('sidebar.email_smtp_settings'), url:'/smtps' },
                 { icon: 'mdi-message-processing', text: this.$t('sidebar.sms_sender_settings') , url:'/sms' },
+               
           ],
         },
          ]

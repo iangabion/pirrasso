@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Items ;
 use App\Sold ;
+use App\TwilioSwitch;
 
 class ItemController extends Controller
 {
@@ -132,7 +134,9 @@ class ItemController extends Controller
     }
 
     public function getToApprovedItems(){
-        return Items::with('category','client')->where('is_approved', 0)->get();
+        $items = Items::with('category','client','photos')->where('is_approved', 0)->get();
+        // return ItemResource::collection($items);
+        return $items;
     }
 
     public function approvedItem($id){
@@ -140,6 +144,42 @@ class ItemController extends Controller
                         // ->where('is_active', 0)
                         ->update(['is_approved' => 1]);
     }
+
+    public function bulkApprove(Request $request) {
+  
+        $items = Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+        return $items;
+
+        // return Items::get('client_id');
+
+    }
+
+    public function bulkDelete(Request $request) {
+        // dd('delete');
+        $items = Items::whereIn('id', $request->all());
+        return $items->delete();
+
+        // return Items::get('client_id');
+
+    }
+
+    public function bulksend(Request $request){
+        // $switch = TwilioSwitch::find(1)->pluck('switch')->first();
+      
+            $items = Items::with('client')->whereIn('id', $request->all())->get(['client_id']);
+
+            // $item = $items->get(['client.mobile']);
+            return $items;
+        
+    
+    }
+
+    // public function bulkApprove(Request $request) {
+  
+    //     $items = Items::whereIn('id', $request->all())->update(['is_approved' => 1]);
+    //     return $items;
+
+    // }
 
     public function deleteApprovedItem($id)
     {

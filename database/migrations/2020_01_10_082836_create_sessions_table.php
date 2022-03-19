@@ -21,11 +21,11 @@ class CreateSessionsTable extends Migration
             $table->string('sessions_name')->nullable();
             $table->timestamps();
             $table->foreign('seller_id')->references('id')
-                ->on('clients')->onDelete('cascade');
+                ->on('clients');
             $table->foreign('item_id')->references('id')
                 ->on('items')->onDelete('cascade');
             $table->foreign('buyer_id')->references('id')
-                ->on('clients')->onDelete('cascade');
+                ->on('clients');
         });
     }
 

@@ -10,10 +10,10 @@
         >
             <v-list-item>
                 <v-list-item-avatar>
-                <v-img
+                <!-- <v-img
                     src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 >
-                </v-img>
+                </v-img> -->
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -61,6 +61,17 @@
                     <v-list-item-icon>
                         <v-icon
                             color="indigo"
+                        >mdi-counter</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.stock }}</v-list-item-title>
+                         <v-list-item-subtitle>Stock</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                    <v-list-item-icon>
+                        <v-icon
+                            color="indigo"
                         >mdi-tab</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
@@ -91,7 +102,7 @@
                     <v-carousel-item
                         v-for="(item,i) in item.photos"
                         :key="i"
-                        :src="item.link"
+                        :src="item.filename"
                         reverse-transition="fade-transition"
                         transition="fade-transition"
                     ></v-carousel-item>
@@ -161,7 +172,14 @@ export default {
             !payload ? this.$emit('collapse-drawer', payload) : ''
         },
         deleteItem(){
-            console.log(this.item)
+
+            axios.delete('/item/'+this.item.id, this.item.id).then(res=> {
+                console.log(res)
+                alert('Item Deleted Successfully');
+                this.$emit('close');
+            })
+          
+            
         }
     },
     created(){

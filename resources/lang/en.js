@@ -14,8 +14,8 @@ export default {
     sidebar: {
         dashboard: "Dashboard",
         items: "Items",
-        sellers: "Sellers",
-        approved_items: "Approved Items",
+        sellers: "Users",
+        approved_items: "Pending Items",
         item_categories: "Item Categories",
         item_status: "Item Status",
         apps_images: "Apps Images",
@@ -23,13 +23,13 @@ export default {
         sms_sender_settings: "SMS Sender Settings",
     },
     approved_items: {
-        to_be_approved_items: "To be approved Items",
+        to_be_approved_items: "Pending Items",
         approve: "Approve",
         disapproved: "Disapprove",
         item_name: "Item Name",
         category: "Category",
         price: "Price",
-        seller_username: "Seller Username",
+        seller_username: "Username",
         added_on: "Added On",
 
         disapproved_dialog: {
@@ -71,7 +71,7 @@ export default {
             sold: "Sold",
             category: "Category",
             date_published: "Date Published",
-            sample_photo: "Sample Photo",
+            sample_photo: "Item Photo",
             delete_item: "Delete Item"
         },
         sellerinfo: {
@@ -85,7 +85,7 @@ export default {
             item_details: "Item Details",
             items: "Items",
             sold: "Sold",
-            cart: "Cart"
+            cart: "Favorites"
         },
         show: {
             seller_info: "Seller Info",

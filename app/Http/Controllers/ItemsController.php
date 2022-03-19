@@ -32,7 +32,7 @@ class ItemsController extends Controller
     }
 
     public function all_items(){
-        $items = Items::with('reviews')->where('stock','>',0)->where('is_approved','<', 2 )->orderBy('items.created_at', 'desc')->get();
+        $items = Items::with('reviews.buyer')->where('stock','>',0)->where('is_approved','<', 2 )->orderBy('items.created_at', 'desc')->paginate(80);
         return  ItemResource::collection($items) ;
         // return $items;
     }
@@ -73,8 +73,22 @@ class ItemsController extends Controller
         $sold->item_id =  $request->input('item_id');   
         $sold->buyer_id =  $request->input('buyer_id');
         $sold->quantity =  $request->input('quantity');
-        $sold->save();
+
+        if($sold->save()){
+            $this->updateStock( $request->id, $request->total_purchase, $request->stock, $request->quantity );
+        };
         return $sold;
+    }
+
+    public function updateStock($id, $total_purchase, $stock, $quantity ){
+       return Items::find($id)
+                    ->update([
+                        'total_purchase' => $quantity + $total_purchase,
+                        'stock' => $stock - $quantity
+                    ]);
+      
+       
+
     }
 
     public function changeStatus(Request $request)
@@ -259,7 +273,6 @@ class ItemsController extends Controller
             'id' => 'required',
             'title' => 'required',
             'price' => 'required',
-            'description' => 'required',
             'location' => 'required',
             'latitude' => 'numeric',
             'longitude' => 'numeric',
@@ -367,7 +380,6 @@ class ItemsController extends Controller
           
             'title' => 'required',
             'price' => 'required',
-            'description' => 'required',
             'location' => 'required',
             'latitude' => 'numeric',
             'longitude' => 'numeric',

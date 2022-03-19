@@ -54,13 +54,15 @@ Route::middleware('auth:web')->group(function () {
 
 
         Route::get('/logout' , 'ClientController@out');
+        Route::get('user_profile', 'ClientController@get_profile');
+        Route::post('edit_admin/{id}','ClientController@edit_admin');
 
         Route::get('getweekly' ,'ItemController@getweekly');
         // Route::get('expirationDate', 'ItemController@expirationDate');
         Route::get('getdaily', 'ItemController@getdaily');
         Route::get('items/getToApprovedItems', 'ItemController@getToApprovedItems');
         Route::delete('items/disapproved/{id}','ItemController@deleteApprovedItem');
-        Route::get('items/approve_item/{id}', 'ItemController@approvedItem');
+        Route::put('items/approve_item/{id}', 'ItemController@approvedItem');
         Route::put('activate', 'ItemController@activate');
         Route::put('deactivate', 'ItemController@deactivate');
         // sold
@@ -77,6 +79,12 @@ Route::middleware('auth:web')->group(function () {
         Route::post('approved_items/disapprovement', 'EmailNoticeController@disapprovementEmail')->name('disapprovement');
         Route::post('approved_items/approve', 'EmailNoticeController@approveEmail')->name('approve');
         
+        // promotions
+        Route::get('indexPromotion','PromotionController@index');
+        Route::get('pendingPromotion','PromotionController@pendingPromo');
+        Route::put('approve/{id}','PromotionController@approve');
+        Route::delete('remove/{id}','PromotionController@remove');
+
         //dashboard
         Route::get('stock_count', 'ItemController@stock_count');
         Route::post('month_item','ItemController@getMonthlyItem');
@@ -93,6 +101,15 @@ Route::middleware('auth:web')->group(function () {
         // always at last
         Route::get('/{path}', 'PagesController@index')->where( 'path', "([A-z\d\-/_.]+)?" );
 
+       
+        Route::post('bulkapprove', 'ItemController@bulkApprove');
+        Route::post('bulkdelete', 'ItemController@bulkDelete');
+        Route::post('bulksend', 'ItemController@bulksend');
 
+
+        Route::post('destroy_items/{id}','ItemController@destroy');
+
+        // favorites
+        Route::get('get_user_favorites','ClientController@get_user_favorites');
     });
 });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Client ;
+use App\User;
 use Auth ;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,7 @@ class ClientController extends Controller
                         ;
             });
         }
-        return $client->orderBy('created_at' , 'desc')->get();
+        return $client->with('items_fav')->with('solds')->orderBy('created_at' , 'desc')->get();
     }
 
 
@@ -112,14 +113,16 @@ class ClientController extends Controller
      */
     public function showClient($id)
     {
+    
         $client = Client::with('items.photos','items.category')->find($id);
         return $client->paginate(10);
     }
 
     public function show($id)
     {
-        $client = Client::with('items.photos','items.category')->find($id);
+        $client = Client::with('items.photos','items.category')->with('items_fav.photos')->with('solds.item.photos', 'solds.buyers', 'solds.item.category')->find($id);
         return $client;
+        // dd('lo9oadwd');
     }
 
     // public function show(Request $request){
@@ -172,5 +175,26 @@ class ClientController extends Controller
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function get_profile(){
+        return Auth::user();
+    }
+
+    public function edit_admin(Request $request, $id){
+
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:clients,email',
+            'password' => 'required|min:8'
+        ]);
+
+        $admin = User::find($id);
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->input('password'));
+        $admin->save();
+        return $admin;
     }
 }

@@ -25,6 +25,7 @@ class MessageResource extends JsonResource
             'sender' => $client->fullname,
             'sender_image' => $client->image,
             'is_message' => $this->is_message,
+            'session_status' => $this->session_status,
             'is_read' => $this->is_read,
             'send_at' => $this->created_at ,
             'updated_at' => $this->updated_at ,
