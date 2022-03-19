@@ -269,7 +269,7 @@ export default {
         // this.prefill = 42
         // alert(select, "hey hey")
       let payload = { key:select}
-      axios.post('api/global_search/', payload).then((response)=>{
+      axios.post('api/global_search', payload).then((response)=>{
         console.log(response.data, 'redirect result')
         if(response.data==''){
           this.$router.push({path:`/sellers`, query:{ item: select }})
