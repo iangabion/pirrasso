@@ -59,22 +59,9 @@ class SessionController extends Controller
     public function get_user_messages() 
     {
         $id = Auth::user()->id ;
-        // $message_status = Message::where('message_status', '!=' , 2)->orWhereNull('message_status');
         $session = Session::with('messages')->where('seller_id' , $id)->orWhere('buyer_id' , $id)->get();
-                // ->where('session_status', '!=', $id)
-                return SessionResource::collection($session);
-        // $session2 = $session ->where('session_status', '!=', $id)->get();
-        // return $session;
-        // $session_stat = $session->session_status;  
-                // return $session;
-        // $session_stat = $session->where('session_status', '!=', $id)->get();
-        // return SessionResource::collection($session_stat);
-
-        // $session = Session::with('messages')->where('seller_id', $id)->where('seller_delete', 0);
-        // $session2 = Session::with('messages')->where('buyer_id', $id)->where('buyer_delete', 0)->union($session);
-        // $session3 = $session->{$session2}->get();
-        // // $seller = $session->where('seller_delete', 0)->get();
-        // return $session2->get();
+         return SessionResource::collection($session);
+       
         
     }
 
