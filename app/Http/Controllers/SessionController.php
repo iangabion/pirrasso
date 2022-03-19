@@ -59,24 +59,80 @@ class SessionController extends Controller
     public function get_user_messages() 
     {
         $id = Auth::user()->id ;
-        $session = Session::with('messages')->where('seller_id', $id)->orWhere('buyer_id' , $id)->get();
-        return SessionResource::collection($session) ;
-        // return $session ;
+        // $message_status = Message::where('message_status', '!=' , 2)->orWhereNull('message_status');
+        $session = Session::with('messages')->where('seller_id' , $id)->orWhere('buyer_id' , $id)->get();
+                // ->where('session_status', '!=', $id)
+                return SessionResource::collection($session);
+        // $session2 = $session ->where('session_status', '!=', $id)->get();
+        // return $session;
+        // $session_stat = $session->session_status;  
+                // return $session;
+        // $session_stat = $session->where('session_status', '!=', $id)->get();
+        // return SessionResource::collection($session_stat);
+
+        // $session = Session::with('messages')->where('seller_id', $id)->where('seller_delete', 0);
+        // $session2 = Session::with('messages')->where('buyer_id', $id)->where('buyer_delete', 0)->union($session);
+        // $session3 = $session->{$session2}->get();
+        // // $seller = $session->where('seller_delete', 0)->get();
+        // return $session2->get();
+        
     }
 
-    public function update_session(){
-        $id = Auth::user()->id;
-        $session = Session::with('messages');
-        // ->where('seller_id', $id)->orWhere('buyer_id', $id)->
+    // public function archive_message(Request $request){
 
-        if($id == 'seller_id'){
-            $session->update(['seller_delete', 1]);
-            return 'success delete seller';
-        }elseif($id == 'buyer_id'){
-            $session->update(['buyer_delete', 1]);
-            return 'success delete buyer';
-        }
-    }
+    //     $id = Auth::user()->id;
+    //     $session = Session::with('messages')->get();
+    //     return $session;
+
+
+
+    //     // if($session == $id){
+    //     //     return $session->with('messages')->where('seller_id', $id)->update(['seller_delete'=> 1 ]);
+    //     // }
+    //     // else{
+    //     //     return $session->where('buyer_id', $id)->update(['buyer_delete'=> 1 ]);
+    //     // };
+    //     // return  $session;
+
+    //     // $id = Auth::user()->id;
+    //     // $session1 = Session::all();
+    //     // // $session2 = $session1->where('seller_id', $id)->where('id', $request->id)->update(['seller_delete' => 1]);
+    //     // return $session1;
+
+
+    //     // if ('seller_id' == $id) {
+    //     // $session = Session::with('messages')->where('seller_id', $id)->where('seller_delete', 0)->where('item_id', $request->item_id);
+    //     // }
+    //     // if('seller_id' == $id){
+    //     //     $session = Session::with('messages')->where('id', $request->id)
+    //     //     ->update(['seller_delete' => 1]);
+    //     //    return 'success';
+            
+    //     // }
+    //     // elseif('buyer_id' == $id){
+    //     //     $session1->update(['buyer_delete' => 1]);
+    //     //     return 'success buyer';
+    //     // }
+    //     // return $session2;
+
+    // }
+
+    // public function update_session(){
+    //     $id = Auth::user()->id;
+    //     $session = Session::where('seller_id', $id)->update(['seller_delete' => 1]);
+    //     // return $session;
+    //     // ->where('seller_id', $id)->orWhere('buyer_id', $id)->
+
+    //     // if($id == 'seller_id'){
+    //     //     $session->update(['seller_delete', 1]);
+    //     //     return 'success delete seller';
+    //     // }
+    //     return  new SessionResource($session) ;
+    //     // elseif($id == 'buyer_id'){
+    //     //     $session->update(['buyer_delete', 1]);
+    //     //     return 'success delete buyer';
+    //     // }
+    // }
 
 
     public function store(Request $request)
