@@ -41,7 +41,7 @@ Route::middleware('auth:api')->group(function () {
 	//send message
 	Route::post('send_message' ,'SessionController@store');
     Route::get('messages/read/{id}' ,'MessageController@readMessage');
-	Route::delete('delete_message/{id}','MessageController@deleteMessage');
+	Route::get('delete_message','MessageController@deleteMessage');
 
 	// retrieve messages
 	Route::get('user_messages' ,'SessionController@get_user_messages');
@@ -82,7 +82,7 @@ Route::middleware('auth:api')->group(function () {
 
 	// Route::get('item_messages2' ,'SessionController@get_item_messages2');
 
-	Route::put('update_session', 'SessionController@update_session');
+	Route::get('archive_message', 'SessionController@archive_message');
 
 
 

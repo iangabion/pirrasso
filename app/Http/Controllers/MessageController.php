@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Message;
 use App\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -26,10 +27,37 @@ class MessageController extends Controller
         return 'success';
     }
 
+    // public function deleteMessage(Request $request){
 
-    public function deleteMessage($id){
-        $message = Session::findOrFail($id)->messages()->delete();
-        return 'success';
+    // }
+
+
+    public function deleteMessage(Request $request){
+        // $message = Session::findOrFail($id)->messages()->delete();
+        // return 'success';
+        $id = Auth::user()->id ;
+        $message = Message::where('session_id', $request->session_id)->get();
+        // $message = '';
+        foreach($message as $item) {
+            if(!$item->message_status) {
+                $message = Message::find($item->id);
+                $message->update(['message_status' => $id]);
+            }else {
+                $message = Message::find($item->id);
+                $message->delete();
+            }
+        }
+    //    if (!$message) {
+    //     //    $this->deletes($request->session_id);
+        
+    //         dd($message,"sad2");
+    //     //    return Message::where('session_id', $request->session_id)->delete(['session_id',$request->session_id]);
+    //     //    return 'Deletes';
+    //     }else{
+           
+    //         return Message::where('session_id', $request->session_id)->update(['message_status' => $id]);
+    //         // dd("sad2");
+    //     }
     }
 
     // public function countUnread($id){
@@ -37,9 +65,14 @@ class MessageController extends Controller
         
     //     return $message;
     // }
+    
 
     public function count(){
         return Message::where('is_read', 1)->count();
+    }
+
+    public function deletes($session_id){
+        return Message::where('session_id', $session_id)->delete(['session_id', $session_id]);
     }
 
     /**
