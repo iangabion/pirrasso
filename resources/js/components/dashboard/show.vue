@@ -9,7 +9,7 @@
                         outlined color="primary"
                         dark
                     >
-                        <v-list-item three-line>
+                        <v-list-item two-line>
                             <v-list-item-content>
                                 <div class="overline mb-4">sellers</div>
                                 <v-list-item-title class="headline mb-1">{{clients.length}}</v-list-item-title>
@@ -24,8 +24,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/sellers">view</v-btn>
-                            <!-- <v-btn text>button</v-btn> -->
+                            <v-btn text href="/sellers" style="visibility: hidden;">view</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -52,8 +51,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/items">view</v-btn>
-                            <!-- <v-btn text>button</v-btn> -->
+                            <v-btn text href="/items" style="visibility: hidden;">view</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -116,7 +114,7 @@
             </div>
             <v-container style="width: 100%; display: flex;" >
                 <v-col style="width: 45%; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
-                    <v-toolbar dense outlined flat fixed-toolbar>
+                    
                         <v-toolbar-items>
                             <v-btn
                                 icon
@@ -136,7 +134,6 @@
                                 >mdi-plus</v-icon>
                             </v-btn>
                         </v-toolbar-items>
-                    </v-toolbar>
                     <vue-chart type="bar" :data="chartItem" v-if="is_loaded"></vue-chart>
                 </v-col>
                 <v-col style="width: 45%; border-style: solid; border-color: #FF5722; margin:auto" >

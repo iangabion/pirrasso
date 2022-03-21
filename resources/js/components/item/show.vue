@@ -499,7 +499,7 @@ export default {
                             // if(key===null){
                             //         this.get_categories()
                             // }else{
-                                axios.post('/api/searchchan', payload, {}).then((data) => {
+                                axios.post('/api/searchchan', payload).then((data) => {
                                 this.categor = data.data
                                 this.categories_item = this.categor.data
                                 // console.log(this.categories)
@@ -526,8 +526,10 @@ export default {
                     subcategories: 0
                 }
                 this.categories.unshift(payload)
-                // this.search_item(key)
-                this.get_items(this.categories[0].id)
+                if(this.form.search == null){
+                    this.get_items(this.categories[0].id)
+                }
+
             }).catch((errors)=>{
                 console.log(errors)
             });
