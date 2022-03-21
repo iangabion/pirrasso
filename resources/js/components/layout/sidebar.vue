@@ -116,7 +116,7 @@
        items(){
          return [
            { icon: 'mdi-view-dashboard', text: this.$t('sidebar.dashboard') ,url:'/dashboard' },
-            { icon: 'mdi-history', text: this.$t('sidebar.items') ,url:'/items' },
+            { icon: 'mdi-history', text: this.$t('sidebar.items') ,url:'/items_show' },
             { icon: 'mdi-account-group', text: this.$t('sidebar.sellers') ,url:'/sellers' },
             { icon: 'mdi-message-processing', text:'Promotions', url:'/promotions' },
             { icon: 'mdi-check', text: this.$t('sidebar.approved_items'), url:'/approved_items' },

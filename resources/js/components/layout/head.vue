@@ -274,7 +274,7 @@ export default {
         if(response.data==''){
           this.$router.push({path:`/sellers`, query:{ item: select }})
         }else{
-          this.$router.push({path:`/items`, query:{ item: select }})
+          this.$router.push({path:`/items_show`, query:{ item: select }})
         }
       })
     },

@@ -23,7 +23,7 @@ export default [{
 
     },
     {
-        path: '/items',
+        path: '/items_show',
         // beforeEnter: yourGuard,
         component: show_item,
         name: 'item',
