@@ -151,7 +151,7 @@ class SessionController extends Controller
                 if($session->save()){
                     $this->manage_message($session->id , $request->message, $request->session_status);
                 }
-                return  new SessionResource($session) ;
+                return  $session;
             }
     }
 
@@ -166,6 +166,7 @@ class SessionController extends Controller
         $message->session_id = $sessions_id ;
         $message->user_id = Auth::user()->id ;
         $message->message = $messages ;
+        // $message->message_status = null;
         $message->session_status = $session_status;
         $message->save();
     }
