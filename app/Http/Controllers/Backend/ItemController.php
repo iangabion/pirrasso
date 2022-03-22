@@ -195,6 +195,10 @@ class ItemController extends Controller
         $result = $stock-$sold;
         return $result;
     }
+
+    public function getTotalItems(){
+        return Items::get();
+    }
     public function getMonthlyItem(Request $request)
     {
         $y = Carbon::createFromFormat('Y', $request->date)->format('Y');

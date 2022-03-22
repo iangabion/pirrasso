@@ -264,6 +264,10 @@ export default {
                 this.sold = response.data;
             });
         },
+
+        // get_added_item(){
+        //     axios
+        // },
         stock_count() {
             getStock().then(({data}) => {
                 this.stock = data
