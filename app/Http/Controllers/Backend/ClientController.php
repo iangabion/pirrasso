@@ -44,6 +44,7 @@ class ClientController extends Controller
                 $query  
                         ->where('full_name', 'LIKE', "%$keyword%")
                         ->orWhere('email', 'LIKE', "%$keyword%")
+                        ->orWhere('mobile', 'LIKE', "%$keyword%")
                         ->orWhere('username', 'LIKE', "%$keyword%")
                         // ->orWhere( DB::raw("concat(first_name,' ',last_name)"), 'LIKE', "%$keyword%")
                         ;

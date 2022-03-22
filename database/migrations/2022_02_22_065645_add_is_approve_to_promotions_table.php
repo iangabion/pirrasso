@@ -18,6 +18,7 @@ class AddIsApproveToPromotionsTable extends Migration
             $table->integer('is_approved')->after('image')->default(0);
 
         });
+        
     }
 
     /**
