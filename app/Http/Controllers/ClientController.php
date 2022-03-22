@@ -57,7 +57,7 @@ class ClientController extends Controller
             'birthday' => 'nullable',
             'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,',
-            'mobile' => 'nullable|unique:clients',
+            'mobile' => 'nullable|unique:clients,mobile,',
             'username' => 'nullable|unique:clients,username,',
            
             'profile_pic' => 'nullable',
