@@ -51,6 +51,18 @@ class ClientController extends Controller
     {
 
         $client = new Client();
+        $request->validate([
+            'full_name' => 'nullable',
+            'gender' => 'nullable',
+            'birthday' => 'nullable',
+            'bio' => 'nullable',
+            'email' => 'nullable|email|unique:clients,email,',
+            'mobile' => 'nullable|unique:clients',
+            'username' => 'nullable|unique:clients,username,',
+           
+            'profile_pic' => 'nullable',
+            'password' => 'required'
+        ]);
         $client->full_name =  $request->input('full_name');
         $client->email =  $request->input('email');
         $client->gender = $request->input('gender');
@@ -248,7 +260,7 @@ class ClientController extends Controller
             'birthday' => 'nullable',
             'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,'.$id,
-            'mobile' => 'nullable',
+            'mobile' => 'nullable|unique:clients',
             'username' => 'nullable|unique:clients,username,'.$id,
            
             'profile_pic' => 'nullable'
