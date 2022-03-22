@@ -345,6 +345,12 @@ class ClientController extends Controller
     }
 
     public function register_mobile(Request $request){
+        $request->validate([
+            'email' => 'nullable|email|unique:clients,email,',
+            'mobile' => 'nullable|unique:clients,mobile,',
+            'username' => 'nullable|unique:clients,username,',
+            'password' => 'required'
+        ]);
         $user = new Client();
 
         $user->mobile = $request->mobile;
