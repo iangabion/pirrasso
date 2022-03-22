@@ -88,6 +88,7 @@ Route::middleware('auth:web')->group(function () {
         //dashboard
         Route::get('stock_count', 'ItemController@stock_count');
         Route::post('month_item','ItemController@getMonthlyItem');
+        Route::get('total_item_saved','ItemController@getTotalItems');
 
         Route::post('client/search', 'ClientController@searchClient');
 
