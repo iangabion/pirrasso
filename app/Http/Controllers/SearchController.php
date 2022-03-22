@@ -113,6 +113,45 @@ class SearchController extends Controller
         return $client->get();
 //
     }
+    public function global_search_client_email(Request $request)
+    {
+        $client = Client::query();
+        if($request->input('searchkey')!=''){
+            $keyword = $request->input('searchkey');
+            $client->where(function($query) use($keyword){
+                $query  ->where('email', 'LIKE', "%$keyword%")
+                        ;
+            });
+        }
+        return $client->get();
+    }
+
+    public function global_search_client_mobile(Request $request)
+    {
+        $client = Client::query();
+        if($request->input('searchkey')!=''){
+            $keyword = $request->input('searchkey');
+            $client->where(function($query) use($keyword){
+                $query  ->where('mobile', 'LIKE', "%$keyword%")
+                        ;
+            });
+        }
+        return $client->get();
+    }
+
+    public function global_search_client_username(Request $request)
+    {
+        $client = Client::query();
+        if($request->input('searchkey')!=''){
+            $keyword = $request->input('searchkey');
+            $client->where(function($query) use($keyword){
+                $query  ->where('username', 'LIKE', "%$keyword%")
+                        ;
+            });
+        }
+        return $client->get();
+    }
+    
 
     public function global_search(Request $request){
         // return "yes yes yo";

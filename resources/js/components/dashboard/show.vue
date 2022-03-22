@@ -24,7 +24,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/sellers" style="visibility: hidden;">view</v-btn>
+                            <v-btn text href="/sellers" >view</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -51,7 +51,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/items" style="visibility: hidden;">view</v-btn>
+                            <v-btn text href="/items_show">view</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>

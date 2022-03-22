@@ -228,7 +228,6 @@ export default {
             this.global_item = response.data
               axios.post('api/global_search_client', {searchkey:key}).then((response)=>{
                 console.log(response.data, "global client")
-                this.global_client = response.data
                 response.data.forEach(v => {
                   let title = v.full_name
                   let wan = {
@@ -238,10 +237,47 @@ export default {
                   }
                   this.global_client.push(wan)
                 });
-                this.merge = this.global_item.concat(this.global_client)
-
-                console.log(this.merge,"merge chan")
+              
               })
+              axios.post('api/global_search_client_email', {searchkey:key}).then((response)=>{
+                console.log(response.data, "global email")
+                 response.data.forEach(v => {
+                  let title = v.email
+                  let wan = {
+                    ...v,
+                    title,
+                    items: v.items,
+                  }
+                  this.global_client.push(wan)
+                });
+              })
+              axios.post('api/global_search_client_mobile', {searchkey:key}).then((response)=>{
+                console.log(response.data, "global mobile")
+                 response.data.forEach(v => {
+                  let title = v.mobile
+                  let wan = {
+                    ...v,
+                    title,
+                    items: v.items,
+                  }
+                  this.global_client.push(wan)
+                });
+              })
+              axios.post('api/global_search_client_username', {searchkey:key}).then((response)=>{
+                console.log(response.data, "global username")
+                 response.data.forEach(v => {
+                  let title = v.username
+                  let wan = {
+                    ...v,
+                    title,
+                    items: v.items,
+                  }
+                  this.global_client.push(wan)
+                });
+              })
+              this.merge = this.global_item.concat(this.global_client)
+
+              console.log(this.merge,"merge chan")
           })
         }, 1000)
       // }

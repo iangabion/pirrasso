@@ -96,6 +96,10 @@ Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
 Route::post('search', 'ItemController@search');
 Route::post('global_search_item','SearchController@global_search_item');
 Route::post('global_search_client','SearchController@global_search_client');
+Route::post('global_search_client_email','SearchController@global_search_client_email');
+Route::post('global_search_client_mobile','SearchController@global_search_client_mobile');
+Route::post('global_search_client_username','SearchController@global_search_client_username');
+
 Route::post('global_search', 'SearchController@global_search');
 
 
