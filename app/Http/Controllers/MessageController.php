@@ -42,11 +42,11 @@ class MessageController extends Controller
             if(!$item->message_status) {
                 $message = Message::find($item->id);
                 $message->update(['message_status' => $id]);
-                return 'Deleted in your side';
+                echo 'Deleted in your side';
             }else {
                 $message = Message::find($item->id);
                 $message->delete();
-                return 'Deleted both side';
+                echo 'Deleted both side';
             }
         }
     //    if (!$message) {
