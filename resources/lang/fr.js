@@ -4,8 +4,9 @@ export default {
     //     fields: {
     //         MAIL_ENCRYPTION: "dwadwa123123000000001"
     //     }
-    // },
-    "January": "Dawdawdawd",
+    // },  
+    submit: "Envoyer",
+    close: "Fermer",
     okay: "Ok",
     cancel: "Annuler",
     setting: "Paramètre",
@@ -62,19 +63,19 @@ export default {
             unactive: "Inactif",
             no_items_for_this_category: "Aucun article pour cette catégorie",
 
-            items: "Items",
-            add_setting: "Add Setting",
-            category_type: "Category Type",
+            items: "Articles",
+            add_setting: "Ajouter paramètres ",
+            category_type: "Type de catégorie",
             description: "Description",
             location: "Location",
-            status: "Status",
-            date_created: "Date Created",
-            total_purchased: "Total Purchased",
+            status: "Statut",
+            date_created: "Date de création",
+            total_purchased: "Total des achats",
         }
     },
     dashboard: {
         sellers: "Utilisateurs",
-        view: "Voir",
+        view: "Afficher",
         items: "Articles",
         items_on_sell: "Articles en vente",
         stock: "Stock",
@@ -108,7 +109,8 @@ export default {
             category: "Catégorie",
             date_published: "Date de publication",
             sample_photo: "Photo du produit",
-            delete_item: "Supprimer Article"
+            delete_item: "Supprimer Article",
+            seller_list: "Liste des vendeurs"
         },
         sellerinfo: {
             name: "Nom",
@@ -204,17 +206,17 @@ export default {
         promotions: {
             pending_promotions: "Promotions en suspens",
             approved_promotions: "Promotions approuvées",
-            confirm_approve: "Confirm Approve",
-            confirm_remove: "Confirm Remove",
-            approve: "Approve",
-            cancel: "Cancel",
-            remove: "Remove",
+            confirm_approve: "Confirmer la validation",
+            confirm_remove: "Confirmer la suppression",
+            approve: "Valider",
+            cancel: "Annuler",
+            remove: "Supprimer",
             title: "Titre",
             link: "Lien",
 
         },
         sms: {
-            the_sms_sender_settings: "The SMS Sender Settings",
+            the_sms_sender_settings: "Paramètres de l'expéditeur de SMS",
             twilio_account_settings: "Paramètres du compte Twilio",
             the_sms_settings: "Le SMS est paramétré à vous notifier dès qu’un article est approuvé.",
             twilio_sms_enabled: "SMS Twilio activé",
@@ -223,7 +225,8 @@ export default {
             twilio_auth_token: "Jeton d’identification Twilio",
             country_code: "Code Pays",
             test_twilio_settings: "Tester le parametre de Twilio",
-            twilio_sms_testing: "Twilio Sms Testing"
+            twilio_sms_testing: "Twilio Sms Testing",
+            enter_a_number: "Entrer un numéro pour tester",
 
 
         }

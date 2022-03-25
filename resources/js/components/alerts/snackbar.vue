@@ -18,7 +18,7 @@
         text
         @click="snackbar = false"
       >
-        Close
+        {{$t('close')}}
       </v-btn>
     </v-snackbar>
   </div>

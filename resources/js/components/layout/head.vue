@@ -142,7 +142,7 @@
           elevation="3"
           @click="edit_profile()"
           >
-            Submit
+            {{$t('submit')}}
           </v-btn>
            <v-btn
           color="error"

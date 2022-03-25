@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">Seller List</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('seller.index.seller_list')}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div class="search1">
                 <v-text-field

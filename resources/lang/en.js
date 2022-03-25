@@ -117,7 +117,8 @@ export default {
             total_items: "Total Items",
             user_name: "Username",
             email: "Email",
-            search: "Search"
+            search: "Search",
+            seller_list: "Seller List"
         },
         productinfo: {
             price: "Price",
@@ -239,7 +240,8 @@ export default {
             twilio_auth_token: "Twilio Auth Token",
             country_code: "Country Code",
             test_twilio_settings: "Test Twilio Settings",
-            twilio_sms_testing: "Twilio Sms Testing"
+            twilio_sms_testing: "Twilio Sms Testing",
+            enter_a_number: "Enter a number to Test",
 
 
         }
