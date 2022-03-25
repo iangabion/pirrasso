@@ -61,7 +61,19 @@ export default {
             urgent: "Urgent",
             active: "Active",
             unactive: "Unactive",
-            no_items_for_this_category: "No items for this Category"
+            no_items_for_this_category: "No items for this Category",
+
+            items: "Items",
+            add_setting: "Add Setting",
+            category_type: "Category Type",
+            description: "Description",
+            location: "Location",
+            status: "Status",
+            date_created: "Date Created",
+            total_purchased: "Total Purchased",
+
+
+
         }
     },
     dashboard: {

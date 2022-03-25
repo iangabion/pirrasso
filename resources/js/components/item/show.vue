@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title class="px-4">Items</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('item.show.items')}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div class="search1">
                 <v-text-field
@@ -20,7 +20,7 @@
                 <v-icon class="mr-2">
                     mdi-cart
                 </v-icon>
-                    Add Setting
+                    {{$t('item.show.add_setting')}}
             </v-btn>
         </v-toolbar>
 <!-- here -->
@@ -130,7 +130,7 @@
                                                                         {{items.category.name}}
                                                                 </v-list-item-subtitle>
                                                             </template>
-                                                            <span>Category Type</span>
+                                                            <span>{{$t('item.show.category_type')}}</span>
                                                          </v-tooltip>
                                                          <v-tooltip left>
                                                             <template v-slot:activator="{ on, attrs }">
@@ -154,7 +154,7 @@
                                                                         {{items.description}}
                                                                 </v-list-item-subtitle>
                                                             </template>
-                                                            <span>Description</span>
+                                                            <span>{{$t('item.show.description')}}</span>
                                                          </v-tooltip>
                                                          <v-tooltip left>
                                                             <template v-slot:activator="{ on, attrs }">
@@ -166,7 +166,7 @@
                                                                         <span class="location_font">{{items.location}}</span>
                                                                     </v-list-item-subtitle>
                                                             </template>
-                                                            <span>Location</span>
+                                                            <span>{{$t('item.show.lcoation')}}</span>
                                                          </v-tooltip>
                                                         <v-tooltip left>
                                                             <template v-slot:activator="{ on, attrs }">
@@ -177,7 +177,7 @@
                                                                     >mdi-star-box</v-icon> {{items.status}}
                                                                 </v-list-item-subtitle>
                                                             </template>
-                                                            <span>Status</span>
+                                                            <span>{{$t('item.show.status')}}</span>
                                                         </v-tooltip>
                                                         <v-tooltip left>
                                                             <template v-slot:activator="{ on, attrs }">
@@ -189,7 +189,7 @@
                                                                       {{items.created_at}}
                                                                     </v-list-item-subtitle>
                                                             </template>
-                                                            <span>Date Created</span>
+                                                            <span>{{$t('item.show.date_created')}}</span>
                                                         </v-tooltip>
                                                         <v-tooltip left>
                                                             <template v-slot:activator="{ on, attrs }">
@@ -199,7 +199,7 @@
                                                                         v-on="on"
                                                                     >mdi-cart-outline</v-icon> {{items.total_purchase}}</v-list-item-subtitle>
                                                             </template>
-                                                            <span>Total Purchased</span>
+                                                            <span>{{$t('item.show.total_purchased')}}</span>
                                                         </v-tooltip>
                                                         <v-list-item-subtitle >
                                                         <span v-if="(items.is_urgent)==1">

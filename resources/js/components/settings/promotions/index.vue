@@ -259,7 +259,7 @@ export default {
         headers(){
             return [
                 { text: '', align: 'start', value: 'image', width: '10%'},
-                { text: this.$t('settings.promotion.title'), align: 'start', value: 'title', width: '10%'},
+                { text: this.$t('settings.promotions.title'), align: 'start', value: 'title', width: '10%'},
                 { text: this.$t('settings.promotions.link'), align: 'start', value: '10%', width: '15%'},
                 { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
             ]
