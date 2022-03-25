@@ -136,7 +136,7 @@
                     width="70px"
                     @click="create()"
                 >
-                    Submit
+                    {{$t('submit')}}
                 </v-btn>
                 <v-btn
                 id="close"
@@ -146,7 +146,7 @@
                     @click="$emit('close')"
                     @click.prevent= 'reset()'
                 >
-                    Close
+                    {{$t('close')}}
                 </v-btn>
             </v-card-actions>
         </v-card>

@@ -70,7 +70,7 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container fluid>
-                        <v-subheader class="px-0">Enter a number to Test</v-subheader>
+                        <v-subheader class="px-0">{{$t('settings.sms.enter_a_number')}}</v-subheader>
                         <v-combobox
                         dense filled solo
                         :items="country_code"
@@ -94,7 +94,7 @@
                         width="70px"
                         @click="send_sms_test()"
                     >
-                        Submit
+                         {{$t('submit')}}
                     </v-btn>
                     <v-btn
                         color="error"
@@ -102,7 +102,7 @@
                         width="70px"
                         @click="dialog= false"
                     >
-                        Close
+                        {{$t('close')}}
                     </v-btn>
                 </v-card-actions>
             </v-card>
