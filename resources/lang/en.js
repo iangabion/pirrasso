@@ -61,10 +61,64 @@ export default {
             urgent: "Urgent",
             active: "Active",
             unactive: "Unactive",
-            no_items_for_this_category: "No items for this Category"
+            no_items_for_this_category: "No items for this Category",
+
+            items: "Items",
+            add_setting: "Add Setting",
+            category_type: "Category Type",
+            description: "Description",
+            location: "Location",
+            status: "Status",
+            date_created: "Date Created",
+            total_purchased: "Total Purchased",
+
+
+
         }
     },
+    dashboard: {
+        sellers: "Userss",
+        view: "View",
+        items: "Items",
+        items_on_sell: "Items on Sell",
+        stock: "Stock",
+        stock_items: "Stock Items",
+        sold: "Sold",
+        sold_items: "Sold Items",
+        january: "January",
+        february: "February",
+        march: "March",
+        april: "April",
+        may: "May",
+        june: "June",
+        july: "July",
+        august: "August",
+        september: "September",
+        october: "October",
+        november: "November",
+        december: "December",
+        days_purchases: "15-day Purchase",
+        days_sales: "15-day Sales",
+        days_profit: "15-day Profit",
+        sold: "Sold",
+
+
+    },
+
+    approved_items: {
+        approve_mark: "Approve Marked",
+        delete_marked: "Delete Marked"
+    },
     seller: {
+        index: {
+            seller_list: "Seller List",
+            full_name: "Full Name",
+            mobile: "Mobile",
+            total_items: "Total Items",
+            user_name: "Username",
+            email: "Email",
+            search: "Search"
+        },
         productinfo: {
             price: "Price",
             description: "Description",
@@ -113,6 +167,7 @@ export default {
             icons: "Icons",
             name: "Name",
             are_you_sure_you_want_to_save: "Are you sure you want to save?",
+            icon: "Icon"
 
         },
         images: {
@@ -160,6 +215,32 @@ export default {
             item_count: "Item Count",
             are_you_sure_you_want_to_save: "Are you sure you want to save?",
             are_you_sure_you_want_to_delete: "Are you sure you want to delete ?"
+
+        },
+        promotions: {
+            pending_promotions: "Pending Promotions",
+            approved_promotions: "Approved Promotions",
+            confirm_approve: "Confirm Approve",
+            confirm_remove: "Confirm Remove",
+            approve: "Approve",
+            cancel: "Cancel",
+            remove: "Remove",
+            title: "Title",
+            link: "Link",
+
+        },
+        sms: {
+            the_sms_sender_settings: "The SMS Sender Settings",
+            the_sms_settings: "The SMS settings will notify you once your item is approved.",
+            twilio_account_settings: "Twilio Account Settings",
+            twilio_sms_enabled: "Twilio SMS Enabled",
+            twilio_phone_number: "Twilio Phone Number",
+            twilio_account_sid: "Twilio Account Sid",
+            twilio_auth_token: "Twilio Auth Token",
+            country_code: "Country Code",
+            test_twilio_settings: "Test Twilio Settings",
+            twilio_sms_testing: "Twilio Sms Testing"
+
 
         }
 

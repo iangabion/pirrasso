@@ -31,7 +31,7 @@
                                             <v-flex xs6>
                                                 <v-file-input small-chips
                                                     accept="image/*"
-                                                    label="Icon"
+                                                    :label="this.$t('settings.category.icon')"
                                                     @change="onFileChange('cat', $event)"
                                                     v-validate="'image'"
                                                     :error-messages="errors.collect('Icon')"

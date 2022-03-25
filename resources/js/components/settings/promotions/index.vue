@@ -30,7 +30,7 @@
                                         <v-toolbar
                                             flat
                                         >
-                                            <v-toolbar-title>Pending Promotions</v-toolbar-title>
+                                            <v-toolbar-title>{{$t('settings.promotions.pending_promotions')}}</v-toolbar-title>
                                             <v-divider
                                             class="mx-4"
                                             inset
@@ -42,7 +42,7 @@
                                             @click="e1 = 2"
                                             
                                             >
-                                            Approved Promotions
+                                            {{$t('settings.promotions.approved_promotions')}}
                                             </v-btn>
                                         </v-toolbar>
                                         </template>
@@ -108,7 +108,7 @@
                                      <v-toolbar
                                             flat
                                         >
-                                            <v-toolbar-title>Approved Promotions</v-toolbar-title>
+                                            <v-toolbar-title>{{$t('settings.promotions.approved_promotions')}}</v-toolbar-title>
                                             <v-divider
                                             class="mx-4"
                                             inset
@@ -120,7 +120,7 @@
                                             @click="e1 = 1"
                                             
                                             >
-                                            Pending Promotions
+                                            {{$t('settings.promotions.pending_promotions')}}
                                             </v-btn>
                                         </v-toolbar>
                                         </template>
@@ -168,20 +168,20 @@
             <v-card
             width="400"
             >
-                <h2 style="padding-left: 4.3em;">Confirm Approve?</h2>             
+                <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_approve')}}?</h2>             
               
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
                     @click="approveConfirm"
                     >
-                        Approve
+                        {{$t('settings.promotions.approve')}}
                     </v-btn> 
                     <v-btn
                     @click="dialog=false"
                     style="background-color: red; color: white;"
                     >
-                        Cancel
+                        {{$t('settings.promotions.cancel')}}
                     </v-btn>
                     <v-spacer></v-spacer>
                 </v-card-actions>
@@ -198,20 +198,20 @@
             <v-card
             width="400"
             >
-             <h2 style="padding-left: 4.3em;">Confirm Remove?</h2>     
+             <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_remove')}}?</h2>     
             
              <v-card-actions>
                   <v-spacer></v-spacer>
                     <v-btn
                     @click="removeConfirm"
                     >
-                        Remove
+                        {{$t('settings.promotions.remove')}}
                     </v-btn> 
                     <v-btn
                     style="background-color: red; color: white;"
                     @click="dialogremove=false"
                     >
-                        Cancel
+                        {{$t('settings.promotions.cancel')}}
                     </v-btn>
                  <v-spacer></v-spacer>
              </v-card-actions>
@@ -230,12 +230,12 @@ export default {
     data(){
         return {
             e1: 1,
-            headers:[
-                     { text: '', align: 'start', value: 'image', width: '10%'},
-                    { text: 'Title', align: 'start', value: 'title', width: '10%'},
-                    { text: 'Link', align: 'start', value: 'link', width: '15%'},
-                    { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
-            ],
+            // headers:[
+            //          { text: '', align: 'start', value: 'image', width: '10%'},
+            //         { text: 'Title', align: 'start', value: 'title', width: '10%'},
+            //         { text: 'Link', align: 'start', value: 'link', width: '15%'},
+            //         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            // ],
             headersApproved:[
              
                      { text: '', align: 'start', value: 'image', width: '10%'},
@@ -252,6 +252,25 @@ export default {
             dialog:false,
             dialogremove:false,
             pendingPromo: []
+        }
+    },
+
+    computed: {
+        headers(){
+            return [
+                { text: '', align: 'start', value: 'image', width: '10%'},
+                { text: this.$t('settings.promotions.title'), align: 'start', value: 'title', width: '10%'},
+                { text: this.$t('settings.promotions.link'), align: 'start', value: '10%', width: '15%'},
+                { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            ]
+        },
+        headersApproved(){
+            return [
+                { text: '', align: 'start', value: 'image', width: '10%'},
+                { text: this.$t('settings.promotion.title'), align: 'start', value: 'title', width: '10%'},
+                { text: this.$t('settings.promotions.link'), align: 'start', value: '10%', width: '15%'},
+                { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            ]
         }
     },
 

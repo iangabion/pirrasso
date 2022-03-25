@@ -326,7 +326,7 @@
                         color="green"
                         @click="updatechecked()"
                         >
-                            Approved Marked
+                            {{$t('approved_items.approve_mark')}}
                         </v-btn>
 
                        
@@ -335,7 +335,7 @@
                         color="red"
                         @click="deletechecked()"
                         >
-                            Delete Marked
+                            {{$t('approved_items.delete_marked')}}
                         </v-btn>
                     </v-card-actions>
             </v-card>
