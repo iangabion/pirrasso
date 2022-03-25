@@ -11,9 +11,9 @@
                     >
                         <v-list-item two-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">sellers</div>
+                                <div class="overline mb-4">{{$t('dashboard.sellers')}}</div>
                                 <v-list-item-title class="headline mb-1">{{clients.length}}</v-list-item-title>
-                                <v-list-item-subtitle>Sellers</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{$t('dashboard.sellers')}}</v-list-item-subtitle>
                             </v-list-item-content>
                             <!-- <v-list-item-avatar
                                 tile
@@ -24,7 +24,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/sellers" >view</v-btn>
+                            <v-btn text href="/sellers" >{{$t('dashboard.view')}}</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -38,9 +38,9 @@
                     >
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">items</div>
+                                <div class="overline mb-4">{{$t('dashboard.items')}}</div>
                                 <v-list-item-title class="headline mb-1">{{items.length}}</v-list-item-title>
-                                <v-list-item-subtitle>Items on sell</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{$t('dashboard.items_on_sell')}}</v-list-item-subtitle>
                             </v-list-item-content>
                             <!-- <v-list-item-avatar
                                 tile
@@ -51,7 +51,7 @@
                             <!-- </v-list-item-avatar> -->
                         </v-list-item>
                         <v-card-actions >
-                            <v-btn text href="/items_show">view</v-btn>
+                            <v-btn text href="/items_show">{{$t('dashboard.view')}}</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -65,9 +65,9 @@
                     >
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">Stock</div>
+                                <div class="overline mb-4">{{$t('dashboard.stock')}}</div>
                                 <v-list-item-title class="headline mb-1">{{this.stock}}</v-list-item-title>
-                                <v-list-item-subtitle>Stock Items</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{$t('dashboard.stock_items')}}</v-list-item-subtitle>
                             </v-list-item-content>
                             <!-- <v-list-item-avatar
                                 tile
@@ -93,9 +93,9 @@
                     >
                         <v-list-item three-line>
                             <v-list-item-content>
-                                <div class="overline mb-4">sold</div>
+                                <div class="overline mb-4">{{$t('dashboard.sold')}}</div>
                                 <v-list-item-title class="headline mb-1">{{sold.length}}</v-list-item-title>
-                                <v-list-item-subtitle>Sold Items</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{$t('dashboard.sold_items')}}</v-list-item-subtitle>
                             </v-list-item-content>
                             <!-- <v-list-item-avatar
                                 tile
@@ -166,7 +166,7 @@
 import { getStock, getMonthlyItemReport } from "@api/item.api";
 export default {
     name:'home',
-    data: () => ({
+    data: (vm) => ({
         clients: [],
         items: [],
         
@@ -176,36 +176,38 @@ export default {
         yearSold: new Date().getFullYear(),
         sold:[],
         chartItem: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: [vm.$t('dashboard.january'), vm.$t('dashboard.february'), vm.$t('dashboard.march'), vm.$t('dashboard.april'), vm.$t('dashboard.may'), vm.$t('dashboard.june'), vm.$t('dashboard.july'), vm.$t('dashboard.august'), vm.$t('dashboard.september'), vm.$t('dashboard.october'), vm.$t('dashboard.november'), vm.$t('dashboard.december')],
             datasets: [
                 {
-                    label: '15-days Purchases',
+                    label: vm.$t('dashboard.days_purchases'),
                     data: [0,0,0,0,12,0,0,0,0,0,0,0],
                     backgroundColor: '#FFB8A2',
                 },
                 {
-                    label: '15-days Sales',
+                    label: vm.$t('dashboard.days_sales'),
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
                     backgroundColor: '#FF7E55',
                 },
                 {
-                    label: '15-days Profit',
+                    label: vm.$t('dashboard.days_profit'),
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
                     backgroundColor: '#FF5722',
                 },
             ],
         },
         chartSold: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            labels: [vm.$t('dashboard.january'), vm.$t('dashboard.february'), vm.$t('dashboard.march'), vm.$t('dashboard.april'), vm.$t('dashboard.may'), vm.$t('dashboard.june'), vm.$t('dashboard.july'), vm.$t('dashboard.august'), vm.$t('dashboard.september'), vm.$t('dashboard.october'), vm.$t('dashboard.november'), vm.$t('dashboard.december')],
+
             datasets: [
                 {
-                    label: 'Sold',
+                    label: vm.$t('dashboard.sold'),
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
                     backgroundColor: '#FF5722',
                 },
             ],
         },
     }),
+    
     async mounted() {
         console.log("sadsss")
         await this.stock_count();

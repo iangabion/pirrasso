@@ -5,7 +5,7 @@ export default {
     //         MAIL_ENCRYPTION: "dwadwa123123000000001"
     //     }
     // },
-
+    "January": "Dawdawdawd",
     okay: "Ok",
     cancel: "Annuler",
     setting: "Paramètre",
@@ -63,6 +63,34 @@ export default {
             no_items_for_this_category: "Aucun article pour cette catégorie"
         }
     },
+    dashboard: {
+        sellers: "Utilisateurs",
+        view: "Voir",
+        items: "Articles",
+        items_on_sell: "Articles en vente",
+        stock: "Stock",
+        stock_items: "Articles en stock",
+        sold: "Vendu",
+        sold_items: "Articles vendus",
+        january: "Janvier",
+        february: "Février",
+        march: "Mars",
+        april: "Avril",
+        may: "Mai",
+        june: "Juin",
+        july: "Juillet",
+        august: "Août",
+        september: "Septembre",
+        october: "Octobre",
+        november: "Novembre",
+        december: "Décembre",
+        days_purchases: "Achats sur 15-jours",
+        days_sales: "Ventes sur 15-jours",
+        days_profit: "Bénéfices sur 15 jours",
+        sold: "Vendu",
+
+
+    },
     seller: {
         productinfo: {
             price: "Prix",
@@ -92,6 +120,10 @@ export default {
         }
 
     },
+    approved_items: {
+        approve_mark: "Approuver la marque",
+        delete_marked: "Effacer la marque"
+    },
     settings: {
         category: {
             item_categories: "Catégories des articles",
@@ -111,6 +143,7 @@ export default {
             action: "Action",
             icons: "Icônes",
             name: "Nom",
+            icon: "Icone"
 
         },
         images: {
@@ -157,6 +190,32 @@ export default {
             item_count: "Nombre d'articles",
             are_you_sure_you_want_to_save: "Etes-vous sûr de vouloir enregistrer ?",
             are_you_sure_you_want_to_delete: "Etes-vous sûr de vouloir supprimer ?"
+
+        },
+        promotions: {
+            pending_promotions: "Promotions en suspens",
+            approved_promotions: "Promotions approuvées",
+            confirm_approve: "Confirm Approve",
+            confirm_remove: "Confirm Remove",
+            approve: "Approve",
+            cancel: "Cancel",
+            remove: "Remove",
+            title: "Titre",
+            link: "Lien",
+
+        },
+        sms: {
+            the_sms_sender_settings: "The SMS Sender Settings",
+            twilio_account_settings: "Paramètres du compte Twilio",
+            the_sms_settings: "Le SMS est paramétré à vous notifier dès qu’un article est approuvé.",
+            twilio_sms_enabled: "SMS Twilio activé",
+            twilio_phone_number: "Numéro de téléphone Twilio",
+            twilio_account_sid: "SID du compte Twilio",
+            twilio_auth_token: "Jeton d’identification Twilio",
+            country_code: "Code Pays",
+            test_twilio_settings: "Tester le parametre de Twilio",
+            twilio_sms_testing: "Twilio Sms Testing"
+
 
         }
 

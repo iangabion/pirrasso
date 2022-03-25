@@ -92,21 +92,21 @@ export default {
                 search: ''
             },
             searchQuery: null,
-            headers: [
-                    { text: 'Full Name',width:'20%', value: 'full_name' },
-                    { text: 'Mobile', value: 'mobile', width:'20%' },
-                    { text: 'Total Items', value: 'total_items', width:'10%' },
-                    { text: 'Username',align: 'start',sortable: false,value: 'username', width:'20%'},
-                    { text: 'Email', value: 'email', width:'20%' },
-                    { text: 'Actions', value: 'actions', sortable: false, width:'10%' },
+            // headers: [
+            //         { text: 'Full Name',width:'20%', value: 'full_name' },
+            //         { text: 'Mobile', value: 'mobile', width:'20%' },
+            //         { text: 'Total Items', value: 'total_items', width:'10%' },
+            //         { text: 'Username',align: 'start',sortable: false,value: 'username', width:'20%'},
+            //         { text: 'Email', value: 'email', width:'20%' },
+            //         { text: 'Actions', value: 'actions', sortable: false, width:'10%' },
 
-                ],
+            //     ],
         }
     },
     computed : {
          prefill(){
             return this.form.search = this.$route.query.item;
-        }
+        },
         // filteredClient(){
         //     if(this.search){
         //         return this.clients.filter(client => {
@@ -121,6 +121,16 @@ export default {
         //     }
         //     return this.clients
         // }
+        headers(){
+            return [
+                { text: this.$t('seller.index.full_name'), width: '20%', value: 'full_name'},
+                { text: this.$t('seller.index.mobile'), width:'20%', value: 'mobile'},
+                { text: this.$t('seller.index.total_items'), value: 'total_items', width: '10%'},
+                { text: this.$t('seller.index.user_name'), value: 'user_name', value: 'username', width:'20%'},
+                {text: this.$t('seller.index.email'), value: 'email', width: '20%'},
+                { text: 'Actions', value: 'actions', sortable: false, width:'10%' },
+            ]
+        }
     },
     mounted() {
         this.search();

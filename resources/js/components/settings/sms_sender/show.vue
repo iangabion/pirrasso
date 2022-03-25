@@ -1,7 +1,7 @@
 <template>
     <div >
         <v-toolbar>
-            <v-toolbar-title class="px-4">SMS Sender Settings</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('setting.sms.the_sms_sender_settings')}}SMS Sender Settings</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-container class="mt-4">
@@ -12,7 +12,7 @@
                         mdi-alert-circle
                     </v-icon>
                     <span text-caption class="pt-1 pb-1 sms_text">
-                        The SMS settings will notify you once your item is approved.
+                        {{$t('settings.sms.the_sms_settings')}}
                     </span>
                 </div>
                 <div class="background_sms ml-5 mt-5 mr-5 pt-1 pl-2 pb-1">
@@ -20,11 +20,11 @@
                 </div>
                 <v-container  align=center>
                     <v-card class="mx-auto my-12" width=80% no-gutter position="center" elevation="0">
-                        <v-card-title class="background_sms">Twilio Account Settings</v-card-title>
+                        <v-card-title class="background_sms">{{$t('settings.sms.twilio_account_settings')}}</v-card-title>
                            <v-simple-table class="flex" justify-center>
                                 <tbody>
                                     <tr>
-                                        <th> Twilio SMS Enabled</th>
+                                        <th>{{$t('settings.sms.twilio_sms_enabled')}}</th>
                                         <td> 
                                             <v-select @change="enable_disable" dense v-model="sms1" return-object
                                             :items="on_off">
@@ -32,19 +32,19 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th> Twilio Phone Number</th>
+                                        <th>{{$t('settings.sms.twilio_phone_number')}}</th>
                                         <td>+16203191424</td>
                                     </tr>
                                     <tr>
-                                        <th> Twilio Account Sid</th>
+                                        <th>{{$t('settings.sms.twilio_account_sid')}}</th>
                                         <td>xxxxxxxxxxxxxxxxxxxx</td>
                                     </tr>
                                     <tr>
-                                        <th> Twilio Auth Token</th>
+                                        <th>{{$t('settings.sms.twilio.twilio_auth_token')}}</th>
                                         <td>********************</td>
                                     </tr>
                                     <tr>
-                                        <th>Country Code</th>
+                                        <th>{{$t('setting.sms.twilio.country_code')}}</th>
                                         <td>
                                             <!-- :hint="`${select.nation}`" -->
                                             <v-select dense v-model="select" :items="country" item-text="nation" item-value="number"
@@ -53,7 +53,7 @@
                                         </td>
                                     </tr>
                                      <tr>
-                                        <th>Test Twilio Settings</th>
+                                        <th>{{$t('settings.sms.test_twilio_settings')}}</th>
                                         <td><v-btn @click="test">Test</v-btn></td>
                                     </tr>
                                 </tbody>
@@ -66,7 +66,7 @@
         <v-dialog v-model="dialog" persistent width="30%">
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
-                    Twilio SMS Testing
+                    {{$t('settings.sms.twilio_sms_testing')}}
                 </v-card-title>
                 <v-card-text>
                     <v-container fluid>
