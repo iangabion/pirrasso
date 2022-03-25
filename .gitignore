@@ -3,7 +3,7 @@
 
 /storage/*.key
 /vendor
-!/vendor/twilio
+
 .env
 .env.backup
 .phpunit.result.cache
