@@ -168,7 +168,7 @@
             <v-card
             width="400"
             >
-                <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_approve')}}?</h2>             
+                <h2 style="text-align: center;">{{$t('settings.promotions.confirm_approve')}}?</h2>             
               
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -198,7 +198,7 @@
             <v-card
             width="400"
             >
-             <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_remove')}}?</h2>     
+             <h2 style="text-align: center;">{{$t('settings.promotions.confirm_remove')}}?</h2>     
             
              <v-card-actions>
                   <v-spacer></v-spacer>
