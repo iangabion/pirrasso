@@ -46,7 +46,7 @@ export default {
     },
 
     error: {
-        emptyArticles: {
+        emptyItems: {
             no_items_found: "AUCUN ARTICLE TROUVÉ",
             opps_it_seems_you_dont_have_any_items_yet: "Oups ! Il semble que vous n'avez pas encore d'articles;"
         },
