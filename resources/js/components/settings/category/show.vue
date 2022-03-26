@@ -77,7 +77,6 @@
                             @sorted="saveOrder"
                             :page.sync="page"
                             @page-count="pageCount = $event"
-                            
                         >
                                             <template v-slot:item.name="{ item }">
                                                 <div class="cat-name">
