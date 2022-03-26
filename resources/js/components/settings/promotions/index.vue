@@ -223,6 +223,7 @@
                         plain
                         text
                         @click="removeConfirm"
+                        
                         >
                             {{$t('settings.promotions.remove')}}
                         </v-btn> 
