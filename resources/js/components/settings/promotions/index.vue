@@ -236,6 +236,8 @@
                         </v-btn>
                     <v-spacer></v-spacer>
                 </v-card-actions>
+                
+                
                     <p style="display:none;">{{this.editedItem.id}}</p>
             </v-card-text>
             </v-card>
@@ -245,11 +247,26 @@
   
 </template>
 <script>
+// import { getPromotion } from "../../../repositories/promotion.api";
 export default {
     data(){
         return {
             e1: 1,
+            // headers:[
+            //          { text: '', align: 'start', value: 'image', width: '10%'},
+            //         { text: 'Title', align: 'start', value: 'title', width: '10%'},
+            //         { text: 'Link', align: 'start', value: 'link', width: '15%'},
+            //         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            // ],
+            headersApproved:[
+             
+                     { text: '', align: 'start', value: 'image', width: '10%'},
+                    { text: 'Title', align: 'start', value: 'title', width: '10%'},
+                    { text: 'Link', align: 'start', value: 'link', width: '15%'},
+                    { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            ],
             promotions: [],
+
             editedIndex: -1,
             editedItem: {
                 id: '',
@@ -278,6 +295,7 @@ export default {
             ]
         }
     },
+
     mounted(){
         this.getPromotions();
         this.getPendingPromotion();
