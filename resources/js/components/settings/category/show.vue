@@ -150,27 +150,9 @@
                                                             <v-flex xs12>
                                                                 <p class="subheading pa-0 font-weight-bold">{{$t('settings.category.add_subcategory')}}</p>
                                                             </v-flex>
-                                                            <!-- <v-flex xs12>
-                                                                <div class="preview mx-auto" >
-                                                                    <v-img
-                                                                        max-height="200"
-                                                                        class="mx-auto"
-                                                                        max-width="200"
-                                                                        contain=""
-                                                                        :src="subcat.icon || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg' "
-                                                                    >
-                                                                    </v-img>
-                                                                </div>
-                                                            </v-flex> -->
+                                                           
                                                             <v-flex xs12>
-                                                                <!-- <v-file-input small-chips
-                                                                    accept="image/*"
-                                                                    label="Icon"
-                                                                    @change="onFileChange('subcat',$event)"
-                                                                    v-validate="'image'"
-                                                                    :error-messages="errors.collect('Icon')"
-                                                                    data-vv-name="Icon">
-                                                                </v-file-input> -->
+                                                            
                                                                 <v-text-field
                                                                     type="text"
                                                                     v-model="subcat.name"
@@ -305,23 +287,7 @@ export default {
                 id :'',
                 icon:''
             },
-        //     headers: [
-        //   {
-        //     text: 'Category Name',
-        //     align: 'left',
-        //     sortable: false,
-        //     value: 'name',
-        //   },
-        //   ,
-        //   { text: 'items count', value: 'count' },
-        //   { text: 'Subcat count', value: 'subcat' },
-        //   { text: 'actions', value: 'action' },
-        // ],
-            // headers2:[
-            //     {text:'Icons', align:'start', value:'icon', width:'25%'},
-            //     {text:'Name', align:'start', value:'name', width:'30%'},
-            //     {text:'Actions', value:'actions', align:'left'},
-            // ]
+       
         }),
 
         computed: {

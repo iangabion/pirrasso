@@ -76,7 +76,6 @@ export default {
     methods:{
 
         onFileChange(hint,files) {
-                // var files = e.target.files || e.dataTransfer.files;
 
                 if (files == "") {
                     return
