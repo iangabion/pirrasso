@@ -163,23 +163,33 @@
         </v-stepper>
             <v-dialog
             v-model="dialog"
-              width="400"
+            transition="dialog-top-transition"
+            max-width="600"
             >
             <v-card
-            width="400"
+            width="600"
             >
-                <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_approve')}}?</h2>             
-              
+            <v-toolbar
+              color="#FF5722"
+              dark
+            >Promotion Approval</v-toolbar>
+             <v-card-text>
+                <h2 style="text-align: center;">{{$t('settings.promotions.confirm_approve')}}?</h2>             
+              <br>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
                     @click="approveConfirm"
+                    text
+                    plain
                     >
                         {{$t('settings.promotions.approve')}}
                     </v-btn> 
                     <v-btn
                     @click="dialog=false"
-                    style="background-color: red; color: white;"
+                     color="error"
+                    plain
+                    text
                     >
                         {{$t('settings.promotions.cancel')}}
                     </v-btn>
@@ -188,41 +198,53 @@
             
              
                 <p style="display:none;">{{this.editedItem.id}}</p>
+             </v-card-text>
             </v-card>
    
             </v-dialog>
             <v-dialog
             v-model="dialogremove"
-              width="400"
+            transition="dialog-top-transition"
+            max-width="600"
             >
             <v-card
-            width="400"
+            width="600"
             >
-             <h2 style="padding-left: 4.3em;">{{$t('settings.promotions.confirm_remove')}}?</h2>     
-            
-             <v-card-actions>
-                  <v-spacer></v-spacer>
-                    <v-btn
-                    @click="removeConfirm"
-                    >
-                        {{$t('settings.promotions.remove')}}
-                    </v-btn> 
-                    <v-btn
-                    style="background-color: red; color: white;"
-                    @click="dialogremove=false"
-                    >
-                        {{$t('settings.promotions.cancel')}}
-                    </v-btn>
-                 <v-spacer></v-spacer>
-             </v-card-actions>
-             
-             
-                 <p style="display:none;">{{this.editedItem.id}}</p>
+            <v-toolbar
+              color="#FF5722"
+              dark
+            >Promotion Remove</v-toolbar>
+            <v-card-text>
+                <h2 style="text-align: center">{{$t('settings.promotions.confirm_remove')}}?</h2>     
+                <br>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                        <v-btn
+                        plain
+                        text
+                        @click="removeConfirm"
+                        >
+                            {{$t('settings.promotions.remove')}}
+                        </v-btn> 
+                        <v-btn
+                        color="error"
+                        plain
+                        text
+                        @click="dialogremove=false"
+                        >
+                            {{$t('settings.promotions.cancel')}}
+                        </v-btn>
+                    <v-spacer></v-spacer>
+                </v-card-actions>
+                
+                
+                    <p style="display:none;">{{this.editedItem.id}}</p>
+            </v-card-text>
             </v-card>
    
             </v-dialog>
         </div>
-    </div>
+  
 </template>
 <script>
 // import { getPromotion } from "../../../repositories/promotion.api";
