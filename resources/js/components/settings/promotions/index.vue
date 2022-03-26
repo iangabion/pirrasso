@@ -223,7 +223,7 @@
                         plain
                         text
                         @click="removeConfirm"
-                        
+
                         >
                             {{$t('settings.promotions.remove')}}
                         </v-btn> 
@@ -259,13 +259,13 @@ export default {
             //         { text: 'Link', align: 'start', value: 'link', width: '15%'},
             //         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
             // ],
-            headersApproved:[
+            // headersApproved:[
              
-                     { text: '', align: 'start', value: 'image', width: '10%'},
-                    { text: 'Title', align: 'start', value: 'title', width: '10%'},
-                    { text: 'Link', align: 'start', value: 'link', width: '15%'},
-                    { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
-            ],
+            //          { text: '', align: 'start', value: 'image', width: '10%'},
+            //         { text: 'Title', align: 'start', value: 'title', width: '10%'},
+            //         { text: 'Link', align: 'start', value: 'link', width: '15%'},
+            //         { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
+            // ],
             promotions: [],
 
             editedIndex: -1,
