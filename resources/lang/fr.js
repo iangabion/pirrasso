@@ -48,11 +48,11 @@ export default {
     error: {
         emptyItems: {
             no_items_found: "AUCUN ARTICLE TROUVÉ",
-            opps_it_seems_you_dont_have_any_items_yet: "Oups ! Il semble que vous n'avez pas encore d'articles;"
+            opps_it_seems_you_dont_have_any_items_yet: "Il semblerait que vous n’avez pas encore de produit. "
         },
         error404: {
             error404_not_found: "404 NON TROUVÉ",
-            get_me_out_of_here: "Faites-moi sortir d'ici"
+            get_me_out_of_here: "Sortez-moi d’ici"
         }
 
     },
