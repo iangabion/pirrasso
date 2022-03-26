@@ -278,7 +278,6 @@ export default {
             ]
         }
     },
-
     mounted(){
         this.getPromotions();
         this.getPendingPromotion();
