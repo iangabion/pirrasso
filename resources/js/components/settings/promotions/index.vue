@@ -249,10 +249,7 @@ export default {
     data(){
         return {
             e1: 1,
-          
-
             promotions: [],
-
             editedIndex: -1,
             editedItem: {
                 id: '',
