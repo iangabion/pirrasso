@@ -104,11 +104,7 @@
                 name: '',
                 id :''
             },
-            // headers: [
-            //     { text: 'Status Name', align: 'left', sortable: false, value: 'name' },
-            //     { text: 'Items Count',  value: 'count' },
-            //     { text: 'actions', value: 'action' },
-            // ],
+            
         }),
 
         computed: {

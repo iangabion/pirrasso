@@ -1,7 +1,7 @@
 <template>
     <div >
         <v-toolbar>
-            <v-toolbar-title class="px-4">{{$t('setting.sms.the_sms_sender_settings')}}SMS Sender Settings</v-toolbar-title>
+            <v-toolbar-title class="px-4">{{$t('settings.sms.the_sms_sender_settings')}}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-container class="mt-4">
@@ -40,11 +40,11 @@
                                         <td>xxxxxxxxxxxxxxxxxxxx</td>
                                     </tr>
                                     <tr>
-                                        <th>{{$t('settings.sms.twilio.twilio_auth_token')}}</th>
+                                        <th>{{$t('settings.sms.twilio_auth_token')}}</th>
                                         <td>********************</td>
                                     </tr>
                                     <tr>
-                                        <th>{{$t('setting.sms.twilio.country_code')}}</th>
+                                        <th>{{$t('settings.sms.country_code')}}</th>
                                         <td>
                                             <!-- :hint="`${select.nation}`" -->
                                             <v-select dense v-model="select" :items="country" item-text="nation" item-value="number"
@@ -107,7 +107,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
     </div>
 </template>
 

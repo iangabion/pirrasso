@@ -83,18 +83,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-         <!-- <v-dialog
-            v-model="dialog"
-            persistent
-            max-width="600px"
-          >
-           
-            <v-card>
-              <form>
-               
-              </form>
-            </v-card>
-          </v-dialog> -->
+       
         <addDialog
             :dialog="dialog"
             @close="dialog = false; selected_item_id=0"
@@ -136,16 +125,7 @@ export default {
       smtp: [],
       loading: false,
       on_menu: true,
-      // headers: [
-      //   { text: 'MAIL_MAILER', align: 'start', value: 'mail_mailer', width: '10%',},
-      //   { text: 'MAIL_HOST', align: 'start', value: 'mail_host', width: '15%'},
-      //   { text: 'MAIL_PORT', align: 'start', value: 'mail_port', width: '10%'},
-      //   { text: 'MAIL_USERNAME', align: 'start', value: 'mail_username', width: '15%'},
-      //   { text: 'MAIL_PASSWORD', align: 'start', value: 'mail_password', width: '25%'},
-      //   { text: 'MAIL_ENCRYPTION', align: 'start', value: 'mail_encryption', width: '15%'},
-      //   { text: 'Default', align: 'start', value: 'status_on', width: '10%'},
-      //   { text: 'Action', align: 'start', value: 'actions', sortable: false,   width: '10%'},
-      // ],
+
     }
   },
  
@@ -169,38 +149,7 @@ export default {
   },
   methods: {
 
-    // validate () {
-    //     this.loading = true
-    //     let payload = this.formData
-    //     if(!this.$refs.form.validate()) return;
-    //     this.$root.$confirm(this.$t('settings.smtp.are_you_sure_you_want_to_save')).then((result) => {
-    //                 if(result) {
-    //                     let dis = this ;
-    //                     let id = this.formData.id;
-    //                     if(id != 0) {
-    //                         UpdateSmtp(id, payload ).then(function (response) {
-    //                         dis.clearformData()
-    //                         dis.$emit('search')
-    //                         dis.$emit('close')
-    //                         dis.loading = false
-    //                         alert('Successfully Updated');
-    //                     })
-    //                     }else{
-    //                         CreateSmtp(payload).then((data)=> {
-    //                             console.log(data)
-    //                             this.clearformData()
-    //                             this.$emit('search')
-    //                             this.$emit('close')
-    //                             this.loading = false
-    //                             alert('Successfully Created');
-    //                         }).catch((error)=> {
-    //                             console.log(error)
-    //                         });
-    //                     }
-    //                 }
-    //             });
-
-    //   },
+   
     changeStatus(id){
       SetDefault(id).then(response => {
         this.search();

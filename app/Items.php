@@ -73,6 +73,10 @@ class Items extends Model
     public function getCreatedatAttribute($value) {
         return date('d F Y H:i', strtotime($value)) ; 
     }
+
+    public function getUpdatedatAttribute($value) {
+        return date('d F Y H:i', strtotime($value)) ; 
+    }
     public function getTitleAttribute($value) {
         return ucwords($value) ; 
     }
