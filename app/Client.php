@@ -74,4 +74,8 @@ class Client extends Authenticatable
     public function getTotalItemsAttribute(){
         return count($this->items);
     }
+
+    public function report(){
+        return $this->belongsTo(Report::class, );
+    }
 }
