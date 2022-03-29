@@ -62,6 +62,9 @@ class Items extends Model
     public function reviews1(){
         return $this->reviews()->sum('rating');
     }
+     public function reportedItem(){
+         return $this->belongsToMany(Report::class, 'item_id');
+     }
 
     // protected $appends = [
     //     'average-rating'

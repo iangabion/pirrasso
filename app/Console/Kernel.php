@@ -27,6 +27,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:CheckItem')
                  ->daily();
     }
+    protected function report(Schedule $schedule)
+    {
+        $schedule->command('command:ReportItem')
+                 ->daily();
+    }
 
     /**
      * Register the commands for the application.

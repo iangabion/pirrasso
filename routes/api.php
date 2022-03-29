@@ -84,6 +84,14 @@ Route::middleware('auth:api')->group(function () {
 
 	Route::get('archive_message', 'SessionController@archive_message');
 
+	// reports
+	Route::post('reportItem', 'ReportController@reportItem');
+	Route::post('editReport', 'ReportController@editReport');
+	Route::post('deleteReport', 'ReportController@deleteReport');
+
+	Route::put('addreport', 'ReportController@addreport');
+	Route::put('removereport', 'ReportController@removereport');
+
 
 
 	
@@ -192,6 +200,9 @@ Route::delete('delete_promotion/{id}','PromotionController@destroy');
 Route::delete('delete_photo/{id}','PhotosController@delete_photo');
 
 Route::post('get_mobile', 'ClientController@get_mobile');
+
+
+
 
 
 
