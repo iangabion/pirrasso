@@ -38,27 +38,10 @@ class ReportController extends Controller
         $report = Report::find($id)->delete();
         return $report;
     }
-
-
-    // public function index(Request $request){
-    //     $report = Report::with('report2')->get();
-    //     return $report;
-    // }
-
     public function test(Request $request){
         
-        // $report = Report::select('item_id', Report::raw('count(*) as total'))->groupBy('item_id')->pluck('item_id','reason');
         $report = Items::where('id', $request->id)->increment('report_status');
-    // $report2 = Report::whereHas($report)->get('item_id');
-    //    foreach($report as $item) {
-    //        if($item <= 10){
-    //            $items = Items::find($id);
-    //            $items->update(['report_status' => 1 ]);
-    //         echo 'hi';
-    //        }else{
-    //         echo 'he';
-    //        }
-    //    }
+    
     return $report;
     }
 
@@ -77,8 +60,8 @@ class ReportController extends Controller
        
     }
     public function index(){
-        $report = Report::get();
-        return Item2Resource::collection($report);
+        $items = Items::orderBy('items.updated_at', 'desc')->get();
+        return  Item2Resource::collection($items) ;
     }
 }
 
