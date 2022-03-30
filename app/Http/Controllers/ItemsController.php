@@ -118,25 +118,7 @@ class ItemsController extends Controller
 // new down
 
     {
-        // $validatedData = $request->validate([
-        //             'title' => 'required',
-        //             'price' => 'required',
-        //             'description' => 'nullable',
-        //             'location' => 'nullable',
-        //             'latitude' => 'nullable|numeric',
-        //             'longitude' => 'nullable|numeric',
-        //             'stock' => 'required',
-        //             'status_id' => 'required',
-        //             'category_id' => 'nullable',
-        //             'subcategory_id' => 'nullable',
-        //             'images' => 'nullable',
-        //             'show_number' => 'nullable',
-        //             'apartment' => 'nullable',
-        //             'vehicles' => 'nullable',
-        //              // added Fields
-        //              'is_urgent' => 'nullable',
-        //              'is_displayed' => 'nullable',
-        //         ]);
+
 
              $item = new Items();
                 $item->title =  $request->input('title');
@@ -153,42 +135,11 @@ class ItemsController extends Controller
                 $item->client_id = Auth::user()->id;
 
                 $item->save();
-//test 1 down
-                // $many[] = $request->images;
-                // if (is_array($many) || is_object($many)){
-                //     foreach($many as $photos){
-                //         $photo = new Photos();
-                //         $photo->items_id = $item->id;
-                //         $photo->filename = $photos;
-                //         $photo->imageable_id = 0;
-                //     };
-                //     $item->photos()->save($photo);
-                // };                
-//test 2 down
-                // $many[] = $request->images;
-                // if (is_array($many) || is_object($many)){
 
-                //     foreach($many as $photos){
-                //         $photo = new Photos();
-                //         $photo->items_id = $item->id;
-                //         $photo->imageable_id = 0;
-                //             if($photos){
-                //             $image = $photos;  // your base64 encoded
-                //                 list($type, $image) = explode(';', $image);
-                //                 list(, $image)      = explode(',', $image);
-                //                 $data = base64_decode($image);
-                //                 $imageName = time() . '.jpeg';
-                //                 file_put_contents(public_path() . '/' . 'images/items/' . $imageName, $data);
-                //                 $photo->filename = $imageName ;
-                //             };
-                //     }
-                //     $item->photos()->save($photo);
 
-                // }; 
-//
                 $photo = new Photos();
                 $photo->items_id = $item->id;
-                //
+                
                     if($request->input('images')){
                     $image = $request->input('images');  // your base64 encoded
                         list($type, $image) = explode(';', $image);
@@ -420,15 +371,7 @@ class ItemsController extends Controller
         }
     }
 
-    // public function getDrafts(){
-    //     // dd(Auth::id()); 
-    //     $drafts= Items::where('is_approved', 2)
-    //         ->where('client_id', Auth::id())
-    //         ->get();
-
-    //         return $drafts;
-      
-    // }
+  
 
     public function getDrafts()
     {
@@ -478,14 +421,7 @@ class ItemsController extends Controller
             $item->client_id = Auth::user()->id;
 
             $item->save();
-            // if($item ) {
-            //     if($request->input('vehicles')){
-            //         $this->add_vehicles($item ,  $request->input('vehicles'));
-            //     }
-            //     if($request->input('apartment')){
-            //         $this->add_apartments($item ,  $request->input('apartment'));
-            //     }
-            // }
+       
             return new ItemResource($item);
         }
      

@@ -31,6 +31,8 @@ export default {
         price: "Prix",
         seller_username: "Nom d'utilisateur",
         added_on: "Ajouté le",
+        approve_mark: "Approuver la marque",
+        delete_marked: "Effacer la marque",
 
         disapproved_dialog: {
             disapprovement_notice: "Avis de désapprobation",
@@ -131,10 +133,7 @@ export default {
         }
 
     },
-    approved_items: {
-        approve_mark: "Approuver la marque",
-        delete_marked: "Effacer la marque"
-    },
+
     settings: {
         category: {
             item_categories: "Catégories des articles",

@@ -31,6 +31,8 @@ export default {
         price: "Price",
         seller_username: "Username",
         added_on: "Added On",
+        approve_mark: "Approve Marked",
+        delete_marked: "Delete Marked",
 
         disapproved_dialog: {
             disapprovement_notice: "Disapprovement Notice",
@@ -105,10 +107,7 @@ export default {
 
     },
 
-    approved_items: {
-        approve_mark: "Approve Marked",
-        delete_marked: "Delete Marked"
-    },
+
     seller: {
         index: {
             seller_list: "Seller List",
