@@ -24,7 +24,7 @@ class ReportResource extends JsonResource
 
        return [
         'user'=> $user,
-        'item'=> $item,
+        'item_reported'=> $item,
         'reason'=>$this->reason,
         'description'=>$this->description,
        ];
