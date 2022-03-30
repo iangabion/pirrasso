@@ -66,10 +66,10 @@ class ItemResource extends JsonResource
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
             'reviews'=>  $this->reviews,
-            'number_of_report'=>  $this->report_status,
-            'report_state' => $this->is_report,
-            'report_status'=> $this->is_report == 1 ? 'Item on hold' : 'Available ',
-            'report'=> $report
+            // 'number_of_report'=>  $this->report_status,
+            // 'report_state' => $this->is_report,
+            // 'report_status'=> $this->is_report == 1 ? 'Item on hold' : 'Available',
+            // 'report'=> $report
 
             // 'rating'=>$this->rating,
             // 'review_description' => $this->review_description,

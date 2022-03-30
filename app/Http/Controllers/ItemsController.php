@@ -32,7 +32,7 @@ class ItemsController extends Controller
     }
 
     public function all_items(){
-        $items = Items::with('reviews.buyer')->where('stock','>',0)->where('is_approved','<', 2 )->orderBy('items.updated_at', 'desc')->get();
+        $items = Items::with('reviews.buyer')->where('stock','>',0)->where('is_approved','<', 2 )->where('is_report', 0 )->orderBy('items.updated_at', 'desc')->get();
         return  ItemResource::collection($items) ;
         // return $items;
     }

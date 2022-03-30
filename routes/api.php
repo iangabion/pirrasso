@@ -201,6 +201,8 @@ Route::delete('delete_photo/{id}','PhotosController@delete_photo');
 
 Route::post('get_mobile', 'ClientController@get_mobile');
 
+Route::get('getreport', 'ReportController@index');
+
 
 
 

@@ -26,8 +26,8 @@ class ReportController extends Controller
 
     public function editReport(Request $request, $id){
         $report = Report::find($id);
-        $report->item_id = $request->item;
         $report->user_id = Auth::user()->id;
+        $report->item_id = $request->item_id;
         $report->reason = $request->reason;
         $report->description = $request->description;
         $report->save();
@@ -75,6 +75,10 @@ class ReportController extends Controller
         $habit->decrement('report_status');
         return 'success';
        
+    }
+    public function index(){
+        $report = Report::get();
+        return ReportResource::collection($report);
     }
 }
 
