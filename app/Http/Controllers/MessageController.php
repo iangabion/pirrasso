@@ -49,24 +49,10 @@ class MessageController extends Controller
                 echo 'Deleted both side';
             }
         }
-    //    if (!$message) {
-    //     //    $this->deletes($request->session_id);
-        
-    //         dd($message,"sad2");
-    //     //    return Message::where('session_id', $request->session_id)->delete(['session_id',$request->session_id]);
-    //     //    return 'Deletes';
-    //     }else{
-           
-    //         return Message::where('session_id', $request->session_id)->update(['message_status' => $id]);
-    //         // dd("sad2");
-    //     }
+ 
     }
 
-    // public function countUnread($id){
-    //     $message = Message::findOrFail($id)->messages()->get();
-        
-    //     return $message;
-    // }
+ 
     
 
     public function count(){
