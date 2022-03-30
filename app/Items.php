@@ -62,8 +62,8 @@ class Items extends Model
     public function reviews1(){
         return $this->reviews()->sum('rating');
     }
-     public function reportedItem(){
-         return $this->belongsToMany(Report::class, 'item_id');
+     public function itemReport(){
+         return $this->belongsToMany(Report::class);
      }
 
     // protected $appends = [
@@ -77,9 +77,9 @@ class Items extends Model
         return date('d F Y H:i', strtotime($value)) ; 
     }
 
-    public function getUpdatedatAttribute($value) {
-        return date('d F Y H:i', strtotime($value)) ; 
-    }
+    // public function getUpdatedatAttribute($value) {
+    //     return date('d F Y H:i', strtotime($value)) ; 
+    // }
     public function getTitleAttribute($value) {
         return ucwords($value) ; 
     }

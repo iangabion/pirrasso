@@ -16,7 +16,7 @@ use App\Client;
 use App\Report;
 use Illuminate\Support\Facades\Auth;
 
-class ItemResource extends JsonResource
+class Item2Resource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -32,7 +32,7 @@ class ItemResource extends JsonResource
         $vehicle = Vehicle::where('item_id' , $this->id)->first();
         $photos = Photos::where('items_id', $this->id)->get();
         $solds = Sold::where('item_id', $this->id)->get();
-        // $report = Report::where('item_id', $this->id)->get();
+        $report = Report::where('item_id', $this->id)->get();
         // $reviews = ProductReview::where('items_id', $this->id)->get();
         // $reviews = Client::join('product_reviews','clients.id','=','product_reviews.buyer_id')->where('')->get();
         // $reviews2 = ProductReviewResource::collection($reviews);
@@ -66,10 +66,10 @@ class ItemResource extends JsonResource
             'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at,
             'reviews'=>  $this->reviews,
-            // 'number_of_report'=>  $this->report_status,
-            // 'report_state' => $this->is_report,
-            // 'report_status'=> $this->is_report == 1 ? 'Item on hold' : 'Available',
-            // 'report'=> $report
+            'number_of_report'=>  $this->report_status,
+            'report_state' => $this->is_report,
+            'report_status'=> $this->is_report == 1 ? 'Item on hold' : 'Available',
+            'report'=> $report
 
             // 'rating'=>$this->rating,
             // 'review_description' => $this->review_description,

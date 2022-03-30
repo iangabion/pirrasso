@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\ItemResource;
+use App\Http\Resources\Item2Resource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReportResource;
 use App\Report;
@@ -78,7 +78,7 @@ class ReportController extends Controller
     }
     public function index(){
         $report = Report::get();
-        return ReportResource::collection($report);
+        return Item2Resource::collection($report);
     }
 }
 

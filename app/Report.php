@@ -8,10 +8,10 @@ class Report extends Model
 {
     //
     protected $fillable = ['reason', 'description'];
-    public function report(){
-        return $this->belongsToMany(Client::class, 'user_id');
-    }
+    // public function report(){
+    //     return $this->belongsToMany(Client::class, 'user_id');
+    // }
     public function reportedItem(){
-        return $this->belongsToMany(Items::class, 'item_id');
+        return $this->belongsTo(Items::class);
     }
 }
