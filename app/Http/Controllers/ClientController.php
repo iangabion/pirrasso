@@ -346,15 +346,15 @@ class ClientController extends Controller
 
     public function register_mobile(Request $request){
         $request->validate([
-            'email' => 'nullable|email|unique:clients,email,',
-            'mobile' => 'nullable|unique:clients,mobile,',
+            'email' => 'nullable|email|unique:clients,email',
+            'mobile' => 'required',
             'username' => 'nullable|unique:clients,username,',
             'password' => 'required'
         ]);
         $user = new Client();
 
         $user->mobile = $request->mobile;
-        $user->email = "NewUser$request->mobile";
+        $user->email = $request->input('email');
         $user->username = $request->username;
         $user->is_verified = 1;
         $user->password = Hash::make($request->input('password'));
