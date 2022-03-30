@@ -260,9 +260,8 @@ class ClientController extends Controller
             'birthday' => 'nullable',
             'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,'.$id,
-            'mobile' => 'nullable|unique:clients',
+            'mobile' => 'nullable|mobile|unique:clients,mobile',
             'username' => 'nullable|unique:clients,username,'.$id,
-           
             'profile_pic' => 'nullable'
         ]);
 
