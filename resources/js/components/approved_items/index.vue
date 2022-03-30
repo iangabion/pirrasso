@@ -241,36 +241,13 @@
                                                                 {{$t('item.show.unactive')}}
                                                             </span>
                                                         </v-list-item-subtitle>
-                                                    <!-- <v-list-item-subtitle>
-
-                                                                <span v-if="(items.is_active)==1">
-                                                                <v-icon>mdi-check</v-icon>
-                                                                </span>
-
-                                                                <span v-if="(items.is_active)==0">
-                                                                <v-icon>mdi-close</v-icon>
-                                                                </span>
-
-                                                                <span v-if="(items.is_active)==0">
-                                                                <v-icon>mdi-close</v-icon>
-                                                                </span>
-
-                                                    </v-list-item-subtitle> -->
+                                                    
                                                     </v-list-item-content>
                                                     </v-list-item>
                                                     <v-divider></v-divider>
                                                     <v-card-actions >
                                                         <v-spacer></v-spacer>
 
-                                                    <!-- <v-btn icon>
-                                                        <v-icon @click="show(items , index)" color="primary">mdi-eye</v-icon>
-                                                    </v-btn> -->
-                                                    <!-- <v-btn icon @click="destroy(items.id , index)">
-                                                        <v-icon color="yellow">mdi mdi-coin</v-icon>
-                                                    </v-btn> -->
-                                                    <!-- <v-btn icon @click="destroy(items.id , index)">
-                                                        <v-icon color="error">mdi-delete</v-icon>
-                                                    </v-btn> -->
                                                      <v-btn icon @click="approve(items, index)">
                                                         <v-icon color="green">mdi-check-circle</v-icon>
                                                     </v-btn>
