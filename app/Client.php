@@ -53,6 +53,9 @@ class Client extends Authenticatable
     public function reviews(){
         return $this->hasMany(ProductReview::class);
     }
+    public function report_user(){
+        return $this->hasMany(Report::class);
+    }
 
 
 

@@ -84,15 +84,27 @@ Route::middleware('auth:api')->group(function () {
 
 	Route::get('archive_message', 'SessionController@archive_message');
 
-	// reports
+	// reports item
 	Route::post('reportItem', 'ReportController@reportItem');
 	Route::post('editReport', 'ReportController@editReport');
 	Route::post('deleteReport', 'ReportController@deleteReport');
-
+	
 	Route::put('addreport', 'ReportController@addreport');
 	Route::put('removereport', 'ReportController@removereport');
+	
+	// report user
+	Route::post('addReportUser', 'ReportUserController@report_user');
+	Route::post('editReportUser', 'ReportUserController@edit_report');
+	Route::delete('deleteReportUser', 'ReportUserController@delete_report');
+	Route::delete('viewReportUser', 'ReportUserController@view_report');
+	
+	Route::put('incrementReport', 'ReportUserController@addreport');
+	Route::delete('decrementreport', 'ReportUserController@removereport');
 
 
+
+	Route::get('get_blocked', 'BlockController@get_blocked');
+	Route::get('im_blocked', 'BlockController@im_blocked');
 
 	
 });
@@ -202,6 +214,7 @@ Route::delete('delete_photo/{id}','PhotosController@delete_photo');
 Route::post('get_mobile', 'ClientController@get_mobile');
 
 Route::get('getreport', 'ReportController@index');
+
 
 
 
