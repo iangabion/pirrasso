@@ -606,7 +606,6 @@ class ComposerStaticInit838d142b0bd9a89828aba945096f5c5d
         'App\\Mail\\CodeVerification' => __DIR__ . '/../..' . '/app/Mail/CodeVerification.php',
         'App\\Mail\\DisapprovementNotice' => __DIR__ . '/../..' . '/app/Mail/DisapprovementNotice.php',
         'App\\Mail\\ForgotPassword' => __DIR__ . '/../..' . '/app/Mail/ForgotPassword.php',
-        'App\\MeModel' => __DIR__ . '/../..' . '/app/MeModel.php',
         'App\\Message' => __DIR__ . '/../..' . '/app/Message.php',
         'App\\Notifications\\SMSNotification' => __DIR__ . '/../..' . '/app/Notifications/SMSNotification.php',
         'App\\Photos' => __DIR__ . '/../..' . '/app/Photos.php',

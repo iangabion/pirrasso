@@ -17,6 +17,7 @@ class ReportUserController extends Controller
         $report->user_id = Auth::user()->id;
         $report->reported_user_id = $request->reported_user_id;
         $report->reason = $request->reason;
+        $report->description = $request->description;
         $report->save();
         return $report;
     }
@@ -26,6 +27,7 @@ class ReportUserController extends Controller
         $report->user_id = Auth::user()->id;
         $report->reported_user_id = $request->reported_user_id;
         $report->reason = $request->reason;
+        $report->description = $request->description;
         $report->save();
         return $report();
     }

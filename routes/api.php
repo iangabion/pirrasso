@@ -96,7 +96,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('addReportUser', 'ReportUserController@report_user');
 	Route::post('editReportUser', 'ReportUserController@edit_report');
 	Route::delete('deleteReportUser', 'ReportUserController@delete_report');
-	Route::delete('viewReportUser', 'ReportUserController@view_report');
+	Route::get('viewReportUser', 'ReportUserController@view_report');
 	
 	Route::put('incrementReport', 'ReportUserController@addreport');
 	Route::delete('decrementreport', 'ReportUserController@removereport');
