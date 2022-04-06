@@ -101,8 +101,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::put('incrementReport', 'ReportUserController@addreport');
 	Route::delete('decrementreport', 'ReportUserController@removereport');
 
-
-
+	// block
+	Route::post('block_user', 'BlockController@block');
 	Route::get('get_blocked', 'BlockController@get_blocked');
 	Route::get('im_blocked', 'BlockController@im_blocked');
 
