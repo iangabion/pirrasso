@@ -26,7 +26,7 @@ class BlockController extends Controller
     }
 
     public function get_blocked(){
-        return Block::where('user_id', Auth::user()->id)->get('blocked_user_id');
+        return Block::where('user_id', Auth::user()->id)->get();
 
         // dd(Auth::user());
     }
