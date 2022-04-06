@@ -338,7 +338,7 @@ export default {
                     axios.put('/subcategories/'+id, this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
-                        alert('save')
+                        // alert('save')
                         self.subcatclear()
                         self.showcategory(response.data.category_id)
                     })
@@ -347,7 +347,7 @@ export default {
                     axios.post('/subcategories', this.subcat )
                     .then(function (response) {
                         console.log(response.data , 'subcat')
-                        alert('else save')
+                        // alert('else save')
                         self.get_categories()
                         self.categories_subcategories.subcategories.unshift(response.data)
                         self.subcatclear()
@@ -369,7 +369,7 @@ export default {
                                         dis.get_categories()
                                         dis.clear()
                                         dis.category.id= ''
-                                         alert('updated')
+                                        //  alert('updated')
                                     })
                                 } else {
                                     axios.post('/category', this.category )
@@ -377,7 +377,7 @@ export default {
                                         dis.get_categories()
                                         console.log(response.data , ' saved')
                                         dis.clear()
-                                        alert('saved')
+                                        // alert('saved')
                                     })
                                 }
                             }
@@ -393,7 +393,7 @@ export default {
                             console.log(response.data)
                             this.get_categories()
                             this.clear()
-                            alert('delete')
+                            // alert('delete')
 			            });
                     }
                 })

@@ -78,7 +78,6 @@ return array(
     'App\\Mail\\CodeVerification' => $baseDir . '/app/Mail/CodeVerification.php',
     'App\\Mail\\DisapprovementNotice' => $baseDir . '/app/Mail/DisapprovementNotice.php',
     'App\\Mail\\ForgotPassword' => $baseDir . '/app/Mail/ForgotPassword.php',
-    'App\\MeModel' => $baseDir . '/app/MeModel.php',
     'App\\Message' => $baseDir . '/app/Message.php',
     'App\\Notifications\\SMSNotification' => $baseDir . '/app/Notifications/SMSNotification.php',
     'App\\Photos' => $baseDir . '/app/Photos.php',
