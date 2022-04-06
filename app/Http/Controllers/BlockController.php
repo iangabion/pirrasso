@@ -21,7 +21,8 @@ class BlockController extends Controller
         return $block;
     }
     public function remove_block($id){
-        $block = Block::find($id)->destroy();
+        $block = Block::findorfail($id);
+        $block->delete();
         return 'Unblocked';
     }
 
