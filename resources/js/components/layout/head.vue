@@ -4,7 +4,7 @@
  >
       <v-app-bar-nav-icon @click="toggle"></v-app-bar-nav-icon>
       <v-icon>mid-heart</v-icon>
-      <v-toolbar-title><span class="hidden-sm-and-down">Buy and Sell</span></v-toolbar-title>
+      <v-toolbar-title><span class="hidden-sm-and-down">Pirasso</span></v-toolbar-title>
  </v-app-bar> -->
     <v-app-bar
     
@@ -19,7 +19,7 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down">Bon Plan</span>
+        <span class="hidden-sm-and-down">Pirasso</span>
       </v-toolbar-title>
       <!-- <v-text-field
         v-model="form.search"

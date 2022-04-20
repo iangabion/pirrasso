@@ -82,7 +82,7 @@ class SmsController extends Controller
         // $admin = User::find($user)->first();
         // return $admin;
         $receiverNumber = $request->input('new');
-        $message = "This is a Twilio Test. Please Contact Qonvex Technology for your Request. -Bon Plan Devs";
+        $message = "This is a Twilio Test. Please Contact Qonvex Technology for your Request. -Pirasso Devs";
         try {
             $account_sid = 'ACfb0e0ca8f0786a4b8c937db4eb8d8daa';
             $auth_token = 'e70d8db712c8e1b6abb13e50255a4eaf';

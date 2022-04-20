@@ -302,6 +302,7 @@
                         style="color:white"
                         color="green"
                         @click="updatechecked()"
+                        text
                         >
                             {{$t('approved_items.approve_mark')}}
                         </v-btn>
@@ -311,6 +312,7 @@
                         style="color:white"
                         color="red"
                         @click="deletechecked()"
+                        text
                         >
                             {{$t('approved_items.delete_marked')}}
                         </v-btn>

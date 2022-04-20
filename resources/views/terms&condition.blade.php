@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/app.css')  }}">
-        <title>Bon Plan Terms and Condition</title>
+        <title>Pirasso Terms and Condition</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@
     <body>
         <div class = title>
             <div class = flex-center>
-                Bon Plan Terms And Condition
+                Pirasso Terms And Condition
             </div>
         </div>
         <br>

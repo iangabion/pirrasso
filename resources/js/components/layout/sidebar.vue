@@ -7,7 +7,7 @@
       elevation="0"
     >
     <v-img contain
-            src="/images/logo-c.png"
+            src="/images/Pirasso.png"
             size="1"
             max-height="90"
             max-width="180"
@@ -155,7 +155,7 @@
 
 a.tile:hover,
 .v-list-item.v-list-item--link.theme--light:hover {
-  background: #FF5722 !important;
+  background: #EF7922 !important;
   color: #fff !important; 
 }
 
@@ -165,7 +165,7 @@ a.tile:hover i,
 }
 
 .v-list-group.tile .v-list-item.v-list-group__header:hover {
-  background: #FF5722 !important;
+  background: #EF7922 !important;
 }
 
 
@@ -174,7 +174,7 @@ a.tile:hover i,
 }
 
 .v-application a:hover {
-  background: #FF5722;
+  background: #EF7922;
 }
 
 
@@ -182,20 +182,20 @@ a.tile:hover i,
   background: orange;
 } */
 .v-list-item--inactive {
-  background: #FF5722;
+  background: #EF7922;
   color: #fff;
 }
 .v-list-item--active {
-  background: #FF5722;
+  background: #EF7922;
   color: #fff;
 }
 
 .v-list-group.tile > div:first-child:hover {
-  background:#FF5722 !important;
+  background:#EF7922 !important;
 }
 
 .v-list-item--link:before:hover {
-  background-color: #FF5722 !important;
+  background-color: #EF7922 !important;
 }
 
 

@@ -4,7 +4,7 @@
 @import '~vuetify/dist/vuetify.css';
 table>thead.v-data-table-header>tr>th,
 thead .v-data-table__checkbox>.v-icon {
-    background-color: #FF5722 !important;
+    background-color: #EF7922 !important;
     color: #fff !important;
     text-transform: capitalize !important;
 }
@@ -42,7 +42,7 @@ tbody tr:nth-of-type(even) {
 }
 
 .v-list-group.tile>div:first-child:hover {
-    background: #FF5722 !important;
+    background: #EF7922 !important;
     color: #fff;
 }
 

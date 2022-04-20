@@ -50,7 +50,7 @@
                             </v-file-input>
                     </v-row>
                     <v-flex xs12 class="text-left mt-6 ml-9">
-                            <v-btn color="success" small title @click.prevent="save_logo">
+                            <v-btn color="success" small title @click.prevent="save_logo" text>
                                 <v-icon left>mdi-content-save-edit-outline</v-icon>
                                 {{$t('settings.images.save_logo')}}
                             </v-btn>

@@ -40,7 +40,7 @@
                                             <v-btn
                                             color="primary"
                                             @click="e1 = 2"
-                                            
+                                            text
                                             >
                                             {{$t('settings.promotions.approved_promotions')}}
                                             </v-btn>
@@ -118,7 +118,7 @@
                                             <v-btn
                                             color="primary"
                                             @click="e1 = 1"
-                                            
+                                            text
                                             >
                                             {{$t('settings.promotions.pending_promotions')}}
                                             </v-btn>
@@ -170,7 +170,7 @@
             width="600"
             >
             <v-toolbar
-              color="#FF5722"
+              color="#EF7922"
               dark
             >Promotion Approval</v-toolbar>
              <v-card-text>
@@ -211,7 +211,7 @@
             width="600"
             >
             <v-toolbar
-              color="#FF5722"
+              color="#EF7922"
               dark
             >Promotion Remove</v-toolbar>
             <v-card-text>

@@ -136,7 +136,7 @@
                         </v-toolbar-items>
                     <vue-chart type="bar" :data="chartItem" v-if="is_loaded"></vue-chart>
                 </v-col>
-                <v-col style="width: 45%; border-style: solid; border-color: #FF5722; margin:auto" >
+                <v-col style="width: 45%; border-style: solid; border-color: #EF7922; margin:auto" >
                     <v-toolbar-items>
                         <v-btn
                             icon
@@ -191,7 +191,7 @@ export default {
                 {
                     label: vm.$t('dashboard.days_profit'),
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    backgroundColor: '#FF5722',
+                    backgroundColor: '#EF7922',
                 },
             ],
         },
@@ -202,7 +202,7 @@ export default {
                 {
                     label: vm.$t('dashboard.sold'),
                     data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    backgroundColor: '#FF5722',
+                    backgroundColor: '#EF7922',
                 },
             ],
         },
@@ -344,7 +344,7 @@ export default {
 
 <style scoped>
 .v-application .primary {
-    background-color: #FF5722 !important;
-    border-color: #FF5722!important;
+    background-color: #EF7922 !important;
+    border-color: #EF7922!important;
 }
 </style>

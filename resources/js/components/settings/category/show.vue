@@ -49,11 +49,11 @@
                                         </v-layout>
                                         <v-layout row wrap mb-3 justify-end>
                                             <v-flex xs12 class="text-right">
-                                                <v-btn color="success" tile @click="submit"  >
+                                                <v-btn color="success" tile @click="submit" text  >
                                                     <v-icon left>mdi-content-save-edit-outline</v-icon>
                                                     {{$t('settings.category.save_category')}}
                                                 </v-btn>
-                                                <v-btn color="primary" tile @click="clear"  >
+                                                <v-btn color="primary" tile @click="clear" text >
                                                     <v-icon left>mdi-lock-reset</v-icon>
                                                     {{$t('settings.category.reload_form')}}
                                                 </v-btn>
