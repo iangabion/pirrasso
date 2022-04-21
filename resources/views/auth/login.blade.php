@@ -103,13 +103,13 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
-						<img src="images/pirasso-logo.png" class="brand_logo" alt="Logo">
+						<img src="/images/pirasso-logo.png" class="brand_logo" alt="Logo">
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container" style="display: flex; flex-direction: column; margin: 150px auto 0px auto;">
 					<div style="justify-content:center; margin: auto; line-height: 0.5!important">
 						<!-- <h1 class="my_title" style="margin:0; left: 28%;">BonPlan</h1> -->
-						<img src="images/Pirasso_white.png" class="pirasso_title">
+						<img src="/images/logo-c.png" class="pirasso_title">
 					</div>
 					<form method="POST" action="{{ route('login') }}">
 						@csrf
