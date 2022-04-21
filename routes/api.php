@@ -61,7 +61,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('favorites' ,'ClientController@get_favorites');
 
 	// is sold
-	Route::post('is_sold' ,'ItemsController@sold');
+	Route::post('checkout' ,'ItemsController@sold');
 	Route::get('unsold/{id}' ,'ItemsController@unsold');
 	Route::get('sold_item' ,'ItemsController@getsold_items');
     Route::get('bought_item' ,'ItemsController@getbought_items');
@@ -106,6 +106,19 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('get_blocked', 'BlockController@get_blocked');
 	Route::get('im_blocked', 'BlockController@im_blocked');
 	Route::delete('unblock/{id}','BlockController@remove_block');
+
+	// cart
+
+	Route::get('cart', 'CartController@index');
+	Route::post('add_cart', 'CartController@add_cart');
+	Route::post('edit_cart/{id}', 'CartController@edit_cart');
+	Route::post('delete_cart/{id}','CartController@delete_cart');
+
+	//adressess
+	Route::get('get_myAddresses', 'DeliveryAddressController@get_myAddresses');
+	Route::post('add_myAddresses', 'DeliveryAddressController@add_myAddresses');
+	Route::post('edit_myAddresses/{id}', 'DeliveryAddressController@edit_myAddresses');
+	Route::delete('delete_myAddresses/{id}', 'DeliveryAddressController@delete_myAddress');
 
 	
 });

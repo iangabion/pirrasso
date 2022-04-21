@@ -19,7 +19,7 @@ class DeliveryAddressController extends Controller
 
     public function add_myAddress(Request $request){
         $address = new DeliveryAddress();
-        $address->user_id = $request->user_id;
+        $address->user_id = Auth::user()->id;
         $address->address = $request->address;
         $address->phone = $request->phone;
         $address->postal_code = $request->postal_code;

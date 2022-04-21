@@ -73,7 +73,11 @@ class ItemsController extends Controller
         $sold->item_id =  $request->input('item_id');   
         $sold->buyer_id =  $request->input('buyer_id');
         $sold->quantity =  $request->input('quantity');
+        $sold->description =  $request->input('description');
+        $sold->location =  $request->input('location');
+        $sold->mode_of_payment =  $request->input('mode_of_payment');
 
+        
         if($sold->save()){
             $this->updateStock( $request->id, $request->total_purchase, $request->stock, $request->quantity );
         };
@@ -82,11 +86,11 @@ class ItemsController extends Controller
 
     public function updateStock($id, $total_purchase, $stock, $quantity ){
        return Items::find($id)
-                    ->update([
+       ->update([
                         'total_purchase' => $quantity + $total_purchase,
                         'stock' => $stock - $quantity
                     ]);
-      
+                    
        
 
     }
