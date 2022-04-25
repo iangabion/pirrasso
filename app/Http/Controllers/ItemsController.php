@@ -124,7 +124,7 @@ class ItemsController extends Controller
     {
 
 
-             $item = new Items();
+                $item = new Items();
                 $item->title =  $request->input('title');
                 $item->price =  $request->input('price');
                 $item->description =  $request->input('description');
@@ -136,8 +136,10 @@ class ItemsController extends Controller
                 $item->status_id =  $request->input('status_id');
                 $item->category_id =  $request->input('category_id');
                 $item->subcategory_id =  $request->input('subcategory_id');
+                $item->cod_shipping_fee = $request->input('cod_shipping_fee');
+                $item->paypal_address = $request->input('paypal_address');
+                $item->pickup_address = $request->input('pickup_address');
                 $item->client_id = Auth::user()->id;
-
                 $item->save();
 
 
@@ -252,6 +254,9 @@ class ItemsController extends Controller
             $item->status_id =  $request->input('status_id');
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
+            $item->cod_shipping_fee = $request->input('cod_shipping_fee');
+            $item->paypal_address = $request->input('paypal_address');
+            $item->pickup_address = $request->input('pickup_address');
             $item->client_id = Auth::user()->id;
 
             $item->save();
@@ -360,6 +365,9 @@ class ItemsController extends Controller
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
             $item->is_approved = 2;
+            $item->cod_shipping_fee = $request->input('cod_shipping_fee');
+            $item->paypal_address = $request->input('paypal_address');
+            $item->pickup_address = $request->input('pickup_address');
             $item->client_id = Auth::user()->id;
 
             $item->save();
@@ -422,6 +430,9 @@ class ItemsController extends Controller
             $item->category_id =  $request->input('category_id');
             $item->subcategory_id =  $request->input('subcategory_id');
             $item->is_approved = 2;
+            $item->cod_shipping_fee = $request->input('cod_shipping_fee');
+            $item->paypal_address = $request->input('paypal_address');
+            $item->pickup_address = $request->input('pickup_address');
             $item->client_id = Auth::user()->id;
 
             $item->save();
