@@ -20,6 +20,7 @@ class DeliveryAddressResource extends JsonResource
 
         return [
             'user' =>$user,
+            'receiver'=>$this->receiver,
             'address' => $this->address,
             'phone' => $this->phone,
             'postal' => $this->postal_code,

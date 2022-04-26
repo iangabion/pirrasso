@@ -20,6 +20,7 @@ class DeliveryAddressController extends Controller
     public function add_myAddress(Request $request){
         $address = new DeliveryAddress();
         $address->user_id = Auth::user()->id;
+        $address->receiver = $request->receiver;
         $address->address = $request->address;
         $address->phone = $request->phone;
         $address->postal_code = $request->postal_code;
@@ -34,13 +35,14 @@ class DeliveryAddressController extends Controller
     public function edit_myAddress(Request $request, $id){
         $address = DeliveryAddress::findorfail($id);
         $address->user_id = $request->user_id;
+        $address->receiver = $request->receiver;
         $address->address = $request->address;
         $address->phone = $request->phone;
         $address->postal_code = $request->postal_code;
         $address->street = $request->street;
         $address->label_as = $request->label_as;
         $address->save();
-        return DeliveryAddressResource::collection($address);
+        return new DeliveryAddressResource($address);
     }
 
     public function delete_myAddress($id){
