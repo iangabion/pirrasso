@@ -13,6 +13,7 @@ use App\Photos;
 use App\Sold;
 use App\ProductReview;
 use App\Client;
+
 use App\Report;
 use Illuminate\Support\Facades\Auth;
 
