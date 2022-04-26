@@ -27,7 +27,7 @@ class DeliveryAddressController extends Controller
         $address->label_as = $request->label_as;
         $address->save();
 
-        return DeliveryAddress::collection($address);
+        return DDeliveryAddressResource::collection($address);
     }
 
     public function edit_myAddress(Request $request, $id){
@@ -39,7 +39,7 @@ class DeliveryAddressController extends Controller
         $address->street = $request->street;
         $address->label_as = $request->label_as;
         $address->save();
-        return DeliveryAddress::collection($address);
+        return DeliveryAddressResource::collection($address);
     }
 
     public function delete_myAddress($id){
