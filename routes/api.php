@@ -115,9 +115,9 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('delete_cart/{id}','CartController@delete_cart');
 
 	//adressess
-	Route::get('get_myAddresses', 'DeliveryAddressController@get_myAddresses');
-	Route::post('add_myAddresses', 'DeliveryAddressController@add_myAddresses');
-	Route::post('edit_myAddresses/{id}', 'DeliveryAddressController@edit_myAddresses');
+	Route::get('get_myAddresses', 'DeliveryAddressController@get_myAddress');
+	Route::post('add_myAddresses', 'DeliveryAddressController@add_myAddress');
+	Route::post('edit_myAddresses/{id}', 'DeliveryAddressController@edit_myAddress');
 	Route::delete('delete_myAddresses/{id}', 'DeliveryAddressController@delete_myAddress');
 
 	
