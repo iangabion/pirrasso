@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Clients;
-use Illuminate\Http\Resources\Json\JsonResource;
 
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Client;
+use Illuminate\Support\Facades\Auth;
 class DeliveryAddressResource extends JsonResource
 {
     /**
@@ -14,12 +15,11 @@ class DeliveryAddressResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-
-        $user = Client::where('user_id', $this->id)->first();
+    
+        $user = Client::where('id', $this->user_id)->first();
 
         return [
-            'user' => $user,
+            'user' =>$user,
             'address' => $this->address,
             'phone' => $this->phone,
             'postal' => $this->postal_code,
