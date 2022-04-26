@@ -27,7 +27,7 @@ class DeliveryAddressController extends Controller
         $address->label_as = $request->label_as;
         $address->save();
 
-        return DDeliveryAddressResource::collection($address);
+        return DeliveryAddressResource::collection($address);
     }
 
     public function edit_myAddress(Request $request, $id){
