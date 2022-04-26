@@ -59,7 +59,6 @@ class ClientController extends Controller
             'email' => 'nullable|email|unique:clients,email,',
             'mobile' => 'nullable|unique:clients,mobile,',
             'username' => 'nullable|unique:clients,username,',
-           
             'profile_pic' => 'nullable',
             'password' => 'required'
         ]);
@@ -253,95 +252,95 @@ class ClientController extends Controller
      */
     public function update_profile(Request $request)
     {
-        // $id = Auth::user()->id ;
-        // $updateData = $request->validate([
-        //     'full_name' => 'nullable',
-        //     'gender' => 'nullable',
-        //     'birthday' => 'nullable',
-        //     'bio' => 'nullable',
-        //     'email' => 'nullable|email|unique:clients,email,'.$id,
-        //     'mobile' => 'nullable|mobile|unique:clients,mobile',
-        //     'username' => 'nullable|unique:clients,username,'.$id,
-        //     'profile_pic' => 'nullable'
-        // ]);
-
-        // if($updateData) {
-        // $client = Client::findorfail($id);
-        // $client->full_name =  $request->input('full_name');
-        // $client->email =  $request->input('email');
-        // $client->gender = $request->input('gender');
-        // $client->birthday = $request->input('birthday');
-        // $client->bio = $request->input('bio');
-        // $client->mobile =  $request->input('mobile');
-        // $client->username =  $request->input('username');
-        // $client->password = Hash::make($request->input('password'));
-        // $client->is_verified =  1;
-    
-        // if($request->profile_pic){
-        //     $image = $request->profile_pic;  // your base64 encoded
-        //     list($type, $image) = explode(';', $image);
-        //     list(, $image)      = explode(',', $image);
-        //     $data = base64_decode($image);
-        //     $imageName = date("YmdHis"). '.' . 'jpeg';
-        //     file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
-
-        //     $client->image = $imageName ;
-        // }
-        // $client->verification_code = $this->generateRandomNumber();
-        // $client->save();
-        // // $this->sendVerificationCode($client);
-        // // $accessToken = $client->createToken('authtoken')->accessToken ;
-        // // return response(['user' => $client , 'access_token' => $accessToken]);
-        // return response(['user' => $client]);
-        // }
-
         $id = Auth::user()->id ;
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'full_name' => 'nullable',
             'gender' => 'nullable',
             'birthday' => 'nullable',
             'bio' => 'nullable',
             'email' => 'nullable|email|unique:clients,email,'.$id,
-            'mobile' => 'nullable|mobile|unique:clients,mobile',
+            'mobile' => 'nullable|unique:clients,mobile,'.$id,
             'username' => 'nullable|unique:clients,username,'.$id,
             'profile_pic' => 'nullable'
         ]);
 
-        if($validator) {
-            $client = Client::findorfail($id);
-            $client->full_name =  $request->input('full_name');
-            $client->email =  $request->input('email');
-            $client->gender = $request->input('gender');
-            $client->birthday = $request->input('birthday');
-            $client->bio = $request->input('bio');
-            $client->mobile =  $request->input('mobile');
-            $client->username =  $request->input('username');
-            $client->password = Hash::make($request->input('password'));
-            $client->is_verified =  1;
-        
-            if($request->profile_pic){
-                $image = $request->profile_pic;  // your base64 encoded
-                list($type, $image) = explode(';', $image);
-                list(, $image)      = explode(',', $image);
-                $data = base64_decode($image);
-                $imageName = date("YmdHis"). '.' . 'jpeg';
-                file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
+     
+        $client = Client::findorfail($id);
+        $client->full_name =  $request->input('full_name');
+        $client->email =  $request->input('email');
+        $client->gender = $request->input('gender');
+        $client->birthday = $request->input('birthday');
+        $client->bio = $request->input('bio');
+        $client->mobile =  $request->input('mobile');
+        $client->username =  $request->input('username');
+        $client->password = Hash::make($request->input('password'));
+        $client->is_verified =  1;
     
-                $client->image = $imageName ;
-            }
-            $client->verification_code = $this->generateRandomNumber();
-            $client->save();
-            // $this->sendVerificationCode($client);
-            // $accessToken = $client->createToken('authtoken')->accessToken ;
-            // return response(['user' => $client , 'access_token' => $accessToken]);
-            return response(['user' => $client]);
+        if($request->profile_pic){
+            $image = $request->profile_pic;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $data = base64_decode($image);
+            $imageName = date("YmdHis"). '.' . 'jpeg';
+            file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
+
+            $client->image = $imageName ;
         }
+        $client->verification_code = $this->generateRandomNumber();
+        $client->save();
+        // $this->sendVerificationCode($client);
+        // $accessToken = $client->createToken('authtoken')->accessToken ;
+        // return response(['user' => $client , 'access_token' => $accessToken]);
+        return response(['user' => $client]);
+        
+
+        // $id = Auth::user()->id ;
+        // $validator = Validator::make($request->all(), [
+        //     'full_name' => 'nullable',
+        //     'gender' => 'nullable',
+        //     'birthday' => 'nullable',
+        //     'bio' => 'nullable',
+        //     'email' => 'nullable|email|unique:clients,email,'.$id,
+        //     'mobile' => 'nullable|mobile|unique:clients,mobile'.$id,
+        //     'username' => 'nullable|unique:clients,username,'.$id,
+        //     'profile_pic' => 'nullable'
+        // ]);
+
+        // if($validator) {
+        //     $client = Client::findorfail($id);
+        //     $client->full_name =  $request->input('full_name');
+        //     $client->email =  $request->input('email');
+        //     $client->gender = $request->input('gender');
+        //     $client->birthday = $request->input('birthday');
+        //     $client->bio = $request->input('bio');
+        //     $client->mobile =  $request->input('mobile');
+        //     $client->username =  $request->input('username');
+        //     $client->password = Hash::make($request->input('password'));
+        //     $client->is_verified =  1;
+        
+        //     if($request->profile_pic){
+        //         $image = $request->profile_pic;  // your base64 encoded
+        //         list($type, $image) = explode(';', $image);
+        //         list(, $image)      = explode(',', $image);
+        //         $data = base64_decode($image);
+        //         $imageName = date("YmdHis"). '.' . 'jpeg';
+        //         file_put_contents(public_path() . '/' . 'images/user_profile/' . $imageName, $data);
+    
+        //         $client->image = $imageName ;
+        //     }
+        //     $client->verification_code = $this->generateRandomNumber();
+        //     $client->save();
+        //     // $this->sendVerificationCode($client);
+        //     // $accessToken = $client->createToken('authtoken')->accessToken ;
+        //     // return response(['user' => $client , 'access_token' => $accessToken]);
+        //     return response(['user' => $client]);
+        // }
  
-        if ($validator->fails()) {
-            return "Error"
-            ->withErrors($validator)
-            ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return "Error"
+        //     ->withErrors($validator)
+        //     ->withInput();
+        // }
     }
 
     /**
