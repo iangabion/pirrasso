@@ -73,14 +73,6 @@ class ItemResource extends JsonResource
             'COD'=> $this->cod_shipping_fee,
             'PAYPAL'=>$this->paypal_address,
             'PICKUP'=>$this->pickup_address,
-            // 'number_of_report'=>  $this->report_status,
-            // 'report_state' => $this->is_report,
-            // 'report_status'=> $this->is_report == 1 ? 'Item on hold' : 'Available',
-            // 'report'=> $report
-
-            // 'rating'=>$this->rating,
-            // 'review_description' => $this->review_description,
-
         ];
     }
 }
