@@ -23,7 +23,7 @@ class CartController extends Controller
         $cart->quantity = $request->quantity;
         $cart->save();
 
-        return CartResource::collection($cart);
+        return new CartResource($cart);
     }
     public function edit_cart(Request $request, $id){
         $cart = Cart::findorfail($id);
@@ -31,7 +31,7 @@ class CartController extends Controller
         $cart->item_id = $request->item_id;
         $cart->quantity = $request->quantity;
         $cart->save();
-        return CartResource::collection($cart);
+        return new CartResource($cart);
     }
 
     public function delete_cart($id){
