@@ -112,7 +112,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('cart', 'CartController@index');
 	Route::post('add_cart', 'CartController@add_cart');
 	Route::post('edit_cart/{id}', 'CartController@edit_cart');
-	Route::post('delete_cart/{id}','CartController@delete_cart');
+	Route::delete('delete_cart/{id}','CartController@delete_cart');
 
 	//adressess
 	Route::get('get_myAddresses', 'DeliveryAddressController@get_myAddress');
