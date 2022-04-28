@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 use App\Client;
 use App\Items;
-
+use App\Photos;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CartResource extends JsonResource
@@ -17,13 +17,15 @@ class CartResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-        $users = Client::where('id', $this->id)->first();
-        $items = Items::where('id', $this->id)->first();
+        $users = Client::where('id', $this->user_id)->first();
+        $items = Items::where('id', $this->item_id)->first();
+        $photos = Photos::where('items_id', $this->item_id)->get();
 
         return [
             'user' => $users,
-            'items' => $items,
+            'cart' => $items,
             'quantity' => $this->quantity,
+            'images' => $photos,
         ];
     }
 }
