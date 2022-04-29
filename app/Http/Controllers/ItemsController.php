@@ -62,25 +62,25 @@ class ItemsController extends Controller
 
     public function sold(Request $request)
     {
-        $request = [
-                'items' => [
-                    0 => [
-                        'seller_id' => 1,
-                        'item_id' => 1,
-                        'quantity' => 2,
-                    ],
-                    1 => [
-                        'seller_id' => 1,
-                        'item_id' => 2,
-                        'quantity' => 10,
-                    ]
-                ],
-                'buyer_id' => 1,
-                'description' => 'bbm',
-                'location' => 'manila',
-                'mode_payment' => 'cod'
-        ];
-        return $request;
+        // $request = [
+        //         'items' => [
+        //             0 => [
+        //                 'seller_id' => 1,
+        //                 'item_id' => 1,
+        //                 'quantity' => 2,
+        //             ],
+        //             1 => [
+        //                 'seller_id' => 1,
+        //                 'item_id' => 2,
+        //                 'quantity' => 10,
+        //             ]
+        //         ],
+        //         'buyer_id' => 1,
+        //         'description' => 'bbm',
+        //         'location' => 'manila',
+        //         'mode_payment' => 'cod'
+        // ];
+        // return $request;
         foreach($request['items'] as $item) {
             $sold = new Sold();
             $sold->seller_id = $item['seller_id'];    

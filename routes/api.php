@@ -117,8 +117,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('add_myAddresses', 'DeliveryAddressController@add_myAddress');
 	Route::post('edit_myAddresses/{id}', 'DeliveryAddressController@edit_myAddress');
 	Route::delete('delete_myAddresses/{id}', 'DeliveryAddressController@delete_myAddress');
-
-	
 });
 
 Route::get('item_messages/{id}' ,'SessionController@get_item_messages');
