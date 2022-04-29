@@ -62,37 +62,94 @@ class ItemsController extends Controller
 
     public function sold(Request $request)
     {
-        $validatedData = $request->validate([
-            'buyer_id' => 'required',
-            'seller_id' => 'required',
-            'item_id' => 'required',
-        ]);
+        $request = [
+                'items' => [
+                    0 => [
+                        'seller_id' => 1,
+                        'item_id' => 1,
+                        'quantity' => 2,
+                    ],
+                    1 => [
+                        'seller_id' => 1,
+                        'item_id' => 2,
+                        'quantity' => 10,
+                    ]
+                ],
+                'buyer_id' => 1,
+                'description' => 'bbm',
+                'location' => 'manila',
+                'mode_payment' => 'cod'
+        ];
+        return $request;
+        foreach($request['items'] as $item) {
+            $sold = new Sold();
+            $sold->seller_id = $item['seller_id'];    
+            $sold->item_id = $item['item_id'];                                               
+            $sold->quantity = $item['quantity'];
+            $sold->buyer_id = $request['buyer_id'];
+            $sold->description = $request['description'];
+            $sold->location = $request['location'];
+            $sold->mode_payment = $request['mode_payment'];
+            $sold->save();
+            $this->updateStock($item['item_id'], $item['quantity']);
+        }
+        return 'success';
+        // $validatedData = $request->validate([
+        //     'buyer_id' => 'required',
+        //     'seller_id' => 'required',
+        //     'item_id' => 'required',
+        // ]);
+        // $sold = new Sold();
+        // foreach($sold as $item){
+        //     if($item !=null){
+        //         // $sold = new Sold();
+        //         $sold->seller_id =  $request->input('seller_id');
+        //         $sold->item_id =  $request->input('item_id');   
+        //         $sold->buyer_id =  $request->input('buyer_id');
+        //         $sold->quantity =  $request->input('quantity');
+        //         $sold->description =  $request->input('description');
+        //         $sold->location =  $request->input('location');
+        //         $sold->mode_of_payment =  $request->input('mode_of_payment');
+        //         if($sold->save()){
+        //             $this->updateStock( $request->id, $request->total_purchase, $request->stock, $request->quantity );
+        //         };
+        //         return $sold;
 
-        $sold = new Sold();
-        $sold->seller_id =  $request->input('seller_id');
-        $sold->item_id =  $request->input('item_id');   
-        $sold->buyer_id =  $request->input('buyer_id');
-        $sold->quantity =  $request->input('quantity');
-        $sold->description =  $request->input('description');
-        $sold->location =  $request->input('location');
-        $sold->mode_of_payment =  $request->input('mode_of_payment');
+        //     }
+
+        // }
+        // $sold = new Sold();
+        // $sold->seller_id =  $request->input('seller_id');
+        // $sold->item_id =  $request->input('item_id');   
+        // $sold->buyer_id =  $request->input('buyer_id');
+        // $sold->quantity =  $request->input('quantity');
+        // $sold->description =  $request->input('description');
+        // $sold->location =  $request->input('location');
+        // $sold->mode_of_payment =  $request->input('mode_of_payment');
 
         
-        if($sold->save()){
-            $this->updateStock( $request->id, $request->total_purchase, $request->stock, $request->quantity );
-        };
-        return $sold;
+        // if($sold->save()){
+        //     $this->updateStock( $request->id, $request->total_purchase, $request->stock, $request->quantity );
+        // };
+        // return $sold;
     }
 
-    public function updateStock($id, $total_purchase, $stock, $quantity ){
-       return Items::find($id)
-       ->update([
-                        'total_purchase' => $quantity + $total_purchase,
-                        'stock' => $stock - $quantity
-                    ]);
+    // public function updateStock($id, $total_purchase, $stock, $quantity ){
+    //    return Items::find($id)
+    //    ->update([
+    //                     'total_purchase' => $quantity + $total_purchase,
+    //                     'stock' => $stock - $quantity
+    //                 ]);
                     
        
 
+    // }
+    public function updateStock($item_id, $quantity) {
+        $item =  Items::find($item_id);
+        $item->update([
+            'total_purchase' => $item->total_purchase + $quantity,
+            'stock' => $item->stock - $quantity,
+        ]);
     }
 
     public function changeStatus(Request $request)

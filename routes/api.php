@@ -36,8 +36,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('view_item/{id}' ,'ItemsController@show');
 
 //
-
-
 	//send message
 	Route::post('send_message' ,'SessionController@store');
     Route::get('messages/read/{id}' ,'MessageController@readMessage');
